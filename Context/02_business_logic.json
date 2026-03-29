@@ -1,0 +1,203 @@
+{
+  "_meta": {
+    "purpose": "Business logic context for Qwen Coder 14B — bucket classification rules, metric formulas, movement logic, DAX calculation patterns",
+    "critical_note": "This JSON contains the core business rules. Qwen MUST follow these exactly when generating DAX or interpreting user questions."
+  },
+
+  "bucket_classification": {
+    "_note": "Op bucket is derived from these rules in PRIORITY ORDER. Apply top-to-bottom. First match wins.",
+    "field": "Op bucket",
+    "rules": [
+      {
+        "bucket": "Current",
+        "priority": 1,
+        "condition": "dpd = 0 AND Bounce_status = 'PAID' AND Emi_increase = 0 AND day_wise_asset_classification = 'Standard Asset'",
+        "description": "Fully healthy, on-time, paid via NACH, no EMI increase",
+        "dax_filter": "Table[dpd] = 0 && Table[Bounce status] = \"PAID\" && Table[Emi increase] = 0 && Table[day_wise_asset_classification] = \"Standard Asset\""
+      },
+      {
+        "bucket": "Risk X",
+        "priority": 2,
+        "condition": "dpd = 0 AND (Emi_increase = 1 OR Bounce_status <> 'PAID') AND day_wise_asset_classification = 'Standard Asset'",
+        "description": "DPD is zero but has either EMI increase or non-PAID bounce — watch bucket",
+        "dax_filter": "Table[dpd] = 0 && (Table[Emi increase] = 1 || Table[Bounce status] <> \"PAID\") && Table[day_wise_asset_classification] = \"Standard Asset\""
+      },
+      {
+        "bucket": "1-29 DPD",
+        "priority": 3,
+        "condition": "dpd > 0 AND dpd < 30 AND day_wise_asset_classification = 'Standard Asset'",
+        "description": "Early delinquency — 1 to 29 days overdue",
+        "dax_filter": "Table[dpd] > 0 && Table[dpd] < 30 && Table[day_wise_asset_classification] = \"Standard Asset\""
+      },
+      {
+        "bucket": "30-59 DPD",
+        "priority": 4,
+        "condition": "dpd >= 30 AND dpd < 60 AND day_wise_asset_classification = 'Standard Asset'",
+        "description": "Moderate delinquency — 30 to 59 days overdue",
+        "dax_filter": "Table[dpd] >= 30 && Table[dpd] < 60 && Table[day_wise_asset_classification] = \"Standard Asset\""
+      },
+      {
+        "bucket": "60-89 DPD",
+        "priority": 5,
+        "condition": "dpd >= 60 AND dpd < 90 AND day_wise_asset_classification = 'Standard Asset' AND Risk_NPA = 0",
+        "description": "Severe delinquency, pre-NPA — 60 to 89 days overdue",
+        "dax_filter": "Table[dpd] >= 60 && Table[dpd] < 90 && Table[day_wise_asset_classification] = \"Standard Asset\" && Table[Risk NPA] = 0"
+      },
+      {
+        "bucket": "NPA",
+        "priority": 6,
+        "condition": "dpd > 90 AND day_wise_asset_classification <> 'Standard Asset' OR (dpd >= 60 AND dpd < 90 AND day_wise_asset_classification = 'Standard Asset' AND Risk_NPA = 1)",
+        "description": "Non-Performing Asset — either DPD > 90 with non-standard classification, or 60-89 DPD with Risk NPA flag",
+        "dax_filter": "(Table[dpd] > 90 && Table[day_wise_asset_classification] <> \"Standard Asset\") || (Table[dpd] >= 60 && Table[dpd] < 90 && Table[day_wise_asset_classification] = \"Standard Asset\" && Table[Risk NPA] = 1)"
+      },
+      {
+        "bucket": "Write-off",
+        "priority": 7,
+        "condition": "Loan has been written off from books",
+        "description": "Written off — removed from active book but collection continues due to overdue amount",
+        "dax_filter": "Filter Op bucket = 'Write-off' directly — this is pre-set in the data"
+      }
+    ]
+  },
+
+  "bucket_movement_logic": {
+    "_note": "Cust wise status is derived from Op bucket → Closing bucket transition",
+    "field": "Cust wise status",
+    "rules": [
+      { "op_bucket": "Current",   "closing_bucket": ["Current", "Risk X"],          "status": "Current",   "meaning": "Remained healthy" },
+      { "op_bucket": "Risk X",    "closing_bucket": ["Current", "Risk X"],           "status": "Norm",      "meaning": "Improved back to good" },
+      { "op_bucket": "Risk X",    "closing_bucket": ["Others"],                      "status": "Flow",      "meaning": "Flowed into delinquency" },
+      { "op_bucket": "1-29 DPD",  "closing_bucket": ["Current", "Risk X"],           "status": "Norm",      "meaning": "Improved from early DPD" },
+      { "op_bucket": "1-29 DPD",  "closing_bucket": ["1-29 DPD"],                   "status": "Stab",      "meaning": "Stayed in same bucket" },
+      { "op_bucket": "1-29 DPD",  "closing_bucket": ["30-59 DPD"],                  "status": "Flow",      "meaning": "Worsened — flowed deeper" },
+      { "op_bucket": "30-59 DPD", "closing_bucket": ["Current", "Risk X"],           "status": "Norm",      "meaning": "Improved significantly" },
+      { "op_bucket": "30-59 DPD", "closing_bucket": ["1-29 DPD"],                   "status": "Roll Back", "meaning": "Partial improvement" },
+      { "op_bucket": "30-59 DPD", "closing_bucket": ["30-59 DPD"],                  "status": "Stab",      "meaning": "Stayed in same bucket" },
+      { "op_bucket": "30-59 DPD", "closing_bucket": ["60-89 DPD", "NPA", "Write-off"], "status": "Risk NPA", "meaning": "Deteriorated to near-NPA" },
+      { "op_bucket": "60-89 DPD", "closing_bucket": ["Current", "Risk X"],           "status": "Norm",      "meaning": "Improved significantly" },
+      { "op_bucket": "60-89 DPD", "closing_bucket": ["1-29 DPD"],                   "status": "Roll Back", "meaning": "Partial improvement" },
+      { "op_bucket": "60-89 DPD", "closing_bucket": ["30-59 DPD"],                  "status": "Stab",      "meaning": "Stayed in similar bucket" },
+      { "op_bucket": "60-89 DPD", "closing_bucket": ["60-89 DPD", "NPA", "Write-off"], "status": "Risk NPA", "meaning": "Deteriorated further" },
+      { "op_bucket": "NPA",       "closing_bucket": ["Current", "Risk X", "1-29 DPD", "30-59 DPD", "60-89 DPD"], "status": "Norm", "meaning": "NPA resolved" },
+      { "op_bucket": "NPA",       "closing_bucket": ["NPA", "Write-off"],            "status": "NPA",       "meaning": "Remaining NPA" },
+      { "op_bucket": "Write-off", "closing_bucket": ["Current", "Risk X"],           "status": "Norm",      "meaning": "Write-off recovered" },
+      { "op_bucket": "Write-off", "closing_bucket": ["Others"],                      "status": "Write-off", "meaning": "Remaining write-off" },
+      { "op_bucket": "Any",       "closing_bucket": ["Any other"],                   "status": "Flow",      "meaning": "Default — deterioration" }
+    ]
+  },
+
+  "metrics": {
+    "Resolution": {
+      "label": "Resolution",
+      "description": "Count of customers who improved from delinquent bucket back to Current/Risk X",
+      "consumer_language": ["resolved", "recovered", "norm customers", "how many resolved", "resolution count"],
+      "formula": "COUNT(DISTINCT Cust ID) WHERE Cust wise status = 'Norm'",
+      "dax_pattern": "CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Cust wise status] = \"Norm\")",
+      "unit": "Count",
+      "important": "Norm means improved — Current customers are already performing, they are NOT in resolution count"
+    },
+    "Resolution_Percent": {
+      "label": "Resolution %",
+      "description": "Resolution count as % of total customers in the filtered segment",
+      "consumer_language": ["resolution percentage", "resolution rate", "how much resolved", "recovery rate"],
+      "formula": "COUNT(DISTINCT Cust ID WHERE status=Norm) / COUNT(DISTINCT Cust ID total) * 100",
+      "dax_pattern": "DIVIDE(CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Cust wise status] = \"Norm\"), DISTINCTCOUNT(Table[Cust ID])) * 100",
+      "unit": "Percentage",
+      "important": "Applies to delinquent buckets. Denominator = all customers in the filtered dataset."
+    },
+    "Bounce_Count": {
+      "label": "Bounce Count",
+      "description": "Count of customers where Bounce status is Tech or Non Tech",
+      "consumer_language": ["bounce count", "how many bounced", "total bounces", "bounce loans"],
+      "formula": "COUNT(DISTINCT Cust ID) WHERE Bounce_status IN ('Tech', 'Non Tech')",
+      "dax_pattern": "CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Bounce status] IN {\"Tech\", \"Non Tech\"})",
+      "unit": "Count",
+      "important": "NEVER include PAID in bounce count. PAID = successful payment, NOT a bounce."
+    },
+    "Bounce_Percent": {
+      "label": "Bounce %",
+      "description": "Bounce count as % of total customers",
+      "consumer_language": ["bounce rate", "bounce percentage", "payment failure rate", "% bounced"],
+      "formula": "COUNT(DISTINCT Cust ID WHERE bounce) / COUNT(DISTINCT Cust ID total) * 100",
+      "dax_pattern": "DIVIDE(CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Bounce status] IN {\"Tech\", \"Non Tech\"}), DISTINCTCOUNT(Table[Cust ID])) * 100",
+      "unit": "Percentage"
+    },
+    "Coverage": {
+      "label": "Coverage",
+      "description": "Count of allocated customers who were visited",
+      "consumer_language": ["coverage", "visited customers", "field coverage", "visit coverage"],
+      "formula": "COUNT(DISTINCT Cust ID) WHERE Visit_or_not = 'Visited' AND Allocated_or_not = 'Allocated'",
+      "dax_pattern": "CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Visit or not] = \"Visited\", Table[Allocated or not] = \"Allocated\")",
+      "unit": "Count",
+      "important": "Only count customers where Allocated or not = 'Allocated'. Non-allocated EXCLUDED from coverage."
+    },
+    "Coverage_Percent": {
+      "label": "Coverage %",
+      "description": "Visited-allocated customers as % of total allocated customers",
+      "consumer_language": ["coverage percentage", "visit rate", "coverage rate", "% visited"],
+      "formula": "COUNT(Visited AND Allocated) / COUNT(Allocated) * 100",
+      "dax_pattern": "DIVIDE(CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Visit or not] = \"Visited\", Table[Allocated or not] = \"Allocated\"), CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Allocated or not] = \"Allocated\")) * 100",
+      "unit": "Percentage"
+    },
+    "Intensity": {
+      "label": "Intensity",
+      "description": "Average number of field visits per customer in the month",
+      "consumer_language": ["intensity", "visit intensity", "average visits", "how many times visited per customer"],
+      "formula": "SUM(Visit Count) / COUNT(DISTINCT Cust ID)",
+      "dax_pattern": "DIVIDE(SUM(Table[Visit Count]), DISTINCTCOUNT(Table[Cust ID]))",
+      "unit": "Number (e.g., 2.5 visits per customer)"
+    },
+    "Portfolio_Outstanding": {
+      "label": "Portfolio Outstanding",
+      "description": "Total balance principal across filtered loans",
+      "consumer_language": ["portfolio size", "total outstanding", "AUM", "total principal", "how much outstanding"],
+      "formula": "SUM(bal_prin)",
+      "dax_pattern": "SUM(Table[bal_prin])",
+      "unit": "Amount (INR)"
+    },
+    "Total_Overdue": {
+      "label": "Total Overdue",
+      "description": "Sum of TOD (Total Overdue = principal + interest + pre-EMI overdue)",
+      "consumer_language": ["total overdue", "overdue amount", "how much overdue", "overdue balance"],
+      "formula": "SUM(TOD)",
+      "dax_pattern": "SUM(Table[TOD])",
+      "unit": "Amount (INR)"
+    }
+  },
+
+  "granularity_rules": {
+    "customer_level_metrics": {
+      "rule": "Always use DISTINCTCOUNT(Table[Cust ID])",
+      "applies_to": ["Resolution %", "Bounce %", "Coverage %", "customer count"],
+      "reason": "One customer can have multiple loanappno in the same month. Counting loanappno overstates customer count."
+    },
+    "loan_level_metrics": {
+      "rule": "Use COUNT(Table[loanappno]) or COUNTROWS",
+      "applies_to": ["loan count", "account count", "number of loans", "Add NPA count"],
+      "reason": "Loan-level metrics should not deduplicate by customer."
+    },
+    "financial_metrics": {
+      "rule": "Use SUM on numeric fields",
+      "applies_to": ["bal_prin", "TOD", "overdue_amount", "Bounce charges", "Bounce charge collected"]
+    }
+  },
+
+  "null_handling": {
+    "NPA_Origination_Date": "NULL = account has never been in NPA. Exclude from NPA age analysis.",
+    "NPA MOB": "NULL = account is not in NPA. Treat as 0 or exclude from NPA duration analysis.",
+    "Bounce charges": "NULL = no charges applicable. Not a data error.",
+    "overdue_amount": "NULL = no overdue charges. Not a data error.",
+    "Allocation 1": "'NA' string (not null) = Non Allocated. Use string comparison: Allocation 1 <> 'NA'",
+    "TL": "'No TL' string (not null) = no team leader assigned. Use string comparison: TL <> 'No TL'",
+    "Payment mode": "'Blank' string = no payment made. Not null — explicitly set."
+  },
+
+  "hierarchies": {
+    "geography": ["Region", "Branch"],
+    "collection_team": ["SH", "TL", "Allocation 1"],
+    "portfolio": ["Portfolio new", "Type of Arrangement", "loanappno"],
+    "product": ["Product", "Transaction Type", "Scheme", "loanappno"],
+    "bucket": ["Op bucket", "Cust wise status"],
+    "time": ["Next Date", "Due Date", "Payment Day bucket"]
+  }
+}

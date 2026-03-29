@@ -1,0 +1,384 @@
+{
+  "_meta": {
+    "purpose": "Schema context for Qwen Coder 14B — used during intent analysis, column selection, and DAX generation",
+    "dataset": "Loan Collection Portfolio — Monthly Report",
+    "primary_key": "loanappno",
+    "customer_key": "Cust ID",
+    "reporting_frequency": "Monthly — each load is one calendar month",
+    "loan_types": ["LP (Loan Against Property)", "HL (Home Loan)"],
+    "loan_type_identification": "loanappno prefix: LP = Loan Against Property, MLP = Micro Loan Against Property, HL = Home Loan , MHL = Micro Home Loan",
+    "approximate_row_count": "~89,255 loan accounts per month"
+  },
+
+  "fields": [
+    {
+      "field": "loanappno",
+      "data_type": "Text",
+      "category": "Identifier",
+      "slicer": false,
+      "description": "Loan Application Number — unique identifier per loan account. Primary key of the dataset. Format: LP000000136474 or HL0000000108833.",
+      "use_in_dax": "Use COUNT(loanappno) for loan-level counts. Use as primary key in relationships.",
+      "never_aggregate_as": "Do NOT SUM or AVG this field."
+    },
+    {
+      "field": "dpd",
+      "data_type": "Number",
+      "category": "Delinquency",
+      "slicer": false,
+      "description": "Days Past Due at customer level (month-end). Worst DPD across all loans for a customer. DPD=0 means no overdue.",
+      "use_in_dax": "Use for customer-level delinquency analysis. Filter dpd > 0 for delinquent customers.",
+      "consumer_language": ["days overdue", "how late", "delinquent days"]
+    },
+    {
+      "field": "dpd_casewise",
+      "data_type": "Number",
+      "category": "Delinquency",
+      "slicer": false,
+      "description": "Days Past Due at loan application level. Specific to each loanappno. May differ from dpd if customer has multiple loans.",
+      "use_in_dax": "Use for loan-level DPD analysis. SUM or AVG as needed for DPD distribution."
+    },
+    {
+      "field": "day_wise_asset_classification",
+      "data_type": "Text",
+      "category": "Classification",
+      "slicer": false,
+      "values": ["Standard Asset", "Substandard Asset", "Doubtful Asset", "Loss Asset"],
+      "description": "Asset classification of the loan. Standard Asset = non-delinquent. Any other value = delinquent. Used in bucket logic.",
+      "use_in_dax": "Use in CALCULATE filters for bucket classification logic. Standard Asset = performing."
+    },
+    {
+      "field": "TOD",
+      "data_type": "Number",
+      "category": "Financial",
+      "slicer": false,
+      "description": "Total Overdue Amount = Principal Overdue + Interest Overdue + Pre-EMI Overdue. Total unpaid outstanding.",
+      "use_in_dax": "SUM(TOD) for total overdue. Use with Op bucket filter for segment-level overdue.",
+      "consumer_language": ["total overdue", "overdue amount", "outstanding overdue", "unpaid amount"]
+    },
+    {
+      "field": "bal_prin",
+      "data_type": "Number",
+      "category": "Financial",
+      "slicer": false,
+      "description": "Balance Principal = Balance Principal Outstanding + Principal Overdue. Total principal remaining on loan.",
+      "use_in_dax": "SUM(bal_prin) for outstanding principal. Key financial metric for portfolio size.",
+      "consumer_language": ["loan outstanding", "principal outstanding", "balance principal", "total portfolio"]
+    },
+    {
+      "field": "Next Date",
+      "data_type": "Date",
+      "category": "Date",
+      "slicer": false,
+      "description": "Opening month start date (e.g., 01-02-2026 format DD-MM-YYYY). The first date of the reporting month.",
+      "use_in_dax": "Use for time-based filtering. Format: DD-MM-YYYY."
+    },
+    {
+      "field": "Bounce status",
+      "data_type": "Text",
+      "category": "Payment",
+      "slicer": true,
+      "values": ["Tech", "Non Tech", "PAID"],
+      "description": "EMI/NACH payment bounce status. Tech = bounce due to technical issue. Non Tech = intentional bounce by customer. PAID = customer paid via NACH successfully.",
+      "use_in_dax": "Filter Bounce status IN ('Tech','Non Tech') for bounce count. Bounce status = 'PAID' means successful payment. NEVER count PAID as bounce.",
+      "consumer_language": ["bounce", "bounced", "payment failure", "non-payment", "nach bounce", "technical bounce"]
+    },
+    {
+      "field": "Emi increase",
+      "data_type": "Number",
+      "category": "Loan",
+      "slicer": false,
+      "values": [0, 1],
+      "description": "Flag: 1 = EMI has increased for this loan. 0 = No EMI change. Used in bucket classification logic."
+    },
+    {
+      "field": "Cust ID",
+      "data_type": "Text",
+      "category": "Identifier",
+      "slicer": false,
+      "description": "Customer Identifier (CN prefix). One customer may have multiple loanappno entries. Use for customer-level deduplication.",
+      "use_in_dax": "DISTINCTCOUNT(Table[Cust ID]) for unique customer counts. Critical: always DISTINCTCOUNT not COUNT for customer metrics.",
+      "consumer_language": ["customer count", "number of customers", "unique customers"]
+    },
+    {
+      "field": "Risk NPA",
+      "data_type": "Number",
+      "category": "Risk",
+      "slicer": false,
+      "values": [0, 1],
+      "description": "1 = customer DPD crossed 90 before the due date (high NPA risk). 0 = normal. Used in bucket logic for 60-89 DPD classification."
+    },
+    {
+      "field": "Op bucket",
+      "data_type": "Text",
+      "category": "Bucket",
+      "slicer": true,
+      "values": ["Current", "Risk X", "1-29 DPD", "30-59 DPD", "60-89 DPD", "NPA", "Write-off"],
+      "description": "Opening Bucket — portfolio risk bucket at the START of the month. This is the PRIMARY risk classification field. Use this when user asks about 'how many accounts in X bucket'.",
+      "use_in_dax": "FILTER by Op bucket for segment analysis. COUNT or DISTINCTCOUNT by Op bucket for distribution.",
+      "consumer_language": ["bucket", "dpd bucket", "risk category", "current accounts", "NPA accounts", "write-off", "stressed accounts", "bad loans", "overdue accounts", "1-29", "30-59", "60-89"]
+    },
+    {
+      "field": "Closing bucket",
+      "data_type": "Text",
+      "category": "Bucket",
+      "slicer": false,
+      "values": ["Current", "Risk X", "1-29 DPD", "30-59 DPD", "60-89 DPD", "NPA", "Write-off"],
+      "description": "Closing Bucket — portfolio risk bucket at END of month. Shows where account moved to after the month.",
+      "use_in_dax": "Use with Op bucket for bucket movement analysis. Compare Op bucket vs Closing bucket for flow analysis."
+    },
+    {
+      "field": "Cust wise status",
+      "data_type": "Text",
+      "category": "Status",
+      "slicer": true,
+      "values": ["Current", "Norm", "Flow", "Stab", "Roll Back", "Risk NPA", "NPA", "Write-off"],
+      "description": "Customer movement status based on Opening to Closing bucket transition. PRIMARY metric for collection effectiveness. Norm = resolved/improved. Flow = worsened. Stab = no change. Roll Back = partially improved.",
+      "use_in_dax": "FILTER Cust wise status = 'Norm' for resolution. COUNT(DISTINCT Cust ID) for customer-level counts.",
+      "consumer_language": ["resolved", "recovered", "norm", "flow", "worsened", "stable", "roll back", "movement status", "collection outcome"]
+    },
+    {
+      "field": "Due Date",
+      "data_type": "Date",
+      "category": "Date",
+      "slicer": true,
+      "description": "EMI due date for the loan application (e.g., 5th of month for most accounts)."
+    },
+    {
+      "field": "Installment No",
+      "data_type": "Number",
+      "category": "Loan",
+      "slicer": true,
+      "description": "EMI installment number — how many instalments have been scheduled so far."
+    },
+    {
+      "field": "Branch",
+      "data_type": "Text",
+      "category": "Geography",
+      "slicer": true,
+      "description": "Service branch name where the loan is managed (e.g., PUNE, JAIPUR, LUCKNOW).",
+      "use_in_dax": "GROUP BY Branch for branch-level analysis. Filter Branch = 'BRANCH_NAME' for specific branch.",
+      "consumer_language": ["branch", "city", "location", "service center", "office"]
+    },
+    {
+      "field": "Type of Arrangement",
+      "data_type": "Text",
+      "category": "Portfolio",
+      "slicer": true,
+      "description": "Source arrangement of the loan — own company origination or purchased from another company (e.g., State Bank of India - DA01, Tata Capital - DA01, VASTU, Dhansafal)."
+    },
+    {
+      "field": "Scheme",
+      "data_type": "Text",
+      "category": "Product",
+      "slicer": true,
+      "description": "Loan scheme under which customer was onboarded (e.g., PD ASSESSMENT-FLOATING, BANKING 360-FLOATING, RENTAL INCOME PROGRAM-FLOATING)."
+    },
+    {
+      "field": "Payment mode",
+      "data_type": "Text",
+      "category": "Payment",
+      "slicer": true,
+      "values": ["Cash", "Cheque", "Demand Draft", "NEFT", "RTGS", "Blank"],
+      "description": "Mode of EMI payment. Blank = no payment made in the month.",
+      "consumer_language": ["how paid", "payment method", "cash payment", "online payment", "no payment", "non payers"]
+    },
+    {
+      "field": "Payment Day bucket",
+      "data_type": "Text",
+      "category": "Payment",
+      "slicer": true,
+      "values": ["1-5", "6-10", "11-15", "16-20", "21-25", "26-27", "28-31", "NA"],
+      "description": "Bucket based on day of month when payment was made. NA = no payment made.",
+      "consumer_language": ["when payment was made", "payment timing", "early payers", "late payers"]
+    },
+    {
+      "field": "Digital/cash",
+      "data_type": "Text",
+      "category": "Payment",
+      "slicer": true,
+      "values": ["Digital", "Cash"],
+      "description": "Digital = any payment mode other than Cash and not blank. Cash = cash payment. Blank payments are excluded from this field.",
+      "consumer_language": ["digital payment", "online payment", "cash payers", "payment channel"]
+    },
+    {
+      "field": "Loan level bounce",
+      "data_type": "Number",
+      "category": "Payment",
+      "slicer": true,
+      "values": [0, 1],
+      "description": "1 = bounce occurred at loan application level. 0 = no bounce for this specific loanappno.",
+      "use_in_dax": "SUM for total bounced loans. Use loanappno as granularity."
+    },
+    {
+      "field": "Cust level bounce",
+      "data_type": "Number",
+      "category": "Payment",
+      "slicer": true,
+      "values": [0, 1],
+      "description": "1 = bounce at customer level. If one loan bounces, ALL loans of the customer are tagged 1. Stricter than loan-level bounce.",
+      "use_in_dax": "Use DISTINCTCOUNT(Cust ID) WHERE Cust level bounce = 1 for Bounce % calculation.",
+      "consumer_language": ["customer bounce", "bounce rate", "bounce percentage", "how many bounced"]
+    },
+    {
+      "field": "Region",
+      "data_type": "Text",
+      "category": "Geography",
+      "slicer": true,
+      "description": "Geographic region where branch belongs (e.g., Pune, Rajasthan, MP, NCR, Karnataka, Telangana).",
+      "consumer_language": ["region", "area", "zone", "geography"]
+    },
+    {
+      "field": "MOB Bucket",
+      "data_type": "Text",
+      "category": "Loan",
+      "slicer": true,
+      "values": ["1-6 MOB", "7-12 MOB", "13-18 MOB", "19-24 MOB", "24+ MOB"],
+      "description": "Month on Book bucket — loan age grouping. Shows how old the loan is.",
+      "consumer_language": ["loan age", "new loans", "old loans", "month on book", "MOB", "vintage"]
+    },
+    {
+      "field": "overdue_amount",
+      "data_type": "Number",
+      "category": "Financial",
+      "slicer": false,
+      "description": "Overdue bounce charges amount outstanding (not yet collected)."
+    },
+    {
+      "field": "Bounce charges",
+      "data_type": "Number",
+      "category": "Financial",
+      "slicer": false,
+      "description": "Bounce charges levied in the current reporting month."
+    },
+    {
+      "field": "Bounce charge collected",
+      "data_type": "Number",
+      "category": "Financial",
+      "slicer": false,
+      "description": "Bounce charges actually collected by the collection team in the reporting month."
+    },
+    {
+      "field": "Visited",
+      "data_type": "Text",
+      "category": "Collection",
+      "slicer": true,
+      "values": ["Visited before due date", "Visit After Due date", "Visit before and after due date", "Not visited"],
+      "description": "Detailed field visit status for the loan account during the month.",
+      "consumer_language": ["visited", "field visit", "customer visit", "before due date", "after due date"]
+    },
+    {
+      "field": "Allocation 1",
+      "data_type": "Text",
+      "category": "Collection",
+      "slicer": true,
+      "description": "Field executive name allocated to this loan for collection. 'NA' (as string, not null) means not allocated.",
+      "use_in_dax": "Filter Allocation 1 <> 'NA' for allocated accounts.",
+      "consumer_language": ["field executive", "FE", "collection officer", "allocated to", "who is handling"]
+    },
+    {
+      "field": "SH",
+      "data_type": "Text",
+      "category": "Collection",
+      "slicer": true,
+      "description": "State Head — senior manager in collection hierarchy above Team Leader.",
+      "consumer_language": ["state head", "SH", "senior manager"]
+    },
+    {
+      "field": "TL",
+      "data_type": "Text",
+      "category": "Collection",
+      "slicer": true,
+      "description": "Team Leader — supervises field executives. 'No TL' (as string) means no TL assigned.",
+      "use_in_dax": "Filter TL <> 'No TL' for accounts with assigned TL.",
+      "consumer_language": ["team leader", "TL", "manager", "supervisor"]
+    },
+    {
+      "field": "Allocated or not",
+      "data_type": "Text",
+      "category": "Collection",
+      "slicer": true,
+      "values": ["Allocated", "Non Allocated"],
+      "description": "Allocation status: 'Allocated' if Allocation 1 is not NA. 'Non Allocated' if Allocation 1 = NA. Use this for allocation analysis — simpler than checking Allocation 1.",
+      "use_in_dax": "Filter Allocated or not = 'Allocated' for coverage denominator."
+    },
+    {
+      "field": "Visit or not",
+      "data_type": "Text",
+      "category": "Collection",
+      "slicer": true,
+      "values": ["Visited", "Not Visited"],
+      "description": "Simplified visit flag. Visited = any of the 3 Visited values in Visited field. Not Visited = Not visited.",
+      "use_in_dax": "Use in Coverage % numerator: FILTER Visit or not = 'Visited' AND Allocated or not = 'Allocated'."
+    },
+    {
+      "field": "Visit Count",
+      "data_type": "Number",
+      "category": "Collection",
+      "slicer": false,
+      "description": "Number of field visits to this loanappno in the reporting month.",
+      "use_in_dax": "SUM(Visit Count) / DISTINCTCOUNT(Cust ID) for Intensity metric.",
+      "consumer_language": ["how many times visited", "visit intensity", "frequency of visits", "follow up count"]
+    },
+    {
+      "field": "Add NPA",
+      "data_type": "Number",
+      "category": "Risk",
+      "slicer": true,
+      "values": [0, 1],
+      "description": "1 = this customer will become a new NPA in the NEXT month. 0 = not becoming NPA. Forward-looking NPA risk flag.",
+      "use_in_dax": "FILTER Add NPA = 1 and COUNT loanappno for new NPA additions.",
+      "consumer_language": ["new NPA", "fresh NPA", "going to be NPA", "NPA next month", "NPA additions"]
+    },
+    {
+      "field": "Coll/Sales",
+      "data_type": "Text",
+      "category": "Team",
+      "slicer": true,
+      "values": ["Collection", "Sales"],
+      "description": "Team assignment: Collection = assigned to collection team. Sales = assigned to sales team.",
+      "consumer_language": ["collection team", "sales team", "which team"]
+    },
+    {
+      "field": "NPA_Origination_Date",
+      "data_type": "Date",
+      "category": "Risk",
+      "slicer": true,
+      "description": "Date when account first entered NPA bucket. NULL = account has never been in NPA.",
+      "use_in_dax": "NULL means never NPA. Filter NOT NULL for NPA accounts."
+    },
+    {
+      "field": "NPA MOB",
+      "data_type": "Number",
+      "category": "Risk",
+      "slicer": true,
+      "description": "Number of months this account has been in NPA status. NULL = not in NPA (treat as 0 or exclude).",
+      "consumer_language": ["how long in NPA", "NPA duration", "months in NPA", "NPA age"]
+    },
+    {
+      "field": "Portfolio new",
+      "data_type": "Text",
+      "category": "Portfolio",
+      "slicer": true,
+      "description": "Grouped portfolio classification — grouped version of Type of Arrangement (e.g., VASTU, State Bank of India DA 1-3, Tata Capital DA01, Other).",
+      "use_in_dax": "Use Portfolio new for high-level portfolio grouping. More useful than Type of Arrangement for aggregations.",
+      "consumer_language": ["portfolio", "which portfolio", "VASTU", "Tata Capital", "SBI portfolio"]
+    },
+    {
+      "field": "Transaction Type",
+      "data_type": "Text",
+      "category": "Product",
+      "slicer": true,
+      "values": ["RESIDENTIAL LAP", "COMMERCIAL LAP", "BALANCE TRANSFER - RESIDENTIAL LAP", "SELF CONSTRUCTION", "COMMERCIAL PURCHASE"],
+      "description": "Transaction type of the loan (e.g., RESIDENTIAL LAP, COMMERCIAL LAP, BALANCE TRANSFER).",
+      "consumer_language": ["transaction type", "residential", "commercial", "balance transfer"]
+    },
+    {
+      "field": "Product",
+      "data_type": "Text",
+      "category": "Product",
+      "slicer": true,
+      "description": "Product category representing the industry segment (e.g., Retail, Micro Housing).",
+      "consumer_language": ["product", "loan type", "micro housing", "retail loan"]
+    }
+  ]
+}

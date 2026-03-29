@@ -1,0 +1,261 @@
+{
+  "_meta": {
+    "purpose": "Language mapping context for Qwen Coder 14B — maps consumer informal language to technical fields, metrics, and DAX patterns. Used during intent analysis and clarifying question generation.",
+    "critical_note": "Users are NON-TECHNICAL. They will NEVER say column names. Qwen MUST map their words to the correct fields and metrics using this document."
+  },
+
+  "language_to_field_mapping": [
+    {
+      "consumer_says": ["resolved customers", "recovered accounts", "resolved loans", "how many resolved", "who resolved"],
+      "maps_to_field": "Cust wise status",
+      "maps_to_value": "Norm",
+      "metric": "Resolution",
+      "dax_hint": "CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Cust wise status] = \"Norm\")"
+    },
+    {
+      "consumer_says": ["bad loans", "stressed accounts", "overdue accounts", "delinquent", "problematic loans", "at risk"],
+      "maps_to_field": "Op bucket",
+      "maps_to_value": "NOT Current (any of: Risk X, 1-29 DPD, 30-59 DPD, 60-89 DPD, NPA, Write-off)",
+      "dax_hint": "FILTER Table WHERE [Op bucket] <> \"Current\""
+    },
+    {
+      "consumer_says": ["NPA accounts", "non performing", "NPA loans", "non performing assets"],
+      "maps_to_field": "Op bucket",
+      "maps_to_value": "NPA",
+      "secondary_field": "Closing bucket = NPA",
+      "dax_hint": "FILTER Table WHERE [Op bucket] = \"NPA\""
+    },
+    {
+      "consumer_says": ["written off", "write off cases", "write-off loans"],
+      "maps_to_field": "Op bucket",
+      "maps_to_value": "Write-off",
+      "dax_hint": "FILTER Table WHERE [Op bucket] = \"Write-off\""
+    },
+    {
+      "consumer_says": ["bounce rate", "bounced loans", "payment failure", "failed payments", "how many bounced", "NACH bounce", "bounce count"],
+      "maps_to_field": "Bounce status",
+      "maps_to_value": "IN ('Tech', 'Non Tech')",
+      "metric": "Bounce %",
+      "dax_hint": "CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Bounce status] IN {\"Tech\", \"Non Tech\"})",
+      "warning": "NEVER include PAID. Bounce = Tech OR Non Tech only."
+    },
+    {
+      "consumer_says": ["technical bounce", "tech bounce", "system failure bounce"],
+      "maps_to_field": "Bounce status",
+      "maps_to_value": "Tech"
+    },
+    {
+      "consumer_says": ["intentional bounce", "deliberate non-payment", "non-tech bounce"],
+      "maps_to_field": "Bounce status",
+      "maps_to_value": "Non Tech"
+    },
+    {
+      "consumer_says": ["visited", "field visit", "coverage", "how many visited", "visit coverage", "visit rate"],
+      "maps_to_field": "Visit or not",
+      "maps_to_value": "Visited",
+      "secondary_field": "Allocated or not = Allocated",
+      "metric": "Coverage %",
+      "dax_hint": "Coverage = Visited AND Allocated ONLY"
+    },
+    {
+      "consumer_says": ["loan outstanding", "principal outstanding", "balance principal", "portfolio size", "AUM", "total portfolio value"],
+      "maps_to_field": "bal_prin",
+      "metric": "Portfolio Outstanding",
+      "dax_hint": "SUM(Table[bal_prin])"
+    },
+    {
+      "consumer_says": ["overdue amount", "total overdue", "how much overdue", "outstanding overdue"],
+      "maps_to_field": "TOD",
+      "metric": "Total Overdue",
+      "dax_hint": "SUM(Table[TOD])"
+    },
+    {
+      "consumer_says": ["new NPA", "fresh NPA", "NPA next month", "going to be NPA", "NPA additions"],
+      "maps_to_field": "Add NPA",
+      "maps_to_value": 1,
+      "dax_hint": "CALCULATE(COUNT(Table[loanappno]), Table[Add NPA] = 1)"
+    },
+    {
+      "consumer_says": ["field executive", "FE", "collection officer", "who is allocated", "allocation"],
+      "maps_to_field": "Allocation 1",
+      "note": "Allocation 1 = 'NA' means NOT allocated"
+    },
+    {
+      "consumer_says": ["team leader", "TL", "manager", "supervisor performance"],
+      "maps_to_field": "TL",
+      "note": "TL = 'No TL' means no TL assigned"
+    },
+    {
+      "consumer_says": ["state head", "SH", "senior manager", "head performance"],
+      "maps_to_field": "SH"
+    },
+    {
+      "consumer_says": ["customer count", "number of customers", "how many customers", "unique customers"],
+      "maps_to_field": "Cust ID",
+      "dax_hint": "DISTINCTCOUNT(Table[Cust ID])",
+      "warning": "ALWAYS use DISTINCTCOUNT not COUNT for customer metrics"
+    },
+    {
+      "consumer_says": ["loan count", "account count", "number of loans", "how many loans", "loan applications"],
+      "maps_to_field": "loanappno",
+      "dax_hint": "COUNT(Table[loanappno]) or COUNTROWS"
+    },
+    {
+      "consumer_says": ["early stress", "risk accounts", "watch accounts", "potential default"],
+      "maps_to_field": "Op bucket",
+      "maps_to_value": "Risk X"
+    },
+    {
+      "consumer_says": ["online payment", "digital payment", "digital payers"],
+      "maps_to_field": "Digital/cash",
+      "maps_to_value": "Digital"
+    },
+    {
+      "consumer_says": ["cash payers", "cash payment"],
+      "maps_to_field": "Digital/cash",
+      "maps_to_value": "Cash"
+    },
+    {
+      "consumer_says": ["no payment made", "non payers", "did not pay", "zero payment"],
+      "maps_to_field": "Payment mode",
+      "maps_to_value": "Blank"
+    },
+    {
+      "consumer_says": ["loan age", "new loans", "old loans", "MOB", "vintage", "month on book"],
+      "maps_to_field": "MOB Bucket",
+      "values": ["1-6 MOB", "7-12 MOB", "13-18 MOB", "19-24 MOB", "24+ MOB"]
+    },
+    {
+      "consumer_says": ["portfolio", "which portfolio", "VASTU", "SBI portfolio", "Tata Capital", "DA loans"],
+      "maps_to_field": "Portfolio new",
+      "note": "Portfolio new is grouped version — use for high-level portfolio analysis"
+    },
+    {
+      "consumer_says": ["flowed", "worsened", "flow customers", "bucket deterioration", "moved to worse bucket"],
+      "maps_to_field": "Cust wise status",
+      "maps_to_value": "Flow"
+    },
+    {
+      "consumer_says": ["stable", "no change", "stayed in same bucket", "stab"],
+      "maps_to_field": "Cust wise status",
+      "maps_to_value": "Stab"
+    },
+    {
+      "consumer_says": ["roll back", "partially improved", "came back partially"],
+      "maps_to_field": "Cust wise status",
+      "maps_to_value": "Roll Back"
+    },
+    {
+      "consumer_says": ["visit intensity", "how many times visited", "average visits", "visit frequency"],
+      "maps_to_field": "Visit Count",
+      "metric": "Intensity",
+      "dax_hint": "DIVIDE(SUM(Table[Visit Count]), DISTINCTCOUNT(Table[Cust ID]))"
+    },
+    {
+      "consumer_says": ["not allocated", "unallocated accounts", "no FE assigned"],
+      "maps_to_field": "Allocated or not",
+      "maps_to_value": "Non Allocated"
+    },
+    {
+      "consumer_says": ["collection team", "collections", "collection cases"],
+      "maps_to_field": "Coll/Sales",
+      "maps_to_value": "Collection"
+    },
+    {
+      "consumer_says": ["region", "zone", "area", "geography", "which region"],
+      "maps_to_field": "Region"
+    },
+    {
+      "consumer_says": ["branch", "city branch", "service branch", "which branch"],
+      "maps_to_field": "Branch"
+    },
+    {
+      "consumer_says": ["product", "loan type", "micro housing", "retail loan"],
+      "maps_to_field": "Product"
+    }
+  ],
+
+  "clarifying_question_templates": {
+    "_note": "When Qwen identifies a question, it should ask clarifying questions ONLY for slicers relevant to the question. Use these templates. Ask MAX 3-4 questions. Keep language simple — user is non-technical.",
+    "geography_slicers": {
+      "region": {
+        "question": "Which region would you like to see? Or should I show all regions?",
+        "field": "Region",
+        "options_source": "dynamic from data"
+      },
+      "branch": {
+        "question": "Any specific branch, or should I show data for all branches?",
+        "field": "Branch",
+        "options_source": "dynamic from data"
+      }
+    },
+    "time_slicers": {
+      "date": {
+        "question": "Which month are you looking at? (The data shows monthly snapshots)",
+        "field": "Next Date",
+        "options_source": "dynamic from data"
+      }
+    },
+    "portfolio_slicers": {
+      "portfolio": {
+        "question": "Any specific portfolio (e.g., VASTU, Tata Capital, SBI)? Or all portfolios?",
+        "field": "Portfolio new",
+        "options_source": "dynamic from data"
+      },
+      "product": {
+        "question": "Any specific product (e.g., Retail, Micro Housing)? Or all products?",
+        "field": "Product",
+        "options_source": "dynamic from data"
+      }
+    },
+    "bucket_slicers": {
+      "op_bucket": {
+        "question": "Which risk bucket? (Current, Risk X, 1-29 DPD, 30-59 DPD, 60-89 DPD, NPA, Write-off) Or all buckets?",
+        "field": "Op bucket"
+      }
+    },
+    "team_slicers": {
+      "tl": {
+        "question": "Any specific Team Leader? Or show all team leaders?",
+        "field": "TL",
+        "options_source": "dynamic from data"
+      },
+      "sh": {
+        "question": "Any specific State Head? Or show all?",
+        "field": "SH",
+        "options_source": "dynamic from data"
+      }
+    }
+  },
+
+  "intent_to_dax_examples": [
+    {
+      "user_says": "how many loans bounced last month",
+      "identified_metric": "Bounce Count",
+      "identified_slicers": ["Next Date", "Branch (optional)", "Region (optional)"],
+      "clarifying_questions": ["Which month?", "Any specific branch or region?"],
+      "dax_skeleton": "CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Bounce status] IN {\"Tech\", \"Non Tech\"}, [date_filter], [branch_filter])"
+    },
+    {
+      "user_says": "what is the resolution percentage for Pune",
+      "identified_metric": "Resolution %",
+      "identified_slicers": ["Branch = PUNE"],
+      "clarifying_questions": ["Which month?"],
+      "dax_skeleton": "DIVIDE(CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Cust wise status] = \"Norm\", Table[Branch] = \"PUNE\"), CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Branch] = \"PUNE\")) * 100"
+    },
+    {
+      "user_says": "show NPA distribution by region",
+      "identified_metric": "NPA Count by Region",
+      "identified_slicers": ["Op bucket = NPA"],
+      "clarifying_questions": ["Which month?", "Any specific portfolio?"],
+      "dax_skeleton": "SUMMARIZECOLUMNS(Table[Region], CALCULATE(COUNT(Table[loanappno]), Table[Op bucket] = \"NPA\"))"
+    },
+    {
+      "user_says": "which TL has the best coverage",
+      "identified_metric": "Coverage %",
+      "identified_slicers": ["Group by TL", "Allocated or not = Allocated"],
+      "clarifying_questions": ["Which month?", "Any specific region or branch?"],
+      "dax_skeleton": "SUMMARIZECOLUMNS(Table[TL], DIVIDE(CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Visit or not] = \"Visited\", Table[Allocated or not] = \"Allocated\"), CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Allocated or not] = \"Allocated\")) * 100)"
+    }
+  ]
+}

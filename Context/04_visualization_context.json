@@ -1,0 +1,249 @@
+{
+  "_meta": {
+    "purpose": "Visualization context for Qwen 7B — chart type selection, axis mapping, slicer layout, and dashboard design rules based on data returned from Power BI DAX queries.",
+    "model_role": "Qwen 7B receives: (1) the user question, (2) the metric identified, (3) the columns in the result data, (4) sample rows. It must decide: chart type, x-axis, y-axis, grouping, color palette, and slicer layout."
+  },
+
+  "chart_selection_rules": {
+    "_note": "NEVER use bar chart. Apply rules in order. First match wins.",
+    "rules": [
+      {
+        "condition": "Result has a Date or time column AND one numeric column",
+        "chart_type": "line",
+        "reason": "Trend over time — line is best for temporal data",
+        "example_question": "Show bounce trend over months"
+      },
+      {
+        "condition": "Result has a Date or time column AND multiple numeric columns or a grouping column",
+        "chart_type": "area",
+        "reason": "Stacked area shows composition over time",
+        "example_question": "Show bucket distribution over months"
+      },
+      {
+        "condition": "Result has two categorical columns AND one numeric column",
+        "chart_type": "heatmap",
+        "reason": "Heatmap shows two-dimensional categorical vs numeric",
+        "example_question": "Show bounces by branch and region",
+        "palette": "RdYlGn_r (red=bad, green=good for collection data)"
+      },
+      {
+        "condition": "Result has ONE numeric column and user wants distribution/spread",
+        "chart_type": "kde",
+        "reason": "KDE shows distribution shape of a numeric variable",
+        "example_question": "Show distribution of DPD values",
+        "palette": "Set2"
+      },
+      {
+        "condition": "Result has TWO numeric columns and user wants to see relationship",
+        "chart_type": "scatter",
+        "reason": "Scatter reveals correlation between two numeric values",
+        "example_question": "Is there a relationship between visit count and resolution?",
+        "palette": "coolwarm"
+      },
+      {
+        "condition": "Result has ONE categorical column AND one numeric column AND user wants spread/outliers",
+        "chart_type": "boxplot",
+        "reason": "Boxplot shows distribution and outliers per category",
+        "example_question": "Show DPD spread by branch",
+        "palette": "Set2"
+      },
+      {
+        "condition": "Result has ONE categorical column with 3-8 values AND one numeric column (counts or percentages)",
+        "chart_type": "heatmap",
+        "reason": "Single-row heatmap works well for bucket distributions",
+        "example_question": "Show bucket distribution"
+      }
+    ]
+  },
+
+  "dashboard_layout_rules": {
+    "_note": "All charts + slicers must fit on ONE screen — no scrolling for main view",
+    "layout": {
+      "slicers_position": "TOP — horizontal row of dropdowns/pills",
+      "slicer_count": "Maximum 4-5 visible slicers at top",
+      "charts_area": "Below slicers — 2 columns x 2 rows = 4 charts max on one screen",
+      "chart_size": "Each chart: approximately 50% width, 40% height of viewport"
+    },
+    "slicer_priority": [
+      "Region (if multiple regions in data)",
+      "Branch (if multiple branches in data)",
+      "Op bucket (always show if bucket data present)",
+      "Portfolio new (if multiple portfolios)",
+      "TL or SH (if collection team question)"
+    ]
+  },
+
+  "metric_to_chart_mapping": {
+    "Resolution %": {
+      "chart_type": "line",
+      "x_axis": "Time period / Branch / Region",
+      "y_axis": "Resolution %",
+      "hue": "Portfolio new or Product (if grouped)",
+      "palette": "Set2",
+      "title_template": "Resolution % by {group}"
+    },
+    "Bounce %": {
+      "chart_type": "line",
+      "x_axis": "Time period or Branch",
+      "y_axis": "Bounce %",
+      "hue": "Bounce status (Tech vs Non Tech)",
+      "palette": "flare",
+      "title_template": "Bounce Rate by {group}"
+    },
+    "Bounce Count": {
+      "chart_type": "heatmap",
+      "x_axis": "Branch",
+      "y_axis": "Region",
+      "value": "Bounce count",
+      "palette": "RdYlGn_r",
+      "title_template": "Bounce Count by Branch and Region"
+    },
+    "Coverage %": {
+      "chart_type": "scatter",
+      "x_axis": "TL",
+      "y_axis": "Coverage %",
+      "hue": "SH",
+      "size_col": "Allocated count",
+      "palette": "viridis",
+      "title_template": "Coverage % by Team Leader"
+    },
+    "Bucket Distribution": {
+      "chart_type": "heatmap",
+      "x_axis": "Op bucket",
+      "y_axis": "Region or Branch",
+      "value": "Count or bal_prin",
+      "palette": "RdYlGn_r",
+      "title_template": "Portfolio Bucket Distribution"
+    },
+    "Bucket Movement": {
+      "chart_type": "heatmap",
+      "x_axis": "Closing bucket",
+      "y_axis": "Op bucket",
+      "value": "Count",
+      "palette": "Blues",
+      "title_template": "Bucket Movement Matrix (Opening vs Closing)"
+    },
+    "DPD Distribution": {
+      "chart_type": "kde",
+      "x_axis": "dpd_casewise",
+      "hue": "Op bucket",
+      "palette": "Set2",
+      "title_template": "DPD Distribution across Portfolio"
+    },
+    "Overdue Amount": {
+      "chart_type": "heatmap",
+      "x_axis": "Region",
+      "y_axis": "Op bucket",
+      "value": "TOD",
+      "palette": "Reds",
+      "title_template": "Total Overdue by Region and Bucket"
+    },
+    "NPA Trend": {
+      "chart_type": "line",
+      "x_axis": "Next Date",
+      "y_axis": "NPA Count",
+      "hue": "Region",
+      "palette": "flare",
+      "title_template": "NPA Accounts Trend"
+    },
+    "Visit Intensity": {
+      "chart_type": "boxplot",
+      "x_axis": "Op bucket",
+      "y_axis": "Visit Count",
+      "hue": "Coll/Sales",
+      "palette": "Set2",
+      "title_template": "Visit Intensity by Risk Bucket"
+    },
+    "Payment Mode": {
+      "chart_type": "heatmap",
+      "x_axis": "Payment mode",
+      "y_axis": "MOB Bucket",
+      "value": "Count",
+      "palette": "Blues",
+      "title_template": "Payment Mode by Loan Age"
+    },
+    "FE Scorecard": {
+      "chart_type": "scatter",
+      "x_axis": "Coverage %",
+      "y_axis": "Resolution %",
+      "hue": "TL",
+      "size_col": "Allocated count",
+      "palette": "tab10",
+      "title_template": "FE Performance: Coverage vs Resolution"
+    }
+  },
+
+  "color_palette_guide": {
+    "RdYlGn_r": "Use for any metric where red=bad, green=good (bounce, NPA, flow)",
+    "Blues": "Use for volume/count metrics (neutral blue scale)",
+    "Set2": "Use for categorical groupings (buckets, products, teams)",
+    "flare": "Use for risk/alert metrics (warm gradient)",
+    "viridis": "Use for density/distribution data",
+    "coolwarm": "Use for correlation/scatter — diverging palette",
+    "Reds": "Use for overdue/loss amounts — severity scale",
+    "tab10": "Use when many categories need distinct colors (FE names, TL names)"
+  },
+
+  "labelling_rules": {
+    "always_show": ["axis labels", "chart title", "legend (if hue used)", "value annotations on heatmap cells"],
+    "font_size": {
+      "title": 14,
+      "axis_labels": 11,
+      "annotations": 9,
+      "legend": 10
+    },
+    "title_format": "Descriptive + filters applied (e.g., 'Bounce Rate by Branch — Last 3 Months, VASTU Portfolio')",
+    "legend": "Always position outside chart to avoid overlap with data",
+    "rotate_x_labels": "Rotate 30-45 degrees if x-axis labels are branch names or dates"
+  },
+
+  "slicer_output_format": {
+    "_note": "When Qwen 7B finalizes a dashboard config, it must return slicer definitions alongside chart configs",
+    "format": {
+      "slicers": [
+        {
+          "field": "Region",
+          "type": "dropdown",
+          "label": "Region",
+          "default": "All",
+          "position": "top-left"
+        },
+        {
+          "field": "Branch",
+          "type": "dropdown",
+          "label": "Branch",
+          "default": "All",
+          "position": "top-left"
+        },
+        {
+          "field": "Op bucket",
+          "type": "multi-select",
+          "label": "Risk Bucket",
+          "default": "All",
+          "position": "top-center"
+        },
+        {
+          "field": "Portfolio new",
+          "type": "dropdown",
+          "label": "Portfolio",
+          "default": "All",
+          "position": "top-right"
+        }
+      ]
+    }
+  },
+
+  "export_rules": {
+    "data_export": {
+      "format": "Excel (.xlsx)",
+      "columns": "All columns from the DAX result, plus applied slicer values as header metadata",
+      "filename_format": "metric_name_date_filters.xlsx"
+    },
+    "chart_export": {
+      "format": "PDF",
+      "layout": "Fit all charts to A4 landscape or A3 portrait",
+      "include": ["All rendered charts", "Slicer/filter values applied", "Export timestamp", "Chart titles"],
+      "dpi": 150
+    }
+  }
+}

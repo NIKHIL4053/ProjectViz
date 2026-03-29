@@ -1,0 +1,33 @@
+# ── Core Framework ────────────────────────────────────────────────────────────
+streamlit==1.35.0
+
+# ── Data Handling ─────────────────────────────────────────────────────────────
+pandas==2.2.2
+numpy==1.26.4
+openpyxl==3.1.2                # Excel file reading/writing
+xlsxwriter==3.2.0              # Excel export with formatting
+
+# ── Visualization ─────────────────────────────────────────────────────────────
+matplotlib==3.9.0
+seaborn==0.13.2
+reportlab==4.2.0               # PDF export
+Pillow==10.3.0                 # Image handling for PDF export
+
+# ── AI / Models ───────────────────────────────────────────────────────────────
+requests==2.32.3               # Ollama API calls
+
+# ── Vector DB / RAG ───────────────────────────────────────────────────────────
+chromadb==0.5.0                # Data dictionary semantic search
+sentence-transformers==3.0.1   # Embedding model for ChromaDB (all-MiniLM-L6-v2)
+
+# ── Power BI / Azure Auth ─────────────────────────────────────────────────────
+msal==1.28.0                   # Microsoft Authentication Library for Service Principal
+
+# ── Environment & Config ──────────────────────────────────────────────────────
+python-dotenv==1.0.1           # Load .env file
+
+# ── Logging & Benchmarking ────────────────────────────────────────────────────
+loguru==0.7.2                  # Clean structured logging (replaces standard logging)
+
+# ── Utilities ─────────────────────────────────────────────────────────────────
+python-dateutil==2.9.0         # Date parsing helpers
