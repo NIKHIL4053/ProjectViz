@@ -32,6 +32,8 @@ from typing import Any, Optional
 
 import pandas as pd
 import streamlit as st
+from config import PARQUET_COMPRESSION
+
 
 from config import (
     DATA_TEMP_DIR,
@@ -280,7 +282,8 @@ class SessionManager:
             filename  = f"{self.session_id}_{q_hash}_{int(time.time())}.parquet"
             file_path = DATA_TEMP_DIR / filename
 
-            df.to_parquet(file_path, index=False, compression="snappy")
+            df.to_parquet(file_path, index=False, compression=PARQUET_COMPRESSION)
+
 
             # * Register for cleanup
             temp_files = self.get(Keys.TEMP_FILES, [])

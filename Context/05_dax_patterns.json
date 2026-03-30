@@ -1,7 +1,7 @@
 {
   "_meta": {
     "purpose": "DAX query patterns for Qwen Coder 14B — ready-to-use DAX templates for all common collection portfolio questions. Qwen should use these patterns when generating DAX and adapt them with user's slicer selections.",
-    "table_name": "REPLACE 'Table' with actual Power BI table name from the dataset",
+    "table_name": "Final Table",
     "dax_rules": [
       "Always start with EVALUATE",
       "Use SUMMARIZECOLUMNS for grouped aggregations",
@@ -19,13 +19,13 @@
 
     "bounce_count": {
       "description": "Count of customers who bounced (Tech or Non Tech)",
-      "dax": "EVALUATE\nROW(\n  \"Bounce Count\",\n  CALCULATE(\n    DISTINCTCOUNT(Table[Cust ID]),\n    Table[Bounce status] IN {\"Tech\", \"Non Tech\"}\n  )\n)",
-      "with_branch_filter": "EVALUATE\nROW(\n  \"Bounce Count\",\n  CALCULATE(\n    DISTINCTCOUNT(Table[Cust ID]),\n    Table[Bounce status] IN {\"Tech\", \"Non Tech\"},\n    Table[Branch] = \"{BRANCH_VALUE}\"\n  )\n)"
+      "dax": "EVALUATE\nROW(\n  \"Bounce Count\",\n  CALCULATE(\n    DISTINCTCOUNT(Final Table[Cust ID]),\n    Final Table[Bounce status] IN {\"Tech\", \"Non Tech\"}\n  )\n)",
+      "with_branch_filter": "EVALUATE\nROW(\n  \"Bounce Count\",\n  CALCULATE(\n    DISTINCTCOUNT(Final Table[Cust ID]),\n    Final TableTable[Bounce status] IN {\"Tech\", \"Non Tech\"},\n    Final Table[Branch] = \"{BRANCH_VALUE}\"\n  )\n)"
     },
 
     "bounce_percent": {
       "description": "Bounce rate as percentage",
-      "dax": "EVALUATE\nROW(\n  \"Bounce %\",\n  DIVIDE(\n    CALCULATE(\n      DISTINCTCOUNT(Table[Cust ID]),\n      Table[Bounce status] IN {\"Tech\", \"Non Tech\"}\n    ),\n    DISTINCTCOUNT(Table[Cust ID])\n  ) * 100\n)"
+      "dax": "EVALUATE\nROW(\n  \"Bounce %\",\n  DIVIDE(\n    CALCULATE(\n      DISTINCTCOUNT(Final Table[Cust ID]),\n      Final Table[Bounce status] IN {\"Tech\", \"Non Tech\"}\n    ),\n    DISTINCTCOUNT(Final Table[Cust ID])\n  ) * 100\n)"
     },
 
     "bounce_by_branch": {
@@ -35,104 +35,104 @@
 
     "bounce_by_region": {
       "description": "Bounce count grouped by region",
-      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Table[Region],\n  \"Bounce Count\", CALCULATE(\n    DISTINCTCOUNT(Table[Cust ID]),\n    Table[Bounce status] IN {\"Tech\", \"Non Tech\"}\n  ),\n  \"Bounce %\", DIVIDE(\n    CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Bounce status] IN {\"Tech\", \"Non Tech\"}),\n    DISTINCTCOUNT(Table[Cust ID])\n  ) * 100\n)"
+      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Final Table[Region],\n  \"Bounce Count\", CALCULATE(\n    DISTINCTCOUNT(Final Table[Cust ID]),\n    Final Table[Bounce status] IN {\"Tech\", \"Non Tech\"}\n  ),\n  \"Bounce %\", DIVIDE(\n    CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Bounce status] IN {\"Tech\", \"Non Tech\"}),\n    DISTINCTCOUNT(Final Table[Cust ID])\n  ) * 100\n)"
     },
 
     "bounce_tech_vs_nontech": {
       "description": "Bounce count split by Tech vs Non Tech by branch",
-      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Table[Branch],\n  Table[Bounce status],\n  FILTER(Table, Table[Bounce status] IN {\"Tech\", \"Non Tech\"}),\n  \"Count\", DISTINCTCOUNT(Table[Cust ID])\n)"
+      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Final Table[Branch],\n  Final Table[Bounce status],\n  FILTER(Final Table, Final Table[Bounce status] IN {\"Tech\", \"Non Tech\"}),\n  \"Count\", DISTINCTCOUNT(Final Table[Cust ID])\n)"
     },
 
     "resolution_count": {
       "description": "Count of resolved customers (Norm status)",
-      "dax": "EVALUATE\nROW(\n  \"Resolution Count\",\n  CALCULATE(\n    DISTINCTCOUNT(Table[Cust ID]),\n    Table[Cust wise status] = \"Norm\"\n  )\n)"
+      "dax": "EVALUATE\nROW(\n  \"Resolution Count\",\n  CALCULATE(\n    DISTINCTCOUNT(Final Table[Cust ID]),\n    Final Table[Cust wise status] = \"Norm\"\n  )\n)"
     },
 
     "resolution_percent": {
       "description": "Resolution percentage",
-      "dax": "EVALUATE\nROW(\n  \"Resolution %\",\n  DIVIDE(\n    CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Cust wise status] = \"Norm\"),\n    DISTINCTCOUNT(Table[Cust ID])\n  ) * 100\n)"
+      "dax": "EVALUATE\nROW(\n  \"Resolution %\",\n  DIVIDE(\n    CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Cust wise status] = \"Norm\"),\n    DISTINCTCOUNT(Final Table[Cust ID])\n  ) * 100\n)"
     },
 
     "resolution_by_branch": {
       "description": "Resolution % grouped by branch",
-      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Table[Branch],\n  \"Resolution %\", DIVIDE(\n    CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Cust wise status] = \"Norm\"),\n    DISTINCTCOUNT(Table[Cust ID])\n  ) * 100,\n  \"Resolved Count\", CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Cust wise status] = \"Norm\"),\n  \"Total Customers\", DISTINCTCOUNT(Table[Cust ID])\n)\nORDER BY [Resolution %] DESC"
+      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Final Table[Branch],\n  \"Resolution %\", DIVIDE(\n    CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Cust wise status] = \"Norm\"),\n    DISTINCTCOUNT(Final Table[Cust ID])\n  ) * 100,\n  \"Resolved Count\", CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Cust wise status] = \"Norm\"),\n  \"Total Customers\", DISTINCTCOUNT(Final Table[Cust ID])\n)\nORDER BY [Resolution %] DESC"
     },
 
     "bucket_distribution": {
       "description": "Count and outstanding by Op bucket",
-      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Table[Op bucket],\n  \"Loan Count\", COUNT(Table[loanappno]),\n  \"Customer Count\", DISTINCTCOUNT(Table[Cust ID]),\n  \"Balance Principal\", SUM(Table[bal_prin]),\n  \"Total Overdue\", SUM(Table[TOD])\n)\nORDER BY [Loan Count] DESC"
+      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Final Table[Op bucket],\n  \"Loan Count\", COUNT(Final Table[loanappno]),\n  \"Customer Count\", DISTINCTCOUNT(Final Table[Cust ID]),\n  \"Balance Principal\", SUM(Final Table[bal_prin]),\n  \"Total Overdue\", SUM(Final Table[TOD])\n)\nORDER BY [Loan Count] DESC"
     },
 
     "bucket_movement_matrix": {
       "description": "Opening bucket vs Closing bucket movement matrix",
-      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Table[Op bucket],\n  Table[Closing bucket],\n  \"Loan Count\", COUNT(Table[loanappno]),\n  \"Customer Count\", DISTINCTCOUNT(Table[Cust ID])\n)"
+      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Final Table[Op bucket],\n  Final Table[Closing bucket],\n  \"Loan Count\", COUNT(Final Table[loanappno]),\n  \"Customer Count\", DISTINCTCOUNT(Final Table[Cust ID])\n)"
     },
 
     "cust_wise_status_summary": {
       "description": "Customer status distribution",
-      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Table[Cust wise status],\n  \"Customer Count\", DISTINCTCOUNT(Table[Cust ID]),\n  \"Loan Count\", COUNT(Table[loanappno])\n)\nORDER BY [Customer Count] DESC"
+      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Final Table[Cust wise status],\n  \"Customer Count\", DISTINCTCOUNT(Final Table[Cust ID]),\n  \"Loan Count\", COUNT(Final Table[loanappno])\n)\nORDER BY [Customer Count] DESC"
     },
 
     "coverage_percent": {
       "description": "Coverage % — visited allocated customers",
-      "dax": "EVALUATE\nROW(\n  \"Coverage %\",\n  DIVIDE(\n    CALCULATE(\n      DISTINCTCOUNT(Table[Cust ID]),\n      Table[Visit or not] = \"Visited\",\n      Table[Allocated or not] = \"Allocated\"\n    ),\n    CALCULATE(\n      DISTINCTCOUNT(Table[Cust ID]),\n      Table[Allocated or not] = \"Allocated\"\n    )\n  ) * 100\n)"
+      "dax": "EVALUATE\nROW(\n  \"Coverage %\",\n  DIVIDE(\n    CALCULATE(\n      DISTINCTCOUNT(Final Table[Cust ID]),\n      Final Table[Visit or not] = \"Visited\",\n      Final Table[Allocated or not] = \"Allocated\"\n    ),\n    CALCULATE(\n      DISTINCTCOUNT(Final Table[Cust ID]),\n      Final Table[Allocated or not] = \"Allocated\"\n    )\n  ) * 100\n)"
     },
 
     "coverage_by_tl": {
       "description": "Coverage % grouped by Team Leader",
-      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Table[TL],\n  FILTER(Table, Table[TL] <> \"No TL\"),\n  \"Coverage %\", DIVIDE(\n    CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Visit or not] = \"Visited\", Table[Allocated or not] = \"Allocated\"),\n    CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Allocated or not] = \"Allocated\")\n  ) * 100,\n  \"Visited Count\", CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Visit or not] = \"Visited\", Table[Allocated or not] = \"Allocated\"),\n  \"Allocated Count\", CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Allocated or not] = \"Allocated\")\n)\nORDER BY [Coverage %] DESC"
+      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Final Table[TL],\n  FILTER(Final Table, Final Table[TL] <> \"No TL\"),\n  \"Coverage %\", DIVIDE(\n    CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Visit or not] = \"Visited\", Final Table[Allocated or not] = \"Allocated\"),\n    CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Allocated or not] = \"Allocated\")\n  ) * 100,\n  \"Visited Count\", CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Visit or not] = \"Visited\", Final Table[Allocated or not] = \"Allocated\"),\n  \"Allocated Count\", CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Allocated or not] = \"Allocated\")\n)\nORDER BY [Coverage %] DESC"
     },
 
     "visit_intensity_by_bucket": {
       "description": "Average visit intensity by Op bucket",
-      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Table[Op bucket],\n  \"Avg Visits per Customer\", DIVIDE(\n    SUM(Table[Visit Count]),\n    DISTINCTCOUNT(Table[Cust ID])\n  ),\n  \"Total Visits\", SUM(Table[Visit Count]),\n  \"Customer Count\", DISTINCTCOUNT(Table[Cust ID])\n)"
+      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Final Table[Op bucket],\n  \"Avg Visits per Customer\", DIVIDE(\n    SUM(Final Table[Visit Count]),\n    DISTINCTCOUNT(Final Table[Cust ID])\n  ),\n  \"Total Visits\", SUM(Final Table[Visit Count]),\n  \"Customer Count\", DISTINCTCOUNT(Final Table[Cust ID])\n)"
     },
 
     "npa_by_region": {
       "description": "NPA account count by region",
-      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Table[Region],\n  FILTER(Table, Table[Op bucket] = \"NPA\"),\n  \"NPA Loan Count\", COUNT(Table[loanappno]),\n  \"NPA Customer Count\", DISTINCTCOUNT(Table[Cust ID]),\n  \"NPA Outstanding\", SUM(Table[bal_prin])\n)\nORDER BY [NPA Loan Count] DESC"
+      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Final Table[Region],\n  FILTER(Final Table, Final Table[Op bucket] = \"NPA\"),\n  \"NPA Loan Count\", COUNT(Final Table[loanappno]),\n  \"NPA Customer Count\", DISTINCTCOUNT(Final Table[Cust ID]),\n  \"NPA Outstanding\", SUM(Final Table[bal_prin])\n)\nORDER BY [NPA Loan Count] DESC"
     },
 
     "add_npa_by_region": {
       "description": "New NPA additions (Add NPA = 1) by region",
-      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Table[Region],\n  FILTER(Table, Table[Add NPA] = 1),\n  \"New NPA Count\", COUNT(Table[loanappno])\n)\nORDER BY [New NPA Count] DESC"
+      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Final Table[Region],\n  FILTER(Final Table, Final Table[Add NPA] = 1),\n  \"New NPA Count\", COUNT(Final Table[loanappno])\n)\nORDER BY [New NPA Count] DESC"
     },
 
     "portfolio_outstanding_by_bucket": {
       "description": "Total bal_prin and TOD by Op bucket",
-      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Table[Op bucket],\n  \"Balance Principal\", SUM(Table[bal_prin]),\n  \"Total Overdue\", SUM(Table[TOD]),\n  \"Loan Count\", COUNT(Table[loanappno])\n)"
+      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Final Table[Op bucket],\n  \"Balance Principal\", SUM(Final Table[bal_prin]),\n  \"Total Overdue\", SUM(Final Table[TOD]),\n  \"Loan Count\", COUNT(Final Table[loanappno])\n)"
     },
 
     "digital_cash_by_mob": {
       "description": "Payment channel (Digital vs Cash) by MOB bucket",
-      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Table[MOB Bucket],\n  Table[Digital/cash],\n  FILTER(Table, NOT ISBLANK(Table[Digital/cash])),\n  \"Customer Count\", DISTINCTCOUNT(Table[Cust ID])\n)"
+      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Final Table[MOB Bucket],\n  Final Table[Digital/cash],\n  FILTER(Final Table, NOT ISBLANK(Final Table[Digital/cash])),\n  \"Customer Count\", DISTINCTCOUNT(Final Table[Cust ID])\n)"
     },
 
     "dpd_distribution": {
       "description": "DPD distribution across portfolio for KDE/histogram",
-      "dax": "EVALUATE\nSELECTCOLUMNS(\n  Table,\n  \"dpd_casewise\", Table[dpd_casewise],\n  \"Op bucket\", Table[Op bucket],\n  \"Branch\", Table[Branch],\n  \"Region\", Table[Region]\n)\nORDER BY Table[dpd_casewise]"
+      "dax": "EVALUATE\nSELECTCOLUMNS(\n  Final Table,\n  \"dpd_casewise\", Final Table[dpd_casewise],\n  \"Op bucket\", Final Table[Op bucket],\n  \"Branch\", Final Table[Branch],\n  \"Region\", Final Table[Region]\n)\nORDER BY Final Table[dpd_casewise]"
     },
 
     "fe_scorecard": {
       "description": "Field executive performance scorecard",
-      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Table[Allocation 1],\n  Table[TL],\n  FILTER(Table, Table[Allocation 1] <> \"NA\"),\n  \"Resolution %\", DIVIDE(\n    CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Cust wise status] = \"Norm\"),\n    DISTINCTCOUNT(Table[Cust ID])\n  ) * 100,\n  \"Coverage %\", DIVIDE(\n    CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Visit or not] = \"Visited\", Table[Allocated or not] = \"Allocated\"),\n    CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Allocated or not] = \"Allocated\")\n  ) * 100,\n  \"Intensity\", DIVIDE(SUM(Table[Visit Count]), DISTINCTCOUNT(Table[Cust ID])),\n  \"Allocated Count\", CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Allocated or not] = \"Allocated\")\n)"
+      "dax": "EVALUATE\nSUMMARIZECOLUMNS(\n  Final Table[Allocation 1],\n  Final Table[TL],\n  FILTER(Final Table, Final Table[Allocation 1] <> \"NA\"),\n  \"Resolution %\", DIVIDE(\n    CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Cust wise status] = \"Norm\"),\n    DISTINCTCOUNT(Final Table[Cust ID])\n  ) * 100,\n  \"Coverage %\", DIVIDE(\n    CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Visit or not] = \"Visited\", Final Table[Allocated or not] = \"Allocated\"),\n    CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Allocated or not] = \"Allocated\")\n  ) * 100,\n  \"Intensity\", DIVIDE(SUM(Final Table[Visit Count]), DISTINCTCOUNT(Final Table[Cust ID])),\n  \"Allocated Count\", CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Allocated or not] = \"Allocated\")\n)"
     }
   },
 
   "filter_snippets": {
     "_note": "Add these inside CALCULATE or as FILTER arguments in SUMMARIZECOLUMNS",
-    "by_branch": "Table[Branch] = \"{BRANCH_NAME}\"",
-    "by_region": "Table[Region] = \"{REGION_NAME}\"",
-    "by_op_bucket": "Table[Op bucket] = \"{BUCKET_NAME}\"",
-    "by_portfolio": "Table[Portfolio new] = \"{PORTFOLIO_NAME}\"",
-    "by_product": "Table[Product] = \"{PRODUCT_NAME}\"",
-    "by_tl": "Table[TL] = \"{TL_NAME}\"",
-    "by_sh": "Table[SH] = \"{SH_NAME}\"",
-    "by_mob_bucket": "Table[MOB Bucket] = \"{MOB_VALUE}\"",
+    "by_branch": "Final Table[Branch] = \"{BRANCH_NAME}\"",
+    "by_region": "Final Table[Region] = \"{REGION_NAME}\"",
+    "by_op_bucket": "Final Table[Op bucket] = \"{BUCKET_NAME}\"",
+    "by_portfolio": "Final Table[Portfolio new] = \"{PORTFOLIO_NAME}\"",
+    "by_product": "Final Table[Product] = \"{PRODUCT_NAME}\"",
+    "by_tl": "Final Table[TL] = \"{TL_NAME}\"",
+    "by_sh": "Final Table[SH] = \"{SH_NAME}\"",
+    "by_mob_bucket": "Final Table[MOB Bucket] = \"{MOB_VALUE}\"",
     "exclude_not_allocated": "Table[Allocated or not] = \"Allocated\"",
-    "only_collection_team": "Table[Coll/Sales] = \"Collection\"",
-    "only_bounce": "Table[Bounce status] IN {\"Tech\", \"Non Tech\"}",
-    "only_npa": "Table[Op bucket] = \"NPA\"",
-    "only_new_npa": "Table[Add NPA] = 1"
+    "only_collection_team": "Final Table[Coll/Sales] = \"Collection\"",
+    "only_bounce": "Final Table[Bounce status] IN {\"Tech\", \"Non Tech\"}",
+    "only_npa": "Final Table[Op bucket] = \"NPA\"",
+    "only_new_npa": "Final Table[Add NPA] = 1"
   }
 }

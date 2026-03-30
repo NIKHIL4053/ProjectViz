@@ -10,33 +10,33 @@
       "maps_to_field": "Cust wise status",
       "maps_to_value": "Norm",
       "metric": "Resolution",
-      "dax_hint": "CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Cust wise status] = \"Norm\")"
+      "dax_hint": "CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Cust wise status] = \"Norm\")"
     },
     {
       "consumer_says": ["bad loans", "stressed accounts", "overdue accounts", "delinquent", "problematic loans", "at risk"],
       "maps_to_field": "Op bucket",
       "maps_to_value": "NOT Current (any of: Risk X, 1-29 DPD, 30-59 DPD, 60-89 DPD, NPA, Write-off)",
-      "dax_hint": "FILTER Table WHERE [Op bucket] <> \"Current\""
+      "dax_hint": "FILTER Final Table WHERE [Op bucket] <> \"Current\""
     },
     {
       "consumer_says": ["NPA accounts", "non performing", "NPA loans", "non performing assets"],
       "maps_to_field": "Op bucket",
       "maps_to_value": "NPA",
       "secondary_field": "Closing bucket = NPA",
-      "dax_hint": "FILTER Table WHERE [Op bucket] = \"NPA\""
+      "dax_hint": "FILTER Final Table WHERE [Op bucket] = \"NPA\""
     },
     {
       "consumer_says": ["written off", "write off cases", "write-off loans"],
       "maps_to_field": "Op bucket",
       "maps_to_value": "Write-off",
-      "dax_hint": "FILTER Table WHERE [Op bucket] = \"Write-off\""
+      "dax_hint": "FILTER Final Table WHERE [Op bucket] = \"Write-off\""
     },
     {
       "consumer_says": ["bounce rate", "bounced loans", "payment failure", "failed payments", "how many bounced", "NACH bounce", "bounce count"],
       "maps_to_field": "Bounce status",
       "maps_to_value": "IN ('Tech', 'Non Tech')",
       "metric": "Bounce %",
-      "dax_hint": "CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Bounce status] IN {\"Tech\", \"Non Tech\"})",
+      "dax_hint": "CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Bounce status] IN {\"Tech\", \"Non Tech\"})",
       "warning": "NEVER include PAID. Bounce = Tech OR Non Tech only."
     },
     {
@@ -61,19 +61,19 @@
       "consumer_says": ["loan outstanding", "principal outstanding", "balance principal", "portfolio size", "AUM", "total portfolio value"],
       "maps_to_field": "bal_prin",
       "metric": "Portfolio Outstanding",
-      "dax_hint": "SUM(Table[bal_prin])"
+      "dax_hint": "SUM(Final Table[bal_prin])"
     },
     {
       "consumer_says": ["overdue amount", "total overdue", "how much overdue", "outstanding overdue"],
       "maps_to_field": "TOD",
       "metric": "Total Overdue",
-      "dax_hint": "SUM(Table[TOD])"
+      "dax_hint": "SUM(Final Table[TOD])"
     },
     {
       "consumer_says": ["new NPA", "fresh NPA", "NPA next month", "going to be NPA", "NPA additions"],
       "maps_to_field": "Add NPA",
       "maps_to_value": 1,
-      "dax_hint": "CALCULATE(COUNT(Table[loanappno]), Table[Add NPA] = 1)"
+      "dax_hint": "CALCULATE(COUNT(Final Table[loanappno]), Final Table[Add NPA] = 1)"
     },
     {
       "consumer_says": ["field executive", "FE", "collection officer", "who is allocated", "allocation"],
@@ -92,13 +92,13 @@
     {
       "consumer_says": ["customer count", "number of customers", "how many customers", "unique customers"],
       "maps_to_field": "Cust ID",
-      "dax_hint": "DISTINCTCOUNT(Table[Cust ID])",
+      "dax_hint": "DISTINCTCOUNT(Final Table[Cust ID])",
       "warning": "ALWAYS use DISTINCTCOUNT not COUNT for customer metrics"
     },
     {
       "consumer_says": ["loan count", "account count", "number of loans", "how many loans", "loan applications"],
       "maps_to_field": "loanappno",
-      "dax_hint": "COUNT(Table[loanappno]) or COUNTROWS"
+      "dax_hint": "COUNT(Final Table[loanappno]) or COUNTROWS"
     },
     {
       "consumer_says": ["early stress", "risk accounts", "watch accounts", "potential default"],
@@ -149,7 +149,7 @@
       "consumer_says": ["visit intensity", "how many times visited", "average visits", "visit frequency"],
       "maps_to_field": "Visit Count",
       "metric": "Intensity",
-      "dax_hint": "DIVIDE(SUM(Table[Visit Count]), DISTINCTCOUNT(Table[Cust ID]))"
+      "dax_hint": "DIVIDE(SUM(Final Table[Visit Count]), DISTINCTCOUNT(Final Table[Cust ID]))"
     },
     {
       "consumer_says": ["not allocated", "unallocated accounts", "no FE assigned"],
@@ -234,28 +234,28 @@
       "identified_metric": "Bounce Count",
       "identified_slicers": ["Next Date", "Branch (optional)", "Region (optional)"],
       "clarifying_questions": ["Which month?", "Any specific branch or region?"],
-      "dax_skeleton": "CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Bounce status] IN {\"Tech\", \"Non Tech\"}, [date_filter], [branch_filter])"
+      "dax_skeleton": "CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Bounce status] IN {\"Tech\", \"Non Tech\"}, [date_filter], [branch_filter])"
     },
     {
       "user_says": "what is the resolution percentage for Pune",
       "identified_metric": "Resolution %",
       "identified_slicers": ["Branch = PUNE"],
       "clarifying_questions": ["Which month?"],
-      "dax_skeleton": "DIVIDE(CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Cust wise status] = \"Norm\", Table[Branch] = \"PUNE\"), CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Branch] = \"PUNE\")) * 100"
+      "dax_skeleton": "DIVIDE(CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Cust wise status] = \"Norm\", Final Table[Branch] = \"PUNE\"), CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Branch] = \"PUNE\")) * 100"
     },
     {
       "user_says": "show NPA distribution by region",
       "identified_metric": "NPA Count by Region",
       "identified_slicers": ["Op bucket = NPA"],
       "clarifying_questions": ["Which month?", "Any specific portfolio?"],
-      "dax_skeleton": "SUMMARIZECOLUMNS(Table[Region], CALCULATE(COUNT(Table[loanappno]), Table[Op bucket] = \"NPA\"))"
+      "dax_skeleton": "SUMMARIZECOLUMNS(Final Table[Region], CALCULATE(COUNT(Final Table[loanappno]), Final Table[Op bucket] = \"NPA\"))"
     },
     {
       "user_says": "which TL has the best coverage",
       "identified_metric": "Coverage %",
       "identified_slicers": ["Group by TL", "Allocated or not = Allocated"],
       "clarifying_questions": ["Which month?", "Any specific region or branch?"],
-      "dax_skeleton": "SUMMARIZECOLUMNS(Table[TL], DIVIDE(CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Visit or not] = \"Visited\", Table[Allocated or not] = \"Allocated\"), CALCULATE(DISTINCTCOUNT(Table[Cust ID]), Table[Allocated or not] = \"Allocated\")) * 100)"
+      "dax_skeleton": "SUMMARIZECOLUMNS(Final Table[TL], DIVIDE(CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Visit or not] = \"Visited\", Final Table[Allocated or not] = \"Allocated\"), CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Allocated or not] = \"Allocated\")) * 100)"
     }
   ]
 }
