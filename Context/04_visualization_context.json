@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "purpose": "Visualization context for Qwen 7B — chart type selection, axis mapping, slicer layout, and dashboard design rules based on data returned from Power BI DAX queries.",
+    "purpose": "Visualization context for Qwen 7B — chart type selection, axis mapping, slicer layout, and dashboard design rules based on data returned from PostgreSQL SQL queries.",
     "model_role": "Qwen 7B receives: (1) the user question, (2) the metric identified, (3) the columns in the result data, (4) sample rows. It must decide: chart type, x-axis, y-axis, grouping, color palette, and slicer layout."
   },
 

@@ -37,7 +37,7 @@ from config import (
     BUSINESS_LOGIC_PATH,
     LANGUAGE_MAPPING_PATH,
     VISUALIZATION_PATH,
-    DAX_PATTERNS_PATH,
+    SQL_PATTERNS_PATH,
 )
 from utils.logger import get_logger
 from utils.benchmark import benchmark
@@ -58,7 +58,7 @@ def _build_schema_documents(data: dict) -> list[dict]:
     """
     # * Converts 01_schema_context.json into embeddable documents.
     # * One document per field — each includes field name, type, description,
-    # * consumer language, DAX hints, and slicer status.
+    # * consumer language, SQL hints, and slicer status.
 
     Args:
         data : Parsed JSON from 01_schema_context.json
@@ -82,8 +82,8 @@ def _build_schema_documents(data: dict) -> list[dict]:
         if field_def.get("values"):
             parts.append(f"VALID VALUES: {', '.join(str(v) for v in field_def['values'])}")
 
-        if field_def.get("use_in_dax"):
-            parts.append(f"DAX USAGE: {field_def['use_in_dax']}")
+        if field_def.get("use_in_sql"):
+            parts.append(f"SQL USAGE: {field_def['use_in_sql']}")
 
         if field_def.get("consumer_language"):
             parts.append(f"USER MAY SAY: {', '.join(field_def['consumer_language'])}")
@@ -129,7 +129,7 @@ def _build_business_logic_documents(data: dict) -> list[dict]:
                 f"BUCKET RULE: {bucket}\n"
                 f"CONDITION: {rule.get('condition', '')}\n"
                 f"DESCRIPTION: {rule.get('description', '')}\n"
-                f"DAX FILTER: {rule.get('dax_filter', '')}"
+                f"SQL FILTER: {rule.get('sql_filter', '')}"
             ),
             "metadata": {"source": "business_logic", "topic": "bucket_classification", "bucket": bucket}
         })
@@ -157,7 +157,7 @@ def _build_business_logic_documents(data: dict) -> list[dict]:
                 f"METRIC: {metric.get('label', metric_key)}\n"
                 f"DESCRIPTION: {metric.get('description', '')}\n"
                 f"FORMULA: {metric.get('formula', '')}\n"
-                f"DAX: {metric.get('dax_pattern', '')}\n"
+                f"SQL: {metric.get('sql_pattern', '')}\n"
                 f"USER MAY SAY: {', '.join(metric.get('consumer_language', []))}\n"
                 f"IMPORTANT: {metric.get('important', '')}"
             ),
@@ -213,7 +213,7 @@ def _build_language_mapping_documents(data: dict) -> list[dict]:
         field   = mapping.get("maps_to_field", "")
         value   = mapping.get("maps_to_value", "")
         metric  = mapping.get("metric", "")
-        dax     = mapping.get("dax_hint", "")
+        sql     = mapping.get("sql_hint", "")
         warning = mapping.get("warning", "")
 
         docs.append({
@@ -224,7 +224,7 @@ def _build_language_mapping_documents(data: dict) -> list[dict]:
                 f"MAPS TO FIELD: {field}\n"
                 f"MAPS TO VALUE: {value}\n"
                 f"METRIC: {metric}\n"
-                f"DAX HINT: {dax}\n"
+                f"SQL HINT: {sql}\n"
                 f"WARNING: {warning}"
             ),
             "metadata": {
@@ -234,8 +234,8 @@ def _build_language_mapping_documents(data: dict) -> list[dict]:
             }
         })
 
-    # * Intent-to-DAX examples — one doc per example
-    for i, example in enumerate(data.get("intent_to_dax_examples", [])):
+    # * Intent-to-SQL examples — one doc per example
+    for i, example in enumerate(data.get("sql_examples", [])):
         docs.append({
             "id":   f"intent_example_{i}",
             "text": (
@@ -244,7 +244,7 @@ def _build_language_mapping_documents(data: dict) -> list[dict]:
                 f"METRIC: {example.get('identified_metric', '')}\n"
                 f"SLICERS NEEDED: {', '.join(example.get('identified_slicers', []))}\n"
                 f"CLARIFYING QUESTIONS: {', '.join(example.get('clarifying_questions', []))}\n"
-                f"DAX SKELETON: {example.get('dax_skeleton', '')}"
+                f"SQL SKELETON: {example.get('sqlskeleton', '')}"
             ),
             "metadata": {"source": "language_mapping", "topic": "intent_example"}
         })
@@ -320,29 +320,29 @@ def _build_visualization_documents(data: dict) -> list[dict]:
     return docs
 
 
-def _build_dax_pattern_documents(data: dict) -> list[dict]:
+def _build_sql_pattern_documents(data: dict) -> list[dict]:
     """
-    # * Converts 05_dax_patterns.json into embeddable documents.
-    # * One doc per DAX pattern — includes description and the full DAX query.
+    # * Converts 05_sql_patterns.json into embeddable documents.
+    # * One doc per SQL pattern — includes description and the full SQL query.
 
     Args:
-        data : Parsed JSON from 05_dax_patterns.json
+        data : Parsed JSON from 05_sql_patterns.json
 
     Returns:
         List of {"id": str, "text": str, "metadata": dict}
     """
     docs = []
 
-    for pattern_key, pattern in data.get("dax_patterns", {}).items():
+    for pattern_key, pattern in data.get("sql_patterns", {}).items():
         docs.append({
-            "id":   f"dax_{pattern_key}",
+            "id":   f"sql_{pattern_key}",
             "text": (
-                f"DAX PATTERN: {pattern_key}\n"
+                f"SQL PATTERN: {pattern_key}\n"
                 f"DESCRIPTION: {pattern.get('description', '')}\n"
-                f"DAX QUERY:\n{pattern.get('dax', pattern.get('with_branch_filter', ''))}"
+                f"SQL QUERY:\n{pattern.get('sql', pattern.get('with_branch_filter', ''))}"
             ),
             "metadata": {
-                "source":  "dax_patterns",
+                "source":  "sql_patterns",
                 "pattern": pattern_key,
             }
         })
@@ -351,15 +351,15 @@ def _build_dax_pattern_documents(data: dict) -> list[dict]:
     snippets = data.get("filter_snippets", {})
     if snippets:
         docs.append({
-            "id":   "dax_filter_snippets",
-            "text": "DAX FILTER SNIPPETS:\n" + "\n".join(
+            "id":   "sql_filter_snippets",
+            "text": "SQL FILTER SNIPPETS:\n" + "\n".join(
                 f"{k}: {v}" for k, v in snippets.items()
                 if not k.startswith("_")
             ),
-            "metadata": {"source": "dax_patterns", "topic": "filter_snippets"}
+            "metadata": {"source": "sql_patterns", "topic": "filter_snippets"}
         })
 
-    log.info(f"[dictionary] Built {len(docs)} DAX pattern documents")
+    log.info(f"[dictionary] Built {len(docs)} SQL pattern documents")
     return docs
 
 
@@ -457,7 +457,7 @@ class DataDictionary:
             (BUSINESS_LOGIC_PATH,   _build_business_logic_documents, "business_logic"),
             (LANGUAGE_MAPPING_PATH, _build_language_mapping_documents,"language_mapping"),
             (VISUALIZATION_PATH,    _build_visualization_documents,   "visualization"),
-            (DAX_PATTERNS_PATH,     _build_dax_pattern_documents,     "dax_patterns"),
+            (SQL_PATTERNS_PATH,     _build_sql_pattern_documents,     "sql_patterns"),
         ]
 
         all_docs = []
@@ -517,7 +517,7 @@ class DataDictionary:
             query  : User's natural language question
             top_k  : Number of results to return (default from config)
             source : Optional filter by source JSON
-                     e.g. "schema_context", "dax_patterns", "business_logic"
+                     e.g. "schema_context", "sql_patterns", "business_logic"
 
         Returns:
             List of text strings — most relevant first.
@@ -556,8 +556,8 @@ class DataDictionary:
     def get_coder_context(self, query: str) -> str:
         """
         # * Build the full context string for Qwen Coder (14B).
-        # * Fetches relevant schema + business logic + language mapping + DAX patterns.
-        # * This is injected into the system prompt for intent analysis and DAX generation.
+        # * Fetches relevant schema + business logic + language mapping + SQL patterns.
+        # * This is injected into the system prompt for intent analysis and SQL generation.
 
         Args:
             query : User's question
@@ -571,7 +571,7 @@ class DataDictionary:
             schema_chunks   = self.search(query, top_k=6,  source="schema_context")
             logic_chunks    = self.search(query, top_k=5,  source="business_logic")
             language_chunks = self.search(query, top_k=4,  source="language_mapping")
-            dax_chunks      = self.search(query, top_k=4,  source="dax_patterns")
+            sql_chunks      = self.search(query, top_k=4,  source="sql_patterns")
 
             sections = []
 
@@ -587,9 +587,9 @@ class DataDictionary:
                 sections.append(
                     "=== LANGUAGE MAPPING ===\n" + "\n\n".join(language_chunks)
                 )
-            if dax_chunks:
+            if sql_chunks:
                 sections.append(
-                    "=== DAX PATTERNS ===\n" + "\n\n".join(dax_chunks)
+                    "=== SQL PATTERNS ===\n" + "\n\n".join(sql_chunks)
                 )
 
             context = "\n\n".join(sections)

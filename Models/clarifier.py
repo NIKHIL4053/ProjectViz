@@ -205,12 +205,11 @@ _WIDGET_TYPES: dict[str, str] = {
 class Clarifier:
     """
     # * Step 2 of the pipeline — generates clarifying questions from IntentResult.
-
     # ? Two modes of operation:
-    # ? Mode A — With Power BI data available:
+    # ? Mode A — With PostgreSQL data available:
     # ?   Options are dynamically populated from actual column values in the data.
     # ?   e.g. Branch options = actual branches in the returned dataset.
-    # ? Mode B — Without data (first question, before any DAX run):
+    # ? Mode B — Without data (first question, before any SQL query runs):
     # ?   Options come from _KNOWN_OPTIONS dict or are left generic.
     # ?   Qwen generates the options based on domain knowledge.
     """

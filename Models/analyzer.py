@@ -7,12 +7,12 @@ models/analyzer.py
 # *   - The relevant columns from the data dictionary
 # *   - The columns that will be needed as slicers/filters
 # *   - Whether time period is involved
-# *   - The DAX aggregation type needed (COUNT, SUM, AVERAGE etc.)
+# *   - The SQL aggregation type needed (COUNT, SUM, AVERAGE etc.)
 
-# ? Why is this the first step and not DAX generation directly?
-# ? Users say things like "show me bad loans in Pune" — no column names, no DAX.
+# ? Why is this the first step and not SQL generation directly?
+# ? Users say things like "show me bad loans in Pune" — no column names, no SQL.
 # ? The analyzer bridges natural language → structured intent.
-# ? The structured intent then drives every other step (clarifier, DAX gen, viz).
+# ? The structured intent then drives every other step (clarifier, SQL gen, viz).
 
 # ? Which model: Qwen Coder 14B
 # ? Why: Needs strong instruction following and domain reasoning.
@@ -61,7 +61,7 @@ class IntentResult:
         group_by            : Column to group results by (for charts)
         time_involved       : True if user asked about a time period
         granularity         : "customer" or "loan" level analysis
-        dax_pattern_hint    : Key from 05_dax_patterns.json to use as DAX template
+        sql_pattern_hint    : Key from 05_dax_patterns.json to use as DAX template
         confidence          : High / Medium / Low — how confident the model is
         error               : Error message if success=False
     """
@@ -76,7 +76,7 @@ class IntentResult:
     group_by:           Optional[str]      = None
     time_involved:      bool               = False
     granularity:        str                = "customer"
-    dax_pattern_hint:   Optional[str]      = None
+    sql_pattern_hint:   Optional[str]      = None
     confidence:         str                = "High"
     error:              Optional[str]      = None
 
@@ -96,7 +96,7 @@ class IntentResult:
             "group_by":          self.group_by,
             "time_involved":     self.time_involved,
             "granularity":       self.granularity,
-            "dax_pattern_hint":  self.dax_pattern_hint,
+            "sql_pattern_hint":  self.sql_pattern_hint,
             "confidence":        self.confidence,
         }
 
@@ -143,12 +143,14 @@ AVAILABLE METRICS (use these exact metric_key values):
 - DPD_Distribution     : Distribution of dpd_casewise values
 - Custom               : Use when none of the above match exactly
 
-AGGREGATION OPTIONS:
-- DISTINCTCOUNT : Customer-level counts (Resolution, Bounce, Coverage)
-- COUNT         : Loan-level counts (NPA accounts, Add NPA)
-- SUM           : Financial amounts (bal_prin, TOD, Bounce charges)
-- AVERAGE       : Averages (Intensity, average DPD)
-- DIVIDE        : Percentages (always SUM or COUNT in numerator/denominator)
+
+- AGGREGATION OPTIONS:
+- DISTINCT_COUNT : Customer-level counts — use COUNT(DISTINCT "Cust ID")
+- COUNT          : Loan-level counts — use COUNT(loanappno)
+- SUM            : Financial amounts — use SUM(bal_prin), SUM("TOD")
+- AVERAGE        : Averages — use AVG() or SUM/COUNT
+- RATIO          : Percentages — numerator/NULLIF(denominator,0)*100
+
 
 GRANULARITY:
 - customer : Use when question is about customers (resolution, bounce, coverage)
@@ -168,7 +170,7 @@ Return ONLY valid JSON — no explanation, no markdown, no extra text:
   "group_by":          "column to group results by for the chart, or null",
   "time_involved":     true or false,
   "granularity":       "customer or loan",
-  "dax_pattern_hint":  "closest key from dax_patterns e.g. bounce_by_branch, or null",
+  "sql_pattern_hint":  "closest key from dax_patterns e.g. bounce_by_branch, or null",
   "confidence":        "High | Medium | Low"
 }}
 """.strip()
@@ -338,7 +340,7 @@ class Analyzer:
         group_by         = parsed.get("group_by")
         time_involved    = bool(parsed.get("time_involved",   False))
         granularity      = str(parsed.get("granularity",      "customer")).lower().strip()
-        dax_hint         = parsed.get("dax_pattern_hint")
+        sql_hint         = parsed.get("sql_pattern_hint")
         confidence       = str(parsed.get("confidence",       "Medium")).strip()
 
         # * Validate aggregation value
@@ -357,11 +359,11 @@ class Analyzer:
         if group_by and group_by.lower() in ("null", "none", ""):
             group_by = None
 
-        # * Validate dax_hint
-        if dax_hint and not isinstance(dax_hint, str):
-            dax_hint = str(dax_hint)
-        if dax_hint and dax_hint.lower() in ("null", "none", ""):
-            dax_hint = None
+        # * Validate sql_hint
+        if sql_hint and not isinstance(sql_hint, str):
+            sql_hint = str(sql_hint)
+        if sql_hint and sql_hint.lower() in ("null", "none", ""):
+            sql_hint = None
 
         result = IntentResult(
             success           = True,
@@ -375,7 +377,7 @@ class Analyzer:
             group_by          = group_by,
             time_involved     = time_involved,
             granularity       = granularity,
-            dax_pattern_hint  = dax_hint,
+            sql_pattern_hint  = sql_hint,
             confidence        = confidence,
         )
 

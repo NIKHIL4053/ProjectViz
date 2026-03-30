@@ -18,9 +18,10 @@ Usage in any file:
         CONTEXT_DIR,
         DATA_TEMP_DIR,
         LOG_DIR,
-        POWERBI_TABLE_NAME,
-    )
+        PG_DSN, PG_TABLE_NAME, PG_SCHEMA,
+ )
 """
+
 
 import os
 from pathlib import Path
@@ -65,7 +66,7 @@ SCHEMA_CONTEXT_PATH   = CONTEXT_DIR / "01_schema_context.json"
 BUSINESS_LOGIC_PATH   = CONTEXT_DIR / "02_business_logic.json"
 LANGUAGE_MAPPING_PATH = CONTEXT_DIR / "03_language_mapping.json"
 VISUALIZATION_PATH    = CONTEXT_DIR / "04_visualization_context.json"
-DAX_PATTERNS_PATH     = CONTEXT_DIR / "05_dax_patterns.json"
+SQL_PATTERNS_PATH     = CONTEXT_DIR / "05_sql_patterns.json"
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -87,6 +88,28 @@ OLLAMA_TIMEOUT     = int(os.getenv("OLLAMA_TIMEOUT",     "120"))
 OLLAMA_TEMPERATURE = float(os.getenv("OLLAMA_TEMPERATURE","0.1"))
 OLLAMA_MAX_RETRIES = int(os.getenv("OLLAMA_MAX_RETRIES",  "2"))
 
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# * POSTGRESQL — DATABASE CONFIGURATION (Docker)
+# ──────────────────────────────────────────────────────────────────────────────
+
+PG_HOST         = os.getenv("PG_HOST",      "localhost")
+PG_PORT         = int(os.getenv("PG_PORT",  "5432"))
+PG_DATABASE     = os.getenv("PG_DATABASE",  "loan_db")
+PG_USER         = os.getenv("PG_USER",      "postgres")
+PG_PASSWORD     = os.getenv("PG_PASSWORD",  "")
+PG_SCHEMA       = os.getenv("PG_SCHEMA",    "public")
+PG_TABLE_NAME   = os.getenv("PG_TABLE_NAME","final_table")
+PG_MAX_ROWS     = int(os.getenv("PG_MAX_ROWS", "100000"))
+
+# * Full DSN string — used by psycopg2 / SQLAlchemy
+PG_DSN          = (
+    f"postgresql://{PG_USER}:{PG_PASSWORD}"
+    f"@{PG_HOST}:{PG_PORT}/{PG_DATABASE}"
+)
+
+USE_MOCK_DATA   = os.getenv("USE_MOCK_DATA", "false").lower() == "true"
 
 # ──────────────────────────────────────────────────────────────────────────────
 # * CHROMADB
@@ -167,10 +190,13 @@ def validate_config() -> list[str]:
         ("Business Logic",    BUSINESS_LOGIC_PATH),
         ("Language Mapping",  LANGUAGE_MAPPING_PATH),
         ("Visualization",     VISUALIZATION_PATH),
-        ("DAX Patterns",      DAX_PATTERNS_PATH),
+        ("SQL Patterns",      SQL_PATTERNS_PATH),
     ]:
         if not path.exists():
             warnings.append(f"Context JSON missing: {name} → {path}")
+         # * Check PostgreSQL password is set
+        if not PG_PASSWORD and not USE_MOCK_DATA:
+                warnings.append("PG_PASSWORD is not set in .env — database connection will fail")
 
 
     return warnings

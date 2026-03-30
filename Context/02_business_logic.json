@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "purpose": "Business logic context for Qwen Coder 14B — bucket classification rules, metric formulas, movement logic, DAX calculation patterns",
+    "purpose": "Business logic context for Qwen Coder 14B — bucket classification rules, metric formulas, movement logic, SQL calculation patterns",
     "critical_note": "This JSON contains the core business rules. Qwen MUST follow these exactly when generating DAX or interpreting user questions."
   },
 
@@ -13,49 +13,49 @@
         "priority": 1,
         "condition": "dpd = 0 AND Bounce_status = 'PAID' AND Emi_increase = 0 AND day_wise_asset_classification = 'Standard Asset'",
         "description": "Fully healthy, on-time, paid via NACH, no EMI increase",
-        "dax_filter": "Final Table[dpd] = 0 && Final Table[Bounce status] = \"PAID\" && Final Table[Emi increase] = 0 && Final Table[day_wise_asset_classification] = \"Standard Asset\""
+        "sql_filter": "dpd = 0 AND 'Bounce status' = 'PAID' AND 'Emi increase' = 0 AND day_wise_asset_classification' = 'Standard Asset'"
       },
       {
         "bucket": "Risk X",
         "priority": 2,
         "condition": "dpd = 0 AND (Emi_increase = 1 OR Bounce_status <> 'PAID') AND day_wise_asset_classification = 'Standard Asset'",
         "description": "DPD is zero but has either EMI increase or non-PAID bounce — watch bucket",
-        "dax_filter": "Final Table[dpd] = 0 && (Final Table[Emi increase] = 1 || Final Table[Bounce status] <> \"PAID\") && Final Table[day_wise_asset_classification] = \"Standard Asset\""
+        "sql_filter": "dpd = 0 AND ('Emi increase' = 1 OR 'Bounce status' <> 'PAID') AND 'day_wise_asset_classification' = 'Standard Asset'"
       },
       {
         "bucket": "1-29 DPD",
         "priority": 3,
         "condition": "dpd > 0 AND dpd < 30 AND day_wise_asset_classification = 'Standard Asset'",
         "description": "Early delinquency — 1 to 29 days overdue",
-        "dax_filter": "Final Table[dpd] > 0 && Final Table[dpd] < 30 && Final Table[day_wise_asset_classification] = \"Standard Asset\""
+        "sql_filter": "dpd > 0 AND dpd < 30 AND 'day_wise_asset_classification' = 'Standard Asset'"
       },
       {
         "bucket": "30-59 DPD",
         "priority": 4,
         "condition": "dpd >= 30 AND dpd < 60 AND day_wise_asset_classification = 'Standard Asset'",
         "description": "Moderate delinquency — 30 to 59 days overdue",
-        "dax_filter": "Final Table[dpd] >= 30 && Final Table[dpd] < 60 && Final Table[day_wise_asset_classification] = \"Standard Asset\""
+        "sql_filter": "dpd >= 30 AND dpd < 60 AND 'day_wise_asset_classification' = 'Standard Asset'"
       },
       {
         "bucket": "60-89 DPD",
         "priority": 5,
         "condition": "dpd >= 60 AND dpd < 90 AND day_wise_asset_classification = 'Standard Asset' AND Risk_NPA = 0",
         "description": "Severe delinquency, pre-NPA — 60 to 89 days overdue",
-        "dax_filter": "Final Table[dpd] >= 60 && Final Table[dpd] < 90 && Final Table[day_wise_asset_classification] = \"Standard Asset\" && Final Table[Risk NPA] = 0"
+        "sql_filter": "dpd >= 60 AND dpd < 90 AND 'day_wise_asset_classification' = 'Standard Asset' AND 'Risk NPA' = 0"
       },
       {
         "bucket": "NPA",
         "priority": 6,
         "condition": "dpd > 90 AND day_wise_asset_classification <> 'Standard Asset' OR (dpd >= 60 AND dpd < 90 AND day_wise_asset_classification = 'Standard Asset' AND Risk_NPA = 1)",
         "description": "Non-Performing Asset — either DPD > 90 with non-standard classification, or 60-89 DPD with Risk NPA flag",
-        "dax_filter": "(Final Table[dpd] > 90 && Final Table[day_wise_asset_classification] <> \"Standard Asset\") || (Final Table[dpd] >= 60 && Final Table[dpd] < 90 && Final Table[day_wise_asset_classification] = \"Standard Asset\" && Final Table[Risk NPA] = 1)"
+        "sql_filter": "(dpd > 90 AND 'day_wise_asset_classification' <> 'Standard Asset') OR (dpd >= 60 AND dpd < 90 AND 'day_wise_asset_classification' = 'Standard Asset' AND 'Risk NPA' = 1)"
       },
       {
         "bucket": "Write-off",
         "priority": 7,
         "condition": "Loan has been written off from books",
         "description": "Written off — removed from active book but collection continues due to overdue amount",
-        "dax_filter": "Filter Op bucket = 'Write-off' directly — this is pre-set in the data"
+        "sql_filter": "WHERE 'Op bucket' = 'Write-off'"
       }
     ]
   },
@@ -92,7 +92,7 @@
       "description": "Count of customers who improved from delinquent bucket back to Current/Risk X",
       "consumer_language": ["resolved", "recovered", "norm customers", "how many resolved", "resolution count"],
       "formula": "COUNT(DISTINCT Cust ID) WHERE Cust wise status = 'Norm'",
-      "dax_pattern": "CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Cust wise status] = \"Norm\")",
+      "sql_pattern": "SELECT COUNT(DISTINCT 'Cust ID') FROM final_table WHERE 'Cust wise status' = 'Norm'",
       "unit": "Count",
       "important": "Norm means improved — Current customers are already performing, they are NOT in resolution count"
     },
@@ -101,7 +101,7 @@
       "description": "Resolution count as % of total customers in the filtered segment",
       "consumer_language": ["resolution percentage", "resolution rate", "how much resolved", "recovery rate"],
       "formula": "COUNT(DISTINCT Cust ID WHERE status=Norm) / COUNT(DISTINCT Cust ID total) * 100",
-      "dax_pattern": "DIVIDE(CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Cust wise status] = \"Norm\"), DISTINCTCOUNT(Final Table[Cust ID])) * 100",
+      "sql_pattern": "SELECT ROUND(COUNT(DISTINCT CASE WHEN 'Cust wise status' = 'Norm' THEN 'Cust ID' END) * 100.0 / NULLIF(COUNT(DISTINCT 'Cust ID'), 0), 2) FROM final_table",
       "unit": "Percentage",
       "important": "Applies to delinquent buckets. Denominator = all customers in the filtered dataset."
     },
@@ -110,7 +110,7 @@
       "description": "Count of customers where Bounce status is Tech or Non Tech",
       "consumer_language": ["bounce count", "how many bounced", "total bounces", "bounce loans"],
       "formula": "COUNT(DISTINCT Cust ID) WHERE Bounce_status IN ('Tech', 'Non Tech')",
-      "dax_pattern": "CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Bounce status] IN {\"Tech\", \"Non Tech\"})",
+      "sql_pattern": "SELECT COUNT(DISTINCT 'Cust ID') FROM final_table WHERE 'Bounce status' IN ('Tech', 'Non Tech')",
       "unit": "Count",
       "important": "NEVER include PAID in bounce count. PAID = successful payment, NOT a bounce."
     },
@@ -119,7 +119,7 @@
       "description": "Bounce count as % of total customers",
       "consumer_language": ["bounce rate", "bounce percentage", "payment failure rate", "% bounced"],
       "formula": "COUNT(DISTINCT Cust ID WHERE bounce) / COUNT(DISTINCT Cust ID total) * 100",
-      "dax_pattern": "DIVIDE(CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Bounce status] IN {\"Tech\", \"Non Tech\"}), DISTINCTCOUNT(Final Table[Cust ID])) * 100",
+      "sql_pattern": "SELECT ROUND(COUNT(DISTINCT CASE WHEN 'Bounce status' IN ('Tech','Non Tech') THEN 'Cust ID' END) * 100.0 / NULLIF(COUNT(DISTINCT 'Cust ID'), 0), 2) FROM final_table",
       "unit": "Percentage"
     },
     "Coverage": {
@@ -127,7 +127,7 @@
       "description": "Count of allocated customers who were visited",
       "consumer_language": ["coverage", "visited customers", "field coverage", "visit coverage"],
       "formula": "COUNT(DISTINCT Cust ID) WHERE Visit_or_not = 'Visited' AND Allocated_or_not = 'Allocated'",
-      "dax_pattern": "CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Visit or not] = \"Visited\", Final Table[Allocated or not] = \"Allocated\")",
+      "sql_pattern": "SELECT COUNT(DISTINCT 'Cust ID') FROM final_table WHERE 'Visit or not' = 'Visited' AND 'Allocated or not' = 'Allocated'",
       "unit": "Count",
       "important": "Only count customers where Allocated or not = 'Allocated'. Non-allocated EXCLUDED from coverage."
     },
@@ -136,7 +136,7 @@
       "description": "Visited-allocated customers as % of total allocated customers",
       "consumer_language": ["coverage percentage", "visit rate", "coverage rate", "% visited"],
       "formula": "COUNT(Visited AND Allocated) / COUNT(Allocated) * 100",
-      "dax_pattern": "DIVIDE(CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Visit or not] = \"Visited\", Final Table[Allocated or not] = \"Allocated\"), CALCULATE(DISTINCTCOUNT(Final Table[Cust ID]), Final Table[Allocated or not] = \"Allocated\")) * 100",
+      "sql_pattern": "SELECT ROUND(COUNT(DISTINCT CASE WHEN 'Visit or not'='Visited' AND 'Allocated or not'='Allocated' THEN 'Cust ID' END) * 100.0 / NULLIF(COUNT(DISTINCT CASE WHEN 'Allocated or not'='Allocated' THEN 'Cust ID' END), 0), 2) FROM final_table",
       "unit": "Percentage"
     },
     "Intensity": {
@@ -144,7 +144,7 @@
       "description": "Average number of field visits per customer in the month",
       "consumer_language": ["intensity", "visit intensity", "average visits", "how many times visited per customer"],
       "formula": "SUM(Visit Count) / COUNT(DISTINCT Cust ID)",
-      "dax_pattern": "DIVIDE(SUM(Final Table[Visit Count]), DISTINCTCOUNT(Final Table[Cust ID]))",
+      "sql_pattern": "SELECT ROUND(SUM('Visit Count')::NUMERIC / NULLIF(COUNT(DISTINCT 'Cust ID'), 0), 2) FROM final_table",
       "unit": "Number (e.g., 2.5 visits per customer)"
     },
     "Portfolio_Outstanding": {
@@ -152,7 +152,7 @@
       "description": "Total balance principal across filtered loans",
       "consumer_language": ["portfolio size", "total outstanding", "AUM", "total principal", "how much outstanding"],
       "formula": "SUM(bal_prin)",
-      "dax_pattern": "SUM(Final Table[bal_prin])",
+      "sql_pattern": "SELECT SUM(bal_prin) FROM final_table",
       "unit": "Amount (INR)"
     },
     "Total_Overdue": {
@@ -160,19 +160,19 @@
       "description": "Sum of TOD (Total Overdue = principal + interest + pre-EMI overdue)",
       "consumer_language": ["total overdue", "overdue amount", "how much overdue", "overdue balance"],
       "formula": "SUM(TOD)",
-      "dax_pattern": "SUM(Final Table[TOD])",
+      "sql_pattern": "SELECT SUM('TOD') FROM final_table",
       "unit": "Amount (INR)"
     }
   },
 
   "granularity_rules": {
     "customer_level_metrics": {
-      "rule": "Always use DISTINCTCOUNT(Final Table[Cust ID])",
+      "rule": "Always use COUNT(DISTINCT \"Cust ID\")",
       "applies_to": ["Resolution %", "Bounce %", "Coverage %", "customer count"],
       "reason": "One customer can have multiple loanappno in the same month. Counting loanappno overstates customer count."
     },
     "loan_level_metrics": {
-      "rule": "Use COUNT(Final Table[loanappno]) or COUNTROWS",
+      "rule": "Use COUNT(loanappno)",
       "applies_to": ["loan count", "account count", "number of loans", "Add NPA count"],
       "reason": "Loan-level metrics should not deduplicate by customer."
     },

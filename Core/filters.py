@@ -2,12 +2,11 @@
 core/filters.py
 ---------------
 # * Manages all filter/slicer logic for the Loan Dashboard.
-# * Builds sidebar filter widgets dynamically from Power BI result data.
-# * Applies user slicer selections to DataFrames returned from Power BI.
+# * Builds sidebar filter widgets dynamically from PostgreSQL query result data.
+# * Applies user slicer selections to DataFrames returned from PostgreSQL.
 # * Provides filter summary strings for chart titles and export headers.
 
 # ? Why dynamic filters instead of hardcoded ones?
-# ? Power BI returns different columns depending on the DAX query.
 # ? Hardcoding filters would break when the query changes.
 # ? Dynamic filters read the actual columns + unique values from returned data.
 
@@ -191,7 +190,7 @@ class FilterManager:
         # * Respects priority order, exclusion list, and max_slicers limit.
 
         Args:
-            df              : DataFrame returned from Power BI DAX query
+            df              : DataFrame returned from PostgreSQL SQL query
             forced_columns  : Optional list of columns to always include as filters
                               (e.g. from Qwen's clarifying question output)
 
@@ -442,7 +441,7 @@ class FilterManager:
         # * Returns a filtered copy — never modifies the original DataFrame.
 
         Args:
-            df         : Source DataFrame (from Power BI DAX result)
+            df         : Source DataFrame (from PostgreSQL SQL result)
             selections : List of FilterSelection — uses self._selections if None
 
         Returns:

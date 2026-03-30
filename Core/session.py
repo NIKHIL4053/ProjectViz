@@ -12,7 +12,7 @@ core/session.py
 # ? and it becomes impossible to know what state exists at any point.
 
 # ? Temp data lifecycle:
-# ?   1. Power BI returns data → saved to Data/uploads/{session_id}_{query_hash}.parquet
+# ?   1. PostgreSQL returns data → saved to Data/uploads/{session_id}_{query_hash}.parquet
 # ?   2. Session stays active → data is reused (no re-fetch)
 # ?   3. Session ends OR TTL expires → cleanup() deletes the files
 # !   Only files in Data/uploads/ are deleted — never logs, context JSONs, or code.
@@ -69,7 +69,7 @@ class Keys:
     CURRENT_QUESTION    = "current_question"       # raw user question
     CURRENT_INTENT      = "current_intent"         # dict from analyzer.py
     CURRENT_SLICERS     = "current_slicers"        # dict from clarifier.py
-    CURRENT_DAX         = "current_dax"            # DAX string from dax_generator.py
+    CURRENT_SQL         = "current_sql"            # SQL string from sql_generator.py
     CURRENT_CHART_CFG   = "current_chart_config"   # dict from chart_decider.py
 
     # * Data state
@@ -128,7 +128,7 @@ class SessionManager:
             Keys.CURRENT_QUESTION:    "",
             Keys.CURRENT_INTENT:      {},
             Keys.CURRENT_SLICERS:     {},
-            Keys.CURRENT_DAX:         "",
+            Keys.CURRENT_SQL:         "",
             Keys.CURRENT_CHART_CFG:   {},
             Keys.CURRENT_DF:          None,
             Keys.TEMP_FILES:          [],
@@ -200,7 +200,7 @@ class SessionManager:
         """
         # * Store a new user question and clear stale pipeline state.
         # * Called at the start of each new user query.
-        # ? Clearing stale state prevents old DAX/charts from showing for new queries.
+        # ? Clearing stale state prevents old SQL/charts from showing for new queries.
 
         Args:
             question : Raw user question string
@@ -209,7 +209,7 @@ class SessionManager:
         self.set(Keys.CURRENT_QUESTION,  question)
         self.set(Keys.CURRENT_INTENT,    {})
         self.set(Keys.CURRENT_SLICERS,   {})
-        self.set(Keys.CURRENT_DAX,       "")
+        self.set(Keys.CURRENT_SQL,       "")
         self.set(Keys.CURRENT_CHART_CFG, {})
         self.set(Keys.CURRENT_DF,        None)
 
@@ -223,10 +223,10 @@ class SessionManager:
         self.set(Keys.CURRENT_SLICERS, slicers)
         log.debug(f"[session] Slicers stored | {list(slicers.keys())}")
 
-    def set_dax(self, dax: str):
-        """# * Store the generated DAX query string."""
-        self.set(Keys.CURRENT_DAX, dax)
-        log.debug(f"[session] DAX stored | length={len(dax)} chars")
+    def set_sql(self, sql: str):
+        """# * Store the generated SQL query string."""
+        self.set(Keys.CURRENT_SQL, sql)
+        log.debug(f"[session] SQL stored | length={len(sql)} chars")
 
     def set_chart_config(self, config: dict):
         """# * Store the chart configuration from chart_decider.py."""
@@ -239,8 +239,8 @@ class SessionManager:
     def get_current_intent(self) -> dict:
         return self.get(Keys.CURRENT_INTENT, {})
 
-    def get_current_dax(self) -> str:
-        return self.get(Keys.CURRENT_DAX, "")
+    def get_CURRENT_SQL(self) -> str:
+        return self.get(Keys.CURRENT_SQL, "")
 
     def get_current_chart_config(self) -> dict:
         return self.get(Keys.CURRENT_CHART_CFG, {})
@@ -342,7 +342,7 @@ class SessionManager:
         Args:
             role    : "user" or "assistant"
             content : Text content of the message
-            extras  : Optional extra data (e.g. chart config, DAX, benchmark timing)
+            extras  : Optional extra data (e.g. chart config, SQL, benchmark timing)
         """
         history = self.get(Keys.CHAT_HISTORY, [])
         history.append({
@@ -543,7 +543,7 @@ class SessionManager:
         self.set(Keys.CURRENT_QUESTION,  "")
         self.set(Keys.CURRENT_INTENT,    {})
         self.set(Keys.CURRENT_SLICERS,   {})
-        self.set(Keys.CURRENT_DAX,       "")
+        self.set(Keys.CURRENT_SQL,       "")
         self.set(Keys.CURRENT_CHART_CFG, {})
         self.set(Keys.CURRENT_DF,        None)
         self.set(Keys.FILTER_DEFINITIONS,[])
@@ -564,7 +564,7 @@ class SessionManager:
             Keys.CURRENT_QUESTION,
             Keys.CURRENT_INTENT,
             Keys.CURRENT_SLICERS,
-            Keys.CURRENT_DAX,
+            Keys.CURRENT_SQL,
             Keys.CURRENT_CHART_CFG,
             Keys.CURRENT_DF,
             Keys.FILTER_DEFINITIONS,

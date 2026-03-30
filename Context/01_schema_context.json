@@ -1,13 +1,16 @@
 {
   "_meta": {
-    "purpose": "Schema context for Qwen Coder 14B — used during intent analysis, column selection, and DAX generation",
+    "purpose": "Schema context for Qwen Coder 14B — used during intent analysis, column selection, and SQL query generation",
     "dataset": "Loan Collection Portfolio — Monthly Report",
     "primary_key": "loanappno",
     "customer_key": "Cust ID",
     "reporting_frequency": "Monthly — each load is one calendar month",
     "loan_types": ["LP (Loan Against Property)", "HL (Home Loan)"],
     "loan_type_identification": "loanappno prefix: LP = Loan Against Property, MLP = Micro Loan Against Property, HL = Home Loan , MHL = Micro Home Loan",
-    "approximate_row_count": "~89,255 loan accounts per month"
+    "approximate_row_count": "~89,255 loan accounts per month",
+    "pg_table_name": "final_table",
+    "pg_schema": "public",
+    "column_name_note": "All column names with spaces must be quoted with double quotes in PostgreSQL e.g. \"Op bucket\", \"Cust ID\", \"Bounce status\""
   },
 
   "fields": [
@@ -17,7 +20,7 @@
       "category": "Identifier",
       "slicer": false,
       "description": "Loan Application Number — unique identifier per loan account. Primary key of the dataset. Format: LP000000136474 or HL0000000108833.",
-      "use_in_dax": "Use COUNT(loanappno) for loan-level counts. Use as primary key in relationships.",
+      "use_in_dax": "Use COUNT(loanappno) for loan-level counts. Use as primary key in JOINs.",
       "never_aggregate_as": "Do NOT SUM or AVG this field."
     },
     {
@@ -44,7 +47,7 @@
       "slicer": false,
       "values": ["Standard Asset", "Substandard Asset", "Doubtful Asset", "Loss Asset"],
       "description": "Asset classification of the loan. Standard Asset = non-delinquent. Any other value = delinquent. Used in bucket logic.",
-      "use_in_dax": "Use in CALCULATE filters for bucket classification logic. Standard Asset = performing."
+      "use_in_dax": "Use in WHERE clauses for bucket classification logic."
     },
     {
       "field": "TOD",
@@ -70,7 +73,7 @@
       "category": "Date",
       "slicer": false,
       "description": "Opening month start date (e.g., 01-02-2026 format DD-MM-YYYY). The first date of the reporting month.",
-      "use_in_dax": "Use for time-based filtering. Format: DD-MM-YYYY."
+      "use_in_dax": "Use for time-based filtering. Format: YYYY-MM-DD in PostgreSQL."
     },
     {
       "field": "Bounce status",
@@ -79,7 +82,7 @@
       "slicer": true,
       "values": ["Tech", "Non Tech", "PAID"],
       "description": "EMI/NACH payment bounce status. Tech = bounce due to technical issue. Non Tech = intentional bounce by customer. PAID = customer paid via NACH successfully.",
-      "use_in_dax": "Filter Bounce status IN ('Tech','Non Tech') for bounce count. Bounce status = 'PAID' means successful payment. NEVER count PAID as bounce.",
+      "use_in_dax": "WHERE 'Bounce status' IN ('Tech','Non Tech') for bounce count. NEVER count PAID as bounce.",
       "consumer_language": ["bounce", "bounced", "payment failure", "non-payment", "nach bounce", "technical bounce"]
     },
     {
@@ -96,7 +99,7 @@
       "category": "Identifier",
       "slicer": false,
       "description": "Customer Identifier (CN prefix). One customer may have multiple loanappno entries. Use for customer-level deduplication.",
-      "use_in_dax": "DISTINCTCOUNT(Table[Cust ID]) for unique customer counts. Critical: always DISTINCTCOUNT not COUNT for customer metrics.",
+      "use_in_dax": "COUNT(DISTINCT 'Cust ID') for unique customer counts. Always use DISTINCT for customer metrics.",
       "consumer_language": ["customer count", "number of customers", "unique customers"]
     },
     {
@@ -114,7 +117,7 @@
       "slicer": true,
       "values": ["Current", "Risk X", "1-29 DPD", "30-59 DPD", "60-89 DPD", "NPA", "Write-off"],
       "description": "Opening Bucket — portfolio risk bucket at the START of the month. This is the PRIMARY risk classification field. Use this when user asks about 'how many accounts in X bucket'.",
-      "use_in_dax": "FILTER by Op bucket for segment analysis. COUNT or DISTINCTCOUNT by Op bucket for distribution.",
+      "use_in_dax": "WHERE 'Op bucket' = '...' for segment analysis. COUNT or COUNT(DISTINCT) by Op bucket for distribution.",
       "consumer_language": ["bucket", "dpd bucket", "risk category", "current accounts", "NPA accounts", "write-off", "stressed accounts", "bad loans", "overdue accounts", "1-29", "30-59", "60-89"]
     },
     {
@@ -133,7 +136,7 @@
       "slicer": true,
       "values": ["Current", "Norm", "Flow", "Stab", "Roll Back", "Risk NPA", "NPA", "Write-off"],
       "description": "Customer movement status based on Opening to Closing bucket transition. PRIMARY metric for collection effectiveness. Norm = resolved/improved. Flow = worsened. Stab = no change. Roll Back = partially improved.",
-      "use_in_dax": "FILTER Cust wise status = 'Norm' for resolution. COUNT(DISTINCT Cust ID) for customer-level counts.",
+      "use_in_dax": "WHERE 'Cust wise status' = 'Norm' for resolution. COUNT(DISTINCT 'Cust ID') for customer-level counts.",
       "consumer_language": ["resolved", "recovered", "norm", "flow", "worsened", "stable", "roll back", "movement status", "collection outcome"]
     },
     {
@@ -272,7 +275,7 @@
       "category": "Collection",
       "slicer": true,
       "description": "Field executive name allocated to this loan for collection. 'NA' (as string, not null) means not allocated.",
-      "use_in_dax": "Filter Allocation 1 <> 'NA' for allocated accounts.",
+      "use_in_dax": "WHERE 'Allocation 1' <> 'NA' for allocated accounts.",
       "consumer_language": ["field executive", "FE", "collection officer", "allocated to", "who is handling"]
     },
     {
@@ -289,7 +292,7 @@
       "category": "Collection",
       "slicer": true,
       "description": "Team Leader — supervises field executives. 'No TL' (as string) means no TL assigned.",
-      "use_in_dax": "Filter TL <> 'No TL' for accounts with assigned TL.",
+      "use_in_dax": "WHERE 'TL' <> 'No TL' for accounts with assigned TL.",
       "consumer_language": ["team leader", "TL", "manager", "supervisor"]
     },
     {
@@ -299,7 +302,7 @@
       "slicer": true,
       "values": ["Allocated", "Non Allocated"],
       "description": "Allocation status: 'Allocated' if Allocation 1 is not NA. 'Non Allocated' if Allocation 1 = NA. Use this for allocation analysis — simpler than checking Allocation 1.",
-      "use_in_dax": "Filter Allocated or not = 'Allocated' for coverage denominator."
+      "use_in_dax": "WHERE 'Allocated or not' = 'Allocated' for coverage denominator."
     },
     {
       "field": "Visit or not",
@@ -308,7 +311,7 @@
       "slicer": true,
       "values": ["Visited", "Not Visited"],
       "description": "Simplified visit flag. Visited = any of the 3 Visited values in Visited field. Not Visited = Not visited.",
-      "use_in_dax": "Use in Coverage % numerator: FILTER Visit or not = 'Visited' AND Allocated or not = 'Allocated'."
+      "use_in_dax": "Use in Coverage % numerator: WHERE 'Visit or not' = 'Visited' AND 'Allocated or not' = 'Allocated'."
     },
     {
       "field": "Visit Count",
@@ -316,7 +319,7 @@
       "category": "Collection",
       "slicer": false,
       "description": "Number of field visits to this loanappno in the reporting month.",
-      "use_in_dax": "SUM(Visit Count) / DISTINCTCOUNT(Cust ID) for Intensity metric.",
+      "use_in_dax": "SUM('Visit Count') / COUNT(DISTINCT 'Cust ID') for Intensity metric.",
       "consumer_language": ["how many times visited", "visit intensity", "frequency of visits", "follow up count"]
     },
     {
@@ -326,7 +329,7 @@
       "slicer": true,
       "values": [0, 1],
       "description": "1 = this customer will become a new NPA in the NEXT month. 0 = not becoming NPA. Forward-looking NPA risk flag.",
-      "use_in_dax": "FILTER Add NPA = 1 and COUNT loanappno for new NPA additions.",
+      "use_in_dax": "WHERE 'Add NPA' = 1 and COUNT(loanappno) for new NPA additions.",
       "consumer_language": ["new NPA", "fresh NPA", "going to be NPA", "NPA next month", "NPA additions"]
     },
     {
