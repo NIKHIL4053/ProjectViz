@@ -1,0 +1,36 @@
+2026-04-01 12:13:05 | [START] dictionary_initialise
+2026-04-01 12:13:46 | [END]   dictionary_initialise          |  40528ms | status=OK
+2026-04-01 12:13:46 | [START] db_initialise
+2026-04-01 12:13:46 | [END]   db_initialise                  |     56ms | status=OK
+2026-04-01 12:19:20 | [START] dictionary_initialise
+2026-04-01 12:19:30 | [END]   dictionary_initialise          |  10256ms | status=OK
+2026-04-01 12:19:30 | [START] db_initialise
+2026-04-01 12:19:30 | [END]   db_initialise                  |    251ms | status=OK
+2026-04-01 12:26:21 | [START] dictionary_initialise
+2026-04-01 12:26:30 | [END]   dictionary_initialise          |   9396ms | status=OK
+2026-04-01 12:26:30 | [START] db_initialise
+2026-04-01 12:26:31 | [END]   db_initialise                  |    163ms | status=OK
+2026-04-01 12:36:47 | [START] dictionary_initialise
+2026-04-01 12:36:57 | [END]   dictionary_initialise          |   9900ms | status=OK
+2026-04-01 12:36:57 | [START] db_initialise
+2026-04-01 12:36:57 | [END]   db_initialise                  |    108ms | status=OK
+2026-04-01 14:39:52 | [START] dictionary_initialise
+2026-04-01 14:40:20 | [END]   dictionary_initialise          |  28886ms | status=OK
+2026-04-01 14:40:20 | [START] db_initialise
+2026-04-01 14:40:21 | [END]   db_initialise                  |    226ms | status=OK
+2026-04-01 14:47:00 | [START] dictionary_initialise
+2026-04-01 14:47:08 | [END]   dictionary_initialise          |   7941ms | status=OK
+2026-04-01 14:47:08 | [START] db_initialise
+2026-04-01 14:47:08 | [END]   db_initialise                  |    105ms | status=OK
+2026-04-01 14:53:09 | [START] dictionary_initialise
+2026-04-01 14:53:18 | [END]   dictionary_initialise          |   9207ms | status=OK
+2026-04-01 14:53:18 | [START] db_initialise
+2026-04-01 14:53:18 | [END]   db_initialise                  |    105ms | status=OK
+2026-04-01 14:54:12 | [START] dictionary_initialise
+2026-04-01 14:54:21 | [END]   dictionary_initialise          |   9653ms | status=OK
+2026-04-01 14:54:21 | [START] db_initialise
+2026-04-01 14:54:21 | [END]   db_initialise                  |    202ms | status=OK
+2026-04-01 14:55:43 | [START] dictionary_initialise
+2026-04-01 14:55:51 | [END]   dictionary_initialise          |   8743ms | status=OK
+2026-04-01 14:55:51 | [START] db_initialise
+2026-04-01 14:55:51 | [END]   db_initialise                  |    138ms | status=OK

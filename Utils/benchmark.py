@@ -115,8 +115,8 @@ class QueryBenchmark:
     STEPS = [
         "chromadb_fetch",
         "clarifying_questions",
-        "dax_generation",
-        "powerbi_fetch",
+        "sql_generation",
+        "db_fetch",
         "chart_decision",
         "chart_render",
     ]

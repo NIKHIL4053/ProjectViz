@@ -81,16 +81,16 @@ logger.add(
 )
 
 
-# ── powerbi.log — Power BI API interactions ───────────────────────────────────
+ # ── db.log — PostgreSQL database interactions ─────────────────────────────────
 logger.add(
-    LOG_DIR / "powerbi.log",
+    LOG_DIR / "db.log",
     level="DEBUG",
     rotation="10 MB",
     retention=5,
     compression="zip",
     encoding="utf-8",
     format="{time:YYYY-MM-DD HH:mm:ss} | {level: <8} | {message}",
-    filter=lambda record: record["extra"].get("log_type") == "powerbi",
+    filter=lambda record: record["extra"].get("log_type") == "db",
 )
 
 
@@ -149,13 +149,12 @@ def get_model_logger(name: str):
     return logger.bind(name=name, log_type="model")
 
 
-def get_powerbi_logger(name: str):
+def get_db_logger(name: str):
     """
-    Returns a logger that writes to powerbi.log.
-    Use in powerbi/ folder files.
+    Returns a logger that writes to db.log.
+    Use in the Database/ folder files.
     """
-    return logger.bind(name=name, log_type="powerbi")
-
+    return logger.bind(name=name, log_type="db")
 
 def get_charts_logger(name: str):
     """

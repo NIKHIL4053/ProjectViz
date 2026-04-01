@@ -1,0 +1,30 @@
+2026-04-01 12:13:46 | INFO     | [db] Connecting | host=localhost | port=5432 | db=loan_db | user=postgres
+2026-04-01 12:13:46 | ERROR    | [db] Unexpected error during init | error=No module named 'psycopg2'
+2026-04-01 12:19:30 | INFO     | [db] Connecting | host=localhost | port=5432 | db=loan_db | user=postgres
+2026-04-01 12:19:30 | ERROR    | [db] Connection failed — is Docker running? | host=localhost:5432 | error=(psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-04-01 12:26:30 | INFO     | [db] Connecting | host=localhost | port=5432 | db=loan_db | user=postgres
+2026-04-01 12:26:31 | ERROR    | [db] Connection failed — is Docker running? | host=localhost:5432 | error=(psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-04-01 12:36:57 | INFO     | [db] Connecting | host=localhost | port=5432 | db=loan_db | user=postgres
+2026-04-01 12:36:57 | ERROR    | [db] Connection failed — is Docker running? | host=localhost:5432 | error=(psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-04-01 14:40:20 | INFO     | [db] Connecting | host=localhost | port=5432 | db=loan_db | user=postgres
+2026-04-01 14:40:21 | ERROR    | [db] Connection failed — is Docker running? | host=localhost:5432 | error=(psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-04-01 14:47:08 | INFO     | [db] Connecting | host=localhost | port=5432 | db=loan_db | user=nik
+2026-04-01 14:47:08 | ERROR    | [db] Connection failed — is Docker running? | host=localhost:5432 | error=(psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "nik"
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-04-01 14:53:18 | INFO     | [db] Connecting | host=localhost | port=5432 | db=loan_db | user=nik
+2026-04-01 14:53:18 | ERROR    | [db] Connection failed — is Docker running? | host=localhost:5432 | error=(psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: FATAL:  database "loan_db" does not exist
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-04-01 14:54:21 | INFO     | [db] Connecting | host=localhost | port=5432 | db=LD | user=nik
+2026-04-01 14:54:21 | INFO     | [db] Connected successfully | pool_size=3 | schema=public
+2026-04-01 14:55:51 | INFO     | [db] Connecting | host=localhost | port=5432 | db=LD | user=nik
+2026-04-01 14:55:51 | INFO     | [db] Connected successfully | pool_size=3 | schema=public

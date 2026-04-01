@@ -96,11 +96,11 @@ OLLAMA_MAX_RETRIES = int(os.getenv("OLLAMA_MAX_RETRIES",  "2"))
 
 PG_HOST         = os.getenv("PG_HOST",      "localhost")
 PG_PORT         = int(os.getenv("PG_PORT",  "5432"))
-PG_DATABASE     = os.getenv("PG_DATABASE",  "loan_db")
-PG_USER         = os.getenv("PG_USER",      "postgres")
-PG_PASSWORD     = os.getenv("PG_PASSWORD",  "")
+PG_DATABASE     = os.getenv("PG_DATABASE",  "LD")
+PG_USER         = os.getenv("PG_USER",      "nik")
+PG_PASSWORD     = os.getenv("PG_PASSWORD",  "kin")
 PG_SCHEMA       = os.getenv("PG_SCHEMA",    "public")
-PG_TABLE_NAME   = os.getenv("PG_TABLE_NAME","final_table")
+PG_TABLE_NAME   = os.getenv("PG_TABLE_NAME","loan_dashboard")
 PG_MAX_ROWS     = int(os.getenv("PG_MAX_ROWS", "100000"))
 
 # * Full DSN string — used by psycopg2 / SQLAlchemy
