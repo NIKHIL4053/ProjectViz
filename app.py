@@ -87,7 +87,10 @@ def _render_sidebar(session, status: dict):
             st.error("🤖 Ollama: Not running")
             st.caption("Run `ollama serve` in terminal.")
 
-        st.success("📚 Context: Loaded") if status.get("dictionary_ready") else st.warning("📚 Context: Not ready")
+        if status.get("dictionary_ready"):
+            st.success("📚 Context: Loaded")
+        else:
+            st.warning("📚 Context: Not ready")
 
         for w in status.get("config_warnings", []):
             st.warning(f"⚠️ {w}")
@@ -215,66 +218,65 @@ def _run_pipeline(question: str, session, qb: QueryBenchmark) -> bool:
         if not st.button("🚀 Generate Dashboard", type="primary",
                          use_container_width=True, key="gen_btn"):
             st.info("👆 Pick your filters then click **Generate Dashboard**.")
-            return False
+# ── PASTE THIS BLOCK into app.py at line 218 ──────────────────────────────
+    # This replaces the gap between "return False" (line 217) and
+    # "filter_summary = fm.get_summary(sels)" (line 276)
+    # ──────────────────────────────────────────────────────────────────────────
 
-    # Step 4 — SQL
-    with st.status("⚙️ Building query...", expanded=False) as s:
+        return False
+
+    # Step 4 — Generate SQL
+    sql_result = None
+    with st.status("⚙️ Generating SQL query...", expanded=False) as s:
         try:
             qb.start("sql_generation")
             sql_result = get_sql_generator().generate(intent, slicer_answers)
             qb.end("sql_generation")
             if sql_result.failed:
-                s.update(label="❌ Query failed", state="error")
-                st.error(f"SQL error: {sql_result.error}")
+                s.update(label=f"❌ SQL failed: {sql_result.error}", state="error")
+                st.error(f"Could not generate SQL: {sql_result.error}")
                 return False
-            session.set_sql(sql_result.sql)
-            s.update(label=f"✅ Query ready", state="complete")
+            s.update(label="✅ SQL generated", state="complete")
         except Exception as e:
             qb.end("sql_generation", error=str(e))
-            st.error(f"SQL error: {e}")
+            st.error(f"SQL generation error: {e}")
             log.error(traceback.format_exc())
             return False
 
-    # Step 5 — Fetch data
+    # Step 5 — Fetch data from DB
     with st.status("🗄️ Fetching data...", expanded=False) as s:
         try:
             qb.start("db_fetch")
-            result = get_db().run_query(sql_result.sql)
+            db_result = get_db().run_query(sql_result.sql)
             qb.end("db_fetch")
-            if result.failed:
-                s.update(label="❌ Fetch failed", state="error")
-                st.error(f"DB error: {result.error}")
+            if db_result.failed:
+                s.update(label=f"❌ DB error: {db_result.error}", state="error")
+                st.error(f"Database error: {db_result.error}")
                 return False
-            if result.is_empty:
-                s.update(label="⚠️ No data", state="complete")
-                st.warning("No data for these filters — try broader selections.")
+            if db_result.is_empty:
+                s.update(label="⚠️ No rows returned", state="complete")
+                st.warning("Query returned no data — try different filters.")
                 return False
-            df = result.dataframe
-            session.store_dataframe(df)
+            df = db_result.dataframe
             s.update(
-                label=f"✅ {format_number(result.row_count)} rows × {result.col_count} cols "
-                      f"({'mock' if result.source == 'mock' else 'live'})",
+                label=f"✅ {db_result.row_count:,} rows from {db_result.source}",
                 state="complete"
             )
         except Exception as e:
             qb.end("db_fetch", error=str(e))
-            st.error(f"Data error: {e}")
+            st.error(f"Data fetch error: {e}")
             log.error(traceback.format_exc())
             return False
 
-    # Step 6 — Apply any sidebar filters
-    filter_summary = build_filter_summary(
-        {k: v for k, v in slicer_answers.items()
-         if v and str(v).lower() not in ("all", "")}
-    )
-    active = session.get("filter_selections", {})
-    if active:
-        fm   = FilterManager()
-        fm.detect_filters(df)
-        sels = [FilterSelection(field=k, value=v) for k, v in active.items()]
-        df   = fm.apply_filters(df, sels)
-        filter_summary = fm.get_summary(sels)
-        session.store_dataframe(df)
+    # Step 6 — Apply post-fetch filters and store
+    fm   = FilterManager()
+    sels = fm.detect_filters(df, forced_columns=list(slicer_answers.keys()))
+    sels = [FilterSelection(field=k, value=v)
+            for k, v in slicer_answers.items()
+            if v and str(v).lower() != "all"]
+    df   = fm.apply_filters(df, sels)
+    filter_summary = fm.get_summary(sels)
+    session.store_dataframe(df)
 
     # Step 7 — Chart decision
     cfg_dict = {}

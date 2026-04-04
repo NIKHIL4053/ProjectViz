@@ -1,0 +1,102 @@
+2026-04-01 17:41:03 | DEBUG    | [intent_analysis] Prompt built | context_len=5406 chars | ~2215 tokens
+2026-04-01 17:41:03 | INFO     | [intent_analysis] CALL START | model=qwen2.5-coder:14b | ~2215 prompt tokens | expect_json=True
+2026-04-01 17:43:03 | WARNING  | [intent_analysis] TIMEOUT | attempt=1/3 | model=qwen2.5-coder:14b
+2026-04-01 17:45:07 | WARNING  | [intent_analysis] TIMEOUT | attempt=2/3 | model=qwen2.5-coder:14b
+2026-04-01 17:47:48 | DEBUG    | [intent_analysis] Prompt built | context_len=5848 chars | ~2328 tokens
+2026-04-01 17:47:48 | INFO     | [intent_analysis] CALL START | model=qwen2.5-coder:14b | ~2328 prompt tokens | expect_json=True
+2026-04-01 17:47:57 | DEBUG    | [intent_analysis] Prompt built | context_len=5848 chars | ~2328 tokens
+2026-04-01 17:47:57 | INFO     | [intent_analysis] CALL START | model=qwen2.5-coder:14b | ~2328 prompt tokens | expect_json=True
+2026-04-01 17:49:48 | WARNING  | [intent_analysis] TIMEOUT | attempt=1/3 | model=qwen2.5-coder:14b
+2026-04-01 17:49:59 | WARNING  | [intent_analysis] TIMEOUT | attempt=1/3 | model=qwen2.5-coder:14b
+2026-04-01 17:51:52 | WARNING  | [intent_analysis] TIMEOUT | attempt=2/3 | model=qwen2.5-coder:14b
+2026-04-01 17:52:03 | WARNING  | [intent_analysis] TIMEOUT | attempt=2/3 | model=qwen2.5-coder:14b
+2026-04-01 17:53:58 | WARNING  | [intent_analysis] TIMEOUT | attempt=3/3 | model=qwen2.5-coder:14b
+2026-04-01 17:53:58 | ERROR    | [intent_analysis] CALL FAILED | model=qwen2.5-coder:14b | latency=370181ms | error=Request timed out after 120s
+2026-04-01 17:54:09 | WARNING  | [intent_analysis] TIMEOUT | attempt=3/3 | model=qwen2.5-coder:14b
+2026-04-01 17:54:09 | ERROR    | [intent_analysis] CALL FAILED | model=qwen2.5-coder:14b | latency=372129ms | error=Request timed out after 120s
+2026-04-01 17:57:03 | DEBUG    | [intent_analysis] Prompt built | context_len=4657 chars | ~2031 tokens
+2026-04-01 17:57:03 | INFO     | [intent_analysis] CALL START | model=qwen2.5-coder:14b | ~2031 prompt tokens | expect_json=True
+2026-04-01 17:59:03 | WARNING  | [intent_analysis] TIMEOUT | attempt=1/3 | model=qwen2.5-coder:14b
+2026-04-01 18:01:07 | WARNING  | [intent_analysis] TIMEOUT | attempt=2/3 | model=qwen2.5-coder:14b
+2026-04-01 18:03:13 | WARNING  | [intent_analysis] TIMEOUT | attempt=3/3 | model=qwen2.5-coder:14b
+2026-04-01 18:03:13 | ERROR    | [intent_analysis] CALL FAILED | model=qwen2.5-coder:14b | latency=370061ms | error=Request timed out after 120s
+2026-04-01 18:23:55 | DEBUG    | [intent_analysis] Prompt built | context_len=4657 chars | ~2031 tokens
+2026-04-01 18:23:55 | INFO     | [intent_analysis] CALL START | model=qwen2.5-coder:14b | ~2031 prompt tokens | expect_json=True
+2026-04-01 18:26:06 | DEBUG    | [intent_analysis] Prompt built | context_len=4657 chars | ~2031 tokens
+2026-04-01 18:26:06 | INFO     | [intent_analysis] CALL START | model=qwen2.5-coder:14b | ~2031 prompt tokens | expect_json=True
+2026-04-01 18:33:31 | INFO     | [intent_analysis] CALL OK | model=qwen2.5-coder:14b | latency=576339ms | ~105 response tokens | preview="```json
+{
+  "intent_summary": "Display the number of NPA accounts and their o..."
+2026-04-01 18:33:31 | INFO     | [intent_analysis] PARSED OK | metric='NPA Distribution' | metric_key='Custom' | columns=['Region', 'Op bucket', 'bal_prin'] | confidence=High
+2026-04-01 18:34:20 | INFO     | [intent_analysis] CALL OK | model=qwen2.5-coder:14b | latency=494267ms | ~105 response tokens | preview="```json
+{
+  "intent_summary": "Display the number of NPA accounts and their o..."
+2026-04-01 18:34:20 | INFO     | [intent_analysis] PARSED OK | metric='NPA Distribution' | metric_key='Custom' | columns=['Region', 'Op bucket', 'bal_prin'] | confidence=High
+2026-04-01 18:34:20 | DEBUG    | [clarifying_questions] Prompt built | ~937 tokens
+2026-04-01 18:34:20 | INFO     | [clarifying_questions] CALL START | model=qwen2.5-coder:14b | ~962 prompt tokens | expect_json=True
+2026-04-01 18:39:46 | INFO     | [clarifying_questions] CALL OK | model=qwen2.5-coder:14b | latency=325201ms | ~287 response tokens | preview="```json
+[
+  {
+    "question":     "Which region would you like to see? Or sho..."
+2026-04-01 18:39:46 | INFO     | [clarifying_questions] PARSED OK | count=4 | fields=['Region', 'Portfolio new', 'Op bucket', 'Next Date']
+2026-04-01 18:41:15 | DEBUG    | [intent_analysis] Prompt built | context_len=4657 chars | ~2031 tokens
+2026-04-01 18:41:15 | INFO     | [intent_analysis] CALL START | model=qwen2.5-coder:14b | ~2031 prompt tokens | expect_json=True
+2026-04-01 18:49:56 | INFO     | [intent_analysis] CALL OK | model=qwen2.5-coder:14b | latency=521080ms | ~116 response tokens | preview="```json
+{
+  "intent_summary": "Display the count of NPA accounts and customer..."
+2026-04-01 18:49:56 | INFO     | [intent_analysis] PARSED OK | metric='NPA Distribution' | metric_key='Custom' | columns=['Region', 'Op bucket', 'loanappno', 'Cust ID', 'bal_prin'] | confidence=High
+2026-04-01 18:49:56 | DEBUG    | [clarifying_questions] Prompt built | ~941 tokens
+2026-04-01 18:49:56 | INFO     | [clarifying_questions] CALL START | model=qwen2.5-coder:14b | ~966 prompt tokens | expect_json=True
+2026-04-01 18:55:08 | INFO     | [clarifying_questions] CALL OK | model=qwen2.5-coder:14b | latency=311819ms | ~287 response tokens | preview="```json
+[
+  {
+    "question":     "Which region would you like to see? Or sho..."
+2026-04-01 18:55:08 | INFO     | [clarifying_questions] PARSED OK | count=4 | fields=['Region', 'Portfolio new', 'Op bucket', 'Next Date']
+2026-04-01 18:56:46 | DEBUG    | [intent_analysis] Prompt built | context_len=4657 chars | ~2031 tokens
+2026-04-01 18:56:46 | INFO     | [intent_analysis] CALL START | model=qwen2.5-coder:14b | ~2031 prompt tokens | expect_json=True
+2026-04-01 19:05:05 | INFO     | [intent_analysis] CALL OK | model=qwen2.5-coder:14b | latency=499104ms | ~105 response tokens | preview="```json
+{
+  "intent_summary": "Display the number of NPA accounts and their o..."
+2026-04-01 19:05:05 | INFO     | [intent_analysis] PARSED OK | metric='NPA Distribution' | metric_key='Custom' | columns=['Region', 'Op bucket', 'bal_prin'] | confidence=High
+2026-04-01 19:05:05 | DEBUG    | [clarifying_questions] Prompt built | ~937 tokens
+2026-04-01 19:05:05 | INFO     | [clarifying_questions] CALL START | model=qwen2.5-coder:14b | ~962 prompt tokens | expect_json=True
+2026-04-01 19:09:48 | INFO     | [clarifying_questions] CALL OK | model=qwen2.5-coder:14b | latency=282934ms | ~284 response tokens | preview="```json
+[
+  {
+    "question":     "Which region would you like to see? Or sho..."
+2026-04-01 19:09:48 | INFO     | [clarifying_questions] PARSED OK | count=4 | fields=['Region', 'Portfolio new', 'Op bucket', 'Next Date']
+2026-04-01 19:30:52 | DEBUG    | [intent_analysis] Prompt built | context_len=6495 chars | ~2492 tokens
+2026-04-01 19:30:52 | INFO     | [intent_analysis] CALL START | model=qwen2.5-coder:14b | ~2492 prompt tokens | expect_json=True
+2026-04-01 19:40:34 | INFO     | [intent_analysis] CALL OK | model=qwen2.5-coder:14b | latency=582220ms | ~116 response tokens | preview="```json
+{
+  "intent_summary": "Identify the team leader with the highest cove..."
+2026-04-01 19:40:34 | INFO     | [intent_analysis] PARSED OK | metric='Coverage %' | metric_key='Coverage_Percent' | columns=['TL', 'Visit or not', 'Allocated or not', 'Cust ID'] | confidence=High
+2026-04-01 19:40:34 | DEBUG    | [clarifying_questions] Prompt built | ~908 tokens
+2026-04-01 19:40:34 | INFO     | [clarifying_questions] CALL START | model=qwen2.5-coder:14b | ~936 prompt tokens | expect_json=True
+2026-04-01 19:44:26 | INFO     | [clarifying_questions] CALL OK | model=qwen2.5-coder:14b | latency=232150ms | ~201 response tokens | preview="```json
+[
+  {
+    "question":     "Which region would you like to see? Or sho..."
+2026-04-01 19:44:26 | INFO     | [clarifying_questions] PARSED OK | count=3 | fields=['Region', 'Branch', 'Next Date']
+2026-04-02 15:54:23 | DEBUG    | [intent_analysis] Prompt built | context_len=4657 chars | ~2031 tokens
+2026-04-02 15:54:23 | INFO     | [intent_analysis] CALL START | model=qwen2.5-coder:14b | ~2031 prompt tokens | expect_json=True
+2026-04-05 00:39:01 | DEBUG    | [intent_analysis] Prompt built | context_len=5848 chars | ~2328 tokens
+2026-04-05 00:39:01 | INFO     | [intent_analysis] CALL START | model=qwen2.5-coder:14b | ~2328 prompt tokens | expect_json=True
+2026-04-05 00:39:22 | ERROR    | [intent_analysis] CONNECTION ERROR | attempt=1 | Cannot connect to Ollama — is it running? Run: ollama serve
+2026-04-05 00:39:22 | ERROR    | [intent_analysis] CALL FAILED | model=qwen2.5-coder:14b | latency=21048ms | error=Cannot connect to Ollama — is it running? Run: ollama serve
+2026-04-05 00:42:10 | DEBUG    | [intent_analysis] Prompt built | context_len=5848 chars | ~2328 tokens
+2026-04-05 00:42:10 | INFO     | [intent_analysis] CALL START | model=qwen2.5-coder:14b | ~2328 prompt tokens | expect_json=True
+2026-04-05 00:51:23 | DEBUG    | [intent_analysis] Prompt built | context_len=5848 chars | ~2328 tokens
+2026-04-05 00:51:23 | INFO     | [intent_analysis] CALL START | model=qwen2.5-coder:14b | ~2328 prompt tokens | expect_json=True
+2026-04-05 01:00:32 | INFO     | [intent_analysis] CALL OK | model=qwen2.5-coder:14b | latency=548390ms | ~101 response tokens | preview="```json
+{
+  "intent_summary": "Display the bounce rate for each branch.",
+  "..."
+2026-04-05 01:00:32 | INFO     | [intent_analysis] PARSED OK | metric='Bounce Rate' | metric_key='Bounce_Percent' | columns=['Branch', 'Cust ID', 'Bounce status'] | confidence=High
+2026-04-05 01:00:32 | DEBUG    | [clarifying_questions] Prompt built | ~927 tokens
+2026-04-05 01:00:32 | INFO     | [clarifying_questions] CALL START | model=qwen2.5-coder:14b | ~951 prompt tokens | expect_json=True
+2026-04-05 01:04:28 | INFO     | [clarifying_questions] CALL OK | model=qwen2.5-coder:14b | latency=236291ms | ~141 response tokens | preview="```json
+[
+  {
+    "question":     "Which region would you like to see? Or sho..."
+2026-04-05 01:04:28 | INFO     | [clarifying_questions] PARSED OK | count=2 | fields=['Region', 'Next Date']
