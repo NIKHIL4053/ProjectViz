@@ -466,3 +466,139 @@
 2026-04-05 01:04:28 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=2 | active=0 | active_filters={}
 2026-04-05 01:05:32 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
 2026-04-05 01:05:32 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:35:01 | INFO     | core.dictionary:406 | [dictionary] Initialising ChromaDB and loading context JSONs...
+2026-04-05 01:35:12 | INFO     | core.dictionary:436 | [dictionary] Collection already has 153 documents — skipping reload
+2026-04-05 01:35:12 | INFO     | core.dictionary:440 | [dictionary] Initialised successfully | total_docs=153
+2026-04-05 01:35:13 | INFO     | models.ollama_client:109 | [ollama] Client initialised | base_url=http://localhost:11434
+2026-04-05 01:35:15 | INFO     | __main__:82 | [app] Startup complete | {'config_warnings': [], 'dictionary_ready': True, 'db_connected': True, 'db_mock_mode': False, 'ollama_running': True, 'coder_available': True, 'fast_available': True, 'db_row_count': 1930}
+2026-04-05 01:35:15 | INFO     | core.session:609 | [session] New SessionManager created | session_id=aa293f1c
+2026-04-05 01:35:15 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:35:15 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:35:24 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:35:24 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:35:24 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:35:24 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:35:27 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:35:27 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:35:27 | INFO     | core.session:208 | [session] New query | session=aa293f1c | question='Show NPA distribution by region'
+2026-04-05 01:35:27 | INFO     | models.analyzer:200 | [analyzer] Initialised
+2026-04-05 01:35:27 | INFO     | models.analyzer:233 | [analyzer] Analyzing question | 'Show NPA distribution by region'
+2026-04-05 01:35:34 | INFO     | core.session:609 | [session] New SessionManager created | session_id=0433cab2
+2026-04-05 01:35:34 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:35:34 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:44:43 | INFO     | models.clarifier:220 | [clarifier] Initialised
+2026-04-05 01:44:43 | INFO     | models.clarifier:253 | [clarifier] Generating questions | metric='NPA Distribution' | slicer_candidates=['Region']
+2026-04-05 01:50:36 | INFO     | models.clarifier:306 | [clarifier] Generated 4 questions
+2026-04-05 01:50:36 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:50:36 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:50:36 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=4 | active=0 | active_filters={}
+2026-04-05 01:50:53 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:50:53 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:50:53 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=4 | active=0 | active_filters={}
+2026-04-05 01:50:57 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:50:57 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:50:57 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=4 | active=0 | active_filters={}
+2026-04-05 01:51:06 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:51:06 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:51:06 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=4 | active=1 | active_filters={'Op bucket': ['Current']}
+2026-04-05 01:51:08 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:51:08 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:51:08 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=4 | active=1 | active_filters={'Op bucket': ['Current', '1-29 DPD']}
+2026-04-05 01:51:11 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:51:11 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:51:11 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=4 | active=1 | active_filters={'Op bucket': ['Current', '1-29 DPD', 'Risk X']}
+2026-04-05 01:51:12 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:51:12 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:51:12 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=4 | active=1 | active_filters={'Op bucket': ['Current', '1-29 DPD', 'Risk X', '30-59 DPD']}
+2026-04-05 01:51:13 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:51:13 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:51:13 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=4 | active=1 | active_filters={'Op bucket': ['Current', '1-29 DPD', 'Risk X', '30-59 DPD', '60-89 DPD']}
+2026-04-05 01:51:14 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:51:14 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:51:14 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=4 | active=1 | active_filters={'Op bucket': ['Current', '1-29 DPD', 'Risk X', '30-59 DPD', '60-89 DPD', 'NPA']}
+2026-04-05 01:51:15 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:51:15 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:51:15 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=4 | active=1 | active_filters={'Op bucket': ['Current', '1-29 DPD', 'Risk X', '30-59 DPD', '60-89 DPD', 'NPA', 'Write-off']}
+2026-04-05 01:51:18 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:51:18 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:51:18 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=4 | active=2 | active_filters={'Portfolio new': 'Personal Loan', 'Op bucket': ['Current', '1-29 DPD', 'Risk X', '30-59 DPD', '60-89 DPD', 'NPA', 'Write-off']}
+2026-04-05 01:51:20 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:51:20 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:51:20 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=4 | active=1 | active_filters={'Op bucket': ['Current', '1-29 DPD', 'Risk X', '30-59 DPD', '60-89 DPD', 'NPA', 'Write-off']}
+2026-04-05 01:51:24 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:51:24 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:51:24 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=4 | active=2 | active_filters={'Region': 'NCR', 'Op bucket': ['Current', '1-29 DPD', 'Risk X', '30-59 DPD', '60-89 DPD', 'NPA', 'Write-off']}
+2026-04-05 01:51:27 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:51:27 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:51:27 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=4 | active=2 | active_filters={'Region': 'Pune', 'Op bucket': ['Current', '1-29 DPD', 'Risk X', '30-59 DPD', '60-89 DPD', 'NPA', 'Write-off']}
+2026-04-05 01:51:28 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:51:28 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:51:28 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=4 | active=1 | active_filters={'Op bucket': ['Current', '1-29 DPD', 'Risk X', '30-59 DPD', '60-89 DPD', 'NPA', 'Write-off']}
+2026-04-05 01:51:32 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:51:32 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:51:32 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=4 | active=1 | active_filters={'Op bucket': ['Current', '1-29 DPD', 'Risk X', '30-59 DPD', '60-89 DPD', 'NPA', 'Write-off']}
+2026-04-05 01:51:37 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:51:37 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:51:37 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=4 | active=1 | active_filters={'Op bucket': ['Current', '1-29 DPD', 'Risk X', '30-59 DPD', '60-89 DPD', 'NPA', 'Write-off']}
+2026-04-05 01:52:56 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:52:56 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:52:56 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=4 | active=2 | active_filters={'Region': 'Pune', 'Op bucket': ['Current', '1-29 DPD', 'Risk X', '30-59 DPD', '60-89 DPD', 'NPA', 'Write-off']}
+2026-04-05 01:53:00 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:53:00 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:53:00 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=4 | active=2 | active_filters={'Region': 'Rajasthan', 'Op bucket': ['Current', '1-29 DPD', 'Risk X', '30-59 DPD', '60-89 DPD', 'NPA', 'Write-off']}
+2026-04-05 01:53:01 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 01:53:01 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 01:53:01 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=4 | active=2 | active_filters={'Region': 'Rajasthan', 'Op bucket': ['Current', '1-29 DPD', 'Risk X', '30-59 DPD', '60-89 DPD', 'NPA', 'Write-off']}
+2026-04-05 02:10:49 | INFO     | core.dictionary:406 | [dictionary] Initialising ChromaDB and loading context JSONs...
+2026-04-05 02:10:58 | INFO     | core.dictionary:436 | [dictionary] Collection already has 153 documents — skipping reload
+2026-04-05 02:10:58 | INFO     | core.dictionary:440 | [dictionary] Initialised successfully | total_docs=153
+2026-04-05 02:10:59 | INFO     | models.ollama_client:109 | [ollama] Client initialised | base_url=http://localhost:11434
+2026-04-05 02:11:01 | INFO     | __main__:75 | [app] Startup complete | {'config_warnings': [], 'dictionary_ready': True, 'db_connected': True, 'db_mock_mode': False, 'ollama_running': True, 'coder_available': True, 'fast_available': True, 'db_row_count': 1930}
+2026-04-05 02:11:01 | INFO     | core.session:609 | [session] New SessionManager created | session_id=814bc72c
+2026-04-05 02:11:01 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 02:11:01 | INFO     | core.session:609 | [session] New SessionManager created | session_id=5bce2639
+2026-04-05 02:11:01 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 02:11:01 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 02:11:01 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 02:11:11 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 02:11:11 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 02:11:11 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 02:11:11 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 02:11:17 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 02:11:17 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 02:11:17 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 02:11:17 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 02:11:20 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 02:11:20 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 02:11:20 | INFO     | core.session:208 | [session] New query | session=5bce2639 | question='Show bounce rate by branch'
+2026-04-05 02:11:20 | INFO     | models.analyzer:200 | [analyzer] Initialised
+2026-04-05 02:11:20 | INFO     | models.analyzer:233 | [analyzer] Analyzing question | 'Show bounce rate by branch'
+2026-04-05 02:21:05 | WARNING  | models.analyzer:349 | [analyzer] Invalid aggregation 'RATIO' — defaulting to COUNT
+2026-04-05 02:21:05 | INFO     | models.clarifier:220 | [clarifier] Initialised
+2026-04-05 02:21:05 | INFO     | models.clarifier:253 | [clarifier] Generating questions | metric='Bounce Rate' | slicer_candidates=['Branch']
+2026-04-05 02:24:46 | INFO     | models.clarifier:306 | [clarifier] Generated 2 questions
+2026-04-05 02:24:46 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 02:24:46 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 02:24:46 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=2 | active=0 | active_filters={}
+2026-04-05 02:25:11 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 02:25:11 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 02:25:11 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=2 | active=0 | active_filters={}
+2026-04-05 02:25:12 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 02:25:12 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 02:25:12 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=2 | active=0 | active_filters={}
+2026-04-05 02:25:12 | INFO     | __main__:306 | [app] Phase 2 | metric=Bounce Rate | slicers={'Region': 'All', 'Next Date': 'All'}
+2026-04-05 02:25:12 | INFO     | models.sql_generator:217 | [sql_generator] Initialised
+2026-04-05 02:25:12 | INFO     | models.sql_generator:241 | [sql_generator] Generating | metric='Bounce_Percent' | group_by='branch' | slicers={}
+2026-04-05 02:30:04 | INFO     | database.client:117 | [db_client] Initialised | mock_mode=False | table=public.loan_dashboard
+2026-04-05 02:30:04 | INFO     | core.session:293 | [session] DataFrame saved | file=5bce2639_ab6cd5c5_1775336404.parquet | rows=134 | cols=4
+2026-04-05 02:30:04 | INFO     | models.chart_decider:109 | [chart_decider] Initialised
+2026-04-05 02:30:56 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 02:30:56 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 02:33:58 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 02:33:58 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 02:33:59 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 02:33:59 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 02:34:02 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-05 02:34:02 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-04-05 02:34:02 | INFO     | core.session:208 | [session] New query | session=5bce2639 | question='Which team leader has the best coverage?'
+2026-04-05 02:34:02 | INFO     | models.analyzer:233 | [analyzer] Analyzing question | 'Which team leader has the best coverage?'

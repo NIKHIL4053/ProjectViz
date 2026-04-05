@@ -268,3 +268,94 @@
 2026-04-05 01:04:28 | ════════════════════════════════════════════════════
 2026-04-05 01:04:28 |   TOTAL                         : 785151ms
 2026-04-05 01:04:28 | ════════════════════════════════════════════════════
+2026-04-05 01:27:04 | [START] db_initialise
+2026-04-05 01:27:05 | [END]   db_initialise                  |    321ms | status=OK
+2026-04-05 01:27:05 | [START] db_execute
+2026-04-05 01:27:05 | [END]   db_execute                     |     53ms | status=OK
+2026-04-05 01:35:01 | [START] dictionary_initialise
+2026-04-05 01:35:12 | [END]   dictionary_initialise          |  11029ms | status=OK
+2026-04-05 01:35:12 | [START] db_initialise
+2026-04-05 01:35:13 | [END]   db_initialise                  |    326ms | status=OK
+2026-04-05 01:35:15 | [START] db_execute
+2026-04-05 01:35:15 | [END]   db_execute                     |     14ms | status=OK
+2026-04-05 01:35:27 | [START] intent_analysis                | query="Show NPA distribution by region"
+2026-04-05 01:35:27 | [START] intent_analysis | query="Show NPA distribution by region"
+2026-04-05 01:35:27 | [START] dictionary_coder_context | query="Show NPA distribution by region"
+2026-04-05 01:35:27 | [END]   dictionary_coder_context       |    134ms | status=OK
+2026-04-05 01:35:27 | [START] intent_analysis
+2026-04-05 01:44:43 | [END]   intent_analysis                | 556457ms | status=OK
+2026-04-05 01:44:43 | [END]   intent_analysis                | 556595ms | status=OK
+2026-04-05 01:44:43 | [END]   intent_analysis                | 556599ms | status=OK
+2026-04-05 01:44:43 | [START] clarifying_questions           | query="Show NPA distribution by region"
+2026-04-05 01:44:43 | [START] clarifying_questions | query="Show NPA distribution by region"
+2026-04-05 01:44:43 | [START] clarifying_questions
+2026-04-05 01:50:36 | [END]   clarifying_questions           | 352241ms | status=OK
+2026-04-05 01:50:36 | [END]   clarifying_questions           | 352288ms | status=OK
+2026-04-05 01:50:36 | [END]   clarifying_questions           | 352291ms | status=OK
+2026-04-05 01:50:36 | ════════════════════════════════════════════════════
+2026-04-05 01:50:36 | QUERY : "Show NPA distribution by region"
+2026-04-05 01:50:36 |   ├── intent_analysis             : 556599ms  ✓
+2026-04-05 01:50:36 |   └── clarifying_questions        : 352291ms  ✓
+2026-04-05 01:50:36 | ════════════════════════════════════════════════════
+2026-04-05 01:50:36 |   TOTAL                         : 908890ms
+2026-04-05 01:50:36 | ════════════════════════════════════════════════════
+2026-04-05 02:10:49 | [START] dictionary_initialise
+2026-04-05 02:10:58 | [END]   dictionary_initialise          |   9232ms | status=OK
+2026-04-05 02:10:58 | [START] db_initialise
+2026-04-05 02:10:59 | [END]   db_initialise                  |    239ms | status=OK
+2026-04-05 02:11:01 | [START] db_execute
+2026-04-05 02:11:01 | [END]   db_execute                     |     15ms | status=OK
+2026-04-05 02:11:20 | [START] intent_analysis                | query="Show bounce rate by branch"
+2026-04-05 02:11:20 | [START] intent_analysis | query="Show bounce rate by branch"
+2026-04-05 02:11:20 | [START] dictionary_coder_context | query="Show bounce rate by branch"
+2026-04-05 02:11:20 | [END]   dictionary_coder_context       |    165ms | status=OK
+2026-04-05 02:11:20 | [START] intent_analysis
+2026-04-05 02:21:05 | [END]   intent_analysis                | 585006ms | status=OK
+2026-04-05 02:21:05 | [END]   intent_analysis                | 585174ms | status=OK
+2026-04-05 02:21:05 | [END]   intent_analysis                | 585177ms | status=OK
+2026-04-05 02:21:05 | [START] clarifying_questions           | query="Show bounce rate by branch"
+2026-04-05 02:21:05 | [START] clarifying_questions | query="Show bounce rate by branch"
+2026-04-05 02:21:05 | [START] clarifying_questions
+2026-04-05 02:24:46 | [END]   clarifying_questions           | 220998ms | status=OK
+2026-04-05 02:24:46 | [END]   clarifying_questions           | 221046ms | status=OK
+2026-04-05 02:24:46 | [END]   clarifying_questions           | 221049ms | status=OK
+2026-04-05 02:24:46 | ════════════════════════════════════════════════════
+2026-04-05 02:24:46 | QUERY : "Show bounce rate by branch"
+2026-04-05 02:24:46 |   ├── intent_analysis             : 585177ms  ✓
+2026-04-05 02:24:46 |   └── clarifying_questions        : 221049ms  ✓
+2026-04-05 02:24:46 | ════════════════════════════════════════════════════
+2026-04-05 02:24:46 |   TOTAL                         : 806226ms
+2026-04-05 02:24:46 | ════════════════════════════════════════════════════
+2026-04-05 02:25:12 | [START] sql_generation                 | query="Show bounce rate by branch"
+2026-04-05 02:25:12 | [START] sql_generation | query="Show bounce rate by branch"
+2026-04-05 02:25:12 | [START] sql_generation
+2026-04-05 02:30:04 | [END]   sql_generation                 | 291108ms | status=OK
+2026-04-05 02:30:04 | [END]   sql_generation                 | 291159ms | status=OK
+2026-04-05 02:30:04 | [END]   sql_generation                 | 291162ms | status=OK
+2026-04-05 02:30:04 | [START] db_fetch                       | query="Show bounce rate by branch"
+2026-04-05 02:30:04 | [START] db_fetch
+2026-04-05 02:30:04 | [START] db_execute
+2026-04-05 02:30:04 | [END]   db_execute                     |     30ms | status=OK
+2026-04-05 02:30:04 | [END]   db_fetch                       |     43ms | status=OK
+2026-04-05 02:30:04 | [END]   db_fetch                       |     47ms | status=OK
+2026-04-05 02:30:04 | [START] chart_decision                 | query="Show bounce rate by branch"
+2026-04-05 02:30:04 | [START] chart_decision | query="Show bounce rate by branch"
+2026-04-05 02:30:04 | [START] chart_decision
+2026-04-05 02:30:56 | [END]   chart_decision                 |  51685ms | status=OK
+2026-04-05 02:30:56 | [END]   chart_decision                 |  51691ms | status=OK
+2026-04-05 02:30:56 | [END]   chart_decision                 |  51694ms | status=OK
+2026-04-05 02:30:56 | ════════════════════════════════════════════════════
+2026-04-05 02:30:56 | QUERY : "Show bounce rate by branch"
+2026-04-05 02:30:56 |   ├── sql_generation              : 291162ms  ✓
+2026-04-05 02:30:56 |   ├── db_fetch                    :     47ms  ✓
+2026-04-05 02:30:56 |   └── chart_decision              :  51694ms  ✓
+2026-04-05 02:30:56 | ════════════════════════════════════════════════════
+2026-04-05 02:30:56 |   TOTAL                         : 342903ms
+2026-04-05 02:30:56 | ════════════════════════════════════════════════════
+2026-04-05 02:30:56 | [START] chart_render
+2026-04-05 02:30:59 | [END]   chart_render                   |   2688ms | status=OK
+2026-04-05 02:34:02 | [START] intent_analysis                | query="Which team leader has the best coverage?"
+2026-04-05 02:34:02 | [START] intent_analysis | query="Which team leader has the best coverage?"
+2026-04-05 02:34:02 | [START] dictionary_coder_context | query="Which team leader has the best coverage?"
+2026-04-05 02:34:02 | [END]   dictionary_coder_context       |    102ms | status=OK
+2026-04-05 02:34:02 | [START] intent_analysis

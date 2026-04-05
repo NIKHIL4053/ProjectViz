@@ -61,3 +61,18 @@ connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection re
 2026-04-05 00:40:56 | INFO     | [db] Connected successfully | pool_size=3 | schema=public
 2026-04-05 00:51:13 | INFO     | [db] Connecting | host=localhost | port=5432 | db=LD | user=nik
 2026-04-05 00:51:13 | INFO     | [db] Connected successfully | pool_size=3 | schema=public
+2026-04-05 01:27:04 | INFO     | [db] Connecting | host=localhost | port=5432 | db=LD | user=nik
+2026-04-05 01:27:05 | INFO     | [db] Connected successfully | pool_size=3 | schema=public
+2026-04-05 01:27:05 | INFO     | [db] Executing query | preview="SELECT COUNT(*) FROM loan_dashboard"
+2026-04-05 01:27:05 | INFO     | [db] Query OK | rows=1 | cols=1 | columns=['count']
+2026-04-05 01:35:12 | INFO     | [db] Connecting | host=localhost | port=5432 | db=LD | user=nik
+2026-04-05 01:35:13 | INFO     | [db] Connected successfully | pool_size=3 | schema=public
+2026-04-05 01:35:15 | INFO     | [db] Executing query | preview="SELECT COUNT(*) FROM loan_dashboard"
+2026-04-05 01:35:15 | INFO     | [db] Query OK | rows=1 | cols=1 | columns=['count']
+2026-04-05 02:10:58 | INFO     | [db] Connecting | host=localhost | port=5432 | db=LD | user=nik
+2026-04-05 02:10:59 | INFO     | [db] Connected successfully | pool_size=3 | schema=public
+2026-04-05 02:11:01 | INFO     | [db] Executing query | preview="SELECT COUNT(*) FROM loan_dashboard"
+2026-04-05 02:11:01 | INFO     | [db] Query OK | rows=1 | cols=1 | columns=['count']
+2026-04-05 02:30:04 | INFO     | [db] Executing query | preview="SELECT   branch,   COUNT(DISTINCT CASE WHEN bounce_status IN ('Tech', 'Non Tech') THEN cust_id END) AS "Bounce Count",  "
+2026-04-05 02:30:04 | INFO     | [db] Query OK | rows=134 | cols=4 | columns=['branch', 'Bounce Count', 'Total Customers', 'Bounce %']
+2026-04-05 02:30:04 | INFO     | [db_client] Real query OK | rows=134 | cols=4

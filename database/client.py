@@ -310,33 +310,64 @@ class DatabaseClient:
     # ── Column name cleaning ──────────────────────────────────────────────────
 
     def _clean_columns(self, df: pd.DataFrame) -> pd.DataFrame:
-        """
-        # * Clean column names returned by PostgreSQL.
-        # * PostgreSQL returns column names from aliases exactly as written.
-        # * This just ensures no leading/trailing whitespace sneaks in.
-
-        # ? Power BI used to return columns as [TableName][ColumnName].
-        # ? PostgreSQL returns them cleanly from aliases — minimal cleaning needed.
-
-        Args:
-            df : Raw DataFrame from PostgreSQL
-
-        Returns:
-            DataFrame with cleaned column names.
-        """
+        
         if df is None or df.empty:
             return df
-
-        cleaned = []
-        for col in df.columns:
-            c = str(col).strip()
-            # * Remove surrounding quotes if PostgreSQL adds them
-            c = c.strip('"').strip("'")
-            cleaned.append(c)
-
-        df.columns = cleaned
+    
+        # Map PostgreSQL snake_case → display names the rest of the app expects
+        rename_map = {
+            "loanappno":                    "loanappno",
+            "dpd":                          "dpd",
+            "dpd_casewise":                 "dpd_casewise",
+            "day_wise_asset_classification":"day_wise_asset_classification",
+            "tod":                          "TOD",
+            "bal_prin":                     "bal_prin",
+            "next_date":                    "Next Date",
+            "bounce_status":                "Bounce status",
+            "emi_increase":                 "Emi increase",
+            "cust_id":                      "Cust ID",
+            "risk_npa":                     "Risk NPA",
+            "op_bucket":                    "Op bucket",
+            "closing_bucket":               "Closing bucket",
+            "cust_wise_status":             "Cust wise status",
+            "due_date":                     "Due Date",
+            "installment_no":               "Installment No",
+            "branch":                       "Branch",
+            "type_of_arrangement":          "Type of Arrangement",
+            "scheme":                       "Scheme",
+            "payment_mode":                 "Payment mode",
+            "payment_day_bucket":           "Payment Day bucket",
+            "digital_cash":                 "Digital/cash",
+            "loan_level_bounce":            "Loan level bounce",
+            "cust_level_bounce":            "Cust level bounce",
+            "region":                       "Region",
+            "mob_bucket":                   "MOB Bucket",
+            "overdue_amount":               "overdue_amount",
+            "bounce_charges":               "Bounce charges",
+            "bounce_charge_collected":      "Bounce charge collected",
+            "visited":                      "Visited",
+            "allocation_1":                 "Allocation 1",
+            "sh":                           "SH",
+            "tl":                           "TL",
+            "allocated_or_not":             "Allocated or not",
+            "visit_or_not":                 "Visit or not",
+            "visit_count":                  "Visit Count",
+            "add_npa":                      "Add NPA",
+            "coll_sales":                   "Coll/Sales",
+            "npa_origination_date":         "NPA_Origination_Date",
+            "npa_mob":                      "NPA MOB",
+            "portfolio_new":                "Portfolio new",
+            "transaction_type":             "Transaction Type",
+            "product":                      "Product",
+        }
+    
+        # Apply rename only for columns that exist in the DataFrame
+        existing_renames = {k: v for k, v in rename_map.items() if k in df.columns}
+        if existing_renames:
+            df = df.rename(columns=existing_renames)
+    
         return df
-
+    
     # ── Health check ──────────────────────────────────────────────────────────
 
     def is_ready(self) -> bool:

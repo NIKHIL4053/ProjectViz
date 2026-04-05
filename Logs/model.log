@@ -100,3 +100,48 @@
   {
     "question":     "Which region would you like to see? Or sho..."
 2026-04-05 01:04:28 | INFO     | [clarifying_questions] PARSED OK | count=2 | fields=['Region', 'Next Date']
+2026-04-05 01:35:27 | DEBUG    | [intent_analysis] Prompt built | context_len=4657 chars | ~2031 tokens
+2026-04-05 01:35:27 | INFO     | [intent_analysis] CALL START | model=qwen2.5-coder:14b | ~2031 prompt tokens | expect_json=True
+2026-04-05 01:44:43 | INFO     | [intent_analysis] CALL OK | model=qwen2.5-coder:14b | latency=556456ms | ~105 response tokens | preview="```json
+{
+  "intent_summary": "Display the number of NPA accounts and their o..."
+2026-04-05 01:44:43 | INFO     | [intent_analysis] PARSED OK | metric='NPA Distribution' | metric_key='Custom' | columns=['Region', 'Op bucket', 'bal_prin'] | confidence=High
+2026-04-05 01:44:43 | DEBUG    | [clarifying_questions] Prompt built | ~937 tokens
+2026-04-05 01:44:43 | INFO     | [clarifying_questions] CALL START | model=qwen2.5-coder:14b | ~962 prompt tokens | expect_json=True
+2026-04-05 01:50:36 | INFO     | [clarifying_questions] CALL OK | model=qwen2.5-coder:14b | latency=352238ms | ~287 response tokens | preview="```json
+[
+  {
+    "question":     "Which region would you like to see? Or sho..."
+2026-04-05 01:50:36 | INFO     | [clarifying_questions] PARSED OK | count=4 | fields=['Region', 'Portfolio new', 'Op bucket', 'Next Date']
+2026-04-05 02:11:20 | DEBUG    | [intent_analysis] Prompt built | context_len=5848 chars | ~2328 tokens
+2026-04-05 02:11:20 | INFO     | [intent_analysis] CALL START | model=qwen2.5-coder:14b | ~2328 prompt tokens | expect_json=True
+2026-04-05 02:21:05 | INFO     | [intent_analysis] CALL OK | model=qwen2.5-coder:14b | latency=585004ms | ~101 response tokens | preview="```json
+{
+  "intent_summary": "Display the bounce rate for each branch.",
+  "..."
+2026-04-05 02:21:05 | INFO     | [intent_analysis] PARSED OK | metric='Bounce Rate' | metric_key='Bounce_Percent' | columns=['Branch', 'Cust ID', 'Bounce status'] | confidence=High
+2026-04-05 02:21:05 | DEBUG    | [clarifying_questions] Prompt built | ~927 tokens
+2026-04-05 02:21:05 | INFO     | [clarifying_questions] CALL START | model=qwen2.5-coder:14b | ~951 prompt tokens | expect_json=True
+2026-04-05 02:24:46 | INFO     | [clarifying_questions] CALL OK | model=qwen2.5-coder:14b | latency=220996ms | ~141 response tokens | preview="```json
+[
+  {
+    "question":     "Which region would you like to see? Or sho..."
+2026-04-05 02:24:46 | INFO     | [clarifying_questions] PARSED OK | count=2 | fields=['Region', 'Next Date']
+2026-04-05 02:25:12 | DEBUG    | [sql_generation] ~1179 tokens
+2026-04-05 02:25:12 | INFO     | [sql_generation] CALL START | model=qwen2.5-coder:14b | ~1266 prompt tokens | expect_json=False
+2026-04-05 02:30:04 | INFO     | [sql_generation] CALL OK | model=qwen2.5-coder:14b | latency=291107ms | ~101 response tokens | preview="```sql
+SELECT
+  branch,
+  COUNT(DISTINCT CASE WHEN bounce_status IN ('Tech', ..."
+2026-04-05 02:30:04 | INFO     | [sql_generation] OK | metric='Bounce_Percent' | preview="SELECT
+  branch,
+  COUNT(DISTINCT CASE WHEN bounce_status IN ('Tech', 'Non Tech') THEN cust_id END) AS "Bounce Count"..."
+2026-04-05 02:30:04 | INFO     | [chart_decision] CALL START | model=qwen2.5:7b | ~375 prompt tokens | expect_json=True
+2026-04-05 02:30:56 | INFO     | [chart_decision] CALL OK | model=qwen2.5:7b | latency=51683ms | ~37 response tokens | preview="{
+  "chart_type": "heatmap",
+  "x_col": "Branch",
+  "y_col": "Bounce %",
+  "h..."
+2026-04-05 02:30:56 | INFO     | [chart_decision] Config | type=heatmap | x=Branch | y=Bounce % | hue=None
+2026-04-05 02:34:02 | DEBUG    | [intent_analysis] Prompt built | context_len=6495 chars | ~2492 tokens
+2026-04-05 02:34:02 | INFO     | [intent_analysis] CALL START | model=qwen2.5-coder:14b | ~2492 prompt tokens | expect_json=True
