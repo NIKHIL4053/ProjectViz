@@ -1,2 +1,383 @@
 2026-04-05 02:30:56 | INFO     | [renderer] Rendering | chart_type=heatmap | rows=134 | title='Bounce Rate by Branch'
 2026-04-05 02:30:59 | INFO     | [renderer] OK | chart_type=heatmap | title='Bounce Rate by Branch'
+2026-04-06 12:55:09 | INFO     | [renderer] Routing | chart_type=heatmap | rows=134 | cols=['Branch', 'Bounce Count', 'Total Customers', 'Bounce %'] | title='Bounce Rate by Branch'
+2026-04-06 12:55:11 | INFO     | [heatmap] Rendered | x=Branch | y=Bounce % | value=Bounce Count | pivot=(35, 134) | rows=134
+2026-04-06 12:55:11 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-06 12:56:26 | INFO     | [renderer] Routing | chart_type=heatmap | rows=134 | cols=['Branch', 'Bounce Count', 'Total Customers', 'Bounce %'] | title='Bounce Rate by Branch'
+2026-04-06 12:56:27 | INFO     | [renderer] Routing | chart_type=heatmap | rows=134 | cols=['Branch', 'Bounce Count', 'Total Customers', 'Bounce %'] | title='Bounce Rate by Branch'
+2026-04-06 12:56:28 | INFO     | [heatmap] Rendered | x=Branch | y=Bounce % | value=Bounce Count | pivot=(35, 134) | rows=134
+2026-04-06 12:56:28 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-06 12:56:29 | INFO     | [heatmap] Rendered | x=Branch | y=Bounce % | value=Bounce Count | pivot=(35, 134) | rows=134
+2026-04-06 12:56:30 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-06 12:56:37 | INFO     | [renderer] Routing | chart_type=line | rows=134 | cols=['Branch', 'Bounce Count', 'Total Customers', 'Bounce %'] | title='Bounce Rate by Branch'
+2026-04-06 12:56:37 | INFO     | [line] Rendered | x=Branch | y=Bounce % | hue=None | rows=134
+2026-04-06 12:56:38 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 13:05:49 | INFO     | [renderer] Routing | chart_type=line | rows=134 | cols=['Branch', 'Bounce Count', 'Total Customers', 'Bounce %'] | title='Bounce Rate by Branch'
+2026-04-06 13:05:49 | INFO     | [line] Rendered | x=Branch | y=Bounce % | hue=None | rows=134
+2026-04-06 13:05:49 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 13:05:50 | INFO     | [renderer] Routing | chart_type=line | rows=134 | cols=['Branch', 'Bounce Count', 'Total Customers', 'Bounce %'] | title='Bounce Rate by Branch'
+2026-04-06 13:05:50 | INFO     | [line] Rendered | x=Branch | y=Bounce % | hue=None | rows=134
+2026-04-06 13:05:51 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 13:05:52 | INFO     | [renderer] Routing | chart_type=area | rows=134 | cols=['Branch', 'Bounce Count', 'Total Customers', 'Bounce %'] | title='Bounce Rate by Branch'
+2026-04-06 13:05:52 | INFO     | [area] Rendered | x=Branch | y=Bounce % | hue=None | rows=134
+2026-04-06 13:05:53 | INFO     | [renderer] OK | chart_type=area
+2026-04-06 13:06:46 | INFO     | [renderer] Routing | chart_type=area | rows=134 | cols=['Branch', 'Bounce Count', 'Total Customers', 'Bounce %'] | title='Bounce Rate by Branch'
+2026-04-06 13:06:46 | INFO     | [area] Rendered | x=Branch | y=Bounce % | hue=None | rows=134
+2026-04-06 13:06:46 | INFO     | [renderer] OK | chart_type=area
+2026-04-06 13:06:48 | INFO     | [renderer] Routing | chart_type=area | rows=134 | cols=['Branch', 'Bounce Count', 'Total Customers', 'Bounce %'] | title='Bounce Rate by Branch'
+2026-04-06 13:06:48 | INFO     | [area] Rendered | x=Branch | y=Bounce % | hue=None | rows=134
+2026-04-06 13:06:49 | INFO     | [renderer] OK | chart_type=area
+2026-04-06 13:06:50 | INFO     | [renderer] Routing | chart_type=scatter | rows=134 | cols=['Branch', 'Bounce Count', 'Total Customers', 'Bounce %'] | title='Bounce Rate by Branch'
+2026-04-06 13:06:50 | INFO     | [scatter] Rendered | x=Bounce Count | y=Bounce % | hue=None | sample=134/134
+2026-04-06 13:06:50 | INFO     | [renderer] OK | chart_type=scatter
+2026-04-06 13:07:49 | INFO     | [renderer] Routing | chart_type=scatter | rows=134 | cols=['Branch', 'Bounce Count', 'Total Customers', 'Bounce %'] | title='Bounce Rate by Branch'
+2026-04-06 13:07:49 | INFO     | [scatter] Rendered | x=Bounce Count | y=Bounce % | hue=None | sample=134/134
+2026-04-06 13:07:49 | INFO     | [renderer] OK | chart_type=scatter
+2026-04-06 13:08:10 | INFO     | [renderer] Routing | chart_type=scatter | rows=134 | cols=['Branch', 'Bounce Count', 'Total Customers', 'Bounce %'] | title='Bounce Rate by Branch'
+2026-04-06 13:08:10 | INFO     | [scatter] Rendered | x=Bounce Count | y=Bounce % | hue=None | sample=134/134
+2026-04-06 13:08:10 | INFO     | [renderer] OK | chart_type=scatter
+2026-04-06 13:08:11 | INFO     | [renderer] Routing | chart_type=boxplot | rows=134 | cols=['Branch', 'Bounce Count', 'Total Customers', 'Bounce %'] | title='Bounce Rate by Branch'
+2026-04-06 13:08:11 | INFO     | [boxplot] Rendered | x=Branch | y=Bounce % | hue=None | categories=12 | rows=12
+2026-04-06 13:08:11 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-06 13:43:27 | INFO     | [renderer] Routing | chart_type=heatmap | rows=134 | cols=['Branch', 'Resolved Count', 'Total Customers', 'Resolution %'] | title='Branch Resolution Rate'
+2026-04-06 13:43:28 | INFO     | [heatmap] Rendered | x=Branch | y=Resolution % | value=Resolved Count | pivot=(36, 134) | rows=134
+2026-04-06 13:43:29 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-06 13:47:01 | INFO     | [renderer] Routing | chart_type=heatmap | rows=134 | cols=['Branch', 'Resolved Count', 'Total Customers', 'Resolution %'] | title='Branch Resolution Rate'
+2026-04-06 13:47:02 | INFO     | [renderer] Routing | chart_type=heatmap | rows=134 | cols=['Branch', 'Resolved Count', 'Total Customers', 'Resolution %'] | title='Branch Resolution Rate'
+2026-04-06 13:47:02 | INFO     | [heatmap] Rendered | x=Branch | y=Resolution % | value=Resolved Count | pivot=(36, 134) | rows=134
+2026-04-06 13:47:03 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-06 13:47:04 | INFO     | [heatmap] Rendered | x=Branch | y=Resolution % | value=Resolved Count | pivot=(36, 134) | rows=134
+2026-04-06 13:47:05 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-06 13:47:13 | INFO     | [renderer] Routing | chart_type=line | rows=134 | cols=['Branch', 'Resolved Count', 'Total Customers', 'Resolution %'] | title='Branch Resolution Rate'
+2026-04-06 13:47:13 | INFO     | [line] Rendered | x=Branch | y=Resolution % | hue=None | rows=134
+2026-04-06 13:47:13 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 13:47:54 | INFO     | [renderer] Routing | chart_type=line | rows=134 | cols=['Branch', 'Resolved Count', 'Total Customers', 'Resolution %'] | title='Branch Resolution Rate'
+2026-04-06 13:47:55 | INFO     | [line] Rendered | x=Branch | y=Resolution % | hue=None | rows=134
+2026-04-06 13:47:55 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 14:35:44 | INFO     | [renderer] Routing | chart_type=line | rows=1 | cols=['Month', 'Bounce Count'] | title='Monthly Bounce Count'
+2026-04-06 14:35:44 | INFO     | [line] Rendered | x=Month | y=Bounce Count | hue=None | rows=1
+2026-04-06 14:35:44 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 14:46:06 | INFO     | [renderer] Routing | chart_type=line | rows=1 | cols=['Month', 'Bounce Count'] | title='Monthly Bounce Count'
+2026-04-06 14:46:06 | INFO     | [line] Rendered | x=Month | y=Bounce Count | hue=None | rows=1
+2026-04-06 14:46:06 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 14:47:13 | INFO     | [renderer] Routing | chart_type=line | rows=1 | cols=['Month', 'Bounce Count'] | title='Monthly Bounce Count'
+2026-04-06 14:47:13 | INFO     | [line] Rendered | x=Month | y=Bounce Count | hue=None | rows=1
+2026-04-06 14:47:13 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 14:48:01 | INFO     | [renderer] Routing | chart_type=line | rows=1 | cols=['Month', 'Bounce Count'] | title='Monthly Bounce Count'
+2026-04-06 14:48:01 | INFO     | [line] Rendered | x=Month | y=Bounce Count | hue=None | rows=1
+2026-04-06 14:48:01 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 17:31:14 | INFO     | [renderer] Routing | chart_type=heatmap | rows=237 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:31:14 | INFO     | [heatmap] Rendered | x=Month | y=Branch | value=Year | pivot=(237, 1) | rows=237
+2026-04-06 17:31:14 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-06 17:32:14 | INFO     | [renderer] Routing | chart_type=heatmap | rows=237 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:32:14 | INFO     | [heatmap] Rendered | x=Month | y=Branch | value=Year | pivot=(237, 1) | rows=237
+2026-04-06 17:32:14 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-06 17:32:15 | INFO     | [renderer] Routing | chart_type=heatmap | rows=237 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:32:15 | INFO     | [heatmap] Rendered | x=Month | y=Branch | value=Year | pivot=(237, 1) | rows=237
+2026-04-06 17:32:15 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-06 17:32:17 | INFO     | [renderer] Routing | chart_type=line | rows=237 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:32:17 | INFO     | [line] Rendered | x=Month | y=Branch | hue=Region | rows=237
+2026-04-06 17:32:17 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 17:32:40 | INFO     | [renderer] Routing | chart_type=line | rows=237 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:32:40 | INFO     | [line] Rendered | x=Month | y=Branch | hue=Region | rows=237
+2026-04-06 17:32:40 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 17:32:41 | INFO     | [renderer] Routing | chart_type=line | rows=237 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:32:41 | INFO     | [line] Rendered | x=Month | y=Branch | hue=Region | rows=237
+2026-04-06 17:32:41 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 17:32:43 | INFO     | [renderer] Routing | chart_type=area | rows=237 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:32:43 | INFO     | [area] Rendered | x=Month | y=Branch | hue=Region | rows=237
+2026-04-06 17:32:44 | INFO     | [renderer] OK | chart_type=area
+2026-04-06 17:35:18 | INFO     | [renderer] Routing | chart_type=area | rows=237 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:35:19 | INFO     | [area] Rendered | x=Month | y=Branch | hue=Region | rows=237
+2026-04-06 17:35:19 | INFO     | [renderer] OK | chart_type=area
+2026-04-06 17:35:20 | INFO     | [renderer] Routing | chart_type=area | rows=237 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:35:20 | INFO     | [area] Rendered | x=Month | y=Branch | hue=Region | rows=237
+2026-04-06 17:35:20 | INFO     | [renderer] OK | chart_type=area
+2026-04-06 17:35:21 | INFO     | [renderer] Routing | chart_type=kde | rows=237 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:35:21 | INFO     | [kde] Rendered | x=Month | hue=Region | rows=237
+2026-04-06 17:35:21 | INFO     | [renderer] OK | chart_type=kde
+2026-04-06 17:36:10 | INFO     | [renderer] Routing | chart_type=kde | rows=237 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:36:10 | INFO     | [kde] Rendered | x=Month | hue=Region | rows=237
+2026-04-06 17:36:10 | INFO     | [renderer] OK | chart_type=kde
+2026-04-06 17:36:28 | INFO     | [renderer] Routing | chart_type=kde | rows=237 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:36:28 | INFO     | [kde] Rendered | x=Month | hue=Region | rows=237
+2026-04-06 17:36:28 | INFO     | [renderer] OK | chart_type=kde
+2026-04-06 17:36:29 | INFO     | [renderer] Routing | chart_type=scatter | rows=237 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:36:29 | INFO     | [scatter] Rendered | x=Month | y=Month | hue=Region | sample=237/237
+2026-04-06 17:36:29 | INFO     | [renderer] OK | chart_type=scatter
+2026-04-06 17:36:40 | INFO     | [renderer] Routing | chart_type=scatter | rows=237 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:36:41 | INFO     | [scatter] Rendered | x=Month | y=Month | hue=Region | sample=237/237
+2026-04-06 17:36:41 | INFO     | [renderer] OK | chart_type=scatter
+2026-04-06 17:36:42 | INFO     | [renderer] Routing | chart_type=scatter | rows=237 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:36:42 | INFO     | [scatter] Rendered | x=Month | y=Month | hue=Region | sample=237/237
+2026-04-06 17:36:42 | INFO     | [renderer] OK | chart_type=scatter
+2026-04-06 17:36:43 | INFO     | [renderer] Routing | chart_type=boxplot | rows=237 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:36:43 | INFO     | [boxplot] Rendered | x=Month | y=Year | hue=Region | categories=1 | rows=237
+2026-04-06 17:36:43 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-06 17:36:55 | INFO     | [renderer] Routing | chart_type=boxplot | rows=237 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:36:55 | INFO     | [boxplot] Rendered | x=Month | y=Year | hue=Region | categories=1 | rows=237
+2026-04-06 17:36:55 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-06 17:36:58 | INFO     | [renderer] Routing | chart_type=boxplot | rows=237 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:36:58 | INFO     | [boxplot] Rendered | x=Month | y=Year | hue=Region | categories=1 | rows=237
+2026-04-06 17:36:58 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-06 17:36:59 | INFO     | [renderer] Routing | chart_type=boxplot | rows=237 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:36:59 | INFO     | [boxplot] Rendered | x=Month | y=Year | hue=Region | categories=1 | rows=237
+2026-04-06 17:36:59 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-06 17:36:59 | INFO     | [renderer] Routing | chart_type=line | rows=237 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:37:00 | INFO     | [line] Rendered | x=Month | y=Branch | hue=Region | rows=237
+2026-04-06 17:37:00 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 17:37:28 | INFO     | [renderer] Routing | chart_type=line | rows=237 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:37:29 | INFO     | [line] Rendered | x=Month | y=Branch | hue=Region | rows=237
+2026-04-06 17:37:29 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 17:37:30 | INFO     | [renderer] Routing | chart_type=line | rows=237 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:37:30 | INFO     | [line] Rendered | x=Month | y=Branch | hue=Region | rows=237
+2026-04-06 17:37:30 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 17:37:47 | INFO     | [renderer] Routing | chart_type=line | rows=237 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:37:48 | INFO     | [line] Rendered | x=Month | y=Branch | hue=Region | rows=237
+2026-04-06 17:37:48 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 17:38:38 | INFO     | [renderer] Routing | chart_type=line | rows=1 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:38:38 | INFO     | [line] Rendered | x=Month | y=Branch | hue=Region | rows=1
+2026-04-06 17:38:38 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 17:38:48 | INFO     | [renderer] Routing | chart_type=line | rows=1 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:38:48 | INFO     | [line] Rendered | x=Month | y=Branch | hue=Region | rows=1
+2026-04-06 17:38:48 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 17:38:49 | INFO     | [renderer] Routing | chart_type=line | rows=1 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:38:49 | INFO     | [line] Rendered | x=Month | y=Branch | hue=Region | rows=1
+2026-04-06 17:38:49 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 17:38:49 | INFO     | [renderer] Routing | chart_type=area | rows=1 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:38:49 | INFO     | [area] Rendered | x=Month | y=Branch | hue=Region | rows=1
+2026-04-06 17:38:49 | INFO     | [renderer] OK | chart_type=area
+2026-04-06 17:38:54 | INFO     | [renderer] Routing | chart_type=area | rows=1 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:38:54 | INFO     | [area] Rendered | x=Month | y=Branch | hue=Region | rows=1
+2026-04-06 17:38:54 | INFO     | [renderer] OK | chart_type=area
+2026-04-06 17:38:56 | INFO     | [renderer] Routing | chart_type=area | rows=1 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:38:56 | INFO     | [area] Rendered | x=Month | y=Branch | hue=Region | rows=1
+2026-04-06 17:38:56 | INFO     | [renderer] OK | chart_type=area
+2026-04-06 17:38:56 | INFO     | [renderer] Routing | chart_type=scatter | rows=1 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:38:56 | INFO     | [scatter] Rendered | x=Month | y=Month | hue=Region | sample=1/1
+2026-04-06 17:38:56 | INFO     | [renderer] OK | chart_type=scatter
+2026-04-06 17:39:01 | INFO     | [renderer] Routing | chart_type=scatter | rows=1 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:39:01 | INFO     | [scatter] Rendered | x=Month | y=Month | hue=Region | sample=1/1
+2026-04-06 17:39:01 | INFO     | [renderer] OK | chart_type=scatter
+2026-04-06 17:39:02 | INFO     | [renderer] Routing | chart_type=scatter | rows=1 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:39:02 | INFO     | [scatter] Rendered | x=Month | y=Month | hue=Region | sample=1/1
+2026-04-06 17:39:02 | INFO     | [renderer] OK | chart_type=scatter
+2026-04-06 17:39:03 | INFO     | [renderer] Routing | chart_type=boxplot | rows=1 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:39:03 | INFO     | [boxplot] Rendered | x=Month | y=Year | hue=Region | categories=1 | rows=1
+2026-04-06 17:39:03 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-06 17:39:11 | INFO     | [renderer] Routing | chart_type=boxplot | rows=11 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:39:11 | INFO     | [boxplot] Rendered | x=Month | y=Year | hue=Region | categories=1 | rows=11
+2026-04-06 17:39:11 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-06 17:39:15 | INFO     | [renderer] Routing | chart_type=boxplot | rows=11 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:39:15 | INFO     | [boxplot] Rendered | x=Month | y=Year | hue=Region | categories=1 | rows=11
+2026-04-06 17:39:15 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-06 17:39:18 | INFO     | [renderer] Routing | chart_type=boxplot | rows=11 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:39:18 | INFO     | [boxplot] Rendered | x=Month | y=Year | hue=Region | categories=1 | rows=11
+2026-04-06 17:39:18 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-06 17:39:18 | INFO     | [renderer] Routing | chart_type=heatmap | rows=11 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:39:18 | INFO     | [heatmap] Rendered | x=Month | y=Branch | value=Year | pivot=(11, 1) | rows=11
+2026-04-06 17:39:18 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-06 17:39:29 | INFO     | [renderer] Routing | chart_type=heatmap | rows=11 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:39:29 | INFO     | [heatmap] Rendered | x=Month | y=Branch | value=Year | pivot=(11, 1) | rows=11
+2026-04-06 17:39:29 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-06 17:39:30 | INFO     | [renderer] Routing | chart_type=heatmap | rows=11 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:39:30 | INFO     | [heatmap] Rendered | x=Month | y=Branch | value=Year | pivot=(11, 1) | rows=11
+2026-04-06 17:39:31 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-06 17:39:31 | INFO     | [renderer] Routing | chart_type=line | rows=11 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:39:31 | INFO     | [line] Rendered | x=Month | y=Branch | hue=Region | rows=11
+2026-04-06 17:39:31 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 17:39:38 | INFO     | [renderer] Routing | chart_type=line | rows=11 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:39:38 | INFO     | [line] Rendered | x=Month | y=Branch | hue=Region | rows=11
+2026-04-06 17:39:38 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 17:39:39 | INFO     | [renderer] Routing | chart_type=line | rows=11 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:39:39 | INFO     | [line] Rendered | x=Month | y=Branch | hue=Region | rows=11
+2026-04-06 17:39:39 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 17:39:39 | INFO     | [renderer] Routing | chart_type=kde | rows=11 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:39:39 | INFO     | [kde] Rendered | x=Month | hue=Region | rows=11
+2026-04-06 17:39:39 | INFO     | [renderer] OK | chart_type=kde
+2026-04-06 17:39:43 | INFO     | [renderer] Routing | chart_type=kde | rows=11 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:39:43 | INFO     | [kde] Rendered | x=Month | hue=Region | rows=11
+2026-04-06 17:39:43 | INFO     | [renderer] OK | chart_type=kde
+2026-04-06 17:39:44 | INFO     | [renderer] Routing | chart_type=kde | rows=11 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:39:44 | INFO     | [kde] Rendered | x=Month | hue=Region | rows=11
+2026-04-06 17:39:44 | INFO     | [renderer] OK | chart_type=kde
+2026-04-06 17:39:45 | INFO     | [renderer] Routing | chart_type=scatter | rows=11 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:39:45 | INFO     | [scatter] Rendered | x=Month | y=Month | hue=Region | sample=11/11
+2026-04-06 17:39:45 | INFO     | [renderer] OK | chart_type=scatter
+2026-04-06 17:39:48 | INFO     | [renderer] Routing | chart_type=scatter | rows=11 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:39:48 | INFO     | [scatter] Rendered | x=Month | y=Month | hue=Region | sample=11/11
+2026-04-06 17:39:48 | INFO     | [renderer] OK | chart_type=scatter
+2026-04-06 17:39:49 | INFO     | [renderer] Routing | chart_type=scatter | rows=11 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:39:49 | INFO     | [scatter] Rendered | x=Month | y=Month | hue=Region | sample=11/11
+2026-04-06 17:39:49 | INFO     | [renderer] OK | chart_type=scatter
+2026-04-06 17:39:49 | INFO     | [renderer] Routing | chart_type=boxplot | rows=11 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:39:50 | INFO     | [boxplot] Rendered | x=Month | y=Year | hue=Region | categories=1 | rows=11
+2026-04-06 17:39:50 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-06 17:39:55 | INFO     | [renderer] Routing | chart_type=boxplot | rows=11 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:39:55 | INFO     | [boxplot] Rendered | x=Month | y=Year | hue=Region | categories=1 | rows=11
+2026-04-06 17:39:55 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-06 17:39:56 | INFO     | [renderer] Routing | chart_type=boxplot | rows=11 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:39:56 | INFO     | [boxplot] Rendered | x=Month | y=Year | hue=Region | categories=1 | rows=11
+2026-04-06 17:39:56 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-06 17:39:57 | INFO     | [renderer] Routing | chart_type=area | rows=11 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:39:57 | INFO     | [area] Rendered | x=Month | y=Branch | hue=Region | rows=11
+2026-04-06 17:39:57 | INFO     | [renderer] OK | chart_type=area
+2026-04-06 17:40:04 | INFO     | [renderer] Routing | chart_type=area | rows=11 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:40:04 | INFO     | [area] Rendered | x=Month | y=Branch | hue=Region | rows=11
+2026-04-06 17:40:04 | INFO     | [renderer] OK | chart_type=area
+2026-04-06 17:40:05 | INFO     | [renderer] Routing | chart_type=area | rows=11 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:40:05 | INFO     | [area] Rendered | x=Month | y=Branch | hue=Region | rows=11
+2026-04-06 17:40:05 | INFO     | [renderer] OK | chart_type=area
+2026-04-06 17:40:06 | INFO     | [renderer] Routing | chart_type=line | rows=11 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:40:06 | INFO     | [line] Rendered | x=Month | y=Branch | hue=Region | rows=11
+2026-04-06 17:40:06 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 17:40:12 | INFO     | [renderer] Routing | chart_type=line | rows=6 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:40:12 | INFO     | [line] Rendered | x=Month | y=Branch | hue=Region | rows=6
+2026-04-06 17:40:13 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 17:40:15 | INFO     | [renderer] Routing | chart_type=line | rows=2 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:40:15 | INFO     | [line] Rendered | x=Month | y=Branch | hue=Region | rows=2
+2026-04-06 17:40:15 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 17:40:22 | INFO     | [renderer] Routing | chart_type=line | rows=2 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:40:23 | INFO     | [line] Rendered | x=Month | y=Branch | hue=Region | rows=2
+2026-04-06 17:40:23 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 17:40:23 | INFO     | [renderer] Routing | chart_type=line | rows=2 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:40:23 | INFO     | [line] Rendered | x=Month | y=Branch | hue=Region | rows=2
+2026-04-06 17:40:23 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 17:40:31 | INFO     | [renderer] Routing | chart_type=line | rows=2 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:40:31 | INFO     | [line] Rendered | x=Month | y=Branch | hue=Region | rows=2
+2026-04-06 17:40:31 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 17:56:25 | INFO     | [renderer] Routing | chart_type=line | rows=2 | cols=['Year', 'Month', 'Branch', 'Region', 'Bounce Count'] | title='Month Wise, Branch Wise and Region Wise Bounce ...'
+2026-04-06 17:56:25 | INFO     | [line] Rendered | x=Month | y=Branch | hue=Region | rows=2
+2026-04-06 17:56:25 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 19:25:57 | INFO     | [renderer] Routing | chart_type=heatmap | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:25:57 | INFO     | [heatmap] Rendered | x=Region | y=Bounce Count | value=Bounce % | pivot=(17, 17) | rows=17
+2026-04-06 19:25:57 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-06 19:29:36 | INFO     | [renderer] Routing | chart_type=heatmap | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:29:36 | INFO     | [heatmap] Rendered | x=Region | y=Bounce Count | value=Bounce % | pivot=(17, 17) | rows=17
+2026-04-06 19:29:36 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-06 19:29:37 | INFO     | [renderer] Routing | chart_type=heatmap | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:29:38 | INFO     | [heatmap] Rendered | x=Region | y=Bounce Count | value=Bounce % | pivot=(17, 17) | rows=17
+2026-04-06 19:29:38 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-06 19:29:39 | INFO     | [renderer] Routing | chart_type=line | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:29:39 | INFO     | [line] Rendered | x=Region | y=Bounce Count | hue=Bounce % | rows=17
+2026-04-06 19:29:39 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 19:30:52 | INFO     | [renderer] Routing | chart_type=line | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:30:52 | INFO     | [line] Rendered | x=Region | y=Bounce Count | hue=Bounce % | rows=17
+2026-04-06 19:30:52 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 19:30:53 | INFO     | [renderer] Routing | chart_type=line | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:30:53 | INFO     | [line] Rendered | x=Region | y=Bounce Count | hue=Bounce % | rows=17
+2026-04-06 19:30:53 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 19:31:05 | INFO     | [renderer] Routing | chart_type=line | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:31:05 | INFO     | [line] Rendered | x=Region | y=Bounce Count | hue=Bounce % | rows=17
+2026-04-06 19:31:05 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 19:31:26 | INFO     | [renderer] Routing | chart_type=line | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:31:27 | INFO     | [line] Rendered | x=Region | y=Bounce Count | hue=Bounce % | rows=17
+2026-04-06 19:31:27 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 19:31:28 | INFO     | [renderer] Routing | chart_type=line | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:31:28 | INFO     | [line] Rendered | x=Region | y=Bounce Count | hue=Bounce % | rows=17
+2026-04-06 19:31:28 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 19:31:29 | INFO     | [renderer] Routing | chart_type=area | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:31:29 | INFO     | [area] Rendered | x=Region | y=Bounce Count | hue=Bounce % | rows=17
+2026-04-06 19:31:29 | INFO     | [renderer] OK | chart_type=area
+2026-04-06 19:31:50 | INFO     | [renderer] Routing | chart_type=area | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:31:50 | INFO     | [area] Rendered | x=Region | y=Bounce Count | hue=Bounce % | rows=17
+2026-04-06 19:31:50 | INFO     | [renderer] OK | chart_type=area
+2026-04-06 19:31:51 | INFO     | [renderer] Routing | chart_type=area | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:31:51 | INFO     | [area] Rendered | x=Region | y=Bounce Count | hue=Bounce % | rows=17
+2026-04-06 19:31:51 | INFO     | [renderer] OK | chart_type=area
+2026-04-06 19:31:52 | INFO     | [renderer] Routing | chart_type=kde | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:31:52 | INFO     | [kde] Rendered | x=Bounce Count | hue=Bounce % | rows=17
+2026-04-06 19:31:52 | INFO     | [renderer] OK | chart_type=kde
+2026-04-06 19:31:58 | INFO     | [renderer] Routing | chart_type=kde | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:31:58 | INFO     | [kde] Rendered | x=Bounce Count | hue=Bounce % | rows=17
+2026-04-06 19:31:58 | INFO     | [renderer] OK | chart_type=kde
+2026-04-06 19:31:59 | INFO     | [renderer] Routing | chart_type=kde | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:31:59 | INFO     | [kde] Rendered | x=Bounce Count | hue=Bounce % | rows=17
+2026-04-06 19:31:59 | INFO     | [renderer] OK | chart_type=kde
+2026-04-06 19:32:00 | INFO     | [renderer] Routing | chart_type=scatter | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:32:00 | INFO     | [scatter] Rendered | x=Bounce Count | y=Bounce Count | hue=Bounce % | sample=17/17
+2026-04-06 19:32:00 | INFO     | [renderer] OK | chart_type=scatter
+2026-04-06 19:32:06 | INFO     | [renderer] Routing | chart_type=scatter | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:32:06 | INFO     | [scatter] Rendered | x=Bounce Count | y=Bounce Count | hue=Bounce % | sample=17/17
+2026-04-06 19:32:06 | INFO     | [renderer] OK | chart_type=scatter
+2026-04-06 19:32:07 | INFO     | [renderer] Routing | chart_type=scatter | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:32:07 | INFO     | [scatter] Rendered | x=Bounce Count | y=Bounce Count | hue=Bounce % | sample=17/17
+2026-04-06 19:32:07 | INFO     | [renderer] OK | chart_type=scatter
+2026-04-06 19:32:08 | INFO     | [renderer] Routing | chart_type=boxplot | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:32:08 | INFO     | [boxplot] Rendered | x=Region | y=Bounce Count | hue=Bounce % | categories=12 | rows=12
+2026-04-06 19:32:08 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-06 19:32:13 | INFO     | [renderer] Routing | chart_type=boxplot | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:32:13 | INFO     | [boxplot] Rendered | x=Region | y=Bounce Count | hue=Bounce % | categories=12 | rows=12
+2026-04-06 19:32:13 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-06 19:32:16 | INFO     | [renderer] Routing | chart_type=boxplot | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:32:17 | INFO     | [boxplot] Rendered | x=Region | y=Bounce Count | hue=Bounce % | categories=12 | rows=12
+2026-04-06 19:32:17 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-06 19:32:17 | INFO     | [renderer] Routing | chart_type=heatmap | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:32:17 | INFO     | [heatmap] Rendered | x=Region | y=Bounce Count | value=Bounce % | pivot=(17, 17) | rows=17
+2026-04-06 19:32:18 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-06 19:33:24 | INFO     | [renderer] Routing | chart_type=heatmap | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:33:25 | INFO     | [heatmap] Rendered | x=Region | y=Bounce Count | value=Bounce % | pivot=(17, 17) | rows=17
+2026-04-06 19:33:25 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-06 19:33:33 | INFO     | [renderer] Routing | chart_type=heatmap | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:33:33 | INFO     | [heatmap] Rendered | x=Region | y=Bounce Count | value=Bounce % | pivot=(17, 17) | rows=17
+2026-04-06 19:33:34 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-06 19:33:34 | INFO     | [renderer] Routing | chart_type=line | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:33:35 | INFO     | [line] Rendered | x=Region | y=Bounce Count | hue=Bounce % | rows=17
+2026-04-06 19:33:35 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 19:34:02 | INFO     | [renderer] Routing | chart_type=line | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:34:02 | INFO     | [line] Rendered | x=Region | y=Bounce Count | hue=Bounce % | rows=17
+2026-04-06 19:34:02 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 19:34:04 | INFO     | [renderer] Routing | chart_type=line | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:34:04 | INFO     | [line] Rendered | x=Region | y=Bounce Count | hue=Bounce % | rows=17
+2026-04-06 19:34:04 | INFO     | [renderer] OK | chart_type=line
+2026-04-06 19:34:05 | INFO     | [renderer] Routing | chart_type=area | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:34:05 | INFO     | [area] Rendered | x=Region | y=Bounce Count | hue=Bounce % | rows=17
+2026-04-06 19:34:05 | INFO     | [renderer] OK | chart_type=area
+2026-04-06 19:34:24 | INFO     | [renderer] Routing | chart_type=area | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:34:24 | INFO     | [area] Rendered | x=Region | y=Bounce Count | hue=Bounce % | rows=17
+2026-04-06 19:34:24 | INFO     | [renderer] OK | chart_type=area
+2026-04-06 19:34:27 | INFO     | [renderer] Routing | chart_type=area | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:34:27 | INFO     | [area] Rendered | x=Region | y=Bounce Count | hue=Bounce % | rows=17
+2026-04-06 19:34:27 | INFO     | [renderer] OK | chart_type=area
+2026-04-06 19:34:27 | INFO     | [renderer] Routing | chart_type=kde | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:34:27 | INFO     | [kde] Rendered | x=Bounce Count | hue=Bounce % | rows=17
+2026-04-06 19:34:27 | INFO     | [renderer] OK | chart_type=kde
+2026-04-06 19:34:36 | INFO     | [renderer] Routing | chart_type=kde | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:34:36 | INFO     | [kde] Rendered | x=Bounce Count | hue=Bounce % | rows=17
+2026-04-06 19:34:36 | INFO     | [renderer] OK | chart_type=kde
+2026-04-06 19:34:37 | INFO     | [renderer] Routing | chart_type=kde | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:34:37 | INFO     | [kde] Rendered | x=Bounce Count | hue=Bounce % | rows=17
+2026-04-06 19:34:38 | INFO     | [renderer] OK | chart_type=kde
+2026-04-06 19:34:38 | INFO     | [renderer] Routing | chart_type=scatter | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:34:38 | INFO     | [scatter] Rendered | x=Bounce Count | y=Bounce Count | hue=Bounce % | sample=17/17
+2026-04-06 19:34:38 | INFO     | [renderer] OK | chart_type=scatter
+2026-04-06 19:34:56 | INFO     | [renderer] Routing | chart_type=scatter | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:34:56 | INFO     | [scatter] Rendered | x=Bounce Count | y=Bounce Count | hue=Bounce % | sample=17/17
+2026-04-06 19:34:56 | INFO     | [renderer] OK | chart_type=scatter
+2026-04-06 19:34:58 | INFO     | [renderer] Routing | chart_type=scatter | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:34:59 | INFO     | [scatter] Rendered | x=Bounce Count | y=Bounce Count | hue=Bounce % | sample=17/17
+2026-04-06 19:34:59 | INFO     | [renderer] OK | chart_type=scatter
+2026-04-06 19:34:59 | INFO     | [renderer] Routing | chart_type=boxplot | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:35:00 | INFO     | [boxplot] Rendered | x=Region | y=Bounce Count | hue=Bounce % | categories=12 | rows=12
+2026-04-06 19:35:00 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-06 19:35:22 | INFO     | [renderer] Routing | chart_type=boxplot | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:35:22 | INFO     | [boxplot] Rendered | x=Region | y=Bounce Count | hue=Bounce % | categories=12 | rows=12
+2026-04-06 19:35:23 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-06 19:35:31 | INFO     | [renderer] Routing | chart_type=boxplot | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:35:31 | INFO     | [boxplot] Rendered | x=Region | y=Bounce Count | hue=Bounce % | categories=12 | rows=12
+2026-04-06 19:35:31 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-06 19:35:31 | INFO     | [renderer] Routing | chart_type=boxplot | rows=17 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:35:31 | INFO     | [boxplot] Rendered | x=Region | y=Bounce Count | hue=Bounce % | categories=12 | rows=12
+2026-04-06 19:35:31 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-06 19:35:55 | INFO     | [renderer] Routing | chart_type=boxplot | rows=1 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:35:55 | INFO     | [boxplot] Rendered | x=Region | y=Bounce Count | hue=Bounce % | categories=1 | rows=1
+2026-04-06 19:35:55 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-06 19:36:06 | INFO     | [renderer] Routing | chart_type=boxplot | rows=1 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:36:06 | INFO     | [boxplot] Rendered | x=Region | y=Bounce Count | hue=Bounce % | categories=1 | rows=1
+2026-04-06 19:36:06 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-06 19:36:07 | INFO     | [renderer] Routing | chart_type=boxplot | rows=1 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:36:08 | INFO     | [boxplot] Rendered | x=Region | y=Bounce Count | hue=Bounce % | categories=1 | rows=1
+2026-04-06 19:36:08 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-06 19:36:08 | INFO     | [renderer] Routing | chart_type=heatmap | rows=1 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
+2026-04-06 19:36:08 | INFO     | [heatmap] Rendered | x=Region | y=Bounce Count | value=Bounce % | pivot=(1, 1) | rows=1
+2026-04-06 19:36:08 | INFO     | [renderer] OK | chart_type=heatmap

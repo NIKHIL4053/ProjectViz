@@ -359,3 +359,950 @@
 2026-04-05 02:34:02 | [START] dictionary_coder_context | query="Which team leader has the best coverage?"
 2026-04-05 02:34:02 | [END]   dictionary_coder_context       |    102ms | status=OK
 2026-04-05 02:34:02 | [START] intent_analysis
+2026-04-06 10:35:42 | [START] dictionary_initialise
+2026-04-06 10:36:16 | [END]   dictionary_initialise          |  34005ms | status=OK
+2026-04-06 10:36:16 | [START] db_initialise
+2026-04-06 10:36:16 | [END]   db_initialise                  |    681ms | status=OK
+2026-04-06 10:36:19 | [START] db_execute
+2026-04-06 10:36:19 | [END]   db_execute                     |     82ms | status=OK
+2026-04-06 10:36:31 | [START] intent_analysis                | query="Show bounce rate by branch"
+2026-04-06 10:36:31 | [START] intent_analysis | query="Show bounce rate by branch"
+2026-04-06 10:36:31 | [START] dictionary_coder_context | query="Show bounce rate by branch"
+2026-04-06 10:36:31 | [END]   dictionary_coder_context       |    373ms | status=OK
+2026-04-06 10:36:31 | [START] intent_analysis
+2026-04-06 10:47:28 | [END]   intent_analysis                | 656371ms | status=OK
+2026-04-06 10:47:28 | [END]   intent_analysis                | 656750ms | status=OK
+2026-04-06 10:47:28 | [END]   intent_analysis                | 656753ms | status=OK
+2026-04-06 10:47:28 | [START] clarifying_questions           | query="Show bounce rate by branch"
+2026-04-06 10:47:28 | [START] clarifying_questions | query="Show bounce rate by branch"
+2026-04-06 10:47:28 | [START] clarifying_questions
+2026-04-06 10:52:16 | [END]   clarifying_questions           | 287725ms | status=OK
+2026-04-06 10:52:16 | [END]   clarifying_questions           | 287773ms | status=OK
+2026-04-06 10:52:16 | [END]   clarifying_questions           | 287776ms | status=OK
+2026-04-06 10:52:16 | ════════════════════════════════════════════════════
+2026-04-06 10:52:16 | QUERY : "Show bounce rate by branch"
+2026-04-06 10:52:16 |   ├── intent_analysis             : 656753ms  ✓
+2026-04-06 10:52:16 |   └── clarifying_questions        : 287776ms  ✓
+2026-04-06 10:52:16 | ════════════════════════════════════════════════════
+2026-04-06 10:52:16 |   TOTAL                         : 944529ms
+2026-04-06 10:52:16 | ════════════════════════════════════════════════════
+2026-04-06 10:57:57 | [START] sql_generation                 | query="Show bounce rate by branch"
+2026-04-06 10:57:57 | [START] sql_generation | query="Show bounce rate by branch"
+2026-04-06 10:57:57 | [START] sql_generation
+2026-04-06 11:03:42 | [END]   sql_generation                 | 345115ms | status=OK
+2026-04-06 11:03:42 | [END]   sql_generation                 | 345181ms | status=OK
+2026-04-06 11:03:42 | [END]   sql_generation                 | 345185ms | status=OK
+2026-04-06 11:03:42 | [START] db_fetch                       | query="Show bounce rate by branch"
+2026-04-06 11:03:42 | [START] db_fetch
+2026-04-06 11:03:42 | [START] db_execute
+2026-04-06 11:03:42 | [END]   db_execute                     |     25ms | status=OK
+2026-04-06 11:03:42 | [END]   db_fetch                       |     33ms | status=OK
+2026-04-06 11:03:42 | [END]   db_fetch                       |     36ms | status=OK
+2026-04-06 11:03:43 | [START] chart_decision                 | query="Show bounce rate by branch"
+2026-04-06 11:03:43 | [START] chart_decision | query="Show bounce rate by branch"
+2026-04-06 11:03:43 | [START] chart_decision
+2026-04-06 11:04:41 | [END]   chart_decision                 |  58898ms | status=OK
+2026-04-06 11:04:41 | [END]   chart_decision                 |  58904ms | status=OK
+2026-04-06 11:04:41 | [END]   chart_decision                 |  58907ms | status=OK
+2026-04-06 11:04:41 | ════════════════════════════════════════════════════
+2026-04-06 11:04:41 | QUERY : "Show bounce rate by branch"
+2026-04-06 11:04:41 |   ├── sql_generation              : 345185ms  ✓
+2026-04-06 11:04:41 |   ├── db_fetch                    :     36ms  ✓
+2026-04-06 11:04:41 |   └── chart_decision              :  58907ms  ✓
+2026-04-06 11:04:41 | ════════════════════════════════════════════════════
+2026-04-06 11:04:41 |   TOTAL                         : 404128ms
+2026-04-06 11:04:41 | ════════════════════════════════════════════════════
+2026-04-06 11:58:58 | [START] dictionary_initialise
+2026-04-06 11:59:10 | [END]   dictionary_initialise          |  12581ms | status=OK
+2026-04-06 11:59:10 | [START] db_initialise
+2026-04-06 11:59:10 | [END]   db_initialise                  |    177ms | status=OK
+2026-04-06 11:59:12 | [START] db_execute
+2026-04-06 11:59:12 | [END]   db_execute                     |     17ms | status=OK
+2026-04-06 12:01:03 | [START] intent_analysis                | query="Show bounce rate by branch"
+2026-04-06 12:01:03 | [START] intent_analysis | query="Show bounce rate by branch"
+2026-04-06 12:01:03 | [START] dictionary_coder_context | query="Show bounce rate by branch"
+2026-04-06 12:01:04 | [END]   dictionary_coder_context       |    155ms | status=OK
+2026-04-06 12:01:04 | [START] intent_analysis
+2026-04-06 12:12:26 | [END]   intent_analysis                | 682240ms | status=OK
+2026-04-06 12:12:26 | [END]   intent_analysis                | 682399ms | status=OK
+2026-04-06 12:12:26 | [END]   intent_analysis                | 682403ms | status=OK
+2026-04-06 12:12:26 | [START] clarifying_questions           | query="Show bounce rate by branch"
+2026-04-06 12:12:26 | [START] clarifying_questions | query="Show bounce rate by branch"
+2026-04-06 12:12:26 | [START] clarifying_questions
+2026-04-06 12:17:16 | [END]   clarifying_questions           | 290206ms | status=OK
+2026-04-06 12:17:16 | [END]   clarifying_questions           | 290256ms | status=OK
+2026-04-06 12:17:16 | [END]   clarifying_questions           | 290258ms | status=OK
+2026-04-06 12:27:58 | [START] dictionary_initialise
+2026-04-06 12:28:09 | [END]   dictionary_initialise          |  10997ms | status=OK
+2026-04-06 12:28:09 | [START] db_initialise
+2026-04-06 12:28:10 | [END]   db_initialise                  |    180ms | status=OK
+2026-04-06 12:28:12 | [START] db_execute
+2026-04-06 12:28:12 | [END]   db_execute                     |     15ms | status=OK
+2026-04-06 12:30:28 | [START] intent_analysis                | query="Show bounce rate by branch"
+2026-04-06 12:30:28 | [START] intent_analysis | query="Show bounce rate by branch"
+2026-04-06 12:30:28 | [START] dictionary_coder_context | query="Show bounce rate by branch"
+2026-04-06 12:30:28 | [END]   dictionary_coder_context       |    150ms | status=OK
+2026-04-06 12:30:28 | [START] intent_analysis
+2026-04-06 12:41:33 | [END]   intent_analysis                | 665410ms | status=OK
+2026-04-06 12:41:33 | [END]   intent_analysis                | 665564ms | status=OK
+2026-04-06 12:41:33 | [END]   intent_analysis                | 665567ms | status=OK
+2026-04-06 12:41:33 | [START] clarifying_questions           | query="Show bounce rate by branch"
+2026-04-06 12:41:33 | [START] clarifying_questions | query="Show bounce rate by branch"
+2026-04-06 12:41:33 | [START] clarifying_questions
+2026-04-06 12:46:21 | [END]   clarifying_questions           | 287998ms | status=OK
+2026-04-06 12:46:21 | [END]   clarifying_questions           | 288045ms | status=OK
+2026-04-06 12:46:21 | [END]   clarifying_questions           | 288049ms | status=OK
+2026-04-06 12:46:21 | ════════════════════════════════════════════════════
+2026-04-06 12:46:21 | QUERY : "Show bounce rate by branch"
+2026-04-06 12:46:21 |   ├── intent_analysis             : 665567ms  ✓
+2026-04-06 12:46:21 |   └── clarifying_questions        : 288049ms  ✓
+2026-04-06 12:46:21 | ════════════════════════════════════════════════════
+2026-04-06 12:46:21 |   TOTAL                         : 953616ms
+2026-04-06 12:46:21 | ════════════════════════════════════════════════════
+2026-04-06 12:48:13 | [START] sql_generation                 | query="Show bounce rate by branch"
+2026-04-06 12:48:13 | [START] sql_generation | query="Show bounce rate by branch"
+2026-04-06 12:48:13 | [START] sql_generation
+2026-04-06 12:54:09 | [END]   sql_generation                 | 356488ms | status=OK
+2026-04-06 12:54:09 | [END]   sql_generation                 | 356543ms | status=OK
+2026-04-06 12:54:09 | [END]   sql_generation                 | 356546ms | status=OK
+2026-04-06 12:54:10 | [START] db_fetch                       | query="Show bounce rate by branch"
+2026-04-06 12:54:10 | [START] db_fetch
+2026-04-06 12:54:10 | [START] db_execute
+2026-04-06 12:54:10 | [END]   db_execute                     |     64ms | status=OK
+2026-04-06 12:54:10 | [END]   db_fetch                       |     74ms | status=OK
+2026-04-06 12:54:10 | [END]   db_fetch                       |     77ms | status=OK
+2026-04-06 12:54:10 | [START] chart_decision                 | query="Show bounce rate by branch"
+2026-04-06 12:54:10 | [START] chart_decision | query="Show bounce rate by branch"
+2026-04-06 12:54:10 | [START] chart_decision
+2026-04-06 12:55:09 | [END]   chart_decision                 |  58770ms | status=OK
+2026-04-06 12:55:09 | [END]   chart_decision                 |  58776ms | status=OK
+2026-04-06 12:55:09 | [END]   chart_decision                 |  58779ms | status=OK
+2026-04-06 12:55:09 | ════════════════════════════════════════════════════
+2026-04-06 12:55:09 | QUERY : "Show bounce rate by branch"
+2026-04-06 12:55:09 |   ├── sql_generation              : 356546ms  ✓
+2026-04-06 12:55:09 |   ├── db_fetch                    :     77ms  ✓
+2026-04-06 12:55:09 |   └── chart_decision              :  58779ms  ✓
+2026-04-06 12:55:09 | ════════════════════════════════════════════════════
+2026-04-06 12:55:09 |   TOTAL                         : 415402ms
+2026-04-06 12:55:09 | ════════════════════════════════════════════════════
+2026-04-06 12:55:09 | [START] filter_detection
+2026-04-06 12:55:09 | [END]   filter_detection               |      9ms | status=OK
+2026-04-06 12:55:09 | [START] chart_render
+2026-04-06 12:55:11 | [END]   chart_render                   |   2327ms | status=OK
+2026-04-06 12:56:26 | [START] filter_detection
+2026-04-06 12:56:26 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 12:56:26 | [START] chart_render
+2026-04-06 12:56:27 | [START] filter_detection
+2026-04-06 12:56:27 | [END]   filter_detection               |     22ms | status=OK
+2026-04-06 12:56:27 | [START] chart_render
+2026-04-06 12:56:28 | [END]   chart_render                   |   1941ms | status=OK
+2026-04-06 12:56:30 | [END]   chart_render                   |   2438ms | status=OK
+2026-04-06 12:56:37 | [START] filter_detection
+2026-04-06 12:56:37 | [END]   filter_detection               |      2ms | status=OK
+2026-04-06 12:56:37 | [START] chart_render
+2026-04-06 12:56:38 | [END]   chart_render                   |    345ms | status=OK
+2026-04-06 13:05:49 | [START] filter_detection
+2026-04-06 13:05:49 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 13:05:49 | [START] chart_render
+2026-04-06 13:05:49 | [END]   chart_render                   |    484ms | status=OK
+2026-04-06 13:05:50 | [START] filter_detection
+2026-04-06 13:05:50 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 13:05:50 | [START] chart_render
+2026-04-06 13:05:51 | [END]   chart_render                   |    742ms | status=OK
+2026-04-06 13:05:52 | [START] filter_detection
+2026-04-06 13:05:52 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 13:05:52 | [START] chart_render
+2026-04-06 13:05:53 | [END]   chart_render                   |    370ms | status=OK
+2026-04-06 13:06:46 | [START] filter_detection
+2026-04-06 13:06:46 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 13:06:46 | [START] chart_render
+2026-04-06 13:06:46 | [END]   chart_render                   |    367ms | status=OK
+2026-04-06 13:06:48 | [START] filter_detection
+2026-04-06 13:06:48 | [END]   filter_detection               |     58ms | status=OK
+2026-04-06 13:06:48 | [START] chart_render
+2026-04-06 13:06:49 | [END]   chart_render                   |    603ms | status=OK
+2026-04-06 13:06:50 | [START] filter_detection
+2026-04-06 13:06:50 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 13:06:50 | [START] chart_render
+2026-04-06 13:06:50 | [END]   chart_render                   |    161ms | status=OK
+2026-04-06 13:07:49 | [START] filter_detection
+2026-04-06 13:07:49 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 13:07:49 | [START] chart_render
+2026-04-06 13:07:49 | [END]   chart_render                   |    125ms | status=OK
+2026-04-06 13:08:10 | [START] filter_detection
+2026-04-06 13:08:10 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 13:08:10 | [START] chart_render
+2026-04-06 13:08:10 | [END]   chart_render                   |    102ms | status=OK
+2026-04-06 13:08:11 | [START] filter_detection
+2026-04-06 13:08:11 | [END]   filter_detection               |      2ms | status=OK
+2026-04-06 13:08:11 | [START] chart_render
+2026-04-06 13:08:11 | [END]   chart_render                   |    310ms | status=OK
+2026-04-06 13:17:37 | [START] intent_analysis                | query="Which branches have the highest resolution rate?"
+2026-04-06 13:17:37 | [START] intent_analysis | query="Which branches have the highest resolution rate?"
+2026-04-06 13:17:37 | [START] dictionary_coder_context | query="Which branches have the highest resolution rate?"
+2026-04-06 13:17:37 | [END]   dictionary_coder_context       |    101ms | status=OK
+2026-04-06 13:17:37 | [START] intent_analysis
+2026-04-06 13:28:34 | [END]   intent_analysis                | 656499ms | status=OK
+2026-04-06 13:28:34 | [END]   intent_analysis                | 656606ms | status=OK
+2026-04-06 13:28:34 | [END]   intent_analysis                | 656609ms | status=OK
+2026-04-06 13:28:34 | [START] clarifying_questions           | query="Which branches have the highest resolution rate?"
+2026-04-06 13:28:34 | [START] clarifying_questions | query="Which branches have the highest resolution rate?"
+2026-04-06 13:28:34 | [START] clarifying_questions
+2026-04-06 13:32:55 | [END]   clarifying_questions           | 261515ms | status=OK
+2026-04-06 13:32:55 | [END]   clarifying_questions           | 261587ms | status=OK
+2026-04-06 13:32:55 | [END]   clarifying_questions           | 261594ms | status=OK
+2026-04-06 13:32:55 | ════════════════════════════════════════════════════
+2026-04-06 13:32:55 | QUERY : "Which branches have the highest resolution rate?"
+2026-04-06 13:32:55 |   ├── intent_analysis             : 656609ms  ✓
+2026-04-06 13:32:55 |   └── clarifying_questions        : 261594ms  ✓
+2026-04-06 13:32:55 | ════════════════════════════════════════════════════
+2026-04-06 13:32:55 |   TOTAL                         : 918203ms
+2026-04-06 13:32:55 | ════════════════════════════════════════════════════
+2026-04-06 13:37:20 | [START] sql_generation                 | query="Which branches have the highest resolution rate?"
+2026-04-06 13:37:20 | [START] sql_generation | query="Which branches have the highest resolution rate?"
+2026-04-06 13:37:20 | [START] sql_generation
+2026-04-06 13:42:29 | [END]   sql_generation                 | 308678ms | status=OK
+2026-04-06 13:42:29 | [END]   sql_generation                 | 308734ms | status=OK
+2026-04-06 13:42:29 | [END]   sql_generation                 | 308737ms | status=OK
+2026-04-06 13:42:29 | [START] db_fetch                       | query="Which branches have the highest resolution rate?"
+2026-04-06 13:42:29 | [START] db_fetch
+2026-04-06 13:42:29 | [START] db_execute
+2026-04-06 13:42:29 | [END]   db_execute                     |    199ms | status=OK
+2026-04-06 13:42:29 | [END]   db_fetch                       |    201ms | status=OK
+2026-04-06 13:42:29 | [END]   db_fetch                       |    203ms | status=OK
+2026-04-06 13:42:29 | [START] chart_decision                 | query="Which branches have the highest resolution rate?"
+2026-04-06 13:42:29 | [START] chart_decision | query="Which branches have the highest resolution rate?"
+2026-04-06 13:42:29 | [START] chart_decision
+2026-04-06 13:43:27 | [END]   chart_decision                 |  57349ms | status=OK
+2026-04-06 13:43:27 | [END]   chart_decision                 |  57351ms | status=OK
+2026-04-06 13:43:27 | [END]   chart_decision                 |  57353ms | status=OK
+2026-04-06 13:43:27 | ════════════════════════════════════════════════════
+2026-04-06 13:43:27 | QUERY : "Which branches have the highest resolution rate?"
+2026-04-06 13:43:27 |   ├── sql_generation              : 308737ms  ✓
+2026-04-06 13:43:27 |   ├── db_fetch                    :    203ms  ✓
+2026-04-06 13:43:27 |   └── chart_decision              :  57353ms  ✓
+2026-04-06 13:43:27 | ════════════════════════════════════════════════════
+2026-04-06 13:43:27 |   TOTAL                         : 366293ms
+2026-04-06 13:43:27 | ════════════════════════════════════════════════════
+2026-04-06 13:43:27 | [START] filter_detection
+2026-04-06 13:43:27 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 13:43:27 | [START] chart_render
+2026-04-06 13:43:29 | [END]   chart_render                   |   2047ms | status=OK
+2026-04-06 13:47:01 | [START] filter_detection
+2026-04-06 13:47:01 | [END]   filter_detection               |      2ms | status=OK
+2026-04-06 13:47:01 | [START] chart_render
+2026-04-06 13:47:02 | [START] filter_detection
+2026-04-06 13:47:02 | [END]   filter_detection               |     26ms | status=OK
+2026-04-06 13:47:02 | [START] chart_render
+2026-04-06 13:47:03 | [END]   chart_render                   |   1936ms | status=OK
+2026-04-06 13:47:05 | [END]   chart_render                   |   2642ms | status=OK
+2026-04-06 13:47:13 | [START] filter_detection
+2026-04-06 13:47:13 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 13:47:13 | [START] chart_render
+2026-04-06 13:47:13 | [END]   chart_render                   |    329ms | status=OK
+2026-04-06 13:47:54 | [START] filter_detection
+2026-04-06 13:47:54 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 13:47:54 | [START] chart_render
+2026-04-06 13:47:55 | [START] intent_analysis                | query="can you give me month wise Bounce count"
+2026-04-06 13:47:55 | [START] intent_analysis | query="can you give me month wise Bounce count"
+2026-04-06 13:47:55 | [START] dictionary_coder_context | query="can you give me month wise Bounce count"
+2026-04-06 13:47:55 | [END]   chart_render                   |    422ms | status=OK
+2026-04-06 13:47:55 | [END]   dictionary_coder_context       |    660ms | status=OK
+2026-04-06 13:47:55 | [START] intent_analysis
+2026-04-06 13:56:48 | [END]   intent_analysis                | 532233ms | status=OK
+2026-04-06 13:56:48 | [END]   intent_analysis                | 532935ms | status=OK
+2026-04-06 13:56:48 | [END]   intent_analysis                | 532954ms | status=OK
+2026-04-06 13:56:48 | [START] clarifying_questions           | query="can you give me month wise Bounce count"
+2026-04-06 13:56:48 | [START] clarifying_questions | query="can you give me month wise Bounce count"
+2026-04-06 13:56:48 | [START] clarifying_questions
+2026-04-06 14:01:12 | [END]   clarifying_questions           | 264501ms | status=OK
+2026-04-06 14:01:12 | [END]   clarifying_questions           | 264542ms | status=OK
+2026-04-06 14:01:12 | [END]   clarifying_questions           | 264545ms | status=OK
+2026-04-06 14:01:12 | ════════════════════════════════════════════════════
+2026-04-06 14:01:12 | QUERY : "can you give me month wise Bounce count"
+2026-04-06 14:01:12 |   ├── intent_analysis             : 532954ms  ✓
+2026-04-06 14:01:12 |   └── clarifying_questions        : 264545ms  ✓
+2026-04-06 14:01:12 | ════════════════════════════════════════════════════
+2026-04-06 14:01:12 |   TOTAL                         : 797499ms
+2026-04-06 14:01:12 | ════════════════════════════════════════════════════
+2026-04-06 14:29:12 | [START] sql_generation                 | query="can you give me month wise Bounce count"
+2026-04-06 14:29:12 | [START] sql_generation | query="can you give me month wise Bounce count"
+2026-04-06 14:29:12 | [START] sql_generation
+2026-04-06 14:34:56 | [END]   sql_generation                 | 343952ms | status=OK
+2026-04-06 14:34:56 | [END]   sql_generation                 | 344022ms | status=OK
+2026-04-06 14:34:56 | [END]   sql_generation                 | 344024ms | status=OK
+2026-04-06 14:34:56 | [START] db_fetch                       | query="can you give me month wise Bounce count"
+2026-04-06 14:34:56 | [START] db_fetch
+2026-04-06 14:34:56 | [START] db_execute
+2026-04-06 14:34:56 | [END]   db_execute                     |    106ms | status=OK
+2026-04-06 14:34:56 | [END]   db_fetch                       |    108ms | status=OK
+2026-04-06 14:34:56 | [END]   db_fetch                       |    110ms | status=OK
+2026-04-06 14:34:57 | [START] chart_decision                 | query="can you give me month wise Bounce count"
+2026-04-06 14:34:57 | [START] chart_decision | query="can you give me month wise Bounce count"
+2026-04-06 14:34:57 | [START] chart_decision
+2026-04-06 14:35:44 | [END]   chart_decision                 |  47005ms | status=OK
+2026-04-06 14:35:44 | [END]   chart_decision                 |  47007ms | status=OK
+2026-04-06 14:35:44 | [END]   chart_decision                 |  47009ms | status=OK
+2026-04-06 14:35:44 | ════════════════════════════════════════════════════
+2026-04-06 14:35:44 | QUERY : "can you give me month wise Bounce count"
+2026-04-06 14:35:44 |   ├── sql_generation              : 344024ms  ✓
+2026-04-06 14:35:44 |   ├── db_fetch                    :    110ms  ✓
+2026-04-06 14:35:44 |   └── chart_decision              :  47009ms  ✓
+2026-04-06 14:35:44 | ════════════════════════════════════════════════════
+2026-04-06 14:35:44 |   TOTAL                         : 391143ms
+2026-04-06 14:35:44 | ════════════════════════════════════════════════════
+2026-04-06 14:35:44 | [START] filter_detection
+2026-04-06 14:35:44 | [END]   filter_detection               |      2ms | status=OK
+2026-04-06 14:35:44 | [START] chart_render
+2026-04-06 14:35:44 | [END]   chart_render                   |     75ms | status=OK
+2026-04-06 14:46:06 | [START] filter_detection
+2026-04-06 14:46:06 | [END]   filter_detection               |     12ms | status=OK
+2026-04-06 14:46:06 | [START] chart_render
+2026-04-06 14:46:06 | [END]   chart_render                   |     71ms | status=OK
+2026-04-06 14:47:13 | [START] filter_detection
+2026-04-06 14:47:13 | [END]   filter_detection               |     15ms | status=OK
+2026-04-06 14:47:13 | [START] chart_render
+2026-04-06 14:47:13 | [END]   chart_render                   |     96ms | status=OK
+2026-04-06 14:48:01 | [START] filter_detection
+2026-04-06 14:48:01 | [END]   filter_detection               |      1ms | status=OK
+2026-04-06 14:48:01 | [START] chart_render
+2026-04-06 14:48:01 | [END]   chart_render                   |     63ms | status=OK
+2026-04-06 14:48:01 | [START] intent_analysis                | query="can you give me branch and region wise Bounce count charts"
+2026-04-06 14:48:01 | [START] intent_analysis | query="can you give me branch and region wise Bounce count charts"
+2026-04-06 14:48:01 | [START] dictionary_coder_context | query="can you give me branch and region wise Bounce count charts"
+2026-04-06 14:48:01 | [END]   dictionary_coder_context       |     98ms | status=OK
+2026-04-06 14:48:01 | [START] intent_analysis
+2026-04-06 14:59:22 | [END]   intent_analysis                | 680488ms | status=OK
+2026-04-06 14:59:22 | [END]   intent_analysis                | 680591ms | status=OK
+2026-04-06 14:59:22 | [END]   intent_analysis                | 680594ms | status=OK
+2026-04-06 15:00:48 | [START] dictionary_initialise
+2026-04-06 15:01:17 | [END]   dictionary_initialise          |  29049ms | status=OK
+2026-04-06 15:01:17 | [START] db_initialise
+2026-04-06 15:01:17 | [END]   db_initialise                  |    468ms | status=OK
+2026-04-06 15:01:19 | [START] db_execute
+2026-04-06 15:01:19 | [END]   db_execute                     |      9ms | status=OK
+2026-04-06 15:03:50 | [START] intent_analysis                | query="Give me month wise, branch wise and region wise bounce count"
+2026-04-06 15:03:50 | [START] intent_analysis | query="Give me month wise, branch wise and region wise bounce count"
+2026-04-06 15:03:50 | [START] dictionary_coder_context | query="Give me month wise, branch wise and region wise bounce count"
+2026-04-06 15:03:50 | [END]   dictionary_coder_context       |    205ms | status=OK
+2026-04-06 15:03:50 | [START] intent_analysis
+2026-04-06 15:11:31 | [END]   intent_analysis                | 461320ms | status=OK
+2026-04-06 15:11:31 | [END]   intent_analysis                | 461528ms | status=OK
+2026-04-06 15:11:31 | [END]   intent_analysis                | 461532ms | status=OK
+2026-04-06 15:11:31 | [START] clarifying_questions           | query="Give me month wise, branch wise and region wise bounce count"
+2026-04-06 15:11:31 | [START] clarifying_questions | query="Give me month wise, branch wise and region wise bounce count"
+2026-04-06 15:11:31 | [START] clarifying_questions
+2026-04-06 16:14:38 | [START] dictionary_initialise
+2026-04-06 16:16:32 | [START] dictionary_initialise
+2026-04-06 16:17:10 | [END]   dictionary_initialise          |  37812ms | status=OK
+2026-04-06 16:17:10 | [START] db_initialise
+2026-04-06 16:17:10 | [END]   db_initialise                  |    318ms | status=OK
+2026-04-06 16:17:12 | [START] db_execute
+2026-04-06 16:17:12 | [END]   db_execute                     |     33ms | status=OK
+2026-04-06 16:17:35 | [START] intent_analysis                | query="Give me month wise, branch wise and region wise bounce count"
+2026-04-06 16:17:35 | [START] intent_analysis | query="Give me month wise, branch wise and region wise bounce count"
+2026-04-06 16:17:35 | [START] dictionary_coder_context | query="Give me month wise, branch wise and region wise bounce count"
+2026-04-06 16:17:35 | [END]   dictionary_coder_context       |    369ms | status=OK
+2026-04-06 16:17:35 | [START] intent_analysis
+2026-04-06 16:26:16 | [END]   intent_analysis                | 520540ms | status=OK
+2026-04-06 16:26:16 | [END]   intent_analysis                | 520913ms | status=OK
+2026-04-06 16:26:16 | [END]   intent_analysis                | 520917ms | status=OK
+2026-04-06 16:26:16 | [START] clarifying_questions           | query="Give me month wise, branch wise and region wise bounce count"
+2026-04-06 16:26:16 | [START] clarifying_questions | query="Give me month wise, branch wise and region wise bounce count"
+2026-04-06 16:26:16 | [START] clarifying_questions
+2026-04-06 16:30:14 | [END]   clarifying_questions           | 238398ms | status=OK
+2026-04-06 16:30:14 | [END]   clarifying_questions           | 238453ms | status=OK
+2026-04-06 16:30:14 | [END]   clarifying_questions           | 238457ms | status=OK
+2026-04-06 16:30:14 | ════════════════════════════════════════════════════
+2026-04-06 16:30:14 | QUERY : "Give me month wise, branch wise and region wise bounce counts"
+2026-04-06 16:30:14 |   ├── intent_analysis             : 520917ms  ✓
+2026-04-06 16:30:14 |   └── clarifying_questions        : 238457ms  ✓
+2026-04-06 16:30:14 | ════════════════════════════════════════════════════
+2026-04-06 16:30:14 |   TOTAL                         : 759374ms
+2026-04-06 16:30:14 | ════════════════════════════════════════════════════
+2026-04-06 17:24:28 | [START] sql_generation                 | query="Give me month wise, branch wise and region wise bounce count"
+2026-04-06 17:24:28 | [START] sql_generation | query="Give me month wise, branch wise and region wise bounce count"
+2026-04-06 17:24:28 | [START] sql_generation
+2026-04-06 17:30:12 | [END]   sql_generation                 | 343710ms | status=OK
+2026-04-06 17:30:12 | [END]   sql_generation                 | 343775ms | status=OK
+2026-04-06 17:30:12 | [END]   sql_generation                 | 343778ms | status=OK
+2026-04-06 17:30:12 | [START] db_fetch                       | query="Give me month wise, branch wise and region wise bounce count"
+2026-04-06 17:30:12 | [START] db_fetch
+2026-04-06 17:30:12 | [START] db_execute
+2026-04-06 17:30:13 | [END]   db_execute                     |    734ms | status=OK
+2026-04-06 17:30:13 | [END]   db_fetch                       |    737ms | status=OK
+2026-04-06 17:30:13 | [END]   db_fetch                       |    739ms | status=OK
+2026-04-06 17:30:13 | [START] chart_decision                 | query="Give me month wise, branch wise and region wise bounce count"
+2026-04-06 17:30:13 | [START] chart_decision | query="Give me month wise, branch wise and region wise bounce count"
+2026-04-06 17:30:13 | [START] chart_decision
+2026-04-06 17:31:13 | [END]   chart_decision                 |  60029ms | status=OK
+2026-04-06 17:31:13 | [END]   chart_decision                 |  60035ms | status=OK
+2026-04-06 17:31:13 | [END]   chart_decision                 |  60038ms | status=OK
+2026-04-06 17:31:13 | ════════════════════════════════════════════════════
+2026-04-06 17:31:13 | QUERY : "Give me month wise, branch wise and region wise bounce counts"
+2026-04-06 17:31:13 |   ├── sql_generation              : 343778ms  ✓
+2026-04-06 17:31:13 |   ├── db_fetch                    :    739ms  ✓
+2026-04-06 17:31:13 |   └── chart_decision              :  60038ms  ✓
+2026-04-06 17:31:13 | ════════════════════════════════════════════════════
+2026-04-06 17:31:13 |   TOTAL                         : 404555ms
+2026-04-06 17:31:13 | ════════════════════════════════════════════════════
+2026-04-06 17:31:13 | [START] filter_detection
+2026-04-06 17:31:14 | [END]   filter_detection               |     16ms | status=OK
+2026-04-06 17:31:14 | [START] chart_render
+2026-04-06 17:31:14 | [END]   chart_render                   |    666ms | status=OK
+2026-04-06 17:32:14 | [START] filter_detection
+2026-04-06 17:32:14 | [END]   filter_detection               |      5ms | status=OK
+2026-04-06 17:32:14 | [START] chart_render
+2026-04-06 17:32:14 | [END]   chart_render                   |    381ms | status=OK
+2026-04-06 17:32:15 | [START] filter_detection
+2026-04-06 17:32:15 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 17:32:15 | [START] chart_render
+2026-04-06 17:32:15 | [END]   chart_render                   |    389ms | status=OK
+2026-04-06 17:32:17 | [START] filter_detection
+2026-04-06 17:32:17 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 17:32:17 | [START] chart_render
+2026-04-06 17:32:17 | [END]   chart_render                   |    636ms | status=OK
+2026-04-06 17:32:40 | [START] filter_detection
+2026-04-06 17:32:40 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 17:32:40 | [START] chart_render
+2026-04-06 17:32:40 | [END]   chart_render                   |    634ms | status=OK
+2026-04-06 17:32:41 | [START] filter_detection
+2026-04-06 17:32:41 | [END]   filter_detection               |      6ms | status=OK
+2026-04-06 17:32:41 | [START] chart_render
+2026-04-06 17:32:41 | [END]   chart_render                   |    913ms | status=OK
+2026-04-06 17:32:43 | [START] filter_detection
+2026-04-06 17:32:43 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 17:32:43 | [START] chart_render
+2026-04-06 17:32:44 | [END]   chart_render                   |    551ms | status=OK
+2026-04-06 17:35:18 | [START] filter_detection
+2026-04-06 17:35:18 | [END]   filter_detection               |      5ms | status=OK
+2026-04-06 17:35:18 | [START] chart_render
+2026-04-06 17:35:19 | [END]   chart_render                   |    616ms | status=OK
+2026-04-06 17:35:19 | [START] filter_detection
+2026-04-06 17:35:19 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 17:35:20 | [START] chart_render
+2026-04-06 17:35:20 | [END]   chart_render                   |    752ms | status=OK
+2026-04-06 17:35:21 | [START] filter_detection
+2026-04-06 17:35:21 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 17:35:21 | [START] chart_render
+2026-04-06 17:35:21 | [END]   chart_render                   |    100ms | status=OK
+2026-04-06 17:36:10 | [START] filter_detection
+2026-04-06 17:36:10 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 17:36:10 | [START] chart_render
+2026-04-06 17:36:10 | [END]   chart_render                   |    116ms | status=OK
+2026-04-06 17:36:28 | [START] filter_detection
+2026-04-06 17:36:28 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 17:36:28 | [START] chart_render
+2026-04-06 17:36:28 | [END]   chart_render                   |    102ms | status=OK
+2026-04-06 17:36:29 | [START] filter_detection
+2026-04-06 17:36:29 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 17:36:29 | [START] chart_render
+2026-04-06 17:36:29 | [END]   chart_render                   |    158ms | status=OK
+2026-04-06 17:36:40 | [START] filter_detection
+2026-04-06 17:36:40 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 17:36:40 | [START] chart_render
+2026-04-06 17:36:41 | [END]   chart_render                   |    141ms | status=OK
+2026-04-06 17:36:42 | [START] filter_detection
+2026-04-06 17:36:42 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 17:36:42 | [START] chart_render
+2026-04-06 17:36:42 | [END]   chart_render                   |    205ms | status=OK
+2026-04-06 17:36:43 | [START] filter_detection
+2026-04-06 17:36:43 | [END]   filter_detection               |      5ms | status=OK
+2026-04-06 17:36:43 | [START] chart_render
+2026-04-06 17:36:43 | [END]   chart_render                   |    278ms | status=OK
+2026-04-06 17:36:55 | [START] filter_detection
+2026-04-06 17:36:55 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 17:36:55 | [START] chart_render
+2026-04-06 17:36:55 | [END]   chart_render                   |    311ms | status=OK
+2026-04-06 17:36:58 | [START] filter_detection
+2026-04-06 17:36:58 | [END]   filter_detection               |      6ms | status=OK
+2026-04-06 17:36:58 | [START] chart_render
+2026-04-06 17:36:58 | [END]   chart_render                   |    277ms | status=OK
+2026-04-06 17:36:59 | [START] filter_detection
+2026-04-06 17:36:59 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 17:36:59 | [START] chart_render
+2026-04-06 17:36:59 | [END]   chart_render                   |    249ms | status=OK
+2026-04-06 17:36:59 | [START] filter_detection
+2026-04-06 17:36:59 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 17:36:59 | [START] chart_render
+2026-04-06 17:37:00 | [END]   chart_render                   |    638ms | status=OK
+2026-04-06 17:37:28 | [START] filter_detection
+2026-04-06 17:37:28 | [END]   filter_detection               |      5ms | status=OK
+2026-04-06 17:37:28 | [START] chart_render
+2026-04-06 17:37:29 | [END]   chart_render                   |    612ms | status=OK
+2026-04-06 17:37:30 | [START] chart_render
+2026-04-06 17:37:30 | [END]   chart_render                   |    517ms | status=OK
+2026-04-06 17:37:47 | [START] filter_detection
+2026-04-06 17:37:47 | [END]   filter_detection               |      6ms | status=OK
+2026-04-06 17:37:47 | [START] chart_render
+2026-04-06 17:37:48 | [END]   chart_render                   |    884ms | status=OK
+2026-04-06 17:38:38 | [START] filter_detection
+2026-04-06 17:38:38 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 17:38:38 | [START] filter_apply
+2026-04-06 17:38:38 | [END]   filter_apply                   |      3ms | status=OK
+2026-04-06 17:38:38 | [START] chart_render
+2026-04-06 17:38:38 | [END]   chart_render                   |     81ms | status=OK
+2026-04-06 17:38:48 | [START] filter_detection
+2026-04-06 17:38:48 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 17:38:48 | [START] filter_apply
+2026-04-06 17:38:48 | [END]   filter_apply                   |      4ms | status=OK
+2026-04-06 17:38:48 | [START] chart_render
+2026-04-06 17:38:48 | [END]   chart_render                   |     78ms | status=OK
+2026-04-06 17:38:49 | [START] filter_detection
+2026-04-06 17:38:49 | [END]   filter_detection               |      5ms | status=OK
+2026-04-06 17:38:49 | [START] filter_apply
+2026-04-06 17:38:49 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 17:38:49 | [START] chart_render
+2026-04-06 17:38:49 | [END]   chart_render                   |     82ms | status=OK
+2026-04-06 17:38:49 | [START] filter_detection
+2026-04-06 17:38:49 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 17:38:49 | [START] filter_apply
+2026-04-06 17:38:49 | [END]   filter_apply                   |      1ms | status=OK
+2026-04-06 17:38:49 | [START] chart_render
+2026-04-06 17:38:49 | [END]   chart_render                   |     83ms | status=OK
+2026-04-06 17:38:54 | [START] filter_detection
+2026-04-06 17:38:54 | [END]   filter_detection               |      5ms | status=OK
+2026-04-06 17:38:54 | [START] filter_apply
+2026-04-06 17:38:54 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 17:38:54 | [START] chart_render
+2026-04-06 17:38:54 | [END]   chart_render                   |     95ms | status=OK
+2026-04-06 17:38:56 | [START] filter_detection
+2026-04-06 17:38:56 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 17:38:56 | [START] filter_apply
+2026-04-06 17:38:56 | [END]   filter_apply                   |      1ms | status=OK
+2026-04-06 17:38:56 | [START] chart_render
+2026-04-06 17:38:56 | [END]   chart_render                   |    100ms | status=OK
+2026-04-06 17:38:56 | [START] filter_detection
+2026-04-06 17:38:56 | [END]   filter_detection               |      5ms | status=OK
+2026-04-06 17:38:56 | [START] filter_apply
+2026-04-06 17:38:56 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 17:38:56 | [START] chart_render
+2026-04-06 17:38:56 | [END]   chart_render                   |     87ms | status=OK
+2026-04-06 17:39:01 | [START] filter_detection
+2026-04-06 17:39:01 | [END]   filter_detection               |      5ms | status=OK
+2026-04-06 17:39:01 | [START] filter_apply
+2026-04-06 17:39:01 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 17:39:01 | [START] chart_render
+2026-04-06 17:39:01 | [END]   chart_render                   |    102ms | status=OK
+2026-04-06 17:39:02 | [START] filter_detection
+2026-04-06 17:39:02 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 17:39:02 | [START] filter_apply
+2026-04-06 17:39:02 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 17:39:02 | [START] chart_render
+2026-04-06 17:39:02 | [END]   chart_render                   |     98ms | status=OK
+2026-04-06 17:39:03 | [START] filter_detection
+2026-04-06 17:39:03 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 17:39:03 | [START] filter_apply
+2026-04-06 17:39:03 | [END]   filter_apply                   |      1ms | status=OK
+2026-04-06 17:39:03 | [START] chart_render
+2026-04-06 17:39:03 | [END]   chart_render                   |     79ms | status=OK
+2026-04-06 17:39:11 | [START] filter_detection
+2026-04-06 17:39:11 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 17:39:11 | [START] filter_apply
+2026-04-06 17:39:11 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 17:39:11 | [START] chart_render
+2026-04-06 17:39:11 | [END]   chart_render                   |     79ms | status=OK
+2026-04-06 17:39:15 | [START] filter_detection
+2026-04-06 17:39:15 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 17:39:15 | [START] filter_apply
+2026-04-06 17:39:15 | [END]   filter_apply                   |      3ms | status=OK
+2026-04-06 17:39:15 | [START] chart_render
+2026-04-06 17:39:15 | [END]   chart_render                   |     87ms | status=OK
+2026-04-06 17:39:17 | [START] filter_detection
+2026-04-06 17:39:18 | [END]   filter_detection               |      5ms | status=OK
+2026-04-06 17:39:18 | [START] filter_apply
+2026-04-06 17:39:18 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 17:39:18 | [START] chart_render
+2026-04-06 17:39:18 | [END]   chart_render                   |    132ms | status=OK
+2026-04-06 17:39:18 | [START] filter_detection
+2026-04-06 17:39:18 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 17:39:18 | [START] filter_apply
+2026-04-06 17:39:18 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 17:39:18 | [START] chart_render
+2026-04-06 17:39:18 | [END]   chart_render                   |    144ms | status=OK
+2026-04-06 17:39:29 | [START] filter_detection
+2026-04-06 17:39:29 | [END]   filter_detection               |      2ms | status=OK
+2026-04-06 17:39:29 | [START] filter_apply
+2026-04-06 17:39:29 | [END]   filter_apply                   |      3ms | status=OK
+2026-04-06 17:39:29 | [START] chart_render
+2026-04-06 17:39:29 | [END]   chart_render                   |    152ms | status=OK
+2026-04-06 17:39:30 | [START] filter_detection
+2026-04-06 17:39:30 | [END]   filter_detection               |      5ms | status=OK
+2026-04-06 17:39:30 | [START] filter_apply
+2026-04-06 17:39:30 | [END]   filter_apply                   |      3ms | status=OK
+2026-04-06 17:39:30 | [START] chart_render
+2026-04-06 17:39:31 | [END]   chart_render                   |    132ms | status=OK
+2026-04-06 17:39:31 | [START] filter_detection
+2026-04-06 17:39:31 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 17:39:31 | [START] filter_apply
+2026-04-06 17:39:31 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 17:39:31 | [START] chart_render
+2026-04-06 17:39:31 | [END]   chart_render                   |    106ms | status=OK
+2026-04-06 17:39:38 | [START] filter_detection
+2026-04-06 17:39:38 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 17:39:38 | [START] filter_apply
+2026-04-06 17:39:38 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 17:39:38 | [START] chart_render
+2026-04-06 17:39:38 | [END]   chart_render                   |    115ms | status=OK
+2026-04-06 17:39:39 | [START] filter_detection
+2026-04-06 17:39:39 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 17:39:39 | [START] filter_apply
+2026-04-06 17:39:39 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 17:39:39 | [START] chart_render
+2026-04-06 17:39:39 | [END]   chart_render                   |    113ms | status=OK
+2026-04-06 17:39:39 | [START] filter_detection
+2026-04-06 17:39:39 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 17:39:39 | [START] filter_apply
+2026-04-06 17:39:39 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 17:39:39 | [START] chart_render
+2026-04-06 17:39:39 | [END]   chart_render                   |     74ms | status=OK
+2026-04-06 17:39:43 | [START] filter_detection
+2026-04-06 17:39:43 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 17:39:43 | [START] filter_apply
+2026-04-06 17:39:43 | [END]   filter_apply                   |      3ms | status=OK
+2026-04-06 17:39:43 | [START] chart_render
+2026-04-06 17:39:43 | [END]   chart_render                   |     92ms | status=OK
+2026-04-06 17:39:44 | [START] filter_detection
+2026-04-06 17:39:44 | [END]   filter_detection               |      5ms | status=OK
+2026-04-06 17:39:44 | [START] filter_apply
+2026-04-06 17:39:44 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 17:39:44 | [START] chart_render
+2026-04-06 17:39:44 | [END]   chart_render                   |     87ms | status=OK
+2026-04-06 17:39:45 | [START] filter_detection
+2026-04-06 17:39:45 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 17:39:45 | [START] filter_apply
+2026-04-06 17:39:45 | [END]   filter_apply                   |      1ms | status=OK
+2026-04-06 17:39:45 | [START] chart_render
+2026-04-06 17:39:45 | [END]   chart_render                   |    100ms | status=OK
+2026-04-06 17:39:48 | [START] filter_detection
+2026-04-06 17:39:48 | [END]   filter_detection               |      5ms | status=OK
+2026-04-06 17:39:48 | [START] filter_apply
+2026-04-06 17:39:48 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 17:39:48 | [START] chart_render
+2026-04-06 17:39:48 | [END]   chart_render                   |    143ms | status=OK
+2026-04-06 17:39:49 | [START] filter_detection
+2026-04-06 17:39:49 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 17:39:49 | [START] filter_apply
+2026-04-06 17:39:49 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 17:39:49 | [START] chart_render
+2026-04-06 17:39:49 | [END]   chart_render                   |    104ms | status=OK
+2026-04-06 17:39:49 | [START] filter_detection
+2026-04-06 17:39:49 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 17:39:49 | [START] filter_apply
+2026-04-06 17:39:49 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 17:39:49 | [START] chart_render
+2026-04-06 17:39:50 | [END]   chart_render                   |     73ms | status=OK
+2026-04-06 17:39:55 | [START] filter_detection
+2026-04-06 17:39:55 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 17:39:55 | [START] filter_apply
+2026-04-06 17:39:55 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 17:39:55 | [START] chart_render
+2026-04-06 17:39:55 | [END]   chart_render                   |    108ms | status=OK
+2026-04-06 17:39:56 | [START] filter_detection
+2026-04-06 17:39:56 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 17:39:56 | [START] filter_apply
+2026-04-06 17:39:56 | [END]   filter_apply                   |      1ms | status=OK
+2026-04-06 17:39:56 | [START] chart_render
+2026-04-06 17:39:56 | [END]   chart_render                   |     96ms | status=OK
+2026-04-06 17:39:57 | [START] filter_detection
+2026-04-06 17:39:57 | [END]   filter_detection               |      5ms | status=OK
+2026-04-06 17:39:57 | [START] filter_apply
+2026-04-06 17:39:57 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 17:39:57 | [START] chart_render
+2026-04-06 17:39:57 | [END]   chart_render                   |    105ms | status=OK
+2026-04-06 17:40:04 | [START] filter_detection
+2026-04-06 17:40:04 | [END]   filter_detection               |      5ms | status=OK
+2026-04-06 17:40:04 | [START] filter_apply
+2026-04-06 17:40:04 | [END]   filter_apply                   |      1ms | status=OK
+2026-04-06 17:40:04 | [START] chart_render
+2026-04-06 17:40:04 | [END]   chart_render                   |    124ms | status=OK
+2026-04-06 17:40:05 | [START] filter_detection
+2026-04-06 17:40:05 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 17:40:05 | [START] filter_apply
+2026-04-06 17:40:05 | [END]   filter_apply                   |      1ms | status=OK
+2026-04-06 17:40:05 | [START] chart_render
+2026-04-06 17:40:05 | [END]   chart_render                   |    115ms | status=OK
+2026-04-06 17:40:05 | [START] filter_detection
+2026-04-06 17:40:05 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 17:40:05 | [START] filter_apply
+2026-04-06 17:40:05 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 17:40:06 | [START] chart_render
+2026-04-06 17:40:06 | [END]   chart_render                   |    112ms | status=OK
+2026-04-06 17:40:12 | [START] filter_detection
+2026-04-06 17:40:12 | [END]   filter_detection               |      6ms | status=OK
+2026-04-06 17:40:12 | [START] filter_apply
+2026-04-06 17:40:12 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 17:40:12 | [START] chart_render
+2026-04-06 17:40:13 | [END]   chart_render                   |    152ms | status=OK
+2026-04-06 17:40:15 | [START] filter_detection
+2026-04-06 17:40:15 | [END]   filter_detection               |     48ms | status=OK
+2026-04-06 17:40:15 | [START] filter_apply
+2026-04-06 17:40:15 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 17:40:15 | [START] chart_render
+2026-04-06 17:40:15 | [END]   chart_render                   |     98ms | status=OK
+2026-04-06 17:40:22 | [START] filter_detection
+2026-04-06 17:40:22 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 17:40:22 | [START] filter_apply
+2026-04-06 17:40:22 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 17:40:22 | [START] chart_render
+2026-04-06 17:40:23 | [END]   chart_render                   |    206ms | status=OK
+2026-04-06 17:40:23 | [START] filter_detection
+2026-04-06 17:40:23 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 17:40:23 | [START] filter_apply
+2026-04-06 17:40:23 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 17:40:23 | [START] chart_render
+2026-04-06 17:40:23 | [END]   chart_render                   |    105ms | status=OK
+2026-04-06 17:40:31 | [START] filter_detection
+2026-04-06 17:40:31 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 17:40:31 | [START] filter_apply
+2026-04-06 17:40:31 | [END]   filter_apply                   |      1ms | status=OK
+2026-04-06 17:40:31 | [START] chart_render
+2026-04-06 17:40:31 | [END]   chart_render                   |    109ms | status=OK
+2026-04-06 17:56:24 | [START] filter_detection
+2026-04-06 17:56:24 | [END]   filter_detection               |    114ms | status=OK
+2026-04-06 17:56:24 | [START] filter_apply
+2026-04-06 17:56:25 | [END]   filter_apply                   |     21ms | status=OK
+2026-04-06 17:56:25 | [START] chart_render
+2026-04-06 17:56:25 | [END]   chart_render                   |    323ms | status=OK
+2026-04-06 17:59:14 | [START] filter_detection
+2026-04-06 17:59:14 | [END]   filter_detection               |     51ms | status=OK
+2026-04-06 17:59:14 | [START] filter_apply
+2026-04-06 17:59:14 | [END]   filter_apply                   |     20ms | status=OK
+2026-04-06 17:59:34 | [START] intent_analysis                | query="Give me branch wise and region wise bounce percentage and co"
+2026-04-06 17:59:34 | [START] intent_analysis | query="Give me branch wise and region wise bounce percentage and co"
+2026-04-06 17:59:34 | [START] dictionary_coder_context | query="Give me branch wise and region wise bounce percentage and co"
+2026-04-06 17:59:44 | [END]   dictionary_coder_context       |  10375ms | status=OK
+2026-04-06 17:59:44 | [START] intent_analysis
+2026-04-06 19:02:11 | [START] dictionary_initialise
+2026-04-06 19:02:41 | [END]   dictionary_initialise          |  29871ms | status=OK
+2026-04-06 19:02:41 | [START] db_initialise
+2026-04-06 19:02:41 | [END]   db_initialise                  |    395ms | status=OK
+2026-04-06 19:02:43 | [START] db_execute
+2026-04-06 19:02:44 | [END]   db_execute                     |     69ms | status=OK
+2026-04-06 19:03:56 | [START] intent_analysis                | query="Give me Region wise Bounce count and percentage"
+2026-04-06 19:03:56 | [START] intent_analysis | query="Give me Region wise Bounce count and percentage"
+2026-04-06 19:03:56 | [START] dictionary_coder_context | query="Give me Region wise Bounce count and percentage"
+2026-04-06 19:03:56 | [END]   dictionary_coder_context       |    133ms | status=OK
+2026-04-06 19:03:56 | [START] intent_analysis
+2026-04-06 19:14:55 | [END]   intent_analysis                | 658722ms | status=OK
+2026-04-06 19:14:55 | [END]   intent_analysis                | 658859ms | status=OK
+2026-04-06 19:14:55 | [END]   intent_analysis                | 658862ms | status=OK
+2026-04-06 19:14:55 | [START] clarifying_questions           | query="Give me Region wise Bounce count and percentage"
+2026-04-06 19:14:55 | [START] clarifying_questions | query="Give me Region wise Bounce count and percentage"
+2026-04-06 19:14:55 | [START] clarifying_questions
+2026-04-06 19:19:19 | [END]   clarifying_questions           | 263977ms | status=OK
+2026-04-06 19:19:19 | [END]   clarifying_questions           | 264025ms | status=OK
+2026-04-06 19:19:19 | [END]   clarifying_questions           | 264028ms | status=OK
+2026-04-06 19:19:19 | ════════════════════════════════════════════════════
+2026-04-06 19:19:19 | QUERY : "Give me Region wise Bounce count and percentage"
+2026-04-06 19:19:19 |   ├── intent_analysis             : 658862ms  ✓
+2026-04-06 19:19:19 |   └── clarifying_questions        : 264028ms  ✓
+2026-04-06 19:19:19 | ════════════════════════════════════════════════════
+2026-04-06 19:19:19 |   TOTAL                         : 922890ms
+2026-04-06 19:19:19 | ════════════════════════════════════════════════════
+2026-04-06 19:19:30 | [START] sql_generation                 | query="Give me Region wise Bounce count and percentage"
+2026-04-06 19:19:30 | [START] sql_generation | query="Give me Region wise Bounce count and percentage"
+2026-04-06 19:19:30 | [START] sql_generation
+2026-04-06 19:25:01 | [END]   sql_generation                 | 331427ms | status=OK
+2026-04-06 19:25:01 | [END]   sql_generation                 | 331478ms | status=OK
+2026-04-06 19:25:01 | [END]   sql_generation                 | 331481ms | status=OK
+2026-04-06 19:25:01 | [START] db_fetch                       | query="Give me Region wise Bounce count and percentage"
+2026-04-06 19:25:01 | [START] db_fetch
+2026-04-06 19:25:01 | [START] db_execute
+2026-04-06 19:25:02 | [END]   db_execute                     |    681ms | status=OK
+2026-04-06 19:25:02 | [END]   db_fetch                       |    685ms | status=OK
+2026-04-06 19:25:02 | [END]   db_fetch                       |    689ms | status=OK
+2026-04-06 19:25:02 | [START] chart_decision                 | query="Give me Region wise Bounce count and percentage"
+2026-04-06 19:25:02 | [START] chart_decision | query="Give me Region wise Bounce count and percentage"
+2026-04-06 19:25:02 | [START] chart_decision
+2026-04-06 19:25:56 | [END]   chart_decision                 |  54192ms | status=OK
+2026-04-06 19:25:56 | [END]   chart_decision                 |  54200ms | status=OK
+2026-04-06 19:25:56 | [END]   chart_decision                 |  54204ms | status=OK
+2026-04-06 19:25:56 | ════════════════════════════════════════════════════
+2026-04-06 19:25:56 | QUERY : "Give me Region wise Bounce count and percentage"
+2026-04-06 19:25:56 |   ├── sql_generation              : 331481ms  ✓
+2026-04-06 19:25:56 |   ├── db_fetch                    :    689ms  ✓
+2026-04-06 19:25:56 |   └── chart_decision              :  54204ms  ✓
+2026-04-06 19:25:56 | ════════════════════════════════════════════════════
+2026-04-06 19:25:56 |   TOTAL                         : 386374ms
+2026-04-06 19:25:56 | ════════════════════════════════════════════════════
+2026-04-06 19:25:57 | [START] filter_detection
+2026-04-06 19:25:57 | [END]   filter_detection               |     27ms | status=OK
+2026-04-06 19:25:57 | [START] chart_render
+2026-04-06 19:25:57 | [END]   chart_render                   |    383ms | status=OK
+2026-04-06 19:29:36 | [START] filter_detection
+2026-04-06 19:29:36 | [END]   filter_detection               |      2ms | status=OK
+2026-04-06 19:29:36 | [START] chart_render
+2026-04-06 19:29:36 | [END]   chart_render                   |    280ms | status=OK
+2026-04-06 19:29:37 | [START] filter_detection
+2026-04-06 19:29:37 | [END]   filter_detection               |      1ms | status=OK
+2026-04-06 19:29:37 | [START] chart_render
+2026-04-06 19:29:38 | [END]   chart_render                   |    290ms | status=OK
+2026-04-06 19:29:39 | [START] filter_detection
+2026-04-06 19:29:39 | [END]   filter_detection               |      2ms | status=OK
+2026-04-06 19:29:39 | [START] chart_render
+2026-04-06 19:29:39 | [END]   chart_render                   |    199ms | status=OK
+2026-04-06 19:30:52 | [START] filter_detection
+2026-04-06 19:30:52 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 19:30:52 | [START] chart_render
+2026-04-06 19:30:52 | [END]   chart_render                   |    173ms | status=OK
+2026-04-06 19:30:53 | [START] chart_render
+2026-04-06 19:30:53 | [END]   chart_render                   |    131ms | status=OK
+2026-04-06 19:31:05 | [START] filter_detection
+2026-04-06 19:31:05 | [END]   filter_detection               |      4ms | status=OK
+2026-04-06 19:31:05 | [START] chart_render
+2026-04-06 19:31:05 | [END]   chart_render                   |    351ms | status=OK
+2026-04-06 19:31:26 | [START] filter_detection
+2026-04-06 19:31:26 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 19:31:26 | [START] chart_render
+2026-04-06 19:31:27 | [END]   chart_render                   |    204ms | status=OK
+2026-04-06 19:31:28 | [START] filter_detection
+2026-04-06 19:31:28 | [END]   filter_detection               |      2ms | status=OK
+2026-04-06 19:31:28 | [START] chart_render
+2026-04-06 19:31:28 | [END]   chart_render                   |    167ms | status=OK
+2026-04-06 19:31:29 | [START] filter_detection
+2026-04-06 19:31:29 | [END]   filter_detection               |      1ms | status=OK
+2026-04-06 19:31:29 | [START] chart_render
+2026-04-06 19:31:29 | [END]   chart_render                   |    130ms | status=OK
+2026-04-06 19:31:50 | [START] filter_detection
+2026-04-06 19:31:50 | [END]   filter_detection               |      1ms | status=OK
+2026-04-06 19:31:50 | [START] chart_render
+2026-04-06 19:31:50 | [END]   chart_render                   |    117ms | status=OK
+2026-04-06 19:31:51 | [START] filter_detection
+2026-04-06 19:31:51 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 19:31:51 | [START] chart_render
+2026-04-06 19:31:51 | [END]   chart_render                   |    115ms | status=OK
+2026-04-06 19:31:52 | [START] filter_detection
+2026-04-06 19:31:52 | [END]   filter_detection               |      2ms | status=OK
+2026-04-06 19:31:52 | [START] chart_render
+2026-04-06 19:31:52 | [END]   chart_render                   |     74ms | status=OK
+2026-04-06 19:31:58 | [START] filter_detection
+2026-04-06 19:31:58 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 19:31:58 | [START] chart_render
+2026-04-06 19:31:58 | [END]   chart_render                   |    113ms | status=OK
+2026-04-06 19:31:59 | [START] filter_detection
+2026-04-06 19:31:59 | [END]   filter_detection               |      2ms | status=OK
+2026-04-06 19:31:59 | [START] chart_render
+2026-04-06 19:31:59 | [END]   chart_render                   |     81ms | status=OK
+2026-04-06 19:32:00 | [START] filter_detection
+2026-04-06 19:32:00 | [END]   filter_detection               |      2ms | status=OK
+2026-04-06 19:32:00 | [START] chart_render
+2026-04-06 19:32:00 | [END]   chart_render                   |    116ms | status=OK
+2026-04-06 19:32:06 | [START] filter_detection
+2026-04-06 19:32:06 | [END]   filter_detection               |      1ms | status=OK
+2026-04-06 19:32:06 | [START] chart_render
+2026-04-06 19:32:06 | [END]   chart_render                   |    127ms | status=OK
+2026-04-06 19:32:07 | [START] filter_detection
+2026-04-06 19:32:07 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 19:32:07 | [START] chart_render
+2026-04-06 19:32:07 | [END]   chart_render                   |    111ms | status=OK
+2026-04-06 19:32:08 | [START] filter_detection
+2026-04-06 19:32:08 | [END]   filter_detection               |      2ms | status=OK
+2026-04-06 19:32:08 | [START] chart_render
+2026-04-06 19:32:08 | [END]   chart_render                   |    206ms | status=OK
+2026-04-06 19:32:13 | [START] filter_detection
+2026-04-06 19:32:13 | [END]   filter_detection               |      2ms | status=OK
+2026-04-06 19:32:13 | [START] chart_render
+2026-04-06 19:32:13 | [END]   chart_render                   |    236ms | status=OK
+2026-04-06 19:32:16 | [START] filter_detection
+2026-04-06 19:32:16 | [END]   filter_detection               |      1ms | status=OK
+2026-04-06 19:32:16 | [START] chart_render
+2026-04-06 19:32:17 | [END]   chart_render                   |    224ms | status=OK
+2026-04-06 19:32:17 | [START] filter_detection
+2026-04-06 19:32:17 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 19:32:17 | [START] chart_render
+2026-04-06 19:32:18 | [END]   chart_render                   |    246ms | status=OK
+2026-04-06 19:33:24 | [START] filter_detection
+2026-04-06 19:33:24 | [END]   filter_detection               |      1ms | status=OK
+2026-04-06 19:33:24 | [START] chart_render
+2026-04-06 19:33:25 | [END]   chart_render                   |    267ms | status=OK
+2026-04-06 19:33:33 | [START] filter_detection
+2026-04-06 19:33:33 | [END]   filter_detection               |      1ms | status=OK
+2026-04-06 19:33:33 | [START] chart_render
+2026-04-06 19:33:34 | [END]   chart_render                   |    257ms | status=OK
+2026-04-06 19:33:34 | [START] filter_detection
+2026-04-06 19:33:34 | [END]   filter_detection               |      2ms | status=OK
+2026-04-06 19:33:34 | [START] chart_render
+2026-04-06 19:33:35 | [END]   chart_render                   |    182ms | status=OK
+2026-04-06 19:34:02 | [START] filter_detection
+2026-04-06 19:34:02 | [END]   filter_detection               |      1ms | status=OK
+2026-04-06 19:34:02 | [START] chart_render
+2026-04-06 19:34:02 | [END]   chart_render                   |    187ms | status=OK
+2026-04-06 19:34:04 | [START] filter_detection
+2026-04-06 19:34:04 | [END]   filter_detection               |      2ms | status=OK
+2026-04-06 19:34:04 | [START] chart_render
+2026-04-06 19:34:04 | [END]   chart_render                   |    167ms | status=OK
+2026-04-06 19:34:05 | [START] filter_detection
+2026-04-06 19:34:05 | [END]   filter_detection               |      1ms | status=OK
+2026-04-06 19:34:05 | [START] chart_render
+2026-04-06 19:34:05 | [END]   chart_render                   |    105ms | status=OK
+2026-04-06 19:34:24 | [START] filter_detection
+2026-04-06 19:34:24 | [END]   filter_detection               |      1ms | status=OK
+2026-04-06 19:34:24 | [START] chart_render
+2026-04-06 19:34:24 | [END]   chart_render                   |    108ms | status=OK
+2026-04-06 19:34:27 | [START] filter_detection
+2026-04-06 19:34:27 | [END]   filter_detection               |      2ms | status=OK
+2026-04-06 19:34:27 | [START] chart_render
+2026-04-06 19:34:27 | [END]   chart_render                   |    105ms | status=OK
+2026-04-06 19:34:27 | [START] filter_detection
+2026-04-06 19:34:27 | [END]   filter_detection               |      2ms | status=OK
+2026-04-06 19:34:27 | [START] chart_render
+2026-04-06 19:34:27 | [END]   chart_render                   |     91ms | status=OK
+2026-04-06 19:34:36 | [START] filter_detection
+2026-04-06 19:34:36 | [END]   filter_detection               |      1ms | status=OK
+2026-04-06 19:34:36 | [START] chart_render
+2026-04-06 19:34:36 | [END]   chart_render                   |     77ms | status=OK
+2026-04-06 19:34:37 | [START] filter_detection
+2026-04-06 19:34:37 | [END]   filter_detection               |      1ms | status=OK
+2026-04-06 19:34:37 | [START] chart_render
+2026-04-06 19:34:38 | [END]   chart_render                   |     74ms | status=OK
+2026-04-06 19:34:38 | [START] filter_detection
+2026-04-06 19:34:38 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 19:34:38 | [START] chart_render
+2026-04-06 19:34:38 | [END]   chart_render                   |    127ms | status=OK
+2026-04-06 19:34:56 | [START] filter_detection
+2026-04-06 19:34:56 | [END]   filter_detection               |      2ms | status=OK
+2026-04-06 19:34:56 | [START] chart_render
+2026-04-06 19:34:56 | [END]   chart_render                   |    117ms | status=OK
+2026-04-06 19:34:58 | [START] filter_detection
+2026-04-06 19:34:58 | [END]   filter_detection               |      1ms | status=OK
+2026-04-06 19:34:58 | [START] chart_render
+2026-04-06 19:34:59 | [END]   chart_render                   |    143ms | status=OK
+2026-04-06 19:34:59 | [START] filter_detection
+2026-04-06 19:34:59 | [END]   filter_detection               |      2ms | status=OK
+2026-04-06 19:34:59 | [START] chart_render
+2026-04-06 19:35:00 | [END]   chart_render                   |    239ms | status=OK
+2026-04-06 19:35:22 | [START] filter_detection
+2026-04-06 19:35:22 | [END]   filter_detection               |     12ms | status=OK
+2026-04-06 19:35:22 | [START] chart_render
+2026-04-06 19:35:23 | [END]   chart_render                   |    327ms | status=OK
+2026-04-06 19:35:31 | [START] filter_detection
+2026-04-06 19:35:31 | [END]   filter_detection               |      1ms | status=OK
+2026-04-06 19:35:31 | [START] chart_render
+2026-04-06 19:35:31 | [END]   chart_render                   |    208ms | status=OK
+2026-04-06 19:35:31 | [START] chart_render
+2026-04-06 19:35:31 | [END]   chart_render                   |    193ms | status=OK
+2026-04-06 19:35:55 | [START] filter_detection
+2026-04-06 19:35:55 | [END]   filter_detection               |      1ms | status=OK
+2026-04-06 19:35:55 | [START] filter_apply
+2026-04-06 19:35:55 | [END]   filter_apply                   |      4ms | status=OK
+2026-04-06 19:35:55 | [START] chart_render
+2026-04-06 19:35:55 | [END]   chart_render                   |     75ms | status=OK
+2026-04-06 19:36:06 | [START] filter_detection
+2026-04-06 19:36:06 | [END]   filter_detection               |      2ms | status=OK
+2026-04-06 19:36:06 | [START] filter_apply
+2026-04-06 19:36:06 | [END]   filter_apply                   |      2ms | status=OK
+2026-04-06 19:36:06 | [START] chart_render
+2026-04-06 19:36:06 | [END]   chart_render                   |     71ms | status=OK
+2026-04-06 19:36:07 | [START] filter_detection
+2026-04-06 19:36:07 | [END]   filter_detection               |      3ms | status=OK
+2026-04-06 19:36:07 | [START] filter_apply
+2026-04-06 19:36:07 | [END]   filter_apply                   |      3ms | status=OK
+2026-04-06 19:36:07 | [START] chart_render
+2026-04-06 19:36:08 | [END]   chart_render                   |     73ms | status=OK
+2026-04-06 19:36:08 | [START] filter_detection
+2026-04-06 19:36:08 | [END]   filter_detection               |      2ms | status=OK
+2026-04-06 19:36:08 | [START] filter_apply
+2026-04-06 19:36:08 | [END]   filter_apply                   |      1ms | status=OK
+2026-04-06 19:36:08 | [START] chart_render
+2026-04-06 19:36:08 | [END]   chart_render                   |    108ms | status=OK

@@ -1,37 +1,36 @@
 """
 app.py
 ------
-Streamlit entry point — run with: streamlit run app.py
+# * Streamlit entry point — run with: streamlit run app.py
 
-Two-phase pipeline:
-  Phase 1 (Analyse clicked)            → Intent + Clarifying questions → save to session
-  Phase 2 (Generate Dashboard clicked) → SQL + DB fetch + Chart → save to session
-  Phase done                           → Render dashboard from session state
+# ? Two-phase pipeline to handle Streamlit's rerun model:
+# ?   Phase 1 (Analyse clicked) → Intent + Clarifying questions → save to session
+# ?   Phase 2 (Generate Dashboard clicked) → SQL + DB + Chart → save to session
+# ?   Phase done → render dashboard from session state
 """
 
 import streamlit as st
 
 st.set_page_config(
-    page_title="Loan Collection Analytics",
-    page_icon="📊",
-    layout="wide",
-    initial_sidebar_state="expanded",
+    page_title            = "Loan Collection Analytics",
+    page_icon             = "📊",
+    layout                = "wide",
+    initial_sidebar_state = "expanded",
 )
 
 import traceback
 from config import (
-    APP_TITLE, CODER_MODEL, FAST_MODEL, PG_TABLE_NAME,
-    USE_MOCK_DATA, validate_config,
+    APP_TITLE, CODER_MODEL, FAST_MODEL,
+    USE_MOCK_DATA, validate_config, PG_TABLE_NAME,
 )
 from utils.logger    import get_logger
-from utils.helpers   import format_number, format_currency, format_percent, build_filter_summary
 from utils.benchmark import QueryBenchmark
 
 log = get_logger(__name__)
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# STARTUP — cached, runs once per app lifetime
+# * STARTUP — cached once per app lifetime
 # ──────────────────────────────────────────────────────────────────────────────
 
 @st.cache_resource(show_spinner="🚀 Starting up...")
@@ -42,7 +41,6 @@ def _startup() -> dict:
     from models.ollama_client import get_client as get_ollama
 
     apply_theme()
-
     status = {}
     status["config_warnings"] = validate_config()
 
@@ -61,7 +59,7 @@ def _startup() -> dict:
         "fast_available":  s["fast_available"],
     })
 
-    # Row count — after both status={} and db= are defined
+    # * Row count — runs once at startup, cached
     try:
         if not USE_MOCK_DATA and status.get("db_connected"):
             status["db_row_count"] = int(
@@ -77,7 +75,7 @@ def _startup() -> dict:
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# SIDEBAR
+# * SIDEBAR
 # ──────────────────────────────────────────────────────────────────────────────
 
 def _render_sidebar(session, status: dict):
@@ -87,9 +85,10 @@ def _render_sidebar(session, status: dict):
 
         st.markdown("### 🖥️ System Status")
 
+        # * Database
         if status.get("db_mock_mode"):
             st.success("🗄️ Database: **Mock Mode**")
-            st.caption(f"📋 {89255:,} rows (synthetic)")
+            st.caption("📋 89,255 rows (synthetic)")
         elif status.get("db_connected"):
             row_count = status.get("db_row_count", 0)
             st.success("🗄️ Database: Connected")
@@ -98,24 +97,31 @@ def _render_sidebar(session, status: dict):
             st.error("🗄️ Database: Not Connected")
             st.caption("Check Docker and .env PG_* values.")
 
+        # * Ollama
         if status.get("ollama_running"):
             st.success("🤖 Ollama: Running")
             c1, c2 = st.columns(2)
             c1.success("✅ Coder" if status.get("coder_available") else "❌ Coder")
             c2.success("✅ Fast"  if status.get("fast_available")  else "❌ Fast")
+            st.caption(f"Coder: `{CODER_MODEL}`")
+            st.caption(f"Fast:  `{FAST_MODEL}`")
         else:
             st.error("🤖 Ollama: Not running")
             st.caption("Run `ollama serve` in terminal.")
 
+        # * Context / ChromaDB
         if status.get("dictionary_ready"):
             st.success("📚 Context: Loaded")
         else:
             st.warning("📚 Context: Not ready")
 
+        # * Config warnings
         for w in status.get("config_warnings", []):
             st.warning(f"⚠️ {w}")
 
         st.divider()
+
+        # * Controls
         st.markdown("### ⚙️ Controls")
         c1, c2 = st.columns(2)
         with c1:
@@ -136,11 +142,11 @@ def _render_sidebar(session, status: dict):
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# PIPELINE STATE HELPERS
+# * PIPELINE STATE HELPERS
 # ──────────────────────────────────────────────────────────────────────────────
 
 def _reset_pipeline(session):
-    """Clear all pipeline phase state — called on New Query or example click."""
+    """# * Clear all pipeline state — called on New Query."""
     session.set("pipeline_phase",    None)
     session.set("pending_intent",    None)
     session.set("pending_clarifier", None)
@@ -153,20 +159,20 @@ def _get_phase(session) -> str:
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# PHASE 1 — Intent analysis + clarifying questions
+# * PHASE 1 — Intent + Clarifying questions
 # ──────────────────────────────────────────────────────────────────────────────
 
 def _run_phase1(question: str, session):
     """
-    Phase 1: Analyse the question and generate clarifying filter questions.
-    Saves results to session then reruns to show the filter widgets cleanly.
+    # * Run intent analysis and generate clarifying questions.
+    # * Saves results to session then reruns to show filter widgets.
     """
     from models.analyzer  import get_analyzer
     from models.clarifier import get_clarifier
 
     qb = QueryBenchmark(question)
 
-    # Step 1 — Intent analysis
+    # * Step 1 — Intent
     with st.status("🧠 Understanding your question...", expanded=True) as s:
         try:
             qb.start("intent_analysis")
@@ -195,17 +201,16 @@ def _run_phase1(question: str, session):
                 "confidence":        intent.confidence,
             })
             s.update(
-                label=f"✅ Metric: **{intent.metric}** (Confidence: {intent.confidence})",
-                state="complete"
+                label = f"✅ Metric: **{intent.metric}** (Confidence: {intent.confidence})",
+                state = "complete",
             )
-
         except Exception as e:
             qb.end("intent_analysis", error=str(e))
             st.error(f"Analysis error: {e}")
             log.error(traceback.format_exc())
             return
 
-    # Step 2 — Clarifying questions
+    # * Step 2 — Clarifying questions
     with st.status("❓ Generating filter options...", expanded=True) as s:
         try:
             qb.start("clarifying_questions")
@@ -225,47 +230,35 @@ def _run_phase1(question: str, session):
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# CLARIFYING UI — shown between phase 1 and phase 2
+# * CLARIFYING UI
 # ──────────────────────────────────────────────────────────────────────────────
 
 def _render_clarifying_ui(session) -> bool:
     """
-    Render the filter widgets and Generate Dashboard button.
-    
-    KEY FIX: Saves widget answers to session.set("pending_slicers") every render.
-    Phase 2 reads from pending_slicers — never calls collect_answers() again
-    (which would cause DuplicateWidgetID error).
-    
-    Returns True when Generate Dashboard is clicked.
+    # * Render filter widgets and return True when Generate is clicked.
+    # * Saves widget answers to session state on every rerun.
     """
     from models.clarifier import get_clarifier
 
-    clarifier_result = session.get("pending_clarifier")
     intent_dict      = session.get("pending_intent", {})
+    clarifier_result = session.get("pending_clarifier")
     metric           = intent_dict.get("metric", "your query")
 
-    st.markdown(f"### 🧠 Metric identified: **{metric}**")
+    st.markdown(f"### 🧠 Metric: **{metric}**")
     st.divider()
 
-    # Render clarifying question widgets and collect current answers
     if clarifier_result and clarifier_result.success and clarifier_result.questions:
         st.markdown("#### 🔍 Help me narrow this down:")
-        
-        # collect_answers() renders widgets and returns current values
         answers = get_clarifier().collect_answers(clarifier_result)
-        
-        # Save answers EVERY render — phase 2 reads from here
-        # This is critical: when Generate Dashboard is clicked, Streamlit
-        # reruns BEFORE phase 2 executes, so we must persist answers in session
+        # * Save answers on EVERY rerun so they're available in phase 2
         session.set("pending_slicers", answers)
-        
         st.divider()
 
     generate_clicked = st.button(
         "🚀 Generate Dashboard",
-        type="primary",
-        use_container_width=True,
-        key="gen_btn",
+        type                = "primary",
+        use_container_width = True,
+        key                 = "gen_btn",
     )
 
     if not generate_clicked:
@@ -275,14 +268,13 @@ def _render_clarifying_ui(session) -> bool:
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# PHASE 2 — SQL generation, DB fetch, chart decision
+# * PHASE 2 — SQL + DB fetch + Chart
 # ──────────────────────────────────────────────────────────────────────────────
 
 def _run_phase2(session) -> bool:
     """
-    Phase 2: Generate SQL, fetch data, decide chart type.
-    Reads intent and slicer answers from session state (set in phase 1).
-    Returns True on success.
+    # * Generate SQL, fetch data, decide chart.
+    # * Reads intent and slicer answers from session state.
     """
     from core.filters         import FilterManager, FilterSelection
     from database.client      import get_client as get_db
@@ -290,7 +282,6 @@ def _run_phase2(session) -> bool:
     from models.sql_generator import get_sql_generator
     from models.chart_decider import get_chart_decider
 
-    # Rebuild IntentResult from stored dict
     intent_dict = session.get("pending_intent", {})
     if not intent_dict:
         st.error("Intent data lost — please start a new query.")
@@ -298,16 +289,13 @@ def _run_phase2(session) -> bool:
 
     intent = IntentResult(**intent_dict)
 
-    # Read slicer answers saved by _render_clarifying_ui()
-    # DO NOT call collect_answers() here — that causes DuplicateWidgetID
+    # * Read saved slicer answers — DO NOT render widgets again
     slicer_answers = session.get("pending_slicers", {})
     session.set_slicers(slicer_answers)
 
-    log.info(f"[app] Phase 2 | metric={intent.metric} | slicers={slicer_answers}")
-
     qb = QueryBenchmark(intent.raw_question)
 
-    # Step 3 — SQL generation
+    # * Step 3 — SQL generation
     with st.status("⚙️ Generating SQL query...", expanded=True) as s:
         try:
             qb.start("sql_generation")
@@ -316,7 +304,7 @@ def _run_phase2(session) -> bool:
 
             if sql_result.failed:
                 s.update(label=f"❌ SQL failed: {sql_result.error}", state="error")
-                st.error(f"Could not generate SQL: {sql_result.error}")
+                st.error(f"SQL error: {sql_result.error}")
                 return False
 
             session.set_sql(sql_result.sql)
@@ -328,8 +316,8 @@ def _run_phase2(session) -> bool:
             log.error(traceback.format_exc())
             return False
 
-    # Step 4 — Fetch data
-    with st.status("🗄️ Fetching data...", expanded=True) as s:
+    # * Step 4 — Fetch data
+    with st.status("🗄️ Fetching data from database...", expanded=True) as s:
         try:
             qb.start("db_fetch")
             db_result = get_db().run_query(sql_result.sql)
@@ -347,8 +335,8 @@ def _run_phase2(session) -> bool:
 
             df = db_result.dataframe
             s.update(
-                label=f"✅ {db_result.row_count:,} rows | source: {db_result.source}",
-                state="complete"
+                label = f"✅ {db_result.row_count:,} rows | source: {db_result.source}",
+                state = "complete",
             )
 
         except Exception as e:
@@ -357,36 +345,31 @@ def _run_phase2(session) -> bool:
             log.error(traceback.format_exc())
             return False
 
-    # Step 5 — Apply post-fetch slicer filters to the DataFrame
-    # (These are IN-MEMORY filters on top of what the SQL already filtered)
-    active_sels = [
+    # * Step 5 — Apply post-fetch filters
+    fm   = FilterManager()
+    sels = [
         FilterSelection(field=k, value=v)
         for k, v in slicer_answers.items()
         if v and str(v).lower() not in ("all", "")
-        and not (isinstance(v, list) and len(v) == 0)
     ]
-    fm = FilterManager()
-    if active_sels:
-        fm.detect_filters(df)
-        df = fm.apply_filters(df, active_sels)
-
-    filter_summary = fm.get_summary(active_sels) if active_sels else build_filter_summary(
-        {k: v for k, v in slicer_answers.items()
-         if v and str(v).lower() not in ("all", "")}
-    )
+    df             = fm.apply_filters(df, sels)
+    filter_summary = fm.get_summary(sels)
     session.store_dataframe(df)
 
-    # Step 6 — Chart decision
-    with st.status("🎨 Choosing best chart...", expanded=True) as s:
+    # * Step 6 — Chart decision
+    with st.status("🎨 Choosing best chart type...", expanded=True) as s:
         try:
             qb.start("chart_decision")
             chart_cfg = get_chart_decider().decide(df, intent, filter_summary)
             qb.end("chart_decision")
-            cfg_dict = chart_cfg.to_dict()
+            cfg_dict  = chart_cfg.to_dict()
             session.set_chart_config(cfg_dict)
             s.update(
-                label=f"✅ {chart_cfg.chart_type} | x={chart_cfg.x_col} | y={chart_cfg.y_col}",
-                state="complete"
+                label = (
+                    f"✅ {chart_cfg.chart_type} | "
+                    f"x={chart_cfg.x_col} | y={chart_cfg.y_col}"
+                ),
+                state = "complete",
             )
         except Exception as e:
             qb.end("chart_decision", error=str(e))
@@ -394,7 +377,7 @@ def _run_phase2(session) -> bool:
             s.update(label="⚠️ Using default chart", state="complete")
             log.error(traceback.format_exc())
 
-    # Save everything for dashboard rendering
+    # * Save dashboard data
     session.set("dashboard_charts", [{
         "chart_config":   session.get_current_chart_config(),
         "filter_summary": filter_summary,
@@ -405,70 +388,21 @@ def _run_phase2(session) -> bool:
 
     qb.report()
     session.record_benchmark(qb)
-    session.add_chat_message("assistant", f"Here is your **{intent.metric}** dashboard.")
+    session.add_chat_message("assistant",
+                             f"Here is your **{intent.metric}** dashboard.")
     return True
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# KPI CARDS
-# ──────────────────────────────────────────────────────────────────────────────
-
-def _render_kpis(df):
-    import pandas as pd
-    if df is None or df.empty:
-        return
-
-    kpis       = []
-    cols_lower = {c.lower(): c for c in df.columns}
-
-    checks = [
-        ("bounce %",          "🔴 Bounce Rate",  "pct"),
-        ("resolution %",      "✅ Resolution",   "pct"),
-        ("coverage %",        "🏃 Coverage",     "pct"),
-        ("bounce count",      "🔴 Bounces",      "num"),
-        ("resolved count",    "✅ Resolved",     "num"),
-        ("customer count",    "👥 Customers",    "num"),
-        ("loan count",        "📋 Loans",        "num"),
-        ("balance principal", "💰 Portfolio",    "cur"),
-        ("total overdue",     "⚠️ Overdue",      "cur"),
-        ("npa count",         "🚨 NPA",          "num"),
-        ("avg visits",        "🏃 Intensity",    "num"),
-    ]
-
-    for pattern, label, fmt in checks:
-        for col_lower, col_actual in cols_lower.items():
-            if pattern in col_lower:
-                try:
-                    val = df[col_actual].iloc[0] if len(df) == 1 else df[col_actual].sum()
-                    if pd.isna(val):
-                        continue
-                    val     = float(val)
-                    display = (
-                        format_percent(val)  if fmt == "pct" else
-                        format_currency(val) if fmt == "cur" else
-                        format_number(val)
-                    )
-                    kpis.append((label, display))
-                    break
-                except Exception:
-                    continue
-        if len(kpis) >= 4:
-            break
-
-    if not kpis:
-        return
-
-    cols = st.columns(len(kpis))
-    for col, (label, value) in zip(cols, kpis):
-        col.metric(label=label, value=value)
-
-
-# ──────────────────────────────────────────────────────────────────────────────
-# DASHBOARD RENDER
+# * DASHBOARD RENDER
 # ──────────────────────────────────────────────────────────────────────────────
 
 def _render_dashboard(session):
-    from charts.renderer import render_chart
+    """# * Render the full dashboard — KPIs + slicer bar + tabs."""
+    from ui.kpis           import render_kpis
+    from ui.sidebar        import render_slicer_bar
+    from ui.dashboard_tabs import render_dashboard_tabs
+    from ui.chat           import render_chat_history
 
     df      = session.get_dataframe()
     charts  = session.get("dashboard_charts", [])
@@ -482,58 +416,38 @@ def _render_dashboard(session):
     filter_summary = data.get("filter_summary", "All Data")
     sql            = data.get("sql", "")
 
-    _render_kpis(df)
     st.markdown(f"### 📊 {metric}")
+
+    # * Post-result slicer bar at top
+    st.divider()
+    df, filter_summary = render_slicer_bar(df, max_slicers=4, key_prefix="dash")
+    st.divider()
+
+    # * KPI cards
+    render_kpis(df, max_kpis=4)
+
     if filter_summary and filter_summary != "All Data":
-        st.caption(f"Filters: {filter_summary}")
+        st.caption(f"Active filters: {filter_summary}")
 
-    tab_chart, tab_data, tab_sql = st.tabs(["📈 Chart", "📋 Data", "🔍 SQL"])
+    st.divider()
 
-    with tab_chart:
-        if not cfg_raw:
-            st.dataframe(df, use_container_width=True)
-            return
+    # * Chart + data + SQL + export tabs
+    render_dashboard_tabs(
+        df             = df,
+        chart_config   = cfg_raw or {},
+        metric         = metric,
+        filter_summary = filter_summary,
+        sql            = sql,
+    )
 
-        # Translate ChartConfig keys → what renderer.py expects
-        render_config = {
-            "chart_type":      cfg_raw.get("chart_type", "heatmap"),
-            "x_axis":          cfg_raw.get("x_col", ""),
-            "y_axis":          cfg_raw.get("y_col", ""),
-            "hue":             cfg_raw.get("hue_col"),
-            "color_palette":   cfg_raw.get("palette", "Set2"),
-            "title":           cfg_raw.get("title", metric),
-            "filters_applied": [filter_summary] if filter_summary != "All Data" else [],
-        }
+    st.divider()
 
-        try:
-            result = render_chart(df, render_config)
-            if result.success and result.figure:
-                st.pyplot(result.figure, use_container_width=True)
-            else:
-                st.warning(f"Chart issue: {result.error}")
-                st.dataframe(df, use_container_width=True)
-        except Exception as e:
-            log.error(f"[app] Render error: {e}\n{traceback.format_exc()}")
-            st.warning("Chart failed — showing raw data.")
-            st.dataframe(df, use_container_width=True)
-
-    with tab_data:
-        st.dataframe(df, use_container_width=True, height=400)
-        st.download_button(
-            "⬇️ Download CSV",
-            df.to_csv(index=False).encode("utf-8"),
-            file_name=f"{metric.replace(' ', '_').lower()}.csv",
-            mime="text/csv",
-        )
-
-    with tab_sql:
-        st.markdown("**Generated SQL:**")
-        st.code(sql, language="sql")
-        st.caption("Generated by Qwen Coder 14B from your question and filter selections.")
+    # * Query history at bottom
+    render_chat_history(session)
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# DEBUG TIMINGS
+# * DEBUG TIMINGS
 # ──────────────────────────────────────────────────────────────────────────────
 
 def _render_debug(session):
@@ -546,15 +460,15 @@ def _render_debug(session):
         steps = last.get("steps", {})
         total = last.get("total_ms", 0)
         if steps:
-            cols = st.columns(min(len(steps) + 1, 6))
-            for i, (step, ms) in enumerate(steps.items()):
-                if i < len(cols) - 1:
-                    cols[i].metric(step.replace("_", " ").title(), f"{ms}ms")
+            n    = min(len(steps) + 1, 6)
+            cols = st.columns(n)
+            for i, (step, ms) in enumerate(list(steps.items())[:n-1]):
+                cols[i].metric(step.replace("_", " ").title(), f"{ms}ms")
             cols[-1].metric("Total", f"{total}ms")
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# HOME SCREEN
+# * HOME SCREEN
 # ──────────────────────────────────────────────────────────────────────────────
 
 def _render_home():
@@ -591,7 +505,7 @@ def _render_home():
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# MAIN
+# * MAIN
 # ──────────────────────────────────────────────────────────────────────────────
 
 def main():
@@ -603,6 +517,7 @@ def main():
 
     _render_sidebar(session, status)
 
+    # * Header
     st.title("📊 Loan Collection Analytics")
     st.caption("Ask any question about your portfolio in plain English.")
 
@@ -612,7 +527,7 @@ def main():
     st.divider()
     st.markdown("### 💬 Ask a question")
 
-    # Example question buttons
+    # * Example questions
     with st.expander("💡 Example questions — click to load", expanded=False):
         examples = [
             "Show bounce rate by branch",
@@ -631,33 +546,34 @@ def main():
                 st.session_state["_q"] = ex
                 st.rerun()
 
-    # Question input
+    # * Question input
     question = st.text_input(
         "question",
-        placeholder="e.g. Show bounce rate by branch for Pune",
-        key="_q",
-        label_visibility="collapsed",
+        placeholder      = "e.g. Show bounce rate by branch for Rajasthan",
+        key              = "_q",
+        label_visibility = "collapsed",
     )
 
     ask_col, _ = st.columns([1, 5])
     ask_clicked = ask_col.button(
         "🔍 Analyse",
-        type="primary",
-        use_container_width=True,
-        disabled=not question.strip(),
+        type                = "primary",
+        use_container_width = True,
+        disabled            = not question.strip(),
     )
 
-    # ── Pipeline state machine ────────────────────────────────────────────────
+    # ── Pipeline state machine ─────────────────────────────────────────────
     phase = _get_phase(session)
 
     if ask_clicked and question.strip():
         _reset_pipeline(session)
         session.set_query(question.strip())
         session.add_chat_message("user", question.strip())
+
         st.divider()
         st.markdown("### ⚙️ Processing...")
         _run_phase1(question.strip(), session)
-        # _run_phase1 ends with st.rerun() — nothing below executes
+        # * _run_phase1 ends with st.rerun() so nothing below executes
 
     elif phase == "clarifying":
         st.divider()
@@ -672,9 +588,8 @@ def main():
                 session.set("pipeline_phase", "done")
                 st.rerun()
             else:
-                # Phase 2 failed — stay on clarifying screen so user can retry
+                # * Keep on clarifying so user can retry
                 session.set("pipeline_phase", "clarifying")
-                st.rerun()
 
     elif phase == "done":
         df     = session.get_dataframe()
@@ -685,11 +600,11 @@ def main():
             _render_dashboard(session)
             _render_debug(session)
         else:
-            st.error("Dashboard data missing. Please try again.")
+            st.error("Dashboard data missing. Please start a new query.")
             _reset_pipeline(session)
-            st.rerun()
 
     else:
+        # * No phase — show home screen
         _render_home()
 
 
