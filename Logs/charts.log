@@ -381,3 +381,162 @@
 2026-04-06 19:36:08 | INFO     | [renderer] Routing | chart_type=heatmap | rows=1 | cols=['Region', 'Bounce Count', 'Bounce %'] | title='Region Wise Bounce Count and Percentage'
 2026-04-06 19:36:08 | INFO     | [heatmap] Rendered | x=Region | y=Bounce Count | value=Bounce % | pivot=(1, 1) | rows=1
 2026-04-06 19:36:08 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-18 15:35:05 | INFO     | [renderer] Routing | chart_type=heatmap | rows=237 | cols=['Branch', 'Bounce Count', 'Total Customers'] | title='Bounce Count by Branch'
+2026-04-18 15:35:12 | INFO     | [heatmap] Rendered | x=Branch | y=Bounce Count | value=Total Customers | pivot=(136, 237) | rows=237
+2026-04-18 15:35:17 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-18 15:35:48 | INFO     | [renderer] Routing | chart_type=heatmap | rows=237 | cols=['Branch', 'Bounce Count', 'Total Customers'] | title='Bounce Count by Branch'
+2026-04-18 15:35:50 | INFO     | [renderer] Routing | chart_type=heatmap | rows=237 | cols=['Branch', 'Bounce Count', 'Total Customers'] | title='Bounce Count by Branch'
+2026-04-18 15:35:56 | INFO     | [heatmap] Rendered | x=Branch | y=Bounce Count | value=Total Customers | pivot=(136, 237) | rows=237
+2026-04-18 15:35:56 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-18 15:36:02 | INFO     | [heatmap] Rendered | x=Branch | y=Bounce Count | value=Total Customers | pivot=(136, 237) | rows=237
+2026-04-18 15:36:08 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-18 15:36:38 | INFO     | [renderer] Routing | chart_type=line | rows=237 | cols=['Branch', 'Bounce Count', 'Total Customers'] | title='Bounce Count by Branch'
+2026-04-18 15:36:39 | INFO     | [line] Rendered | x=Branch | y=Bounce Count | hue=None | rows=237
+2026-04-18 15:36:39 | INFO     | [renderer] OK | chart_type=line
+2026-04-18 15:37:01 | INFO     | [renderer] Routing | chart_type=line | rows=237 | cols=['Branch', 'Bounce Count', 'Total Customers'] | title='Bounce Count by Branch'
+2026-04-18 15:37:01 | INFO     | [line] Rendered | x=Branch | y=Bounce Count | hue=None | rows=237
+2026-04-18 15:37:02 | INFO     | [renderer] OK | chart_type=line
+2026-04-18 15:37:20 | INFO     | [renderer] Routing | chart_type=line | rows=237 | cols=['Branch', 'Bounce Count', 'Total Customers'] | title='Bounce Count by Branch'
+2026-04-18 15:37:21 | INFO     | [line] Rendered | x=Branch | y=Bounce Count | hue=None | rows=237
+2026-04-18 15:37:21 | INFO     | [renderer] OK | chart_type=line
+2026-04-18 15:37:22 | INFO     | [renderer] Routing | chart_type=scatter | rows=237 | cols=['Branch', 'Bounce Count', 'Total Customers'] | title='Bounce Count by Branch'
+2026-04-18 15:37:22 | INFO     | [scatter] Rendered | x=Bounce Count | y=Bounce Count | hue=None | sample=237/237
+2026-04-18 15:37:23 | INFO     | [renderer] OK | chart_type=scatter
+2026-04-18 15:37:51 | INFO     | [renderer] Routing | chart_type=scatter | rows=237 | cols=['Branch', 'Bounce Count', 'Total Customers'] | title='Bounce Count by Branch'
+2026-04-18 15:37:51 | INFO     | [scatter] Rendered | x=Bounce Count | y=Bounce Count | hue=None | sample=237/237
+2026-04-18 15:37:51 | INFO     | [renderer] OK | chart_type=scatter
+2026-04-18 15:59:56 | INFO     | [renderer] Routing | chart_type=bar | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branch by Bounce Count'
+2026-04-18 15:59:56 | WARNING  | [renderer] Unknown 'bar' — falling back to heatmap
+2026-04-18 15:59:56 | ERROR    | [renderer] FAILED | chart_type=bar | error=zero-size array to reduction operation fmin which has no identity
+2026-04-18 16:05:41 | INFO     | [renderer] Routing | chart_type=bar | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branch by Bounce Count'
+2026-04-18 16:05:41 | WARNING  | [renderer] Unknown 'bar' — falling back to heatmap
+2026-04-18 16:05:41 | ERROR    | [renderer] FAILED | chart_type=bar | error=zero-size array to reduction operation fmin which has no identity
+2026-04-18 16:05:44 | INFO     | [renderer] Routing | chart_type=bar | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branch by Bounce Count'
+2026-04-18 16:05:44 | WARNING  | [renderer] Unknown 'bar' — falling back to heatmap
+2026-04-18 16:05:44 | ERROR    | [renderer] FAILED | chart_type=bar | error=zero-size array to reduction operation fmin which has no identity
+2026-04-18 16:05:44 | INFO     | [renderer] Routing | chart_type=line | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branch by Bounce Count'
+2026-04-18 16:05:44 | INFO     | [line] Rendered | x=Branch | y=Bounce Count | hue=None | rows=10
+2026-04-18 16:05:44 | INFO     | [renderer] OK | chart_type=line
+2026-04-18 16:05:56 | INFO     | [renderer] Routing | chart_type=line | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branch by Bounce Count'
+2026-04-18 16:05:57 | INFO     | [line] Rendered | x=Branch | y=Bounce Count | hue=None | rows=10
+2026-04-18 16:05:57 | INFO     | [renderer] OK | chart_type=line
+2026-04-18 16:06:02 | INFO     | [renderer] Routing | chart_type=line | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branch by Bounce Count'
+2026-04-18 16:06:02 | INFO     | [line] Rendered | x=Branch | y=Bounce Count | hue=None | rows=10
+2026-04-18 16:06:02 | INFO     | [renderer] OK | chart_type=line
+2026-04-18 16:06:04 | INFO     | [renderer] Routing | chart_type=line | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branch by Bounce Count'
+2026-04-18 16:06:04 | INFO     | [line] Rendered | x=Branch | y=Bounce Count | hue=None | rows=10
+2026-04-18 16:06:04 | INFO     | [renderer] OK | chart_type=line
+2026-04-18 16:06:05 | INFO     | [renderer] Routing | chart_type=kde | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branch by Bounce Count'
+2026-04-18 16:06:06 | INFO     | [kde] Rendered | x=Bounce Count | hue=None | rows=10
+2026-04-18 16:06:06 | INFO     | [renderer] OK | chart_type=kde
+2026-04-18 16:06:12 | INFO     | [renderer] Routing | chart_type=kde | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branch by Bounce Count'
+2026-04-18 16:06:12 | INFO     | [kde] Rendered | x=Bounce Count | hue=None | rows=10
+2026-04-18 16:06:12 | INFO     | [renderer] OK | chart_type=kde
+2026-04-18 16:06:14 | INFO     | [renderer] Routing | chart_type=kde | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branch by Bounce Count'
+2026-04-18 16:06:14 | INFO     | [kde] Rendered | x=Bounce Count | hue=None | rows=10
+2026-04-18 16:06:14 | INFO     | [renderer] OK | chart_type=kde
+2026-04-18 16:06:15 | INFO     | [renderer] Routing | chart_type=boxplot | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branch by Bounce Count'
+2026-04-18 16:06:15 | INFO     | [boxplot] Rendered | x=Branch | y=Bounce Count | hue=None | categories=10 | rows=10
+2026-04-18 16:06:15 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-18 16:06:23 | INFO     | [renderer] Routing | chart_type=boxplot | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branch by Bounce Count'
+2026-04-18 16:06:23 | INFO     | [boxplot] Rendered | x=Branch | y=Bounce Count | hue=None | categories=10 | rows=10
+2026-04-18 16:06:23 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-18 16:06:24 | INFO     | [renderer] Routing | chart_type=boxplot | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branch by Bounce Count'
+2026-04-18 16:06:24 | INFO     | [boxplot] Rendered | x=Branch | y=Bounce Count | hue=None | categories=10 | rows=10
+2026-04-18 16:06:25 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-18 16:06:25 | INFO     | [renderer] Routing | chart_type=area | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branch by Bounce Count'
+2026-04-18 16:06:25 | INFO     | [area] Rendered | x=Branch | y=Bounce Count | hue=None | rows=10
+2026-04-18 16:06:25 | INFO     | [renderer] OK | chart_type=area
+2026-04-18 16:06:50 | INFO     | [renderer] Routing | chart_type=area | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branch by Bounce Count'
+2026-04-18 16:06:50 | INFO     | [area] Rendered | x=Branch | y=Bounce Count | hue=None | rows=10
+2026-04-18 16:06:50 | INFO     | [renderer] OK | chart_type=area
+2026-04-18 16:06:53 | INFO     | [renderer] Routing | chart_type=area | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branch by Bounce Count'
+2026-04-18 16:06:53 | INFO     | [area] Rendered | x=Branch | y=Bounce Count | hue=None | rows=10
+2026-04-18 16:06:53 | INFO     | [renderer] OK | chart_type=area
+2026-04-18 16:06:54 | INFO     | [renderer] Routing | chart_type=line | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branch by Bounce Count'
+2026-04-18 16:06:54 | INFO     | [line] Rendered | x=Branch | y=Bounce Count | hue=None | rows=10
+2026-04-18 16:06:54 | INFO     | [renderer] OK | chart_type=line
+2026-04-18 16:07:41 | INFO     | [renderer] Routing | chart_type=line | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branch by Bounce Count'
+2026-04-18 16:07:41 | INFO     | [line] Rendered | x=Branch | y=Bounce Count | hue=None | rows=10
+2026-04-18 16:07:41 | INFO     | [renderer] OK | chart_type=line
+2026-04-18 16:07:42 | INFO     | [renderer] Routing | chart_type=line | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branch by Bounce Count'
+2026-04-18 16:07:42 | INFO     | [line] Rendered | x=Branch | y=Bounce Count | hue=None | rows=10
+2026-04-18 16:07:42 | INFO     | [renderer] OK | chart_type=line
+2026-04-18 16:07:42 | INFO     | [renderer] Routing | chart_type=line | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branch by Bounce Count'
+2026-04-18 16:07:42 | INFO     | [line] Rendered | x=Branch | y=Bounce Count | hue=None | rows=10
+2026-04-18 16:07:42 | INFO     | [renderer] OK | chart_type=line
+2026-04-18 16:07:43 | INFO     | [renderer] Routing | chart_type=line | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branch by Bounce Count'
+2026-04-18 16:07:43 | INFO     | [line] Rendered | x=Branch | y=Bounce Count | hue=None | rows=10
+2026-04-18 16:07:43 | INFO     | [renderer] OK | chart_type=line
+2026-04-18 16:08:21 | INFO     | [renderer] Routing | chart_type=line | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branch by Bounce Count'
+2026-04-18 16:08:21 | INFO     | [line] Rendered | x=Branch | y=Bounce Count | hue=None | rows=10
+2026-04-18 16:08:21 | INFO     | [renderer] OK | chart_type=line
+2026-04-18 16:22:15 | INFO     | [renderer] Routing | chart_type=bar | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-18 16:22:15 | WARNING  | [renderer] Unknown 'bar' — falling back to heatmap
+2026-04-18 16:22:15 | ERROR    | [renderer] FAILED | chart_type=bar | error=zero-size array to reduction operation fmin which has no identity
+2026-04-18 16:23:48 | INFO     | [renderer] Routing | chart_type=bar | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-18 16:23:48 | WARNING  | [renderer] Unknown 'bar' — falling back to heatmap
+2026-04-18 16:23:48 | ERROR    | [renderer] FAILED | chart_type=bar | error=zero-size array to reduction operation fmin which has no identity
+2026-04-18 16:23:49 | INFO     | [renderer] Routing | chart_type=bar | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-18 16:23:49 | WARNING  | [renderer] Unknown 'bar' — falling back to heatmap
+2026-04-18 16:23:49 | ERROR    | [renderer] FAILED | chart_type=bar | error=zero-size array to reduction operation fmin which has no identity
+2026-04-18 16:23:50 | INFO     | [renderer] Routing | chart_type=area | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-18 16:23:50 | INFO     | [area] Rendered | x=Branch | y=Bounce Count | hue=None | rows=10
+2026-04-18 16:23:50 | INFO     | [renderer] OK | chart_type=area
+2026-04-18 16:25:52 | INFO     | [renderer] Routing | chart_type=area | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-18 16:25:52 | INFO     | [area] Rendered | x=Branch | y=Bounce Count | hue=None | rows=10
+2026-04-18 16:25:52 | INFO     | [renderer] OK | chart_type=area
+2026-04-18 17:02:01 | INFO     | [renderer] Routing | chart_type=heatmap | rows=5 | cols=['Region', 'Branch', 'Bounce Count'] | title='Top 5 Regions by Bounce Count'
+2026-04-18 17:02:01 | INFO     | [heatmap] Rendered | x=Region | y=Branch | value=Bounce Count | pivot=(5, 3) | rows=5
+2026-04-18 17:02:01 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-18 17:06:20 | INFO     | [renderer] Routing | chart_type=heatmap | rows=5 | cols=['Region', 'Branch', 'Bounce Count'] | title='Top 5 Regions by Bounce Count'
+2026-04-18 17:06:20 | INFO     | [heatmap] Rendered | x=Region | y=Branch | value=Bounce Count | pivot=(5, 3) | rows=5
+2026-04-18 17:06:20 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-18 17:06:21 | INFO     | [renderer] Routing | chart_type=heatmap | rows=5 | cols=['Region', 'Branch', 'Bounce Count'] | title='Top 5 Regions by Bounce Count'
+2026-04-18 17:06:21 | INFO     | [heatmap] Rendered | x=Region | y=Branch | value=Bounce Count | pivot=(5, 3) | rows=5
+2026-04-18 17:06:21 | INFO     | [renderer] OK | chart_type=heatmap
+2026-04-18 17:06:22 | INFO     | [renderer] Routing | chart_type=line | rows=5 | cols=['Region', 'Branch', 'Bounce Count'] | title='Top 5 Regions by Bounce Count'
+2026-04-18 17:06:22 | INFO     | [line] Rendered | x=Region | y=Branch | hue=Bounce Count | rows=5
+2026-04-18 17:06:22 | INFO     | [renderer] OK | chart_type=line
+2026-04-18 17:06:37 | INFO     | [renderer] Routing | chart_type=line | rows=5 | cols=['Region', 'Branch', 'Bounce Count'] | title='Top 5 Regions by Bounce Count'
+2026-04-18 17:06:37 | INFO     | [line] Rendered | x=Region | y=Branch | hue=Bounce Count | rows=5
+2026-04-18 17:06:37 | INFO     | [renderer] OK | chart_type=line
+2026-04-18 17:06:38 | INFO     | [renderer] Routing | chart_type=line | rows=5 | cols=['Region', 'Branch', 'Bounce Count'] | title='Top 5 Regions by Bounce Count'
+2026-04-18 17:06:38 | INFO     | [line] Rendered | x=Region | y=Branch | hue=Bounce Count | rows=5
+2026-04-18 17:06:38 | INFO     | [renderer] OK | chart_type=line
+2026-04-18 17:06:39 | INFO     | [renderer] Routing | chart_type=area | rows=5 | cols=['Region', 'Branch', 'Bounce Count'] | title='Top 5 Regions by Bounce Count'
+2026-04-18 17:06:39 | INFO     | [area] Rendered | x=Region | y=Branch | hue=Bounce Count | rows=5
+2026-04-18 17:06:39 | INFO     | [renderer] OK | chart_type=area
+2026-04-18 17:06:44 | INFO     | [renderer] Routing | chart_type=area | rows=5 | cols=['Region', 'Branch', 'Bounce Count'] | title='Top 5 Regions by Bounce Count'
+2026-04-18 17:06:44 | INFO     | [area] Rendered | x=Region | y=Branch | hue=Bounce Count | rows=5
+2026-04-18 17:06:44 | INFO     | [renderer] OK | chart_type=area
+2026-04-18 17:06:45 | INFO     | [renderer] Routing | chart_type=area | rows=5 | cols=['Region', 'Branch', 'Bounce Count'] | title='Top 5 Regions by Bounce Count'
+2026-04-18 17:06:45 | INFO     | [area] Rendered | x=Region | y=Branch | hue=Bounce Count | rows=5
+2026-04-18 17:06:45 | INFO     | [renderer] OK | chart_type=area
+2026-04-18 17:06:46 | INFO     | [renderer] Routing | chart_type=scatter | rows=5 | cols=['Region', 'Branch', 'Bounce Count'] | title='Top 5 Regions by Bounce Count'
+2026-04-18 17:06:46 | INFO     | [scatter] Rendered | x=Bounce Count | y=Bounce Count | hue=Bounce Count | sample=5/5
+2026-04-18 17:06:46 | INFO     | [renderer] OK | chart_type=scatter
+2026-04-18 17:06:51 | INFO     | [renderer] Routing | chart_type=scatter | rows=5 | cols=['Region', 'Branch', 'Bounce Count'] | title='Top 5 Regions by Bounce Count'
+2026-04-18 17:06:51 | INFO     | [scatter] Rendered | x=Bounce Count | y=Bounce Count | hue=Bounce Count | sample=5/5
+2026-04-18 17:06:51 | INFO     | [renderer] OK | chart_type=scatter
+2026-04-18 17:06:52 | INFO     | [renderer] Routing | chart_type=scatter | rows=5 | cols=['Region', 'Branch', 'Bounce Count'] | title='Top 5 Regions by Bounce Count'
+2026-04-18 17:06:52 | INFO     | [scatter] Rendered | x=Bounce Count | y=Bounce Count | hue=Bounce Count | sample=5/5
+2026-04-18 17:06:52 | INFO     | [renderer] OK | chart_type=scatter
+2026-04-18 17:06:52 | INFO     | [renderer] Routing | chart_type=boxplot | rows=5 | cols=['Region', 'Branch', 'Bounce Count'] | title='Top 5 Regions by Bounce Count'
+2026-04-18 17:06:52 | INFO     | [boxplot] Rendered | x=Region | y=Bounce Count | hue=Bounce Count | categories=3 | rows=5
+2026-04-18 17:06:52 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-18 17:06:57 | INFO     | [renderer] Routing | chart_type=boxplot | rows=5 | cols=['Region', 'Branch', 'Bounce Count'] | title='Top 5 Regions by Bounce Count'
+2026-04-18 17:06:57 | INFO     | [boxplot] Rendered | x=Region | y=Bounce Count | hue=Bounce Count | categories=3 | rows=5
+2026-04-18 17:06:57 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-18 17:06:58 | INFO     | [renderer] Routing | chart_type=boxplot | rows=5 | cols=['Region', 'Branch', 'Bounce Count'] | title='Top 5 Regions by Bounce Count'
+2026-04-18 17:06:58 | INFO     | [boxplot] Rendered | x=Region | y=Bounce Count | hue=Bounce Count | categories=3 | rows=5
+2026-04-18 17:06:58 | INFO     | [renderer] OK | chart_type=boxplot
+2026-04-18 17:06:59 | INFO     | [renderer] Routing | chart_type=line | rows=5 | cols=['Region', 'Branch', 'Bounce Count'] | title='Top 5 Regions by Bounce Count'
+2026-04-18 17:06:59 | INFO     | [line] Rendered | x=Region | y=Branch | hue=Bounce Count | rows=5
+2026-04-18 17:06:59 | INFO     | [renderer] OK | chart_type=line
+2026-04-18 17:07:48 | INFO     | [renderer] Routing | chart_type=line | rows=5 | cols=['Region', 'Branch', 'Bounce Count'] | title='Top 5 Regions by Bounce Count'
+2026-04-18 17:07:48 | INFO     | [line] Rendered | x=Region | y=Branch | hue=Bounce Count | rows=5
+2026-04-18 17:07:48 | INFO     | [renderer] OK | chart_type=line
+2026-04-18 17:30:01 | INFO     | [renderer] Routing | chart_type=area | rows=1 | cols=['Customer Count'] | title='Customer Count by Branch, Month and Region'
+2026-04-18 17:30:01 | INFO     | [area] Rendered | x=Customer Count | y=Customer Count | hue=None | rows=1
+2026-04-18 17:30:01 | INFO     | [renderer] OK | chart_type=area

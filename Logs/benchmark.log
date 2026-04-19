@@ -1306,3 +1306,515 @@
 2026-04-06 19:36:08 | [END]   filter_apply                   |      1ms | status=OK
 2026-04-06 19:36:08 | [START] chart_render
 2026-04-06 19:36:08 | [END]   chart_render                   |    108ms | status=OK
+2026-04-14 14:17:06 | [START] dictionary_initialise
+2026-04-14 14:17:34 | [END]   dictionary_initialise          |  28269ms | status=OK
+2026-04-14 14:17:34 | [START] db_initialise
+2026-04-14 14:17:35 | [END]   db_initialise                  |    654ms | status=OK
+2026-04-14 14:17:38 | [START] db_execute
+2026-04-14 14:17:38 | [END]   db_execute                     |    482ms | status=OK
+2026-04-14 14:21:48 | [START] dictionary_initialise
+2026-04-14 14:21:57 | [END]   dictionary_initialise          |   8521ms | status=OK
+2026-04-14 14:21:57 | [START] db_initialise
+2026-04-14 14:21:57 | [END]   db_initialise                  |    197ms | status=OK
+2026-04-14 14:22:00 | [START] db_execute
+2026-04-14 14:22:00 | [END]   db_execute                     |    288ms | status=OK
+2026-04-18 15:08:02 | [START] dictionary_initialise
+2026-04-18 15:08:26 | [END]   dictionary_initialise          |  24138ms | status=OK
+2026-04-18 15:08:26 | [START] db_initialise
+2026-04-18 15:08:27 | [END]   db_initialise                  |    719ms | status=OK
+2026-04-18 15:08:30 | [START] db_execute
+2026-04-18 15:08:31 | [END]   db_execute                     |    594ms | status=OK
+2026-04-18 15:11:33 | [START] dictionary_initialise
+2026-04-18 15:11:41 | [END]   dictionary_initialise          |   8380ms | status=OK
+2026-04-18 15:11:41 | [START] db_initialise
+2026-04-18 15:11:41 | [END]   db_initialise                  |    175ms | status=OK
+2026-04-18 15:11:43 | [START] db_execute
+2026-04-18 15:11:44 | [END]   db_execute                     |    248ms | status=OK
+2026-04-18 15:13:10 | [START] intent_analysis                | query="Show me how many Bounce count of LANs by branch"
+2026-04-18 15:13:10 | [START] intent_analysis | query="Show me how many Bounce count of LANs by branch"
+2026-04-18 15:13:10 | [START] dictionary_coder_context | query="Show me how many Bounce count of LANs by branch"
+2026-04-18 15:13:10 | [END]   dictionary_coder_context       |    383ms | status=OK
+2026-04-18 15:13:10 | [START] intent_analysis
+2026-04-18 15:23:07 | [END]   intent_analysis                | 596808ms | status=OK
+2026-04-18 15:23:07 | [END]   intent_analysis                | 597195ms | status=OK
+2026-04-18 15:23:07 | [END]   intent_analysis                | 597197ms | status=OK
+2026-04-18 15:23:07 | [START] clarifying_questions           | query="Show me how many Bounce count of LANs by branch"
+2026-04-18 15:23:07 | [START] clarifying_questions | query="Show me how many Bounce count of LANs by branch"
+2026-04-18 15:23:07 | [START] clarifying_questions
+2026-04-18 15:27:41 | [END]   clarifying_questions           | 274040ms | status=OK
+2026-04-18 15:27:41 | [END]   clarifying_questions           | 274087ms | status=OK
+2026-04-18 15:27:41 | [END]   clarifying_questions           | 274090ms | status=OK
+2026-04-18 15:27:41 | ════════════════════════════════════════════════════
+2026-04-18 15:27:41 | QUERY : "Show me how many Bounce count of LANs by branch"
+2026-04-18 15:27:41 |   ├── intent_analysis             : 597197ms  ✓
+2026-04-18 15:27:41 |   └── clarifying_questions        : 274090ms  ✓
+2026-04-18 15:27:41 | ════════════════════════════════════════════════════
+2026-04-18 15:27:41 |   TOTAL                         : 871287ms
+2026-04-18 15:27:41 | ════════════════════════════════════════════════════
+2026-04-18 15:29:04 | [START] sql_generation                 | query="Show me how many Bounce count of LANs by branch"
+2026-04-18 15:29:04 | [START] sql_generation | query="Show me how many Bounce count of LANs by branch"
+2026-04-18 15:29:04 | [START] sql_generation
+2026-04-18 15:34:05 | [END]   sql_generation                 | 301144ms | status=OK
+2026-04-18 15:34:05 | [END]   sql_generation                 | 301190ms | status=OK
+2026-04-18 15:34:05 | [END]   sql_generation                 | 301194ms | status=OK
+2026-04-18 15:34:05 | [START] db_fetch                       | query="Show me how many Bounce count of LANs by branch"
+2026-04-18 15:34:05 | [START] db_fetch
+2026-04-18 15:34:05 | [START] db_execute
+2026-04-18 15:34:06 | [END]   db_execute                     |   1569ms | status=OK
+2026-04-18 15:34:06 | [END]   db_fetch                       |   1601ms | status=OK
+2026-04-18 15:34:06 | [END]   db_fetch                       |   1608ms | status=OK
+2026-04-18 15:34:07 | [START] chart_decision                 | query="Show me how many Bounce count of LANs by branch"
+2026-04-18 15:34:07 | [START] chart_decision | query="Show me how many Bounce count of LANs by branch"
+2026-04-18 15:34:07 | [START] chart_decision
+2026-04-18 15:35:05 | [END]   chart_decision                 |  57744ms | status=OK
+2026-04-18 15:35:05 | [END]   chart_decision                 |  57751ms | status=OK
+2026-04-18 15:35:05 | [END]   chart_decision                 |  57756ms | status=OK
+2026-04-18 15:35:05 | ════════════════════════════════════════════════════
+2026-04-18 15:35:05 | QUERY : "Show me how many Bounce count of LANs by branch"
+2026-04-18 15:35:05 |   ├── sql_generation              : 301194ms  ✓
+2026-04-18 15:35:05 |   ├── db_fetch                    :   1608ms  ✓
+2026-04-18 15:35:05 |   └── chart_decision              :  57756ms  ✓
+2026-04-18 15:35:05 | ════════════════════════════════════════════════════
+2026-04-18 15:35:05 |   TOTAL                         : 360558ms
+2026-04-18 15:35:05 | ════════════════════════════════════════════════════
+2026-04-18 15:35:05 | [START] filter_detection
+2026-04-18 15:35:05 | [END]   filter_detection               |     18ms | status=OK
+2026-04-18 15:35:05 | [START] chart_render
+2026-04-18 15:35:17 | [END]   chart_render                   |  12065ms | status=OK
+2026-04-18 15:35:48 | [START] filter_detection
+2026-04-18 15:35:48 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 15:35:48 | [START] chart_render
+2026-04-18 15:35:50 | [START] filter_detection
+2026-04-18 15:35:50 | [END]   filter_detection               |     33ms | status=OK
+2026-04-18 15:35:50 | [START] chart_render
+2026-04-18 15:35:56 | [END]   chart_render                   |   7576ms | status=OK
+2026-04-18 15:36:08 | [END]   chart_render                   |  17803ms | status=OK
+2026-04-18 15:36:38 | [START] filter_detection
+2026-04-18 15:36:38 | [END]   filter_detection               |      3ms | status=OK
+2026-04-18 15:36:38 | [START] chart_render
+2026-04-18 15:36:39 | [END]   chart_render                   |    528ms | status=OK
+2026-04-18 15:37:01 | [START] filter_detection
+2026-04-18 15:37:01 | [END]   filter_detection               |      3ms | status=OK
+2026-04-18 15:37:01 | [START] chart_render
+2026-04-18 15:37:02 | [END]   chart_render                   |    555ms | status=OK
+2026-04-18 15:37:20 | [START] filter_detection
+2026-04-18 15:37:20 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 15:37:20 | [START] chart_render
+2026-04-18 15:37:21 | [END]   chart_render                   |    510ms | status=OK
+2026-04-18 15:37:22 | [START] filter_detection
+2026-04-18 15:37:22 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 15:37:22 | [START] chart_render
+2026-04-18 15:37:23 | [END]   chart_render                   |    109ms | status=OK
+2026-04-18 15:37:51 | [START] filter_detection
+2026-04-18 15:37:51 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 15:37:51 | [START] chart_render
+2026-04-18 15:37:51 | [END]   chart_render                   |    105ms | status=OK
+2026-04-18 15:38:04 | [START] intent_analysis                | query="Give me top 10 branch by Bounce count"
+2026-04-18 15:38:04 | [START] intent_analysis | query="Give me top 10 branch by Bounce count"
+2026-04-18 15:38:04 | [START] dictionary_coder_context | query="Give me top 10 branch by Bounce count"
+2026-04-18 15:38:04 | [END]   dictionary_coder_context       |     95ms | status=OK
+2026-04-18 15:38:04 | [START] intent_analysis
+2026-04-18 15:48:58 | [END]   intent_analysis                | 654248ms | status=OK
+2026-04-18 15:48:58 | [END]   intent_analysis                | 654347ms | status=OK
+2026-04-18 15:48:58 | [END]   intent_analysis                | 654349ms | status=OK
+2026-04-18 15:48:58 | [START] clarifying_questions           | query="Give me top 10 branch by Bounce count"
+2026-04-18 15:48:58 | [START] clarifying_questions | query="Give me top 10 branch by Bounce count"
+2026-04-18 15:48:59 | [START] clarifying_questions
+2026-04-18 15:53:20 | [END]   clarifying_questions           | 261450ms | status=OK
+2026-04-18 15:53:20 | [END]   clarifying_questions           | 261495ms | status=OK
+2026-04-18 15:53:20 | [END]   clarifying_questions           | 261498ms | status=OK
+2026-04-18 15:53:20 | ════════════════════════════════════════════════════
+2026-04-18 15:53:20 | QUERY : "Give me top 10 branch by Bounce count"
+2026-04-18 15:53:20 |   ├── intent_analysis             : 654349ms  ✓
+2026-04-18 15:53:20 |   └── clarifying_questions        : 261498ms  ✓
+2026-04-18 15:53:20 | ════════════════════════════════════════════════════
+2026-04-18 15:53:20 |   TOTAL                         : 915847ms
+2026-04-18 15:53:20 | ════════════════════════════════════════════════════
+2026-04-18 15:54:02 | [START] sql_generation                 | query="Give me top 10 branch by Bounce count"
+2026-04-18 15:54:02 | [START] sql_generation | query="Give me top 10 branch by Bounce count"
+2026-04-18 15:54:02 | [START] sql_generation
+2026-04-18 15:59:13 | [END]   sql_generation                 | 310484ms | status=OK
+2026-04-18 15:59:13 | [END]   sql_generation                 | 310539ms | status=OK
+2026-04-18 15:59:13 | [END]   sql_generation                 | 310543ms | status=OK
+2026-04-18 15:59:13 | [START] db_fetch                       | query="Give me top 10 branch by Bounce count"
+2026-04-18 15:59:13 | [START] db_fetch
+2026-04-18 15:59:13 | [START] db_execute
+2026-04-18 15:59:13 | [END]   db_execute                     |    635ms | status=OK
+2026-04-18 15:59:13 | [END]   db_fetch                       |    637ms | status=OK
+2026-04-18 15:59:13 | [END]   db_fetch                       |    640ms | status=OK
+2026-04-18 15:59:14 | [START] chart_decision                 | query="Give me top 10 branch by Bounce count"
+2026-04-18 15:59:14 | [START] chart_decision | query="Give me top 10 branch by Bounce count"
+2026-04-18 15:59:14 | [START] chart_decision
+2026-04-18 15:59:56 | [END]   chart_decision                 |  42035ms | status=OK
+2026-04-18 15:59:56 | [END]   chart_decision                 |  42038ms | status=OK
+2026-04-18 15:59:56 | [END]   chart_decision                 |  42040ms | status=OK
+2026-04-18 15:59:56 | ════════════════════════════════════════════════════
+2026-04-18 15:59:56 | QUERY : "Give me top 10 branch by Bounce count"
+2026-04-18 15:59:56 |   ├── sql_generation              : 310543ms  ✓
+2026-04-18 15:59:56 |   ├── db_fetch                    :    640ms  ✓
+2026-04-18 15:59:56 |   └── chart_decision              :  42040ms  ✓
+2026-04-18 15:59:56 | ════════════════════════════════════════════════════
+2026-04-18 15:59:56 |   TOTAL                         : 353223ms
+2026-04-18 15:59:56 | ════════════════════════════════════════════════════
+2026-04-18 15:59:56 | [START] filter_detection
+2026-04-18 15:59:56 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 15:59:56 | [START] chart_render
+2026-04-18 15:59:56 | [END]   chart_render                   |    128ms | status=OK
+2026-04-18 16:05:41 | [START] filter_detection
+2026-04-18 16:05:41 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 16:05:41 | [START] chart_render
+2026-04-18 16:05:42 | [END]   chart_render                   |     91ms | status=OK
+2026-04-18 16:05:44 | [START] filter_detection
+2026-04-18 16:05:44 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 16:05:44 | [START] chart_render
+2026-04-18 16:05:44 | [END]   chart_render                   |     70ms | status=OK
+2026-04-18 16:05:44 | [START] filter_detection
+2026-04-18 16:05:44 | [END]   filter_detection               |      1ms | status=OK
+2026-04-18 16:05:44 | [START] chart_render
+2026-04-18 16:05:44 | [END]   chart_render                   |    112ms | status=OK
+2026-04-18 16:05:56 | [START] filter_detection
+2026-04-18 16:05:56 | [END]   filter_detection               |      5ms | status=OK
+2026-04-18 16:05:56 | [START] chart_render
+2026-04-18 16:05:57 | [END]   chart_render                   |    451ms | status=OK
+2026-04-18 16:06:02 | [START] filter_detection
+2026-04-18 16:06:02 | [END]   filter_detection               |      4ms | status=OK
+2026-04-18 16:06:02 | [START] chart_render
+2026-04-18 16:06:02 | [END]   chart_render                   |    267ms | status=OK
+2026-04-18 16:06:04 | [START] filter_detection
+2026-04-18 16:06:04 | [END]   filter_detection               |      9ms | status=OK
+2026-04-18 16:06:04 | [START] chart_render
+2026-04-18 16:06:04 | [END]   chart_render                   |    297ms | status=OK
+2026-04-18 16:06:05 | [START] filter_detection
+2026-04-18 16:06:05 | [END]   filter_detection               |      1ms | status=OK
+2026-04-18 16:06:05 | [START] chart_render
+2026-04-18 16:06:06 | [END]   chart_render                   |     98ms | status=OK
+2026-04-18 16:06:12 | [START] filter_detection
+2026-04-18 16:06:12 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 16:06:12 | [START] chart_render
+2026-04-18 16:06:12 | [END]   chart_render                   |    104ms | status=OK
+2026-04-18 16:06:14 | [START] filter_detection
+2026-04-18 16:06:14 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 16:06:14 | [START] chart_render
+2026-04-18 16:06:14 | [END]   chart_render                   |     91ms | status=OK
+2026-04-18 16:06:15 | [START] filter_detection
+2026-04-18 16:06:15 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 16:06:15 | [START] chart_render
+2026-04-18 16:06:15 | [END]   chart_render                   |    261ms | status=OK
+2026-04-18 16:06:23 | [START] filter_detection
+2026-04-18 16:06:23 | [END]   filter_detection               |      1ms | status=OK
+2026-04-18 16:06:23 | [START] chart_render
+2026-04-18 16:06:23 | [END]   chart_render                   |    283ms | status=OK
+2026-04-18 16:06:24 | [START] filter_detection
+2026-04-18 16:06:24 | [END]   filter_detection               |      1ms | status=OK
+2026-04-18 16:06:24 | [START] chart_render
+2026-04-18 16:06:25 | [END]   chart_render                   |    294ms | status=OK
+2026-04-18 16:06:25 | [START] filter_detection
+2026-04-18 16:06:25 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 16:06:25 | [START] chart_render
+2026-04-18 16:06:25 | [END]   chart_render                   |     74ms | status=OK
+2026-04-18 16:06:50 | [START] filter_detection
+2026-04-18 16:06:50 | [END]   filter_detection               |      1ms | status=OK
+2026-04-18 16:06:50 | [START] chart_render
+2026-04-18 16:06:50 | [END]   chart_render                   |     77ms | status=OK
+2026-04-18 16:06:53 | [START] filter_detection
+2026-04-18 16:06:53 | [END]   filter_detection               |      3ms | status=OK
+2026-04-18 16:06:53 | [START] chart_render
+2026-04-18 16:06:53 | [END]   chart_render                   |     84ms | status=OK
+2026-04-18 16:06:54 | [START] filter_detection
+2026-04-18 16:06:54 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 16:06:54 | [START] chart_render
+2026-04-18 16:06:54 | [END]   chart_render                   |     91ms | status=OK
+2026-04-18 16:07:41 | [START] filter_detection
+2026-04-18 16:07:41 | [END]   filter_detection               |      1ms | status=OK
+2026-04-18 16:07:41 | [START] chart_render
+2026-04-18 16:07:41 | [END]   chart_render                   |     90ms | status=OK
+2026-04-18 16:07:42 | [START] chart_render
+2026-04-18 16:07:42 | [END]   chart_render                   |     86ms | status=OK
+2026-04-18 16:07:42 | [START] filter_detection
+2026-04-18 16:07:42 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 16:07:42 | [START] chart_render
+2026-04-18 16:07:42 | [END]   chart_render                   |     96ms | status=OK
+2026-04-18 16:07:43 | [START] chart_render
+2026-04-18 16:07:43 | [END]   chart_render                   |     94ms | status=OK
+2026-04-18 16:08:21 | [START] filter_detection
+2026-04-18 16:08:21 | [END]   filter_detection               |      1ms | status=OK
+2026-04-18 16:08:21 | [START] chart_render
+2026-04-18 16:08:21 | [END]   chart_render                   |    100ms | status=OK
+2026-04-18 16:10:07 | [START] dictionary_initialise
+2026-04-18 16:10:40 | [END]   dictionary_initialise          |  32531ms | status=OK
+2026-04-18 16:10:40 | [START] db_initialise
+2026-04-18 16:10:40 | [END]   db_initialise                  |    587ms | status=OK
+2026-04-18 16:10:42 | [START] db_execute
+2026-04-18 16:10:43 | [END]   db_execute                     |    256ms | status=OK
+2026-04-18 16:11:22 | [START] intent_analysis                | query="Give top 10 Branches by Bounce count"
+2026-04-18 16:11:22 | [START] intent_analysis | query="Give top 10 Branches by Bounce count"
+2026-04-18 16:11:22 | [START] dictionary_coder_context | query="Give top 10 Branches by Bounce count"
+2026-04-18 16:11:22 | [END]   dictionary_coder_context       |    180ms | status=OK
+2026-04-18 16:11:22 | [START] intent_analysis
+2026-04-18 16:16:11 | [END]   intent_analysis                | 289145ms | status=OK
+2026-04-18 16:16:11 | [END]   intent_analysis                | 289329ms | status=OK
+2026-04-18 16:16:11 | [END]   intent_analysis                | 289332ms | status=OK
+2026-04-18 16:16:11 | [START] clarifying_questions           | query="Give top 10 Branches by Bounce count"
+2026-04-18 16:16:11 | [START] clarifying_questions | query="Give top 10 Branches by Bounce count"
+2026-04-18 16:16:11 | [START] clarifying_questions
+2026-04-18 16:18:18 | [END]   clarifying_questions           | 126599ms | status=OK
+2026-04-18 16:18:18 | [END]   clarifying_questions           | 126657ms | status=OK
+2026-04-18 16:18:18 | [END]   clarifying_questions           | 126674ms | status=OK
+2026-04-18 16:18:18 | ════════════════════════════════════════════════════
+2026-04-18 16:18:18 | QUERY : "Give top 10 Branches by Bounce count"
+2026-04-18 16:18:18 |   ├── intent_analysis             : 289332ms  ✓
+2026-04-18 16:18:18 |   └── clarifying_questions        : 126674ms  ✓
+2026-04-18 16:18:18 | ════════════════════════════════════════════════════
+2026-04-18 16:18:18 |   TOTAL                         : 416006ms
+2026-04-18 16:18:18 | ════════════════════════════════════════════════════
+2026-04-18 16:18:53 | [START] sql_generation                 | query="Give top 10 Branches by Bounce count"
+2026-04-18 16:18:53 | [START] sql_generation | query="Give top 10 Branches by Bounce count"
+2026-04-18 16:18:53 | [START] sql_generation
+2026-04-18 16:21:31 | [END]   sql_generation                 | 157637ms | status=OK
+2026-04-18 16:21:31 | [END]   sql_generation                 | 157724ms | status=OK
+2026-04-18 16:21:31 | [END]   sql_generation                 | 157728ms | status=OK
+2026-04-18 16:21:31 | [START] db_fetch                       | query="Give top 10 Branches by Bounce count"
+2026-04-18 16:21:31 | [START] db_fetch
+2026-04-18 16:21:31 | [START] db_execute
+2026-04-18 16:21:31 | [END]   db_execute                     |    670ms | status=OK
+2026-04-18 16:21:31 | [END]   db_fetch                       |    672ms | status=OK
+2026-04-18 16:21:31 | [END]   db_fetch                       |    676ms | status=OK
+2026-04-18 16:21:32 | [START] chart_decision                 | query="Give top 10 Branches by Bounce count"
+2026-04-18 16:21:32 | [START] chart_decision | query="Give top 10 Branches by Bounce count"
+2026-04-18 16:21:32 | [START] chart_decision
+2026-04-18 16:22:15 | [END]   chart_decision                 |  43169ms | status=OK
+2026-04-18 16:22:15 | [END]   chart_decision                 |  43174ms | status=OK
+2026-04-18 16:22:15 | [END]   chart_decision                 |  43177ms | status=OK
+2026-04-18 16:22:15 | ════════════════════════════════════════════════════
+2026-04-18 16:22:15 | QUERY : "Give top 10 Branches by Bounce count"
+2026-04-18 16:22:15 |   ├── sql_generation              : 157728ms  ✓
+2026-04-18 16:22:15 |   ├── db_fetch                    :    676ms  ✓
+2026-04-18 16:22:15 |   └── chart_decision              :  43177ms  ✓
+2026-04-18 16:22:15 | ════════════════════════════════════════════════════
+2026-04-18 16:22:15 |   TOTAL                         : 201581ms
+2026-04-18 16:22:15 | ════════════════════════════════════════════════════
+2026-04-18 16:22:15 | [START] filter_detection
+2026-04-18 16:22:15 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 16:22:15 | [START] chart_render
+2026-04-18 16:22:15 | [END]   chart_render                   |    131ms | status=OK
+2026-04-18 16:23:48 | [START] filter_detection
+2026-04-18 16:23:48 | [END]   filter_detection               |      3ms | status=OK
+2026-04-18 16:23:48 | [START] chart_render
+2026-04-18 16:23:48 | [END]   chart_render                   |     70ms | status=OK
+2026-04-18 16:23:49 | [START] filter_detection
+2026-04-18 16:23:49 | [END]   filter_detection               |      1ms | status=OK
+2026-04-18 16:23:49 | [START] chart_render
+2026-04-18 16:23:50 | [END]   chart_render                   |     99ms | status=OK
+2026-04-18 16:23:50 | [START] filter_detection
+2026-04-18 16:23:50 | [END]   filter_detection               |      1ms | status=OK
+2026-04-18 16:23:50 | [START] chart_render
+2026-04-18 16:23:50 | [END]   chart_render                   |     82ms | status=OK
+2026-04-18 16:25:52 | [START] filter_detection
+2026-04-18 16:25:52 | [END]   filter_detection               |      3ms | status=OK
+2026-04-18 16:25:52 | [START] chart_render
+2026-04-18 16:25:52 | [END]   chart_render                   |     78ms | status=OK
+2026-04-18 16:25:52 | [START] intent_analysis                | query="Give top 5 regions by Bounce count and give me top 10 branch"
+2026-04-18 16:25:52 | [START] intent_analysis | query="Give top 5 regions by Bounce count and give me top 10 branch"
+2026-04-18 16:25:52 | [START] dictionary_coder_context | query="Give top 5 regions by Bounce count and give me top 10 branch"
+2026-04-18 16:25:52 | [END]   dictionary_coder_context       |    112ms | status=OK
+2026-04-18 16:25:52 | [START] intent_analysis
+2026-04-18 16:30:42 | [END]   intent_analysis                | 289687ms | status=OK
+2026-04-18 16:30:42 | [END]   intent_analysis                | 289802ms | status=OK
+2026-04-18 16:30:42 | [END]   intent_analysis                | 289804ms | status=OK
+2026-04-18 16:30:42 | [START] clarifying_questions           | query="Give top 5 regions by Bounce count and give me top 10 branch"
+2026-04-18 16:30:42 | [START] clarifying_questions | query="Give top 5 regions by Bounce count and give me top 10 branch"
+2026-04-18 16:30:42 | [START] clarifying_questions
+2026-04-18 16:32:51 | [END]   clarifying_questions           | 129220ms | status=OK
+2026-04-18 16:32:51 | [END]   clarifying_questions           | 129312ms | status=OK
+2026-04-18 16:32:51 | [END]   clarifying_questions           | 129317ms | status=OK
+2026-04-18 16:32:51 | ════════════════════════════════════════════════════
+2026-04-18 16:32:51 | QUERY : "Give top 5 regions by Bounce count and give me top 10 branches in that r"
+2026-04-18 16:32:51 |   ├── intent_analysis             : 289804ms  ✓
+2026-04-18 16:32:51 |   └── clarifying_questions        : 129317ms  ✓
+2026-04-18 16:32:51 | ════════════════════════════════════════════════════
+2026-04-18 16:32:51 |   TOTAL                         : 419121ms
+2026-04-18 16:32:51 | ════════════════════════════════════════════════════
+2026-04-18 16:33:53 | [START] sql_generation                 | query="Give top 5 regions by Bounce count and give me top 10 branch"
+2026-04-18 16:33:53 | [START] sql_generation | query="Give top 5 regions by Bounce count and give me top 10 branch"
+2026-04-18 16:33:53 | [START] sql_generation
+2026-04-18 16:36:32 | [END]   sql_generation                 | 158447ms | status=OK
+2026-04-18 16:36:32 | [END]   sql_generation                 | 158507ms | status=OK
+2026-04-18 16:36:32 | [END]   sql_generation                 | 158510ms | status=OK
+2026-04-18 16:36:32 | [START] db_fetch                       | query="Give top 5 regions by Bounce count and give me top 10 branch"
+2026-04-18 16:36:32 | [START] db_fetch
+2026-04-18 16:36:32 | [START] db_execute
+2026-04-18 16:36:32 | [END]   db_execute                     |      9ms | status=ERROR: RuntimeError: Database query failed: (psycopg2.errors.SyntaxError) LIMIT #,# syntax is not sup
+2026-04-18 16:36:32 | [END]   db_fetch                       |     12ms | status=OK
+2026-04-18 16:36:32 | [END]   db_fetch                       |     14ms | status=OK
+2026-04-18 16:39:05 | [START] dictionary_initialise
+2026-04-18 16:39:13 | [END]   dictionary_initialise          |   8250ms | status=OK
+2026-04-18 16:39:13 | [START] db_initialise
+2026-04-18 16:39:14 | [END]   db_initialise                  |    232ms | status=OK
+2026-04-18 16:39:16 | [START] db_execute
+2026-04-18 16:39:16 | [END]   db_execute                     |    304ms | status=OK
+2026-04-18 16:41:42 | [START] intent_analysis                | query="Give top 5 regions by bounce count also include all the bran"
+2026-04-18 16:41:42 | [START] intent_analysis | query="Give top 5 regions by bounce count also include all the bran"
+2026-04-18 16:41:42 | [START] dictionary_coder_context | query="Give top 5 regions by bounce count also include all the bran"
+2026-04-18 16:41:42 | [END]   dictionary_coder_context       |    175ms | status=OK
+2026-04-18 16:41:42 | [START] intent_analysis
+2026-04-18 16:51:15 | [END]   intent_analysis                | 572811ms | status=OK
+2026-04-18 16:51:15 | [END]   intent_analysis                | 572989ms | status=OK
+2026-04-18 16:51:15 | [END]   intent_analysis                | 572992ms | status=OK
+2026-04-18 16:51:15 | [START] clarifying_questions           | query="Give top 5 regions by bounce count also include all the bran"
+2026-04-18 16:51:15 | [START] clarifying_questions | query="Give top 5 regions by bounce count also include all the bran"
+2026-04-18 16:51:15 | [START] clarifying_questions
+2026-04-18 16:55:24 | [END]   clarifying_questions           | 249045ms | status=OK
+2026-04-18 16:55:24 | [END]   clarifying_questions           | 249103ms | status=OK
+2026-04-18 16:55:24 | [END]   clarifying_questions           | 249106ms | status=OK
+2026-04-18 16:55:24 | ════════════════════════════════════════════════════
+2026-04-18 16:55:24 | QUERY : "Give top 5 regions by bounce count also include all the branches in that"
+2026-04-18 16:55:24 |   ├── intent_analysis             : 572992ms  ✓
+2026-04-18 16:55:24 |   └── clarifying_questions        : 249106ms  ✓
+2026-04-18 16:55:24 | ════════════════════════════════════════════════════
+2026-04-18 16:55:24 |   TOTAL                         : 822098ms
+2026-04-18 16:55:24 | ════════════════════════════════════════════════════
+2026-04-18 16:55:39 | [START] sql_generation                 | query="Give top 5 regions by bounce count also include all the bran"
+2026-04-18 16:55:39 | [START] sql_generation | query="Give top 5 regions by bounce count also include all the bran"
+2026-04-18 16:55:39 | [START] sql_generation
+2026-04-18 17:01:04 | [END]   sql_generation                 | 325103ms | status=OK
+2026-04-18 17:01:04 | [END]   sql_generation                 | 325212ms | status=OK
+2026-04-18 17:01:04 | [END]   sql_generation                 | 325219ms | status=OK
+2026-04-18 17:01:04 | [START] db_fetch                       | query="Give top 5 regions by bounce count also include all the bran"
+2026-04-18 17:01:04 | [START] db_fetch
+2026-04-18 17:01:04 | [START] db_execute
+2026-04-18 17:01:05 | [END]   db_execute                     |    978ms | status=OK
+2026-04-18 17:01:05 | [END]   db_fetch                       |    980ms | status=OK
+2026-04-18 17:01:05 | [END]   db_fetch                       |    982ms | status=OK
+2026-04-18 17:01:05 | [START] chart_decision                 | query="Give top 5 regions by bounce count also include all the bran"
+2026-04-18 17:01:05 | [START] chart_decision | query="Give top 5 regions by bounce count also include all the bran"
+2026-04-18 17:01:05 | [START] chart_decision
+2026-04-18 17:02:00 | [END]   chart_decision                 |  55264ms | status=OK
+2026-04-18 17:02:00 | [END]   chart_decision                 |  55268ms | status=OK
+2026-04-18 17:02:00 | [END]   chart_decision                 |  55271ms | status=OK
+2026-04-18 17:02:00 | ════════════════════════════════════════════════════
+2026-04-18 17:02:00 | QUERY : "Give top 5 regions by bounce count also include all the branches in that"
+2026-04-18 17:02:00 |   ├── sql_generation              : 325219ms  ✓
+2026-04-18 17:02:00 |   ├── db_fetch                    :    982ms  ✓
+2026-04-18 17:02:00 |   └── chart_decision              :  55271ms  ✓
+2026-04-18 17:02:00 | ════════════════════════════════════════════════════
+2026-04-18 17:02:00 |   TOTAL                         : 381472ms
+2026-04-18 17:02:00 | ════════════════════════════════════════════════════
+2026-04-18 17:02:01 | [START] filter_detection
+2026-04-18 17:02:01 | [END]   filter_detection               |     12ms | status=OK
+2026-04-18 17:02:01 | [START] chart_render
+2026-04-18 17:02:01 | [END]   chart_render                   |    216ms | status=OK
+2026-04-18 17:06:20 | [START] filter_detection
+2026-04-18 17:06:20 | [END]   filter_detection               |      5ms | status=OK
+2026-04-18 17:06:20 | [START] chart_render
+2026-04-18 17:06:20 | [END]   chart_render                   |    125ms | status=OK
+2026-04-18 17:06:21 | [START] filter_detection
+2026-04-18 17:06:21 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 17:06:21 | [START] chart_render
+2026-04-18 17:06:21 | [END]   chart_render                   |    122ms | status=OK
+2026-04-18 17:06:22 | [START] filter_detection
+2026-04-18 17:06:22 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 17:06:22 | [START] chart_render
+2026-04-18 17:06:22 | [END]   chart_render                   |    129ms | status=OK
+2026-04-18 17:06:37 | [START] filter_detection
+2026-04-18 17:06:37 | [END]   filter_detection               |      1ms | status=OK
+2026-04-18 17:06:37 | [START] chart_render
+2026-04-18 17:06:37 | [END]   chart_render                   |    110ms | status=OK
+2026-04-18 17:06:38 | [START] filter_detection
+2026-04-18 17:06:38 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 17:06:38 | [START] chart_render
+2026-04-18 17:06:38 | [END]   chart_render                   |     92ms | status=OK
+2026-04-18 17:06:39 | [START] filter_detection
+2026-04-18 17:06:39 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 17:06:39 | [START] chart_render
+2026-04-18 17:06:39 | [END]   chart_render                   |    124ms | status=OK
+2026-04-18 17:06:44 | [START] filter_detection
+2026-04-18 17:06:44 | [END]   filter_detection               |      1ms | status=OK
+2026-04-18 17:06:44 | [START] chart_render
+2026-04-18 17:06:44 | [END]   chart_render                   |    102ms | status=OK
+2026-04-18 17:06:45 | [START] filter_detection
+2026-04-18 17:06:45 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 17:06:45 | [START] chart_render
+2026-04-18 17:06:45 | [END]   chart_render                   |    106ms | status=OK
+2026-04-18 17:06:46 | [START] filter_detection
+2026-04-18 17:06:46 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 17:06:46 | [START] chart_render
+2026-04-18 17:06:46 | [END]   chart_render                   |     91ms | status=OK
+2026-04-18 17:06:51 | [START] filter_detection
+2026-04-18 17:06:51 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 17:06:51 | [START] chart_render
+2026-04-18 17:06:51 | [END]   chart_render                   |    105ms | status=OK
+2026-04-18 17:06:52 | [START] filter_detection
+2026-04-18 17:06:52 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 17:06:52 | [START] chart_render
+2026-04-18 17:06:52 | [END]   chart_render                   |    120ms | status=OK
+2026-04-18 17:06:52 | [START] filter_detection
+2026-04-18 17:06:52 | [END]   filter_detection               |      1ms | status=OK
+2026-04-18 17:06:52 | [START] chart_render
+2026-04-18 17:06:52 | [END]   chart_render                   |    138ms | status=OK
+2026-04-18 17:06:57 | [START] filter_detection
+2026-04-18 17:06:57 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 17:06:57 | [START] chart_render
+2026-04-18 17:06:57 | [END]   chart_render                   |    170ms | status=OK
+2026-04-18 17:06:58 | [START] filter_detection
+2026-04-18 17:06:58 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 17:06:58 | [START] chart_render
+2026-04-18 17:06:58 | [END]   chart_render                   |    146ms | status=OK
+2026-04-18 17:06:59 | [START] filter_detection
+2026-04-18 17:06:59 | [END]   filter_detection               |      3ms | status=OK
+2026-04-18 17:06:59 | [START] chart_render
+2026-04-18 17:06:59 | [END]   chart_render                   |     94ms | status=OK
+2026-04-18 17:07:48 | [START] filter_detection
+2026-04-18 17:07:48 | [END]   filter_detection               |      1ms | status=OK
+2026-04-18 17:07:48 | [START] chart_render
+2026-04-18 17:07:48 | [END]   chart_render                   |     91ms | status=OK
+2026-04-18 17:07:50 | [START] intent_analysis                | query="build me dashboard with multiple charts and following slicer"
+2026-04-18 17:07:50 | [START] intent_analysis | query="build me dashboard with multiple charts and following slicer"
+2026-04-18 17:07:50 | [START] dictionary_coder_context | query="build me dashboard with multiple charts and following slicer"
+2026-04-18 17:07:50 | [END]   dictionary_coder_context       |    128ms | status=OK
+2026-04-18 17:07:50 | [START] intent_analysis
+2026-04-18 17:18:46 | [END]   intent_analysis                | 656624ms | status=OK
+2026-04-18 17:18:46 | [END]   intent_analysis                | 656756ms | status=OK
+2026-04-18 17:18:46 | [END]   intent_analysis                | 656760ms | status=OK
+2026-04-18 17:18:46 | [START] clarifying_questions           | query="build me dashboard with multiple charts and following slicer"
+2026-04-18 17:18:46 | [START] clarifying_questions | query="build me dashboard with multiple charts and following slicer"
+2026-04-18 17:18:46 | [START] clarifying_questions
+2026-04-18 17:23:30 | [END]   clarifying_questions           | 283912ms | status=OK
+2026-04-18 17:23:30 | [END]   clarifying_questions           | 283972ms | status=OK
+2026-04-18 17:23:30 | [END]   clarifying_questions           | 283976ms | status=OK
+2026-04-18 17:23:30 | ════════════════════════════════════════════════════
+2026-04-18 17:23:30 | QUERY : "build me dashboard with multiple charts and following slicers - region, "
+2026-04-18 17:23:30 |   ├── intent_analysis             : 656760ms  ✓
+2026-04-18 17:23:30 |   └── clarifying_questions        : 283976ms  ✓
+2026-04-18 17:23:30 | ════════════════════════════════════════════════════
+2026-04-18 17:23:30 |   TOTAL                         : 940736ms
+2026-04-18 17:23:30 | ════════════════════════════════════════════════════
+2026-04-18 17:24:15 | [START] sql_generation                 | query="build me dashboard with multiple charts and following slicer"
+2026-04-18 17:24:15 | [START] sql_generation | query="build me dashboard with multiple charts and following slicer"
+2026-04-18 17:24:15 | [START] sql_generation
+2026-04-18 17:29:15 | [END]   sql_generation                 | 299885ms | status=OK
+2026-04-18 17:29:15 | [END]   sql_generation                 | 299973ms | status=OK
+2026-04-18 17:29:15 | [END]   sql_generation                 | 299975ms | status=OK
+2026-04-18 17:29:15 | [START] db_fetch                       | query="build me dashboard with multiple charts and following slicer"
+2026-04-18 17:29:15 | [START] db_fetch
+2026-04-18 17:29:15 | [START] db_execute
+2026-04-18 17:29:16 | [END]   db_execute                     |    757ms | status=OK
+2026-04-18 17:29:16 | [END]   db_fetch                       |    760ms | status=OK
+2026-04-18 17:29:16 | [END]   db_fetch                       |    762ms | status=OK
+2026-04-18 17:29:16 | [START] chart_decision                 | query="build me dashboard with multiple charts and following slicer"
+2026-04-18 17:29:16 | [START] chart_decision | query="build me dashboard with multiple charts and following slicer"
+2026-04-18 17:29:16 | [START] chart_decision
+2026-04-18 17:30:01 | [END]   chart_decision                 |  44937ms | status=OK
+2026-04-18 17:30:01 | [END]   chart_decision                 |  44939ms | status=OK
+2026-04-18 17:30:01 | [END]   chart_decision                 |  44942ms | status=OK
+2026-04-18 17:30:01 | ════════════════════════════════════════════════════
+2026-04-18 17:30:01 | QUERY : "build me dashboard with multiple charts and following slicers - region, "
+2026-04-18 17:30:01 |   ├── sql_generation              : 299975ms  ✓
+2026-04-18 17:30:01 |   ├── db_fetch                    :    762ms  ✓
+2026-04-18 17:30:01 |   └── chart_decision              :  44942ms  ✓
+2026-04-18 17:30:01 | ════════════════════════════════════════════════════
+2026-04-18 17:30:01 |   TOTAL                         : 345679ms
+2026-04-18 17:30:01 | ════════════════════════════════════════════════════
+2026-04-18 17:30:01 | [START] filter_detection
+2026-04-18 17:30:01 | [END]   filter_detection               |      2ms | status=OK
+2026-04-18 17:30:01 | [START] chart_render
+2026-04-18 17:30:01 | [END]   chart_render                   |     53ms | status=OK

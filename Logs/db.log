@@ -118,3 +118,53 @@ connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection re
 2026-04-06 19:25:01 | INFO     | [db] Executing query | preview="SELECT   region AS "Region",   COUNT(DISTINCT CASE WHEN bounce_status IN ('Tech', 'Non Tech') THEN cust_id END) AS "Boun"
 2026-04-06 19:25:02 | INFO     | [db] Query OK | rows=17 | cols=3 | columns=['Region', 'Bounce Count', 'Bounce %']
 2026-04-06 19:25:02 | INFO     | [db_client] Real query OK | rows=17 | cols=3
+2026-04-14 14:17:34 | INFO     | [db] Connecting | host=localhost | port=5432 | db=LD | user=nik
+2026-04-14 14:17:35 | INFO     | [db] Connected successfully | pool_size=3 | schema=public
+2026-04-14 14:17:38 | INFO     | [db] Executing query | preview="SELECT COUNT(*) FROM loan_dashboard"
+2026-04-14 14:17:38 | INFO     | [db] Query OK | rows=1 | cols=1 | columns=['count']
+2026-04-14 14:21:57 | INFO     | [db] Connecting | host=localhost | port=5432 | db=LD | user=nik
+2026-04-14 14:21:57 | INFO     | [db] Connected successfully | pool_size=3 | schema=public
+2026-04-14 14:22:00 | INFO     | [db] Executing query | preview="SELECT COUNT(*) FROM loan_dashboard"
+2026-04-14 14:22:00 | INFO     | [db] Query OK | rows=1 | cols=1 | columns=['count']
+2026-04-18 15:08:26 | INFO     | [db] Connecting | host=localhost | port=5432 | db=LD | user=nik
+2026-04-18 15:08:27 | INFO     | [db] Connected successfully | pool_size=3 | schema=public
+2026-04-18 15:08:30 | INFO     | [db] Executing query | preview="SELECT COUNT(*) FROM loan_dashboard"
+2026-04-18 15:08:31 | INFO     | [db] Query OK | rows=1 | cols=1 | columns=['count']
+2026-04-18 15:11:41 | INFO     | [db] Connecting | host=localhost | port=5432 | db=LD | user=nik
+2026-04-18 15:11:41 | INFO     | [db] Connected successfully | pool_size=3 | schema=public
+2026-04-18 15:11:43 | INFO     | [db] Executing query | preview="SELECT COUNT(*) FROM loan_dashboard"
+2026-04-18 15:11:44 | INFO     | [db] Query OK | rows=1 | cols=1 | columns=['count']
+2026-04-18 15:34:05 | INFO     | [db] Executing query | preview="SELECT   branch,   COUNT(DISTINCT CASE WHEN bounce_status IN ('Tech', 'Non Tech') THEN cust_id END) AS "Bounce Count",  "
+2026-04-18 15:34:06 | INFO     | [db] Query OK | rows=237 | cols=3 | columns=['branch', 'Bounce Count', 'Total Customers']
+2026-04-18 15:34:06 | INFO     | [db_client] Real query OK | rows=237 | cols=3
+2026-04-18 15:59:13 | INFO     | [db] Executing query | preview="SELECT   branch AS "Branch",   COUNT(DISTINCT CASE WHEN bounce_status IN ('Tech', 'Non Tech') THEN cust_id END) AS "Boun"
+2026-04-18 15:59:13 | INFO     | [db] Query OK | rows=10 | cols=2 | columns=['Branch', 'Bounce Count']
+2026-04-18 15:59:13 | INFO     | [db_client] Real query OK | rows=10 | cols=2
+2026-04-18 16:10:40 | INFO     | [db] Connecting | host=localhost | port=5432 | db=LD | user=nik
+2026-04-18 16:10:40 | INFO     | [db] Connected successfully | pool_size=3 | schema=public
+2026-04-18 16:10:43 | INFO     | [db] Executing query | preview="SELECT COUNT(*) FROM loan_dashboard"
+2026-04-18 16:10:43 | INFO     | [db] Query OK | rows=1 | cols=1 | columns=['count']
+2026-04-18 16:21:31 | INFO     | [db] Executing query | preview="SELECT   "branch",   COUNT(DISTINCT CASE WHEN "bounce_status" IN ('Tech', 'Non Tech') THEN "cust_id" END) AS "Bounce Cou"
+2026-04-18 16:21:31 | INFO     | [db] Query OK | rows=10 | cols=2 | columns=['branch', 'Bounce Count']
+2026-04-18 16:21:31 | INFO     | [db_client] Real query OK | rows=10 | cols=2
+2026-04-18 16:36:32 | INFO     | [db] Executing query | preview="SELECT    "region",   COUNT(DISTINCT CASE WHEN "bounce_status" IN ('Tech', 'Non Tech') THEN "cust_id" END) AS "Bounce Co"
+2026-04-18 16:36:32 | ERROR    | [db] Query FAILED | error=ProgrammingError: (psycopg2.errors.SyntaxError) LIMIT #,# syntax is not supported
+LINE 7: ORDER BY "region", "Bounce Count" DESC, "branch" LIMIT 5, 10
+                                                         ^
+HINT:  U | sql_preview="SELECT 
+  "region",
+  COUNT(DISTINCT CASE WHEN "bounce_status" IN ('Tech', 'Non Tech') THEN "cust_id" END) AS "Bounce Co"
+2026-04-18 16:36:32 | ERROR    | [db_client] Real query FAILED | error=Database query failed: (psycopg2.errors.SyntaxError) LIMIT #,# syntax is not supported
+LINE 7: ORDER BY "region", "Bounce Count" DESC, "branch" LIMIT 5, 10
+                                                         ^
+HINT:  U
+2026-04-18 16:39:13 | INFO     | [db] Connecting | host=localhost | port=5432 | db=LD | user=nik
+2026-04-18 16:39:14 | INFO     | [db] Connected successfully | pool_size=3 | schema=public
+2026-04-18 16:39:16 | INFO     | [db] Executing query | preview="SELECT COUNT(*) FROM loan_dashboard"
+2026-04-18 16:39:16 | INFO     | [db] Query OK | rows=1 | cols=1 | columns=['count']
+2026-04-18 17:01:04 | INFO     | [db] Executing query | preview="SELECT   region,   branch,   COUNT(DISTINCT CASE WHEN bounce_status IN ('Tech', 'Non Tech') THEN cust_id END) AS "Bounce"
+2026-04-18 17:01:05 | INFO     | [db] Query OK | rows=5 | cols=3 | columns=['region', 'branch', 'Bounce Count']
+2026-04-18 17:01:05 | INFO     | [db_client] Real query OK | rows=5 | cols=3
+2026-04-18 17:29:15 | INFO     | [db] Executing query | preview="SELECT   COUNT(DISTINCT cust_id) AS "Customer Count" FROM   loan_dashboard"
+2026-04-18 17:29:16 | INFO     | [db] Query OK | rows=1 | cols=1 | columns=['Customer Count']
+2026-04-18 17:29:16 | INFO     | [db_client] Real query OK | rows=1 | cols=1
