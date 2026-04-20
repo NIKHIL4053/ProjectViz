@@ -528,3 +528,58 @@ FROM
   "y_col": "branch",
   "hue_col..."
 2026-04-18 17:30:01 | INFO     | [chart_decision] Config | type=area | x=Customer Count | y=Customer Count | hue=None
+2026-04-19 23:29:51 | DEBUG    | [intent_analysis] Prompt built | context_len=5510 chars | ~2246 tokens
+2026-04-19 23:29:51 | INFO     | [intent_analysis] CALL START | model=qwen2.5-coder:14b | ~2246 prompt tokens | expect_json=True
+2026-04-19 23:39:48 | INFO     | [intent_analysis] CALL OK | model=qwen2.5-coder:14b | latency=596675ms | ~106 response tokens | preview="```json
+{
+  "intent_summary": "Top 10 branches with the highest bounce count"..."
+2026-04-19 23:39:48 | INFO     | [intent_analysis] PARSED OK | metric='Bounce Count' | metric_key='Bounce_Count' | columns=['Branch', 'Cust ID', 'Bounce status'] | confidence=High
+2026-04-19 23:39:48 | DEBUG    | [clarifying_questions] Prompt built | ~925 tokens
+2026-04-19 23:39:48 | INFO     | [clarifying_questions] CALL START | model=qwen2.5-coder:14b | ~952 prompt tokens | expect_json=True
+2026-04-19 23:44:43 | INFO     | [clarifying_questions] CALL OK | model=qwen2.5-coder:14b | latency=294974ms | ~136 response tokens | preview="```json
+[
+  {
+    "question":     "Which region would you like to see? Or sho..."
+2026-04-19 23:44:43 | INFO     | [clarifying_questions] PARSED OK | count=2 | fields=['Region', 'Next Date']
+2026-04-19 23:44:50 | DEBUG    | [sql_generation] ~1190 tokens
+2026-04-19 23:44:50 | INFO     | [sql_generation] CALL START | model=qwen2.5-coder:14b | ~1282 prompt tokens | expect_json=False
+2026-04-19 23:50:15 | INFO     | [sql_generation] CALL OK | model=qwen2.5-coder:14b | latency=324914ms | ~53 response tokens | preview="```sql
+SELECT
+  branch AS "Branch",
+  COUNT(DISTINCT CASE WHEN bounce_status ..."
+2026-04-19 23:50:15 | INFO     | [sql_generation] OK | metric='Bounce_Count' | preview="SELECT
+  branch AS "Branch",
+  COUNT(DISTINCT CASE WHEN bounce_status IN ('Tech', 'Non Tech') THEN cust_id END) AS "B..."
+2026-04-19 23:50:16 | INFO     | [chart_decision] CALL START | model=qwen2.5:7b | ~377 prompt tokens | expect_json=True
+2026-04-19 23:51:02 | DEBUG    | [sql_generation] ~1190 tokens
+2026-04-19 23:51:02 | INFO     | [sql_generation] CALL START | model=qwen2.5-coder:14b | ~1282 prompt tokens | expect_json=False
+2026-04-19 23:51:14 | INFO     | [chart_decision] CALL OK | model=qwen2.5:7b | latency=58641ms | ~51 response tokens | preview="{
+  "chart_type": "horizontal_bar",
+  "x_col": "Bounce Count",
+  "y_col": "Br..."
+2026-04-19 23:51:14 | INFO     | [chart_decision] Final | type=horizontal_bar | x=Bounce Count | y=Branch | top_n=20
+2026-04-19 23:51:31 | INFO     | [sql_generation] CALL OK | model=qwen2.5-coder:14b | latency=28925ms | ~53 response tokens | preview="```sql
+SELECT
+  branch AS "Branch",
+  COUNT(DISTINCT CASE WHEN bounce_status ..."
+2026-04-19 23:51:31 | INFO     | [sql_generation] OK | metric='Bounce_Count' | preview="SELECT
+  branch AS "Branch",
+  COUNT(DISTINCT CASE WHEN bounce_status IN ('Tech', 'Non Tech') THEN cust_id END) AS "B..."
+2026-04-19 23:51:32 | INFO     | [chart_decision] CALL START | model=qwen2.5:7b | ~377 prompt tokens | expect_json=True
+2026-04-19 23:51:44 | INFO     | [chart_decision] CALL OK | model=qwen2.5:7b | latency=12119ms | ~51 response tokens | preview="{
+  "chart_type": "horizontal_bar",
+  "x_col": "Bounce Count",
+  "y_col": "Br..."
+2026-04-19 23:51:44 | INFO     | [chart_decision] Final | type=horizontal_bar | x=Bounce Count | y=Branch | top_n=20
+2026-04-19 23:51:45 | INFO     | [insight_generation] CALL START | model=qwen2.5:7b | ~459 prompt tokens | expect_json=True
+2026-04-19 23:52:13 | INFO     | [insight_generation] CALL START | model=qwen2.5:7b | ~459 prompt tokens | expect_json=True
+2026-04-19 23:52:14 | INFO     | [insight_generation] CALL START | model=qwen2.5:7b | ~459 prompt tokens | expect_json=True
+2026-04-19 23:52:43 | INFO     | [insight_generation] CALL OK | model=qwen2.5:7b | latency=57877ms | ~75 response tokens | preview="["INDORE branch has the highest bounce count at 998, nearly 50% more than the..."
+2026-04-19 23:52:43 | INFO     | [insight_generation] OK | count=3
+2026-04-19 23:52:57 | INFO     | [insight_generation] CALL OK | model=qwen2.5:7b | latency=44138ms | ~75 response tokens | preview="["INDORE branch has the highest bounce count at 998, nearly 50% more than the..."
+2026-04-19 23:52:57 | INFO     | [insight_generation] OK | count=3
+2026-04-19 23:53:11 | INFO     | [insight_generation] CALL OK | model=qwen2.5:7b | latency=56789ms | ~75 response tokens | preview="["INDORE branch has the highest bounce count at 998, nearly 50% more than the..."
+2026-04-19 23:53:11 | INFO     | [insight_generation] OK | count=3
+2026-04-19 23:56:14 | INFO     | [insight_generation] CALL START | model=qwen2.5:7b | ~459 prompt tokens | expect_json=True
+2026-04-19 23:56:32 | INFO     | [insight_generation] CALL OK | model=qwen2.5:7b | latency=17410ms | ~104 response tokens | preview="["INDORE branch has the highest bounce count at 998, nearly 50% more than the..."
+2026-04-19 23:56:32 | INFO     | [insight_generation] OK | count=4

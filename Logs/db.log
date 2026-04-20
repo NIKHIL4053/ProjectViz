@@ -168,3 +168,13 @@ HINT:  U
 2026-04-18 17:29:15 | INFO     | [db] Executing query | preview="SELECT   COUNT(DISTINCT cust_id) AS "Customer Count" FROM   loan_dashboard"
 2026-04-18 17:29:16 | INFO     | [db] Query OK | rows=1 | cols=1 | columns=['Customer Count']
 2026-04-18 17:29:16 | INFO     | [db_client] Real query OK | rows=1 | cols=1
+2026-04-19 23:29:07 | INFO     | [db] Connecting | host=localhost | port=5432 | db=LD | user=nik
+2026-04-19 23:29:07 | INFO     | [db] Connected successfully | pool_size=3 | schema=public
+2026-04-19 23:29:09 | INFO     | [db] Executing query | preview="SELECT COUNT(*) FROM loan_dashboard"
+2026-04-19 23:29:10 | INFO     | [db] Query OK | rows=1 | cols=1 | columns=['count']
+2026-04-19 23:50:15 | INFO     | [db] Executing query | preview="SELECT   branch AS "Branch",   COUNT(DISTINCT CASE WHEN bounce_status IN ('Tech', 'Non Tech') THEN cust_id END) AS "Boun"
+2026-04-19 23:50:15 | INFO     | [db] Query OK | rows=10 | cols=2 | columns=['Branch', 'Bounce Count']
+2026-04-19 23:50:15 | INFO     | [db_client] Real query OK | rows=10 | cols=2
+2026-04-19 23:51:31 | INFO     | [db] Executing query | preview="SELECT   branch AS "Branch",   COUNT(DISTINCT CASE WHEN bounce_status IN ('Tech', 'Non Tech') THEN cust_id END) AS "Boun"
+2026-04-19 23:51:32 | INFO     | [db] Query OK | rows=10 | cols=2 | columns=['Branch', 'Bounce Count']
+2026-04-19 23:51:32 | INFO     | [db_client] Real query OK | rows=10 | cols=2

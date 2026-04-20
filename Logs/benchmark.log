@@ -1818,3 +1818,300 @@
 2026-04-18 17:30:01 | [END]   filter_detection               |      2ms | status=OK
 2026-04-18 17:30:01 | [START] chart_render
 2026-04-18 17:30:01 | [END]   chart_render                   |     53ms | status=OK
+2026-04-19 23:28:37 | [START] dictionary_initialise
+2026-04-19 23:29:07 | [END]   dictionary_initialise          |  29107ms | status=OK
+2026-04-19 23:29:07 | [START] db_initialise
+2026-04-19 23:29:07 | [END]   db_initialise                  |    389ms | status=OK
+2026-04-19 23:29:09 | [START] db_execute
+2026-04-19 23:29:10 | [END]   db_execute                     |    548ms | status=OK
+2026-04-19 23:29:51 | [START] intent_analysis                | query="Give me top 10 branches by Bounce count"
+2026-04-19 23:29:51 | [START] intent_analysis | query="Give me top 10 branches by Bounce count"
+2026-04-19 23:29:51 | [START] dictionary_coder_context | query="Give me top 10 branches by Bounce count"
+2026-04-19 23:29:51 | [END]   dictionary_coder_context       |    343ms | status=OK
+2026-04-19 23:29:51 | [START] intent_analysis
+2026-04-19 23:39:48 | [END]   intent_analysis                | 596676ms | status=OK
+2026-04-19 23:39:48 | [END]   intent_analysis                | 597024ms | status=OK
+2026-04-19 23:39:48 | [END]   intent_analysis                | 597027ms | status=OK
+2026-04-19 23:39:48 | [START] clarifying_questions           | query="Give me top 10 branches by Bounce count"
+2026-04-19 23:39:48 | [START] clarifying_questions | query="Give me top 10 branches by Bounce count"
+2026-04-19 23:39:48 | [START] clarifying_questions
+2026-04-19 23:44:43 | [END]   clarifying_questions           | 294975ms | status=OK
+2026-04-19 23:44:43 | [END]   clarifying_questions           | 295029ms | status=OK
+2026-04-19 23:44:43 | [END]   clarifying_questions           | 295033ms | status=OK
+2026-04-19 23:44:43 | ════════════════════════════════════════════════════
+2026-04-19 23:44:43 | QUERY : "Give me top 10 branches by Bounce count"
+2026-04-19 23:44:43 |   ├── intent_analysis             : 597027ms  ✓
+2026-04-19 23:44:43 |   └── clarifying_questions        : 295033ms  ✓
+2026-04-19 23:44:43 | ════════════════════════════════════════════════════
+2026-04-19 23:44:43 |   TOTAL                         : 892060ms
+2026-04-19 23:44:43 | ════════════════════════════════════════════════════
+2026-04-19 23:44:50 | [START] sql_generation                 | query="Give me top 10 branches by Bounce count"
+2026-04-19 23:44:50 | [START] sql_generation | query="Give me top 10 branches by Bounce count"
+2026-04-19 23:44:50 | [START] sql_generation
+2026-04-19 23:50:15 | [END]   sql_generation                 | 324917ms | status=OK
+2026-04-19 23:50:15 | [END]   sql_generation                 | 325007ms | status=OK
+2026-04-19 23:50:15 | [END]   sql_generation                 | 325014ms | status=OK
+2026-04-19 23:50:15 | [START] db_fetch                       | query="Give me top 10 branches by Bounce count"
+2026-04-19 23:50:15 | [START] db_fetch
+2026-04-19 23:50:15 | [START] db_execute
+2026-04-19 23:50:15 | [END]   db_execute                     |    751ms | status=OK
+2026-04-19 23:50:15 | [END]   db_fetch                       |    756ms | status=OK
+2026-04-19 23:50:15 | [END]   db_fetch                       |    759ms | status=OK
+2026-04-19 23:50:16 | [START] chart_decision                 | query="Give me top 10 branches by Bounce count"
+2026-04-19 23:50:16 | [START] chart_decision | query="Give me top 10 branches by Bounce count"
+2026-04-19 23:50:16 | [START] chart_decision
+2026-04-19 23:51:02 | [START] sql_generation                 | query="Give me top 10 branches by Bounce count"
+2026-04-19 23:51:02 | [START] sql_generation | query="Give me top 10 branches by Bounce count"
+2026-04-19 23:51:02 | [START] sql_generation
+2026-04-19 23:51:14 | [END]   chart_decision                 |  58644ms | status=OK
+2026-04-19 23:51:14 | [END]   chart_decision                 |  58651ms | status=OK
+2026-04-19 23:51:14 | [END]   chart_decision                 |  58654ms | status=OK
+2026-04-19 23:51:31 | [END]   sql_generation                 |  28927ms | status=OK
+2026-04-19 23:51:31 | [END]   sql_generation                 |  29028ms | status=OK
+2026-04-19 23:51:31 | [END]   sql_generation                 |  29032ms | status=OK
+2026-04-19 23:51:31 | [START] db_fetch                       | query="Give me top 10 branches by Bounce count"
+2026-04-19 23:51:31 | [START] db_fetch
+2026-04-19 23:51:31 | [START] db_execute
+2026-04-19 23:51:32 | [END]   db_execute                     |    503ms | status=OK
+2026-04-19 23:51:32 | [END]   db_fetch                       |    505ms | status=OK
+2026-04-19 23:51:32 | [END]   db_fetch                       |    507ms | status=OK
+2026-04-19 23:51:32 | [START] chart_decision                 | query="Give me top 10 branches by Bounce count"
+2026-04-19 23:51:32 | [START] chart_decision | query="Give me top 10 branches by Bounce count"
+2026-04-19 23:51:32 | [START] chart_decision
+2026-04-19 23:51:44 | [END]   chart_decision                 |  12120ms | status=OK
+2026-04-19 23:51:44 | [END]   chart_decision                 |  12123ms | status=OK
+2026-04-19 23:51:44 | [END]   chart_decision                 |  12125ms | status=OK
+2026-04-19 23:51:44 | ════════════════════════════════════════════════════
+2026-04-19 23:51:44 | QUERY : "Give me top 10 branches by Bounce count"
+2026-04-19 23:51:44 |   ├── sql_generation              :  29032ms  ✓
+2026-04-19 23:51:44 |   ├── db_fetch                    :    507ms  ✓
+2026-04-19 23:51:44 |   └── chart_decision              :  12125ms  ✓
+2026-04-19 23:51:44 | ════════════════════════════════════════════════════
+2026-04-19 23:51:44 |   TOTAL                         :  41664ms
+2026-04-19 23:51:44 | ════════════════════════════════════════════════════
+2026-04-19 23:51:44 | [START] filter_detection
+2026-04-19 23:51:44 | [END]   filter_detection               |     17ms | status=OK
+2026-04-19 23:51:44 | [START] chart_render
+2026-04-19 23:51:45 | [END]   chart_render                   |    779ms | status=OK
+2026-04-19 23:51:45 | [START] insight_generation | query="Give me top 10 branches by Bounce count"
+2026-04-19 23:51:45 | [START] insight_generation
+2026-04-19 23:52:12 | [START] filter_detection
+2026-04-19 23:52:12 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:52:12 | [START] chart_render
+2026-04-19 23:52:13 | [END]   chart_render                   |     31ms | status=OK
+2026-04-19 23:52:13 | [START] insight_generation | query="Give me top 10 branches by Bounce count"
+2026-04-19 23:52:13 | [START] insight_generation
+2026-04-19 23:52:14 | [START] filter_detection
+2026-04-19 23:52:14 | [END]   filter_detection               |      2ms | status=OK
+2026-04-19 23:52:14 | [START] chart_render
+2026-04-19 23:52:14 | [END]   chart_render                   |     33ms | status=OK
+2026-04-19 23:52:14 | [START] filter_detection
+2026-04-19 23:52:14 | [END]   filter_detection               |      6ms | status=OK
+2026-04-19 23:52:14 | [START] chart_render
+2026-04-19 23:52:14 | [END]   chart_render                   |     21ms | status=OK
+2026-04-19 23:52:14 | [START] insight_generation | query="Give me top 10 branches by Bounce count"
+2026-04-19 23:52:14 | [START] insight_generation
+2026-04-19 23:52:43 | [END]   insight_generation             |  57878ms | status=OK
+2026-04-19 23:52:43 | [END]   insight_generation             |  57898ms | status=OK
+2026-04-19 23:52:57 | [END]   insight_generation             |  44139ms | status=OK
+2026-04-19 23:52:57 | [END]   insight_generation             |  44144ms | status=OK
+2026-04-19 23:53:11 | [END]   insight_generation             |  56791ms | status=OK
+2026-04-19 23:53:11 | [END]   insight_generation             |  56796ms | status=OK
+2026-04-19 23:53:14 | [START] filter_detection
+2026-04-19 23:53:14 | [END]   filter_detection               |      2ms | status=OK
+2026-04-19 23:53:14 | [START] chart_render
+2026-04-19 23:53:14 | [END]   chart_render                   |     16ms | status=OK
+2026-04-19 23:53:16 | [START] filter_detection
+2026-04-19 23:53:16 | [END]   filter_detection               |      2ms | status=OK
+2026-04-19 23:53:16 | [START] chart_render
+2026-04-19 23:53:16 | [END]   chart_render                   |     23ms | status=OK
+2026-04-19 23:53:16 | [START] filter_detection
+2026-04-19 23:53:16 | [END]   filter_detection               |      2ms | status=OK
+2026-04-19 23:53:16 | [START] chart_render
+2026-04-19 23:53:16 | [END]   chart_render                   |    292ms | status=OK
+2026-04-19 23:53:33 | [START] filter_detection
+2026-04-19 23:53:33 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:53:33 | [START] chart_render
+2026-04-19 23:53:33 | [END]   chart_render                   |     47ms | status=OK
+2026-04-19 23:53:36 | [START] filter_detection
+2026-04-19 23:53:36 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:53:36 | [START] chart_render
+2026-04-19 23:53:36 | [END]   chart_render                   |     44ms | status=OK
+2026-04-19 23:53:36 | [START] filter_detection
+2026-04-19 23:53:36 | [END]   filter_detection               |      2ms | status=OK
+2026-04-19 23:53:36 | [START] chart_render
+2026-04-19 23:53:36 | [END]   chart_render                   |     68ms | status=OK
+2026-04-19 23:53:43 | [START] filter_detection
+2026-04-19 23:53:43 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:53:43 | [START] chart_render
+2026-04-19 23:53:43 | [END]   chart_render                   |     38ms | status=OK
+2026-04-19 23:53:44 | [START] filter_detection
+2026-04-19 23:53:44 | [END]   filter_detection               |      2ms | status=OK
+2026-04-19 23:53:44 | [START] chart_render
+2026-04-19 23:53:44 | [END]   chart_render                   |     36ms | status=OK
+2026-04-19 23:53:44 | [START] filter_detection
+2026-04-19 23:53:44 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:53:44 | [START] chart_render
+2026-04-19 23:53:44 | [END]   chart_render                   |    138ms | status=OK
+2026-04-19 23:53:58 | [START] filter_detection
+2026-04-19 23:53:58 | [END]   filter_detection               |      2ms | status=OK
+2026-04-19 23:53:58 | [START] chart_render
+2026-04-19 23:53:59 | [END]   chart_render                   |     48ms | status=OK
+2026-04-19 23:54:00 | [START] filter_detection
+2026-04-19 23:54:00 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:54:00 | [START] chart_render
+2026-04-19 23:54:01 | [END]   chart_render                   |     54ms | status=OK
+2026-04-19 23:54:01 | [START] filter_detection
+2026-04-19 23:54:01 | [END]   filter_detection               |      2ms | status=OK
+2026-04-19 23:54:01 | [START] chart_render
+2026-04-19 23:54:01 | [END]   chart_render                   |     89ms | status=OK
+2026-04-19 23:54:05 | [START] filter_detection
+2026-04-19 23:54:05 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:54:05 | [START] chart_render
+2026-04-19 23:54:05 | [END]   chart_render                   |     37ms | status=OK
+2026-04-19 23:54:06 | [START] filter_detection
+2026-04-19 23:54:06 | [END]   filter_detection               |      3ms | status=OK
+2026-04-19 23:54:06 | [START] chart_render
+2026-04-19 23:54:06 | [END]   chart_render                   |     37ms | status=OK
+2026-04-19 23:54:06 | [START] filter_detection
+2026-04-19 23:54:06 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:54:06 | [START] chart_render
+2026-04-19 23:54:06 | [END]   chart_render                   |     70ms | status=OK
+2026-04-19 23:54:14 | [START] filter_detection
+2026-04-19 23:54:14 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:54:14 | [START] chart_render
+2026-04-19 23:54:14 | [END]   chart_render                   |     40ms | status=OK
+2026-04-19 23:54:15 | [START] filter_detection
+2026-04-19 23:54:15 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:54:15 | [START] chart_render
+2026-04-19 23:54:15 | [END]   chart_render                   |     38ms | status=OK
+2026-04-19 23:54:15 | [START] filter_detection
+2026-04-19 23:54:15 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:54:15 | [START] chart_render
+2026-04-19 23:54:15 | [END]   chart_render                   |     53ms | status=OK
+2026-04-19 23:54:21 | [START] filter_detection
+2026-04-19 23:54:21 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:54:21 | [START] chart_render
+2026-04-19 23:54:21 | [END]   chart_render                   |     33ms | status=OK
+2026-04-19 23:54:22 | [START] filter_detection
+2026-04-19 23:54:22 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:54:22 | [START] chart_render
+2026-04-19 23:54:22 | [END]   chart_render                   |     25ms | status=OK
+2026-04-19 23:54:23 | [START] filter_detection
+2026-04-19 23:54:23 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:54:23 | [START] chart_render
+2026-04-19 23:54:23 | [END]   chart_render                   |     48ms | status=OK
+2026-04-19 23:54:27 | [START] filter_detection
+2026-04-19 23:54:27 | [END]   filter_detection               |      3ms | status=OK
+2026-04-19 23:54:27 | [START] chart_render
+2026-04-19 23:54:27 | [END]   chart_render                   |     49ms | status=OK
+2026-04-19 23:54:27 | [START] filter_detection
+2026-04-19 23:54:27 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:54:27 | [START] chart_render
+2026-04-19 23:54:27 | [END]   chart_render                   |     48ms | status=OK
+2026-04-19 23:54:28 | [START] filter_detection
+2026-04-19 23:54:28 | [END]   filter_detection               |      2ms | status=OK
+2026-04-19 23:54:28 | [START] chart_render
+2026-04-19 23:54:28 | [END]   chart_render                   |     43ms | status=OK
+2026-04-19 23:54:29 | [START] filter_detection
+2026-04-19 23:54:29 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:54:29 | [START] chart_render
+2026-04-19 23:54:29 | [END]   chart_render                   |     54ms | status=OK
+2026-04-19 23:54:33 | [START] filter_detection
+2026-04-19 23:54:33 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:54:33 | [START] chart_render
+2026-04-19 23:54:33 | [END]   chart_render                   |     44ms | status=OK
+2026-04-19 23:54:34 | [START] filter_detection
+2026-04-19 23:54:34 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:54:34 | [START] chart_render
+2026-04-19 23:54:34 | [END]   chart_render                   |     47ms | status=OK
+2026-04-19 23:54:35 | [START] filter_detection
+2026-04-19 23:54:35 | [END]   filter_detection               |      3ms | status=OK
+2026-04-19 23:54:35 | [START] chart_render
+2026-04-19 23:54:35 | [END]   chart_render                   |     53ms | status=OK
+2026-04-19 23:54:36 | [START] filter_detection
+2026-04-19 23:54:36 | [END]   filter_detection               |      2ms | status=OK
+2026-04-19 23:54:36 | [START] chart_render
+2026-04-19 23:54:36 | [END]   chart_render                   |     47ms | status=OK
+2026-04-19 23:54:36 | [START] filter_detection
+2026-04-19 23:54:36 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:54:36 | [START] chart_render
+2026-04-19 23:54:36 | [END]   chart_render                   |     44ms | status=OK
+2026-04-19 23:54:37 | [START] filter_detection
+2026-04-19 23:54:37 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:54:37 | [START] chart_render
+2026-04-19 23:54:37 | [END]   chart_render                   |     48ms | status=OK
+2026-04-19 23:55:03 | [START] filter_detection
+2026-04-19 23:55:03 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:55:03 | [START] chart_render
+2026-04-19 23:55:03 | [END]   chart_render                   |     40ms | status=OK
+2026-04-19 23:55:03 | [START] chart_render
+2026-04-19 23:55:03 | [END]   chart_render                   |     42ms | status=OK
+2026-04-19 23:55:48 | [START] filter_detection
+2026-04-19 23:55:48 | [END]   filter_detection               |      2ms | status=OK
+2026-04-19 23:55:48 | [START] chart_render
+2026-04-19 23:55:48 | [END]   chart_render                   |    120ms | status=OK
+2026-04-19 23:55:58 | [START] filter_detection
+2026-04-19 23:55:58 | [END]   filter_detection               |      2ms | status=OK
+2026-04-19 23:55:58 | [START] chart_render
+2026-04-19 23:55:58 | [END]   chart_render                   |     44ms | status=OK
+2026-04-19 23:55:58 | [START] chart_render
+2026-04-19 23:55:58 | [END]   chart_render                   |     47ms | status=OK
+2026-04-19 23:56:14 | [START] filter_detection
+2026-04-19 23:56:14 | [END]   filter_detection               |      2ms | status=OK
+2026-04-19 23:56:14 | [START] chart_render
+2026-04-19 23:56:14 | [END]   chart_render                   |     45ms | status=OK
+2026-04-19 23:56:14 | [START] filter_detection
+2026-04-19 23:56:14 | [END]   filter_detection               |      2ms | status=OK
+2026-04-19 23:56:14 | [START] chart_render
+2026-04-19 23:56:14 | [END]   chart_render                   |     46ms | status=OK
+2026-04-19 23:56:14 | [START] insight_generation | query="Give me top 10 branches by Bounce count"
+2026-04-19 23:56:14 | [START] insight_generation
+2026-04-19 23:56:32 | [END]   insight_generation             |  17413ms | status=OK
+2026-04-19 23:56:32 | [END]   insight_generation             |  17420ms | status=OK
+2026-04-19 23:57:16 | [START] filter_detection
+2026-04-19 23:57:16 | [END]   filter_detection               |      2ms | status=OK
+2026-04-19 23:57:16 | [START] chart_render
+2026-04-19 23:57:16 | [END]   chart_render                   |     47ms | status=OK
+2026-04-19 23:57:16 | [START] chart_render
+2026-04-19 23:57:16 | [END]   chart_render                   |     56ms | status=OK
+2026-04-19 23:58:52 | [START] filter_detection
+2026-04-19 23:58:52 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:58:52 | [START] chart_render
+2026-04-19 23:58:52 | [END]   chart_render                   |     42ms | status=OK
+2026-04-19 23:58:55 | [START] filter_detection
+2026-04-19 23:58:55 | [END]   filter_detection               |      2ms | status=OK
+2026-04-19 23:58:55 | [START] chart_render
+2026-04-19 23:58:55 | [END]   chart_render                   |     41ms | status=OK
+2026-04-19 23:58:55 | [START] filter_detection
+2026-04-19 23:58:55 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:58:55 | [START] chart_render
+2026-04-19 23:58:56 | [END]   chart_render                   |     39ms | status=OK
+2026-04-19 23:58:56 | [START] filter_detection
+2026-04-19 23:58:56 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:58:56 | [START] chart_render
+2026-04-19 23:58:56 | [END]   chart_render                   |     40ms | status=OK
+2026-04-19 23:59:43 | [START] filter_detection
+2026-04-19 23:59:43 | [END]   filter_detection               |      2ms | status=OK
+2026-04-19 23:59:43 | [START] chart_render
+2026-04-19 23:59:43 | [END]   chart_render                   |     35ms | status=OK
+2026-04-19 23:59:44 | [START] filter_detection
+2026-04-19 23:59:44 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:59:44 | [START] chart_render
+2026-04-19 23:59:44 | [END]   chart_render                   |     46ms | status=OK
+2026-04-19 23:59:44 | [START] filter_detection
+2026-04-19 23:59:44 | [END]   filter_detection               |      2ms | status=OK
+2026-04-19 23:59:44 | [START] chart_render
+2026-04-19 23:59:44 | [END]   chart_render                   |     49ms | status=OK
+2026-04-19 23:59:52 | [START] filter_detection
+2026-04-19 23:59:52 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:59:52 | [START] chart_render
+2026-04-19 23:59:52 | [END]   chart_render                   |     31ms | status=OK
+2026-04-19 23:59:54 | [START] filter_detection
+2026-04-19 23:59:54 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:59:54 | [START] chart_render
+2026-04-19 23:59:54 | [END]   chart_render                   |     31ms | status=OK
+2026-04-19 23:59:54 | [START] filter_detection
+2026-04-19 23:59:54 | [END]   filter_detection               |      1ms | status=OK
+2026-04-19 23:59:54 | [START] chart_render
+2026-04-19 23:59:54 | [END]   chart_render                   |     40ms | status=OK

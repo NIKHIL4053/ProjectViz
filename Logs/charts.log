@@ -540,3 +540,159 @@
 2026-04-18 17:30:01 | INFO     | [renderer] Routing | chart_type=area | rows=1 | cols=['Customer Count'] | title='Customer Count by Branch, Month and Region'
 2026-04-18 17:30:01 | INFO     | [area] Rendered | x=Customer Count | y=Customer Count | hue=None | rows=1
 2026-04-18 17:30:01 | INFO     | [renderer] OK | chart_type=area
+2026-04-19 23:51:44 | INFO     | [renderer] chart_type=horizontal_bar | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:51:44 | ERROR    | [renderer] FAILED | horizontal_bar | name 'Optional' is not defined
+2026-04-19 23:52:12 | INFO     | [renderer] chart_type=horizontal_bar | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:52:12 | ERROR    | [renderer] FAILED | horizontal_bar | name 'Optional' is not defined
+2026-04-19 23:52:14 | INFO     | [renderer] chart_type=horizontal_bar | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:52:14 | ERROR    | [renderer] FAILED | horizontal_bar | name 'Optional' is not defined
+2026-04-19 23:52:14 | INFO     | [renderer] chart_type=horizontal_bar | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:52:14 | ERROR    | [renderer] FAILED | horizontal_bar | name 'Optional' is not defined
+2026-04-19 23:53:14 | INFO     | [renderer] chart_type=horizontal_bar | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:53:14 | ERROR    | [renderer] FAILED | horizontal_bar | name 'Optional' is not defined
+2026-04-19 23:53:16 | INFO     | [renderer] chart_type=horizontal_bar | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:53:16 | ERROR    | [renderer] FAILED | horizontal_bar | name 'Optional' is not defined
+2026-04-19 23:53:16 | INFO     | [renderer] chart_type=line | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:53:16 | INFO     | [line] x=Bounce Count | y=Branch | hue=None | rows=10
+2026-04-19 23:53:16 | INFO     | [renderer] OK | line
+2026-04-19 23:53:33 | INFO     | [renderer] chart_type=line | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:53:33 | INFO     | [line] x=Bounce Count | y=Branch | hue=None | rows=10
+2026-04-19 23:53:33 | INFO     | [renderer] OK | line
+2026-04-19 23:53:36 | INFO     | [renderer] chart_type=line | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:53:36 | INFO     | [line] x=Bounce Count | y=Branch | hue=None | rows=10
+2026-04-19 23:53:36 | INFO     | [renderer] OK | line
+2026-04-19 23:53:36 | INFO     | [renderer] chart_type=area | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:53:36 | INFO     | [area] x=Bounce Count | y=Branch | rows=10
+2026-04-19 23:53:36 | INFO     | [renderer] OK | area
+2026-04-19 23:53:43 | INFO     | [renderer] chart_type=area | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:53:43 | INFO     | [area] x=Bounce Count | y=Branch | rows=10
+2026-04-19 23:53:43 | INFO     | [renderer] OK | area
+2026-04-19 23:53:44 | INFO     | [renderer] chart_type=area | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:53:44 | INFO     | [area] x=Bounce Count | y=Branch | rows=10
+2026-04-19 23:53:44 | INFO     | [renderer] OK | area
+2026-04-19 23:53:44 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:53:44 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:53:44 | INFO     | [renderer] OK | treemap
+2026-04-19 23:53:58 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:53:59 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:53:59 | INFO     | [renderer] OK | treemap
+2026-04-19 23:54:00 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:54:01 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:54:01 | INFO     | [renderer] OK | treemap
+2026-04-19 23:54:01 | INFO     | [renderer] chart_type=boxplot | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:54:01 | INFO     | [boxplot] x=Branch | y=Bounce Count | rows=10
+2026-04-19 23:54:01 | INFO     | [renderer] OK | boxplot
+2026-04-19 23:54:05 | INFO     | [renderer] chart_type=boxplot | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:54:05 | INFO     | [boxplot] x=Branch | y=Bounce Count | rows=10
+2026-04-19 23:54:05 | INFO     | [renderer] OK | boxplot
+2026-04-19 23:54:06 | INFO     | [renderer] chart_type=boxplot | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:54:06 | INFO     | [boxplot] x=Branch | y=Bounce Count | rows=10
+2026-04-19 23:54:06 | INFO     | [renderer] OK | boxplot
+2026-04-19 23:54:06 | INFO     | [renderer] chart_type=scatter | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:54:06 | INFO     | [scatter] x=Bounce Count | y=Bounce Count | sample=10/10
+2026-04-19 23:54:06 | INFO     | [renderer] OK | scatter
+2026-04-19 23:54:14 | INFO     | [renderer] chart_type=scatter | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:54:14 | INFO     | [scatter] x=Bounce Count | y=Bounce Count | sample=10/10
+2026-04-19 23:54:14 | INFO     | [renderer] OK | scatter
+2026-04-19 23:54:15 | INFO     | [renderer] chart_type=scatter | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:54:15 | INFO     | [scatter] x=Bounce Count | y=Bounce Count | sample=10/10
+2026-04-19 23:54:15 | INFO     | [renderer] OK | scatter
+2026-04-19 23:54:15 | INFO     | [renderer] chart_type=heatmap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:54:15 | INFO     | [heatmap] x=Bounce Count | y=Branch | val=Bounce Count | pivot=(10, 0)
+2026-04-19 23:54:15 | INFO     | [renderer] OK | heatmap
+2026-04-19 23:54:21 | INFO     | [renderer] chart_type=heatmap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:54:21 | INFO     | [heatmap] x=Bounce Count | y=Branch | val=Bounce Count | pivot=(10, 0)
+2026-04-19 23:54:21 | INFO     | [renderer] OK | heatmap
+2026-04-19 23:54:22 | INFO     | [renderer] chart_type=heatmap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:54:22 | INFO     | [heatmap] x=Bounce Count | y=Branch | val=Bounce Count | pivot=(10, 0)
+2026-04-19 23:54:22 | INFO     | [renderer] OK | heatmap
+2026-04-19 23:54:23 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:54:23 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:54:23 | INFO     | [renderer] OK | treemap
+2026-04-19 23:54:27 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:54:27 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:54:27 | INFO     | [renderer] OK | treemap
+2026-04-19 23:54:27 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:54:27 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:54:27 | INFO     | [renderer] OK | treemap
+2026-04-19 23:54:28 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:54:28 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:54:28 | INFO     | [renderer] OK | treemap
+2026-04-19 23:54:29 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:54:29 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:54:29 | INFO     | [renderer] OK | treemap
+2026-04-19 23:54:33 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:54:33 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:54:33 | INFO     | [renderer] OK | treemap
+2026-04-19 23:54:34 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:54:34 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:54:34 | INFO     | [renderer] OK | treemap
+2026-04-19 23:54:35 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:54:35 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:54:35 | INFO     | [renderer] OK | treemap
+2026-04-19 23:54:36 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:54:36 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:54:36 | INFO     | [renderer] OK | treemap
+2026-04-19 23:54:36 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:54:36 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:54:36 | INFO     | [renderer] OK | treemap
+2026-04-19 23:54:37 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:54:37 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:54:37 | INFO     | [renderer] OK | treemap
+2026-04-19 23:55:03 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:55:03 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:55:03 | INFO     | [renderer] OK | treemap
+2026-04-19 23:55:03 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:55:03 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:55:03 | INFO     | [renderer] OK | treemap
+2026-04-19 23:55:48 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:55:48 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:55:48 | INFO     | [renderer] OK | treemap
+2026-04-19 23:55:58 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:55:58 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:55:58 | INFO     | [renderer] OK | treemap
+2026-04-19 23:55:58 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:55:58 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:55:58 | INFO     | [renderer] OK | treemap
+2026-04-19 23:56:14 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:56:14 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:56:14 | INFO     | [renderer] OK | treemap
+2026-04-19 23:56:14 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:56:14 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:56:14 | INFO     | [renderer] OK | treemap
+2026-04-19 23:57:16 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:57:16 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:57:16 | INFO     | [renderer] OK | treemap
+2026-04-19 23:57:16 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:57:16 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:57:16 | INFO     | [renderer] OK | treemap
+2026-04-19 23:58:52 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:58:52 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:58:52 | INFO     | [renderer] OK | treemap
+2026-04-19 23:58:55 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:58:55 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:58:55 | INFO     | [renderer] OK | treemap
+2026-04-19 23:58:55 | INFO     | [renderer] chart_type=treemap | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:58:56 | INFO     | [treemap] path=['Branch'] | val=Bounce Count | rows=10
+2026-04-19 23:58:56 | INFO     | [renderer] OK | treemap
+2026-04-19 23:58:56 | INFO     | [renderer] chart_type=line | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:58:56 | INFO     | [line] x=Bounce Count | y=Branch | hue=None | rows=10
+2026-04-19 23:58:56 | INFO     | [renderer] OK | line
+2026-04-19 23:59:43 | INFO     | [renderer] chart_type=line | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:59:43 | INFO     | [line] x=Bounce Count | y=Branch | hue=None | rows=10
+2026-04-19 23:59:43 | INFO     | [renderer] OK | line
+2026-04-19 23:59:44 | INFO     | [renderer] chart_type=line | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:59:44 | INFO     | [line] x=Bounce Count | y=Branch | hue=None | rows=10
+2026-04-19 23:59:44 | INFO     | [renderer] OK | line
+2026-04-19 23:59:44 | INFO     | [renderer] chart_type=boxplot | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:59:44 | INFO     | [boxplot] x=Branch | y=Bounce Count | rows=10
+2026-04-19 23:59:44 | INFO     | [renderer] OK | boxplot
+2026-04-19 23:59:52 | INFO     | [renderer] chart_type=boxplot | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:59:52 | INFO     | [boxplot] x=Branch | y=Bounce Count | rows=10
+2026-04-19 23:59:52 | INFO     | [renderer] OK | boxplot
+2026-04-19 23:59:54 | INFO     | [renderer] chart_type=boxplot | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:59:54 | INFO     | [boxplot] x=Branch | y=Bounce Count | rows=10
+2026-04-19 23:59:54 | INFO     | [renderer] OK | boxplot
+2026-04-19 23:59:54 | INFO     | [renderer] chart_type=area | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
+2026-04-19 23:59:54 | INFO     | [area] x=Bounce Count | y=Branch | rows=10
+2026-04-19 23:59:54 | INFO     | [renderer] OK | area

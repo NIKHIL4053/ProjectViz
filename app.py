@@ -438,6 +438,7 @@ def _render_dashboard(session):
         metric         = metric,
         filter_summary = filter_summary,
         sql            = sql,
+        question       = data.get("question", metric),
     )
 
     st.divider()

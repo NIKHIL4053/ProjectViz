@@ -1,125 +1,72 @@
-"""
-charts/scatter.py
------------------
-# * Scatter plot — relationship between two numeric columns.
-# * Adds linear regression trend line automatically.
-# * Used for: credit score vs loan amount, visit count vs resolution.
-"""
-
+"""charts/scatter.py — Plotly scatter with trend line."""
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 import pandas as pd
-
-from charts.theme import COLORS, PALETTES, FIGSIZE, style_figure, apply_theme
+import plotly.graph_objects as go
+import plotly.express as px
+from config import SCATTER_SAMPLE_ROWS
 from utils.helpers import get_column
 from utils.logger import get_charts_logger
-from config import SCATTER_SAMPLE_ROWS
 
 charts_log = get_charts_logger(__name__)
+TEMPLATE   = "plotly_dark"
 
 
-def render(df: pd.DataFrame, config: dict) -> plt.Figure:
-    """
-    # * Render a scatter plot with optional trend line.
+def render(df: pd.DataFrame, config: dict) -> go.Figure:
+    x_col   = get_column(df, config.get("x_col"))
+    y_col   = get_column(df, config.get("y_col"))
+    hue_col = get_column(df, config.get("hue_col"))
+    title   = config.get("title", f"{x_col} vs {y_col}")
 
-    Args:
-        df     : DataFrame from database client
-        config : dict with keys: x_axis, y_axis, hue, title,
-                 color_palette, filters_applied
-
-    Returns:
-        matplotlib Figure
-    """
-    apply_theme()
-
-    x       = get_column(df, config.get("x_axis"))
-    y       = get_column(df, config.get("y_axis"))
-    hue     = get_column(df, config.get("hue"))
-    palette = config.get("color_palette", PALETTES.DIVERGING)
-    title   = config.get("title", f"{x} vs {y}")
-    filters = config.get("filters_applied", [])
-
-    # * Both axes must be numeric — auto-detect if not
     num_cols = [c for c in df.columns if pd.api.types.is_numeric_dtype(df[c])]
 
-    if not x or not pd.api.types.is_numeric_dtype(df.get(x, pd.Series())):
-        x = num_cols[0] if len(num_cols) >= 1 else df.columns[0]
-    if not y or not pd.api.types.is_numeric_dtype(df.get(y, pd.Series())):
-        y = num_cols[1] if len(num_cols) >= 2 else num_cols[0]
+    if not x_col or x_col not in df.columns or not pd.api.types.is_numeric_dtype(df[x_col]):
+        x_col = num_cols[0] if num_cols else df.columns[0]
+    if not y_col or y_col not in df.columns or not pd.api.types.is_numeric_dtype(df[y_col]):
+        y_col = num_cols[1] if len(num_cols) > 1 else num_cols[0]
 
-    if hue and hue not in df.columns:
-        hue = None
+    if hue_col and hue_col not in df.columns:
+        hue_col = None
 
-    # * Optional size column
-    size_col = None
-    for col in num_cols:
-        if col not in (x, y):
-            size_col = col
-            break
+    size_col = next((c for c in num_cols if c not in (x_col, y_col)), None)
+    sample   = df.sample(min(SCATTER_SAMPLE_ROWS, len(df)), random_state=42)
 
-    # * Sample for rendering performance
-    plot_df = df.sample(min(SCATTER_SAMPLE_ROWS, len(df)), random_state=42)
+    if hue_col:
+        fig = px.scatter(sample, x=x_col, y=y_col, color=hue_col,
+                         size=size_col, size_max=30, title=title,
+                         template=TEMPLATE, opacity=0.7,
+                         color_continuous_scale="Viridis")
+    else:
+        fig = px.scatter(sample, x=x_col, y=y_col,
+                         size=size_col, size_max=30, title=title,
+                         template=TEMPLATE, opacity=0.7)
+        fig.update_traces(marker_color="#89b4fa")
 
-    fig, ax = plt.subplots(figsize=FIGSIZE.SCATTER)
-
-    sns.scatterplot(
-        data    = plot_df,
-        x       = x,
-        y       = y,
-        hue     = hue,
-        size    = size_col,
-        sizes   = (30, 280),
-        alpha   = 0.65,
-        palette = palette,
-        ax      = ax,
-    )
-
-    # * Linear trend line
+    # * Trend line
     try:
-        clean = plot_df[[x, y]].dropna()
+        clean = sample[[x_col, y_col]].dropna()
         if len(clean) > 5:
-            m, b  = np.polyfit(clean[x], clean[y], 1)
-            xs    = np.linspace(clean[x].min(), clean[x].max(), 200)
-            ax.plot(
-                xs, m * xs + b,
-                "--",
-                color     = COLORS.TREND_LINE,
-                linewidth = 1.8,
-                alpha     = 0.85,
-                label     = "Trend",
-                zorder    = 5,
-            )
-    except Exception:
-        pass
-
-    ax.set_xlabel(x, labelpad=8, fontsize=11)
-    ax.set_ylabel(y, labelpad=8, fontsize=11)
-
-    if hue or size_col:
-        legend = ax.legend(framealpha=0.2, labelcolor=COLORS.TEXT_PRIMARY)
-
-    # * Correlation annotation
-    try:
-        corr = plot_df[x].corr(plot_df[y])
-        ax.text(
-            0.02, 0.96,
-            f"r = {corr:.2f}",
-            transform = ax.transAxes,
-            fontsize  = 10,
-            color     = COLORS.TEXT_SECONDARY,
-            va        = "top",
+            m, b = np.polyfit(clean[x_col], clean[y_col], 1)
+            xs   = np.linspace(clean[x_col].min(), clean[x_col].max(), 100)
+            fig.add_trace(go.Scatter(
+                x=xs, y=m*xs+b, mode="lines",
+                line=dict(color="#f5c2e7", dash="dash", width=2),
+                name="Trend", showlegend=True,
+            ))
+        corr = clean[x_col].corr(clean[y_col])
+        fig.add_annotation(
+            text=f"r = {corr:.2f}", xref="paper", yref="paper",
+            x=0.02, y=0.98, showarrow=False,
+            font={"color": "#6c7086", "size": 11},
         )
     except Exception:
         pass
 
-    if filters:
-        caption = "Filters: " + "  |  ".join(str(f) for f in filters[:4])
-        fig.text(0.5, -0.03, caption, ha="center",
-                 fontsize=8, color=COLORS.TEXT_SECONDARY, style="italic")
-
-    charts_log.info(
-        f"[scatter] Rendered | x={x} | y={y} | hue={hue} | "
-        f"sample={len(plot_df)}/{len(df)}"
+    fig.update_layout(
+        height=480, paper_bgcolor="#1e1e2e", plot_bgcolor="#1e1e2e",
+        font={"color": "#cdd6f4"}, title_font={"size": 15, "color": "#89b4fa"},
+        xaxis_title=x_col, yaxis_title=y_col,
+        margin={"l": 30, "r": 30, "t": 50, "b": 40},
+        legend={"bgcolor": "rgba(0,0,0,0)", "font": {"color": "#cdd6f4"}},
     )
-    return style_figure(fig, title=title)
+    charts_log.info(f"[scatter] x={x_col} | y={y_col} | sample={len(sample)}/{len(df)}")
+    return fig

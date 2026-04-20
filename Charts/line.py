@@ -1,99 +1,59 @@
-"""
-charts/line.py
---------------
-# * Line chart — trends over time or across ordered categories.
-# * Used for: bounce trend, resolution trend, NPA over time.
-"""
-
-import matplotlib.pyplot as plt
-import seaborn as sns
+"""charts/line.py — Plotly line chart for trends over time or ordered categories."""
 import pandas as pd
-
-from charts.theme import COLORS, PALETTES, FIGSIZE, style_figure, apply_theme
+import plotly.graph_objects as go
+import plotly.express as px
 from utils.helpers import get_column
 from utils.logger import get_charts_logger
 
 charts_log = get_charts_logger(__name__)
+TEMPLATE   = "plotly_dark"
 
 
-def render(df: pd.DataFrame, config: dict) -> plt.Figure:
-    """
-    # * Render a line chart from DataFrame and config.
+def render(df: pd.DataFrame, config: dict) -> go.Figure:
+    x_col   = get_column(df, config.get("x_col")) or df.columns[0]
+    y_col   = get_column(df, config.get("y_col")) or next(
+                (c for c in df.columns if pd.api.types.is_numeric_dtype(df[c]) and c != x_col),
+                df.columns[-1])
+    hue_col = get_column(df, config.get("hue_col"))
+    title   = config.get("title", f"{y_col} over {x_col}")
 
-    Args:
-        df     : DataFrame from database client
-        config : dict with keys: x_axis, y_axis, hue, title,
-                 color_palette, filters_applied
+    if hue_col and hue_col not in df.columns:
+        hue_col = None
 
-    Returns:
-        matplotlib Figure
-    """
-    apply_theme()
-
-    x   = get_column(df, config.get("x_axis")) or df.columns[0]
-    y   = get_column(df, config.get("y_axis")) or next(
-            (c for c in df.columns if pd.api.types.is_numeric_dtype(df[c]) and c != x),
-            df.columns[-1]
-          )
-    hue     = get_column(df, config.get("hue"))
-    palette = config.get("color_palette", PALETTES.CATEGORICAL)
-    title   = config.get("title", f"{y} over {x}")
-    filters = config.get("filters_applied", [])
-
-    # * Validate hue
-    if hue and hue not in df.columns:
-        hue = None
-
-    # * Sort by x for clean line
     try:
-        df = df.sort_values(by=x)
+        df = df.sort_values(by=x_col)
     except Exception:
         pass
 
-    fig, ax = plt.subplots(figsize=FIGSIZE.LINE)
+    if hue_col:
+        fig = px.line(df, x=x_col, y=y_col, color=hue_col,
+                      title=title, template=TEMPLATE, markers=True)
+    else:
+        fig = px.line(df, x=x_col, y=y_col,
+                      title=title, template=TEMPLATE, markers=True)
+        fig.update_traces(line_color="#89b4fa", marker_color="#89b4fa", marker_size=7)
+        # * Subtle fill under line
+        fig.add_traces(go.Scatter(
+            x=df[x_col], y=df[y_col],
+            fill="tozeroy",
+            fillcolor="rgba(137,180,250,0.12)",
+            line_color="rgba(0,0,0,0)",
+            showlegend=False,
+        ))
 
-    sns.lineplot(
-        data       = df,
-        x          = x,
-        y          = y,
-        hue        = hue,
-        marker     = "o",
-        linewidth  = 2.5,
-        markersize = 6,
-        palette    = palette,
-        ax         = ax,
+    fig.update_layout(
+        height        = 450,
+        paper_bgcolor = "#1e1e2e",
+        plot_bgcolor  = "#1e1e2e",
+        font          = {"color": "#cdd6f4", "size": 12},
+        title_font    = {"size": 15, "color": "#89b4fa"},
+        xaxis_title   = x_col,
+        yaxis_title   = y_col,
+        margin        = {"l": 30, "r": 30, "t": 50, "b": 80},
+        legend        = {"bgcolor": "rgba(0,0,0,0)", "font": {"color": "#cdd6f4"}},
     )
+    fig.update_xaxes(tickangle=30, gridcolor="#313244")
+    fig.update_yaxes(gridcolor="#313244")
 
-    # * Subtle fill under line when no grouping
-    if not hue and pd.api.types.is_numeric_dtype(df[y]):
-        try:
-            ax.fill_between(
-                range(len(df)),
-                df[y].values,
-                alpha = 0.12,
-                color = COLORS.INFO,
-            )
-        except Exception:
-            pass
-
-    ax.set_xlabel(x, labelpad=8, fontsize=11)
-    ax.set_ylabel(y, labelpad=8, fontsize=11)
-    plt.xticks(rotation=30, ha="right", fontsize=10)
-
-    if hue:
-        legend = ax.legend(
-            title       = hue,
-            framealpha  = 0.2,
-            labelcolor  = COLORS.TEXT_PRIMARY,
-            loc         = "best",
-        )
-        legend.get_title().set_color(COLORS.TEXT_PRIMARY)
-
-    # * Filter caption
-    if filters:
-        caption = "Filters: " + "  |  ".join(str(f) for f in filters[:4])
-        fig.text(0.5, -0.03, caption, ha="center",
-                 fontsize=8, color=COLORS.TEXT_SECONDARY, style="italic")
-
-    charts_log.info(f"[line] Rendered | x={x} | y={y} | hue={hue} | rows={len(df)}")
-    return style_figure(fig, title=title)
+    charts_log.info(f"[line] x={x_col} | y={y_col} | hue={hue_col} | rows={len(df)}")
+    return fig

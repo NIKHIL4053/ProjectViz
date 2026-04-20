@@ -1,40 +1,38 @@
 """
 charts/renderer.py
 ------------------
-# * Central chart router — delegates to individual chart files.
-# * Each chart type has its own file with full implementation.
+# * Central Plotly chart router.
+# * Routes to the correct chart module based on chart_type.
+# * Returns a Plotly Figure — use st.plotly_chart() not st.pyplot().
 
 Exports:
-    - RenderResult  : Dataclass wrapping render output
+    - RenderResult  : Dataclass
     - render_chart(): Main entry point
 """
 
-import warnings
 from dataclasses import dataclass
 from typing import Optional
 
 import pandas as pd
-import matplotlib
-import matplotlib.pyplot as plt
+import plotly.graph_objects as go
 
-from charts.theme import apply_theme, COLORS
 from utils.logger import get_logger, get_charts_logger
 from utils.benchmark import benchmark
 from utils.helpers import truncate_string
 
-warnings.filterwarnings("ignore")
-matplotlib.use("Agg")
-
 log        = get_logger(__name__)
 charts_log = get_charts_logger(__name__)
+
+# * Plotly dark theme template
+PLOTLY_TEMPLATE = "plotly_dark"
 
 
 @dataclass
 class RenderResult:
     success:    bool
-    figure:     Optional[plt.Figure] = None
-    chart_type: str                  = ""
-    error:      Optional[str]        = None
+    figure:     Optional[go.Figure] = None
+    chart_type: str                 = ""
+    error:      Optional[str]       = None
 
     @property
     def failed(self) -> bool:
@@ -43,31 +41,36 @@ class RenderResult:
 
 def render_chart(df: pd.DataFrame, config: dict) -> RenderResult:
     """
-    # * Route to the correct chart module based on config["chart_type"].
-    # * Always returns a RenderResult — never raises.
+    # * Route to the correct Plotly chart module.
+    # * config uses keys: chart_type, x_col, y_col, hue_col,
+    # *   palette, title, top_n, sort_desc
+    # * Also accepts old keys x_axis/y_axis/hue for backwards compatibility.
+
+    Returns:
+        RenderResult with Plotly Figure.
+        Use: st.plotly_chart(result.figure, use_container_width=True)
     """
-    apply_theme()
-
     if df is None or df.empty:
-        return RenderResult(success=False, error="Empty DataFrame — no data to render")
+        return RenderResult(success=False, error="Empty DataFrame")
 
-    chart_type = config.get("chart_type", "heatmap").lower().strip()
+    # * Normalise config keys (support both old and new key names)
+    config = _normalise_config(config)
+
+    chart_type = config.get("chart_type", "horizontal_bar").lower().strip()
     title      = config.get("title", "")
 
     charts_log.info(
-        f"[renderer] Routing | chart_type={chart_type} | "
-        f"rows={len(df)} | cols={list(df.columns)} | "
-        f"title='{truncate_string(title, 50)}'"
+        f"[renderer] chart_type={chart_type} | rows={len(df)} | "
+        f"cols={list(df.columns)} | title='{truncate_string(title, 50)}'"
     )
 
     with benchmark("chart_render"):
         try:
             fig = _route(chart_type, df, config)
-            charts_log.info(f"[renderer] OK | chart_type={chart_type}")
+            charts_log.info(f"[renderer] OK | {chart_type}")
             return RenderResult(success=True, figure=fig, chart_type=chart_type)
-
         except Exception as e:
-            charts_log.error(f"[renderer] FAILED | chart_type={chart_type} | error={e}")
+            charts_log.error(f"[renderer] FAILED | {chart_type} | {e}")
             try:
                 fig = _error_figure(str(e), chart_type)
                 return RenderResult(success=False, figure=fig,
@@ -77,45 +80,60 @@ def render_chart(df: pd.DataFrame, config: dict) -> RenderResult:
                                     error=f"Render failed: {str(e)[:200]}")
 
 
-def _route(chart_type: str, df: pd.DataFrame, config: dict) -> plt.Figure:
-    if chart_type == "line":
+def _normalise_config(config: dict) -> dict:
+    """# * Translate old key names to new ones for backwards compatibility."""
+    c = dict(config)
+    if "x_axis" in c and "x_col" not in c:
+        c["x_col"] = c.pop("x_axis")
+    if "y_axis" in c and "y_col" not in c:
+        c["y_col"] = c.pop("y_axis")
+    if "hue" in c and "hue_col" not in c:
+        c["hue_col"] = c.pop("hue")
+    if "color_palette" in c and "palette" not in c:
+        c["palette"] = c.pop("color_palette")
+    return c
+
+
+def _route(chart_type: str, df: pd.DataFrame, config: dict) -> go.Figure:
+    """# * Import and call the correct chart module."""
+    if chart_type == "horizontal_bar":
+        from charts.bar import render
+    elif chart_type == "line":
         from charts.line import render
-        return render(df, config)
     elif chart_type == "area":
         from charts.area import render
-        return render(df, config)
     elif chart_type == "heatmap":
         from charts.heatmap import render
-        return render(df, config)
     elif chart_type == "kde":
         from charts.kde import render
-        return render(df, config)
     elif chart_type == "scatter":
         from charts.scatter import render
-        return render(df, config)
     elif chart_type == "boxplot":
         from charts.boxplot import render
-        return render(df, config)
+    elif chart_type == "treemap":
+        from charts.treemap import render
     else:
-        charts_log.warning(f"[renderer] Unknown '{chart_type}' — falling back to heatmap")
-        from charts.heatmap import render
-        return render(df, config)
+        charts_log.warning(f"[renderer] Unknown '{chart_type}' → horizontal_bar")
+        from charts.bar import render
+    return render(df, config)
 
 
-def _error_figure(error_msg: str, chart_type: str) -> plt.Figure:
-    apply_theme()
-    fig, ax = plt.subplots(figsize=(12, 4))
-    fig.patch.set_facecolor(COLORS.BG_MAIN)
-    ax.set_facecolor(COLORS.BG_MAIN)
-    ax.axis("off")
-    ax.text(0.5, 0.65, f"⚠ Could not render {chart_type} chart",
-            ha="center", va="center", color=COLORS.WARN,
-            fontsize=13, fontweight="bold", transform=ax.transAxes)
-    ax.text(0.5, 0.38, truncate_string(error_msg, 150),
-            ha="center", va="center", color=COLORS.TEXT_SECONDARY,
-            fontsize=9, transform=ax.transAxes, wrap=True)
-    ax.text(0.5, 0.15, "Raw data is available in the 📋 Data tab below.",
-            ha="center", va="center", color=COLORS.TEXT_SECONDARY,
-            fontsize=9, transform=ax.transAxes)
-    plt.tight_layout()
+def _error_figure(error_msg: str, chart_type: str) -> go.Figure:
+    """# * Returns a Plotly figure with the error message displayed."""
+    fig = go.Figure()
+    fig.add_annotation(
+        text     = f"⚠ Could not render {chart_type} chart<br>"
+                   f"<sub>{truncate_string(error_msg, 120)}</sub><br>"
+                   f"<sub>Raw data is available in the 📋 Data tab</sub>",
+        xref     = "paper", yref = "paper",
+        x=0.5, y=0.5, showarrow=False,
+        font     = {"size": 14, "color": "#fab387"},
+        align    = "center",
+    )
+    fig.update_layout(
+        template = PLOTLY_TEMPLATE,
+        height   = 350,
+        paper_bgcolor = "#1e1e2e",
+        plot_bgcolor  = "#1e1e2e",
+    )
     return fig

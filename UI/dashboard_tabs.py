@@ -1,21 +1,16 @@
 """
 ui/dashboard_tabs.py
 --------------------
-# * Dashboard tab layout — chart, data, SQL, export.
-# * Receives the filtered DataFrame and chart config.
-# * Renders the full dashboard section below KPI cards.
+# * Dashboard tab layout — Chart | Insights | Data | SQL | Export.
+# * Uses Plotly for interactive charts (hover, zoom, pan).
+# * Shows 3-5 AI-generated insights below the chart.
 """
 
 import io
 from typing import Optional
 
 import pandas as pd
-import matplotlib.pyplot as plt
 import streamlit as st
-from reportlab.lib.pagesizes import A4, landscape
-from reportlab.lib import colors
-from reportlab.platypus import SimpleDocTemplate, Image as RLImage, Paragraph, Spacer
-from reportlab.lib.styles import getSampleStyleSheet
 
 from charts.renderer import render_chart, RenderResult
 from utils.logger import get_logger
@@ -29,62 +24,61 @@ def render_dashboard_tabs(
     metric:         str         = "",
     filter_summary: str         = "All Data",
     sql:            str         = "",
+    question:       str         = "",
 ):
     """
-    # * Render the full dashboard with tabs: Chart | Data | SQL | Export.
+    # * Render dashboard with tabs: Chart | Insights | Data | SQL | Export.
 
     Args:
-        df             : Filtered DataFrame to visualise
+        df             : Filtered DataFrame
         chart_config   : Dict from ChartConfig.to_dict()
-        metric         : Metric name for display
-        filter_summary : Active filters string for caption
-        sql            : Generated SQL string for SQL tab
+        metric         : Metric name
+        filter_summary : Active filters string
+        sql            : Generated SQL
+        question       : Original user question (for insight generation)
     """
     if df is None or df.empty:
-        st.warning("No data available to display.")
+        st.warning("No data available.")
         return
 
-    tab_chart, tab_data, tab_sql, tab_export = st.tabs([
+    tab_chart, tab_insights, tab_data, tab_sql, tab_export = st.tabs([
         "📈 Chart",
+        "💡 Insights",
         "📋 Data",
         "🔍 SQL",
         "📤 Export",
     ])
 
-    # ── Chart tab ─────────────────────────────────────────────────────────────
     with tab_chart:
         _render_chart_tab(df, chart_config, metric, filter_summary)
 
-    # ── Data tab ──────────────────────────────────────────────────────────────
+    with tab_insights:
+        _render_insights_tab(df, metric, question, filter_summary)
+
     with tab_data:
         _render_data_tab(df, metric, filter_summary)
 
-    # ── SQL tab ───────────────────────────────────────────────────────────────
     with tab_sql:
         _render_sql_tab(sql)
 
-    # ── Export tab ────────────────────────────────────────────────────────────
     with tab_export:
-        _render_export_tab(df, chart_config, metric, filter_summary, sql)
+        _render_export_tab(df, chart_config, metric, filter_summary)
 
 
-# ── Internal tab renderers ────────────────────────────────────────────────────
+# ── Chart tab ─────────────────────────────────────────────────────────────────
 
-def _render_chart_tab(
-    df:             pd.DataFrame,
-    chart_config:   dict,
-    metric:         str,
-    filter_summary: str,
-):
-    """# * Render the chart inside the Chart tab."""
+def _render_chart_tab(df, chart_config, metric, filter_summary):
+    """# * Render Plotly chart with chart-type switcher."""
 
     render_config = {
-        "chart_type":      chart_config.get("chart_type", "heatmap"),
-        "x_axis":          chart_config.get("x_col", ""),
-        "y_axis":          chart_config.get("y_col", ""),
-        "hue":             chart_config.get("hue_col"),
-        "color_palette":   chart_config.get("palette", "Set2"),
-        "title":           chart_config.get("title", metric),
+        "chart_type": chart_config.get("chart_type", "horizontal_bar"),
+        "x_col":      chart_config.get("x_col", ""),
+        "y_col":      chart_config.get("y_col", ""),
+        "hue_col":    chart_config.get("hue_col"),
+        "palette":    chart_config.get("palette", "teal"),
+        "title":      chart_config.get("title", metric),
+        "top_n":      chart_config.get("top_n", 0),
+        "sort_desc":  chart_config.get("sort_desc", True),
         "filters_applied": [filter_summary] if filter_summary != "All Data" else [],
     }
 
@@ -92,8 +86,8 @@ def _render_chart_tab(
         result: RenderResult = render_chart(df, render_config)
 
         if result.success and result.figure:
-            st.pyplot(result.figure, use_container_width=True)
-            plt.close(result.figure)
+            # * Plotly chart — interactive, hover, zoom
+            st.plotly_chart(result.figure, use_container_width=True)
         else:
             st.warning(f"Chart could not render: {result.error}")
             st.info("Showing raw data instead.")
@@ -104,210 +98,173 @@ def _render_chart_tab(
         st.warning("Chart failed — showing raw data.")
         st.dataframe(df, use_container_width=True)
 
-    # * Chart type selector — let user override
+    # * Chart type override
     st.divider()
     st.markdown("##### 🔄 Try a different chart type")
-    chart_options = ["heatmap", "line", "area", "kde", "scatter", "boxplot"]
-    current_type  = chart_config.get("chart_type", "heatmap")
+    chart_options  = ["horizontal_bar", "heatmap", "line", "area",
+                      "kde", "scatter", "boxplot", "treemap"]
+    current_type   = chart_config.get("chart_type", "horizontal_bar")
 
-    c1, c2 = st.columns([2, 4])
+    c1, c2, c3 = st.columns([2, 1, 3])
     with c1:
         new_type = st.selectbox(
-            "Chart type",
-            options       = chart_options,
-            index         = chart_options.index(current_type) if current_type in chart_options else 0,
-            key           = "chart_type_override",
-            label_visibility = "collapsed",
+            "Chart type", options=chart_options,
+            index=chart_options.index(current_type) if current_type in chart_options else 0,
+            key="chart_type_override", label_visibility="collapsed",
         )
     with c2:
         if st.button("Apply", key="apply_chart_type"):
             chart_config["chart_type"] = new_type
             st.rerun()
+    with c3:
+        top_n_val = int(chart_config.get("top_n", 0))
+        new_top_n = st.number_input(
+            "Show top N rows (0 = all)", min_value=0, max_value=100,
+            value=top_n_val, key="top_n_override", label_visibility="collapsed",
+        )
+        if new_top_n != top_n_val:
+            chart_config["top_n"] = new_top_n
+            st.rerun()
 
 
-def _render_data_tab(
-    df:             pd.DataFrame,
-    metric:         str,
-    filter_summary: str,
-):
-    """# * Render the data table and CSV download inside the Data tab."""
+# ── Insights tab ──────────────────────────────────────────────────────────────
 
+def _render_insights_tab(df, metric, question, filter_summary):
+    """# * Generate and display 3-5 AI insights from the data."""
+    from models.insight_generator import get_insight_generator
+
+    st.markdown("#### 💡 AI Insights")
+    st.caption("Generated by Qwen 7B based on the data returned from your query.")
+
+    # * Cache insights per query in session state to avoid regenerating
+    cache_key = f"insights_{hash(str(df.shape) + metric + filter_summary)}"
+
+    if cache_key not in st.session_state:
+        with st.spinner("🤖 Generating insights..."):
+            result = get_insight_generator().generate(
+                df             = df,
+                metric         = metric,
+                question       = question or metric,
+                filter_summary = filter_summary,
+            )
+        st.session_state[cache_key] = result
+
+    result = st.session_state.get(cache_key)
+
+    if result and result.success and result.insights:
+        for i, insight in enumerate(result.insights, 1):
+            st.markdown(
+                f"""<div style="
+                    background:#181825;
+                    border-left: 3px solid #89b4fa;
+                    border-radius: 6px;
+                    padding: 10px 16px;
+                    margin-bottom: 8px;
+                    color: #cdd6f4;
+                    font-size: 14px;
+                ">
+                <b>{i}.</b> {insight}
+                </div>""",
+                unsafe_allow_html=True,
+            )
+        if st.button("🔄 Regenerate Insights", key="regen_insights"):
+            if cache_key in st.session_state:
+                del st.session_state[cache_key]
+            st.rerun()
+    else:
+        st.info("Could not generate insights. Check the Data tab for raw results.")
+
+
+# ── Data tab ──────────────────────────────────────────────────────────────────
+
+def _render_data_tab(df, metric, filter_summary):
     st.markdown(f"**{len(df):,} rows** × **{len(df.columns)} columns**")
     if filter_summary and filter_summary != "All Data":
-        st.caption(f"Filters applied: {filter_summary}")
+        st.caption(f"Filters: {filter_summary}")
 
     st.dataframe(df, use_container_width=True, height=380)
 
-    # * CSV download
     csv_bytes = df.to_csv(index=False).encode("utf-8")
     safe_name = metric.lower().replace(" ", "_").replace("%", "pct") or "data"
 
     st.download_button(
-        label     = "⬇️ Download CSV",
-        data      = csv_bytes,
-        file_name = f"{safe_name}.csv",
-        mime      = "text/csv",
-        key       = "download_csv",
+        label="⬇️ Download CSV", data=csv_bytes,
+        file_name=f"{safe_name}.csv", mime="text/csv",
+        key="download_csv",
     )
 
 
-def _render_sql_tab(sql: str):
-    """# * Render the generated SQL and explanation inside the SQL tab."""
+# ── SQL tab ───────────────────────────────────────────────────────────────────
 
+def _render_sql_tab(sql):
     st.markdown("**Generated SQL Query:**")
-
     if sql:
         st.code(sql, language="sql")
         st.caption(
-            "This SQL was generated by Qwen Coder 14B based on your question "
-            "and filter selections. It runs against your PostgreSQL database."
+            "Generated by Qwen Coder 14B based on your question and filters. "
+            "Runs against PostgreSQL."
         )
-
-        # * Copy-friendly text area
         with st.expander("📋 Copy as plain text"):
             st.text_area("SQL", value=sql, height=200,
                          label_visibility="collapsed", key="sql_plain")
     else:
-        st.info("SQL query not available.")
+        st.info("SQL not available.")
 
 
-def _render_export_tab(
-    df:             pd.DataFrame,
-    chart_config:   dict,
-    metric:         str,
-    filter_summary: str,
-    sql:            str,
-):
-    """# * Render PDF and Excel export options inside the Export tab."""
+# ── Export tab ────────────────────────────────────────────────────────────────
 
+def _render_export_tab(df, chart_config, metric, filter_summary):
     st.markdown("#### 📤 Export Options")
-
     c1, c2 = st.columns(2)
 
-    # ── Excel export ──────────────────────────────────────────────────────────
+    # * Excel
     with c1:
         st.markdown("**Excel (.xlsx)**")
-        st.caption("Download the filtered data as an Excel file.")
-
         try:
             excel_buf = io.BytesIO()
             with pd.ExcelWriter(excel_buf, engine="xlsxwriter") as writer:
                 df.to_excel(writer, index=False, sheet_name="Data")
-                # * Add filter metadata sheet
                 meta = pd.DataFrame({
                     "Property": ["Metric", "Filters", "Rows", "Columns"],
                     "Value":    [metric, filter_summary, len(df), len(df.columns)],
                 })
                 meta.to_excel(writer, index=False, sheet_name="Info")
-
-            excel_bytes = excel_buf.getvalue()
-            safe_name   = metric.lower().replace(" ", "_").replace("%", "pct") or "export"
-
+            safe_name = metric.lower().replace(" ", "_").replace("%", "pct") or "export"
             st.download_button(
-                label     = "⬇️ Download Excel",
-                data      = excel_bytes,
-                file_name = f"{safe_name}.xlsx",
-                mime      = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                key       = "download_excel",
+                "⬇️ Download Excel", data=excel_buf.getvalue(),
+                file_name=f"{safe_name}.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                key="download_excel",
             )
         except Exception as e:
             st.error(f"Excel export failed: {e}")
-            st.info("Install xlsxwriter: pip install xlsxwriter")
+            st.info("pip install xlsxwriter")
 
-    # ── PDF export ────────────────────────────────────────────────────────────
+    # * PDF / PNG via Plotly kaleido
     with c2:
-        st.markdown("**PDF Report**")
-        st.caption("Download the chart as a PDF report.")
-
-        if st.button("📄 Generate PDF", key="gen_pdf"):
+        st.markdown("**Chart Image (.png)**")
+        st.caption("Export the chart as a PNG image.")
+        if st.button("📸 Generate PNG", key="gen_png"):
             try:
-                pdf_bytes = _generate_pdf(df, chart_config, metric, filter_summary)
-                safe_name = metric.lower().replace(" ", "_").replace("%", "pct") or "report"
-                st.download_button(
-                    label     = "⬇️ Download PDF",
-                    data      = pdf_bytes,
-                    file_name = f"{safe_name}_report.pdf",
-                    mime      = "application/pdf",
-                    key       = "download_pdf",
-                )
+                from charts.renderer import render_chart
+                result = render_chart(df, {
+                    "chart_type": chart_config.get("chart_type", "horizontal_bar"),
+                    "x_col":      chart_config.get("x_col", ""),
+                    "y_col":      chart_config.get("y_col", ""),
+                    "hue_col":    chart_config.get("hue_col"),
+                    "palette":    chart_config.get("palette", "teal"),
+                    "title":      chart_config.get("title", metric),
+                    "top_n":      chart_config.get("top_n", 0),
+                    "sort_desc":  chart_config.get("sort_desc", True),
+                })
+                if result.success and result.figure:
+                    img_bytes = result.figure.to_image(format="png", scale=2)
+                    safe_name = metric.lower().replace(" ", "_").replace("%", "pct")
+                    st.download_button(
+                        "⬇️ Download PNG", data=img_bytes,
+                        file_name=f"{safe_name}.png", mime="image/png",
+                        key="download_png",
+                    )
             except Exception as e:
-                st.error(f"PDF export failed: {e}")
-                st.info("Install reportlab: pip install reportlab")
-
-
-def _generate_pdf(
-    df:             pd.DataFrame,
-    chart_config:   dict,
-    metric:         str,
-    filter_summary: str,
-) -> bytes:
-    """
-    # * Generate a PDF report with the chart and data summary.
-
-    Returns:
-        PDF as bytes.
-    """
-    import tempfile, os
-
-    buf = io.BytesIO()
-    doc = SimpleDocTemplate(
-        buf,
-        pagesize    = landscape(A4),
-        topMargin   = 30,
-        bottomMargin= 30,
-        leftMargin  = 40,
-        rightMargin = 40,
-    )
-
-    styles  = getSampleStyleSheet()
-    story   = []
-
-    # * Title
-    story.append(Paragraph(
-        f"<b>Loan Collection Analytics — {metric}</b>",
-        styles["Heading1"]
-    ))
-    story.append(Spacer(1, 6))
-
-    # * Filter summary
-    story.append(Paragraph(
-        f"<i>Filters: {filter_summary}</i>",
-        styles["Normal"]
-    ))
-    story.append(Spacer(1, 12))
-
-    # * Render chart to temp image
-    render_config = {
-        "chart_type":      chart_config.get("chart_type", "heatmap"),
-        "x_axis":          chart_config.get("x_col", ""),
-        "y_axis":          chart_config.get("y_col", ""),
-        "hue":             chart_config.get("hue_col"),
-        "color_palette":   chart_config.get("palette", "Set2"),
-        "title":           chart_config.get("title", metric),
-        "filters_applied": [filter_summary] if filter_summary != "All Data" else [],
-    }
-
-    result = render_chart(df, render_config)
-    if result.success and result.figure:
-        with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as tmp:
-            result.figure.savefig(
-                tmp.name,
-                dpi         = 150,
-                bbox_inches = "tight",
-                facecolor   = "#1e1e2e",
-            )
-            plt.close(result.figure)
-            tmp_path = tmp.name
-
-        story.append(RLImage(tmp_path, width=680, height=300))
-        story.append(Spacer(1, 12))
-        os.unlink(tmp_path)
-
-    # * Data summary
-    story.append(Paragraph(
-        f"<b>Data Summary</b> — {len(df):,} rows × {len(df.columns)} columns",
-        styles["Heading3"]
-    ))
-
-    doc.build(story)
-    return buf.getvalue()
+                st.error(f"PNG export failed: {e}")
+                st.info("pip install kaleido")

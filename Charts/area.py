@@ -1,95 +1,42 @@
-"""
-charts/area.py
---------------
-# * Area chart — stacked trends showing composition over time.
-# * Used for: bucket distribution over months, status composition.
-"""
-
-import matplotlib.pyplot as plt
-import seaborn as sns
+"""charts/area.py — Plotly stacked area chart."""
 import pandas as pd
-
-from charts.theme import COLORS, PALETTES, FIGSIZE, style_figure, apply_theme
+import plotly.graph_objects as go
+import plotly.express as px
 from utils.helpers import get_column
 from utils.logger import get_charts_logger
 
 charts_log = get_charts_logger(__name__)
+TEMPLATE   = "plotly_dark"
 
 
-def render(df: pd.DataFrame, config: dict) -> plt.Figure:
-    """
-    # * Render an area chart from DataFrame and config.
-
-    Args:
-        df     : DataFrame from database client
-        config : dict with keys: x_axis, y_axis, hue, title,
-                 color_palette, filters_applied
-
-    Returns:
-        matplotlib Figure
-    """
-    apply_theme()
-
-    x   = get_column(df, config.get("x_axis")) or df.columns[0]
-    y   = get_column(df, config.get("y_axis")) or next(
-            (c for c in df.columns if pd.api.types.is_numeric_dtype(df[c]) and c != x),
-            df.columns[-1]
-          )
-    hue     = get_column(df, config.get("hue"))
-    palette = config.get("color_palette", PALETTES.CATEGORICAL)
-    title   = config.get("title", f"{y} over {x}")
-    filters = config.get("filters_applied", [])
-
-    if hue and hue not in df.columns:
-        hue = None
+def render(df: pd.DataFrame, config: dict) -> go.Figure:
+    x_col   = get_column(df, config.get("x_col")) or df.columns[0]
+    y_col   = get_column(df, config.get("y_col")) or next(
+                (c for c in df.columns if pd.api.types.is_numeric_dtype(df[c]) and c != x_col),
+                df.columns[-1])
+    hue_col = get_column(df, config.get("hue_col"))
+    title   = config.get("title", f"{y_col} over {x_col}")
 
     try:
-        df = df.sort_values(by=x)
+        df = df.sort_values(by=x_col)
     except Exception:
         pass
 
-    fig, ax = plt.subplots(figsize=FIGSIZE.AREA)
-
-    if hue and hue in df.columns:
-        try:
-            pivot = df.pivot_table(
-                index   = x,
-                columns = hue,
-                values  = y,
-                aggfunc = "sum",
-            ).fillna(0)
-            colors = sns.color_palette(palette, n_colors=len(pivot.columns))
-            pivot.plot.area(ax=ax, color=colors, alpha=0.75, linewidth=1.5)
-            ax.legend(
-                title       = hue,
-                framealpha  = 0.2,
-                labelcolor  = COLORS.TEXT_PRIMARY,
-                loc         = "upper left",
-            )
-        except Exception:
-            # * Fallback to line if pivot fails
-            sns.lineplot(data=df, x=x, y=y, hue=hue, ax=ax, palette=palette)
+    if hue_col and hue_col in df.columns:
+        fig = px.area(df, x=x_col, y=y_col, color=hue_col,
+                      title=title, template=TEMPLATE)
     else:
-        if pd.api.types.is_numeric_dtype(df[y]):
-            ax.fill_between(
-                range(len(df)),
-                df[y].values,
-                alpha     = 0.65,
-                color     = COLORS.INFO,
-                linewidth = 2,
-            )
-            ax.plot(range(len(df)), df[y].values, color=COLORS.INFO, linewidth=2)
-            ax.set_xticks(range(len(df)))
-            ax.set_xticklabels(df[x].astype(str), rotation=30, ha="right")
+        fig = px.area(df, x=x_col, y=y_col, title=title, template=TEMPLATE)
+        fig.update_traces(line_color="#89b4fa",
+                          fillcolor="rgba(137,180,250,0.45)")
 
-    ax.set_xlabel(x, labelpad=8, fontsize=11)
-    ax.set_ylabel(y, labelpad=8, fontsize=11)
-    plt.xticks(rotation=30, ha="right", fontsize=10)
-
-    if filters:
-        caption = "Filters: " + "  |  ".join(str(f) for f in filters[:4])
-        fig.text(0.5, -0.03, caption, ha="center",
-                 fontsize=8, color=COLORS.TEXT_SECONDARY, style="italic")
-
-    charts_log.info(f"[area] Rendered | x={x} | y={y} | hue={hue} | rows={len(df)}")
-    return style_figure(fig, title=title)
+    fig.update_layout(
+        height=450, paper_bgcolor="#1e1e2e", plot_bgcolor="#1e1e2e",
+        font={"color": "#cdd6f4"}, title_font={"size": 15, "color": "#89b4fa"},
+        xaxis_title=x_col, yaxis_title=y_col,
+        margin={"l": 30, "r": 30, "t": 50, "b": 80},
+    )
+    fig.update_xaxes(tickangle=30, gridcolor="#313244")
+    fig.update_yaxes(gridcolor="#313244")
+    charts_log.info(f"[area] x={x_col} | y={y_col} | rows={len(df)}")
+    return fig
