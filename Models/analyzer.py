@@ -167,7 +167,7 @@ Return ONLY valid JSON — no explanation, no markdown, no extra text:
   "columns_needed":    ["list", "of", "exact", "column", "names", "from", "data", "dictionary"],
   "slicer_candidates": ["columns", "user", "might", "want", "to", "filter", "by"],
   "aggregation":       "DISTINCTCOUNT | COUNT | SUM | AVERAGE | DIVIDE",
-  "group_by":          "column to group results by for the chart, or null",
+  "group_by": "snake_case DB column name to group by e.g. branch not Branch, region not Region, op_bucket not Op bucket, portfolio_new not Portfolio new, or null"
   "time_involved":     true or false,
   "granularity":       "customer or loan",
   "sql_pattern_hint":  "closest key from dax_patterns e.g. bounce_by_branch, or null",

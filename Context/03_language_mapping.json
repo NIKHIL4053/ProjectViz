@@ -232,9 +232,9 @@
     {
       "user_says": "how many loans bounced last month",
       "identified_metric": "Bounce Count",
-      "identified_slicers": ["Next Date", "Branch (optional)", "Region (optional)"],
+      "identified_slicers": ["Next Date", "Branch (optional)", "region (optional)"],
       "clarifying_questions": ["Which month?", "Any specific branch or region?"],
-      "sql_skeleton": "SELECT COUNT(DISTINCT 'Cust ID') FROM final_table WHERE 'Bounce status' IN ('Tech', 'Non Tech') AND 'Next Date' = '{DATE_FILTER}'  AND 'Branch' = '{BRANCH_FILTER}'"
+      "sql_skeleton": "SELECT COUNT(DISTINCT 'cust_id') FROM final_table WHERE 'Bounce status' IN ('Tech', 'Non Tech') AND 'Next Date' = '{DATE_FILTER}'  AND 'branch' = '{BRANCH_FILTER}'"
     }
   ]
 }

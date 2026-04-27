@@ -10,6 +10,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
 
+from typing import Optional
 from utils.helpers import get_column
 from utils.logger import get_charts_logger
 
@@ -126,4 +127,3 @@ def _first_categorical(df: pd.DataFrame) -> Optional[str]:
     return df.columns[0] if len(df.columns) else None
 
 
-from typing import Optional
