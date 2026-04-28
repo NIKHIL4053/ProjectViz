@@ -11,51 +11,51 @@
       {
         "bucket": "Current",
         "priority": 1,
-        "condition": "dpd = 0 AND Bounce_status = 'PAID' AND Emi_increase = 0 AND day_wise_asset_classification = 'Standard Asset'",
+        "condition": "dpd = 0 AND bounce_status = 'PAID' AND emi_increase = 0 AND day_wise_asset_classification = 'Standard Asset'",
         "description": "Fully healthy, on-time, paid via NACH, no EMI increase",
-        "sql_filter": "dpd = 0 AND 'Bounce status' = 'PAID' AND 'Emi increase' = 0 AND day_wise_asset_classification' = 'Standard Asset'"
+        "sql_filter": "dpd = 0 AND bounce_status = 'PAID' AND emi_increase = 0 AND day_wise_asset_classification = 'Standard Asset'"
       },
       {
         "bucket": "Risk X",
         "priority": 2,
-        "condition": "dpd = 0 AND (Emi_increase = 1 OR Bounce_status <> 'PAID') AND day_wise_asset_classification = 'Standard Asset'",
+        "condition": "dpd = 0 AND (emi_increase = 1 OR bounce_status <> 'PAID') AND day_wise_asset_classification = 'Standard Asset'",
         "description": "DPD is zero but has either EMI increase or non-PAID bounce — watch bucket",
-        "sql_filter": "dpd = 0 AND ('Emi increase' = 1 OR 'Bounce status' <> 'PAID') AND 'day_wise_asset_classification' = 'Standard Asset'"
+        "sql_filter": "dpd = 0 AND (emi_increase = 1 OR bounce_status <> 'PAID') AND day_wise_asset_classification = 'Standard Asset'"
       },
       {
         "bucket": "1-29 DPD",
         "priority": 3,
         "condition": "dpd > 0 AND dpd < 30 AND day_wise_asset_classification = 'Standard Asset'",
         "description": "Early delinquency — 1 to 29 days overdue",
-        "sql_filter": "dpd > 0 AND dpd < 30 AND 'day_wise_asset_classification' = 'Standard Asset'"
+        "sql_filter": "dpd > 0 AND dpd < 30 AND day_wise_asset_classification = 'Standard Asset'"
       },
       {
         "bucket": "30-59 DPD",
         "priority": 4,
         "condition": "dpd >= 30 AND dpd < 60 AND day_wise_asset_classification = 'Standard Asset'",
         "description": "Moderate delinquency — 30 to 59 days overdue",
-        "sql_filter": "dpd >= 30 AND dpd < 60 AND 'day_wise_asset_classification' = 'Standard Asset'"
+        "sql_filter": "dpd >= 30 AND dpd < 60 AND day_wise_asset_classification = 'Standard Asset'"
       },
       {
         "bucket": "60-89 DPD",
         "priority": 5,
-        "condition": "dpd >= 60 AND dpd < 90 AND day_wise_asset_classification = 'Standard Asset' AND Risk_NPA = 0",
+        "condition": "dpd >= 60 AND dpd < 90 AND day_wise_asset_classification = 'Standard Asset' AND risk_npa = 0",
         "description": "Severe delinquency, pre-NPA — 60 to 89 days overdue",
-        "sql_filter": "dpd >= 60 AND dpd < 90 AND 'day_wise_asset_classification' = 'Standard Asset' AND 'Risk NPA' = 0"
+        "sql_filter": "dpd >= 60 AND dpd < 90 AND day_wise_asset_classification = 'Standard Asset' AND risk_npa = 0"
       },
       {
         "bucket": "NPA",
         "priority": 6,
-        "condition": "dpd > 90 AND day_wise_asset_classification <> 'Standard Asset' OR (dpd >= 60 AND dpd < 90 AND day_wise_asset_classification = 'Standard Asset' AND Risk_NPA = 1)",
+        "condition": "dpd > 90 AND day_wise_asset_classification <> 'Standard Asset' OR (dpd >= 60 AND dpd < 90 AND day_wise_asset_classification = 'Standard Asset' AND risk_npa = 1)",
         "description": "Non-Performing Asset — either DPD > 90 with non-standard classification, or 60-89 DPD with Risk NPA flag",
-        "sql_filter": "(dpd > 90 AND 'day_wise_asset_classification' <> 'Standard Asset') OR (dpd >= 60 AND dpd < 90 AND 'day_wise_asset_classification' = 'Standard Asset' AND 'Risk NPA' = 1)"
+        "sql_filter": "(dpd > 90 AND day_wise_asset_classification <> 'Standard Asset') OR (dpd >= 60 AND dpd < 90 AND day_wise_asset_classification = 'Standard Asset' AND risk_npa = 1)"
       },
       {
         "bucket": "Write-off",
         "priority": 7,
         "condition": "Loan has been written off from books",
         "description": "Written off — removed from active book but collection continues due to overdue amount",
-        "sql_filter": "WHERE 'Op bucket' = 'Write-off'"
+        "sql_filter": "WHERE op_bucket = 'Write-off'"
       }
     ]
   },
@@ -91,8 +91,8 @@
       "label": "Resolution",
       "description": "Count of customers who improved from delinquent bucket back to Current/Risk X",
       "consumer_language": ["resolved", "recovered", "norm customers", "how many resolved", "resolution count"],
-      "formula": "COUNT(DISTINCT Cust ID) WHERE Cust wise status = 'Norm'",
-      "sql_pattern": "SELECT COUNT(DISTINCT 'Cust ID') FROM final_table WHERE 'Cust wise status' = 'Norm'",
+      "formula": "COUNT(DISTINCT cust_id) WHERE cust_wise_status = 'Norm'",
+      "sql_pattern": "SELECT COUNT(DISTINCT cust_id) FROM final_table WHERE cust_wise_status = 'Norm'",
       "unit": "Count",
       "important": "Norm means improved — Current customers are already performing, they are NOT in resolution count"
     },
@@ -100,8 +100,8 @@
       "label": "Resolution %",
       "description": "Resolution count as % of total customers in the filtered segment",
       "consumer_language": ["resolution percentage", "resolution rate", "how much resolved", "recovery rate"],
-      "formula": "COUNT(DISTINCT Cust ID WHERE status=Norm) / COUNT(DISTINCT Cust ID total) * 100",
-      "sql_pattern": "SELECT ROUND(COUNT(DISTINCT CASE WHEN 'Cust wise status' = 'Norm' THEN 'Cust ID' END) * 100.0 / NULLIF(COUNT(DISTINCT 'Cust ID'), 0), 2) FROM final_table",
+      "formula": "COUNT(DISTINCT cust_id WHERE status=Norm) / COUNT(DISTINCT cust_id total) * 100",
+      "sql_pattern": "SELECT ROUND(COUNT(DISTINCT CASE WHEN cust_wise_status = 'Norm' THEN cust_id END) * 100.0 / NULLIF(COUNT(DISTINCT cust_id), 0), 2) FROM final_table",
       "unit": "Percentage",
       "important": "Applies to delinquent buckets. Denominator = all customers in the filtered dataset."
     },
@@ -109,8 +109,8 @@
       "label": "Bounce Count",
       "description": "Count of customers where Bounce status is Tech or Non Tech",
       "consumer_language": ["bounce count", "how many bounced", "total bounces", "bounce loans"],
-      "formula": "COUNT(DISTINCT Cust ID) WHERE Bounce_status IN ('Tech', 'Non Tech')",
-      "sql_pattern": "SELECT COUNT(DISTINCT 'Cust ID') FROM final_table WHERE 'Bounce status' IN ('Tech', 'Non Tech')",
+      "formula": "COUNT(DISTINCT cust_id) WHERE bounce_status IN ('Tech', 'Non Tech')",
+      "sql_pattern": "SELECT COUNT(DISTINCT cust_id) FROM final_table WHERE bounce_status IN ('Tech', 'Non Tech')",
       "unit": "Count",
       "important": "NEVER include PAID in bounce count. PAID = successful payment, NOT a bounce."
     },
@@ -118,16 +118,16 @@
       "label": "Bounce %",
       "description": "Bounce count as % of total customers",
       "consumer_language": ["bounce rate", "bounce percentage", "payment failure rate", "% bounced"],
-      "formula": "COUNT(DISTINCT Cust ID WHERE bounce) / COUNT(DISTINCT Cust ID total) * 100",
-      "sql_pattern": "SELECT ROUND(COUNT(DISTINCT CASE WHEN 'Bounce status' IN ('Tech','Non Tech') THEN 'Cust ID' END) * 100.0 / NULLIF(COUNT(DISTINCT 'Cust ID'), 0), 2) FROM final_table",
+      "formula": "COUNT(DISTINCT cust_id WHERE bounce) / COUNT(DISTINCT cust_id total) * 100",
+      "sql_pattern": "SELECT ROUND(COUNT(DISTINCT CASE WHEN bounce_status IN ('Tech','Non Tech') THEN cust_id END) * 100.0 / NULLIF(COUNT(DISTINCT cust_id), 0), 2) FROM final_table",
       "unit": "Percentage"
     },
     "Coverage": {
       "label": "Coverage",
       "description": "Count of allocated customers who were visited",
       "consumer_language": ["coverage", "visited customers", "field coverage", "visit coverage"],
-      "formula": "COUNT(DISTINCT Cust ID) WHERE Visit_or_not = 'Visited' AND Allocated_or_not = 'Allocated'",
-      "sql_pattern": "SELECT COUNT(DISTINCT 'Cust ID') FROM final_table WHERE 'Visit or not' = 'Visited' AND 'Allocated or not' = 'Allocated'",
+      "formula": "COUNT(DISTINCT cust_id) WHERE visit_or_not = 'Visited' AND allocated_or_not = 'Allocated'",
+      "sql_pattern": "SELECT COUNT(DISTINCT cust_id) FROM final_table WHERE visit_or_not = 'Visited' AND allocated_or_not = 'Allocated'",
       "unit": "Count",
       "important": "Only count customers where Allocated or not = 'Allocated'. Non-allocated EXCLUDED from coverage."
     },
@@ -136,15 +136,15 @@
       "description": "Visited-allocated customers as % of total allocated customers",
       "consumer_language": ["coverage percentage", "visit rate", "coverage rate", "% visited"],
       "formula": "COUNT(Visited AND Allocated) / COUNT(Allocated) * 100",
-      "sql_pattern": "SELECT ROUND(COUNT(DISTINCT CASE WHEN 'Visit or not'='Visited' AND 'Allocated or not'='Allocated' THEN 'Cust ID' END) * 100.0 / NULLIF(COUNT(DISTINCT CASE WHEN 'Allocated or not'='Allocated' THEN 'Cust ID' END), 0), 2) FROM final_table",
+      "sql_pattern": "SELECT ROUND(COUNT(DISTINCT CASE WHEN visit_or_not='Visited' AND allocated_or_not='Allocated' THEN cust_id END) * 100.0 / NULLIF(COUNT(DISTINCT CASE WHEN allocated_or_not='Allocated' THEN cust_id END), 0), 2) FROM final_table",
       "unit": "Percentage"
     },
     "Intensity": {
       "label": "Intensity",
       "description": "Average number of field visits per customer in the month",
       "consumer_language": ["intensity", "visit intensity", "average visits", "how many times visited per customer"],
-      "formula": "SUM(Visit Count) / COUNT(DISTINCT Cust ID)",
-      "sql_pattern": "SELECT ROUND(SUM('Visit Count')::NUMERIC / NULLIF(COUNT(DISTINCT 'Cust ID'), 0), 2) FROM final_table",
+      "formula": "SUM(visit_count) / COUNT(DISTINCT cust_id)",
+      "sql_pattern": "SELECT ROUND(SUM(visit_count)::NUMERIC / NULLIF(COUNT(DISTINCT cust_id), 0), 2) FROM final_table",
       "unit": "Number (e.g., 2.5 visits per customer)"
     },
     "Portfolio_Outstanding": {
@@ -159,15 +159,15 @@
       "label": "Total Overdue",
       "description": "Sum of TOD (Total Overdue = principal + interest + pre-EMI overdue)",
       "consumer_language": ["total overdue", "overdue amount", "how much overdue", "overdue balance"],
-      "formula": "SUM(TOD)",
-      "sql_pattern": "SELECT SUM('TOD') FROM final_table",
+      "formula": "SUM(tod)",
+      "sql_pattern": "SELECT SUM(tod) FROM final_table",
       "unit": "Amount (INR)"
     }
   },
 
   "granularity_rules": {
     "customer_level_metrics": {
-      "rule": "Always use COUNT(DISTINCT \"Cust ID\")",
+      "rule": "Always use COUNT(DISTINCT \"cust_id\")",
       "applies_to": ["Resolution %", "Bounce %", "Coverage %", "customer count"],
       "reason": "One customer can have multiple loanappno in the same month. Counting loanappno overstates customer count."
     },

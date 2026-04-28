@@ -4,13 +4,13 @@
     "table_name": "loan_dashboard",
     "schema": "public",
     "sql_rules": [
-      "Always use double quotes for column names with spaces: \"Op bucket\", \"Cust ID\", \"Bounce status\"",
-      "Always use COUNT(DISTINCT \"Cust ID\") for customer-level metrics — NEVER plain COUNT",
+      "Always use double quotes for column names with spaces: \"op_bucket\", \"cust_id\", \"bounce_status\"",
+      "Always use COUNT(DISTINCT \"cust_id\") for customer-level metrics — NEVER plain COUNT",
       "Use COUNT(loanappno) for loan-level metrics",
       "Use NULLIF(denominator, 0) to avoid division by zero",
       "Use ROUND(..., 2) for percentage and ratio fields",
       "Use ILIKE for case-insensitive string filters if needed",
-      "Date column is \"Next Date\" — filter using = '2026-02-01' format (ISO YYYY-MM-DD)",
+      "Date column is \"next_date\" — filter using = '2026-02-01' format (ISO YYYY-MM-DD)",
       "NULL values: use IS NULL / IS NOT NULL. See null_handling in business_logic.json",
       "Use GROUP BY for aggregations across categories",
       "Use ORDER BY at end of grouped queries"
@@ -21,126 +21,126 @@
 
     "bounce_count": {
       "description": "Count of customers who bounced (Tech or Non Tech)",
-      "sql": "SELECT COUNT(DISTINCT \"Cust ID\") AS \"Bounce Count\"\nFROM loan_dashboard\nWHERE \"Bounce status\" IN ('Tech', 'Non Tech')"
+      "sql": "SELECT COUNT(DISTINCT \"cust_id\") AS \"Bounce Count\"\nFROM loan_dashboard\nWHERE \"bounce_status\" IN ('Tech', 'Non Tech')"
     },
 
     "bounce_count_with_branch_filter": {
       "description": "Bounce count filtered by branch",
-      "sql": "SELECT COUNT(DISTINCT \"Cust ID\") AS \"Bounce Count\"\nFROM loan_dashboard\nWHERE \"Bounce status\" IN ('Tech', 'Non Tech')\n  AND \"Branch\" = '{BRANCH_VALUE}'"
+      "sql": "SELECT COUNT(DISTINCT \"cust_id\") AS \"Bounce Count\"\nFROM loan_dashboard\nWHERE \"bounce_status\" IN ('Tech', 'Non Tech')\n  AND \"branch\" = '{BRANCH_VALUE}'"
     },
 
     "bounce_percent": {
       "description": "Bounce rate as percentage of total customers",
-      "sql": "SELECT ROUND(\n  COUNT(DISTINCT CASE WHEN \"Bounce status\" IN ('Tech', 'Non Tech') THEN \"Cust ID\" END) * 100.0\n  / NULLIF(COUNT(DISTINCT \"Cust ID\"), 0),\n2) AS \"Bounce %\"\nFROM loan_dashboard"
+      "sql": "SELECT ROUND(\n  COUNT(DISTINCT CASE WHEN \"bounce_status\" IN ('Tech', 'Non Tech') THEN \"cust_id\" END) * 100.0\n  / NULLIF(COUNT(DISTINCT \"cust_id\"), 0),\n2) AS \"Bounce %\"\nFROM loan_dashboard"
     },
 
     "bounce_by_branch": {
       "description": "Bounce count and rate grouped by branch",
-      "sql": "SELECT\n  \"Branch\",\n  COUNT(DISTINCT CASE WHEN \"Bounce status\" IN ('Tech', 'Non Tech') THEN \"Cust ID\" END) AS \"Bounce Count\",\n  COUNT(DISTINCT \"Cust ID\") AS \"Total Customers\",\n  ROUND(\n    COUNT(DISTINCT CASE WHEN \"Bounce status\" IN ('Tech', 'Non Tech') THEN \"Cust ID\" END) * 100.0\n    / NULLIF(COUNT(DISTINCT \"Cust ID\"), 0),\n  2) AS \"Bounce %\"\nFROM loan_dashboard\nGROUP BY \"Branch\"\nORDER BY \"Bounce Count\" DESC"
+      "sql": "SELECT\n  \"branch\",\n  COUNT(DISTINCT CASE WHEN \"bounce_status\" IN ('Tech', 'Non Tech') THEN \"cust_id\" END) AS \"Bounce Count\",\n  COUNT(DISTINCT \"cust_id\") AS \"Total Customers\",\n  ROUND(\n    COUNT(DISTINCT CASE WHEN \"bounce_status\" IN ('Tech', 'Non Tech') THEN \"cust_id\" END) * 100.0\n    / NULLIF(COUNT(DISTINCT \"cust_id\"), 0),\n  2) AS \"Bounce %\"\nFROM loan_dashboard\nGROUP BY \"branch\"\nORDER BY \"Bounce Count\" DESC"
     },
 
     "bounce_by_region": {
       "description": "Bounce count and rate grouped by region",
-      "sql": "SELECT\n  \"Region\",\n  COUNT(DISTINCT CASE WHEN \"Bounce status\" IN ('Tech', 'Non Tech') THEN \"Cust ID\" END) AS \"Bounce Count\",\n  ROUND(\n    COUNT(DISTINCT CASE WHEN \"Bounce status\" IN ('Tech', 'Non Tech') THEN \"Cust ID\" END) * 100.0\n    / NULLIF(COUNT(DISTINCT \"Cust ID\"), 0),\n  2) AS \"Bounce %\"\nFROM loan_dashboard\nGROUP BY \"Region\"\nORDER BY \"Bounce Count\" DESC"
+      "sql": "SELECT\n  \"region\",\n  COUNT(DISTINCT CASE WHEN \"bounce_status\" IN ('Tech', 'Non Tech') THEN \"cust_id\" END) AS \"Bounce Count\",\n  ROUND(\n    COUNT(DISTINCT CASE WHEN \"bounce_status\" IN ('Tech', 'Non Tech') THEN \"cust_id\" END) * 100.0\n    / NULLIF(COUNT(DISTINCT \"cust_id\"), 0),\n  2) AS \"Bounce %\"\nFROM loan_dashboard\nGROUP BY \"region\"\nORDER BY \"Bounce Count\" DESC"
     },
 
     "bounce_tech_vs_nontech_by_branch": {
       "description": "Bounce count split by Tech vs Non Tech per branch",
-      "sql": "SELECT\n  \"Branch\",\n  \"Bounce status\",\n  COUNT(DISTINCT \"Cust ID\") AS \"Count\"\nFROM loan_dashboard\nWHERE \"Bounce status\" IN ('Tech', 'Non Tech')\nGROUP BY \"Branch\", \"Bounce status\"\nORDER BY \"Branch\", \"Count\" DESC"
+      "sql": "SELECT\n  \"branch\",\n  \"bounce_status\",\n  COUNT(DISTINCT \"cust_id\") AS \"Count\"\nFROM loan_dashboard\nWHERE \"bounce_status\" IN ('Tech', 'Non Tech')\nGROUP BY \"branch\", \"bounce_status\"\nORDER BY \"branch\", \"Count\" DESC"
     },
 
     "resolution_count": {
       "description": "Count of resolved customers (Norm status)",
-      "sql": "SELECT COUNT(DISTINCT \"Cust ID\") AS \"Resolution Count\"\nFROM loan_dashboard\nWHERE \"Cust wise status\" = 'Norm'"
+      "sql": "SELECT COUNT(DISTINCT \"cust_id\") AS \"Resolution Count\"\nFROM loan_dashboard\nWHERE \"cust_wise_status\" = 'Norm'"
     },
 
     "resolution_percent": {
       "description": "Resolution percentage",
-      "sql": "SELECT ROUND(\n  COUNT(DISTINCT CASE WHEN \"Cust wise status\" = 'Norm' THEN \"Cust ID\" END) * 100.0\n  / NULLIF(COUNT(DISTINCT \"Cust ID\"), 0),\n2) AS \"Resolution %\"\nFROM loan_dashboard"
+      "sql": "SELECT ROUND(\n  COUNT(DISTINCT CASE WHEN \"cust_wise_status\" = 'Norm' THEN \"cust_id\" END) * 100.0\n  / NULLIF(COUNT(DISTINCT \"cust_id\"), 0),\n2) AS \"Resolution %\"\nFROM loan_dashboard"
     },
 
     "resolution_by_branch": {
       "description": "Resolution % grouped by branch",
-      "sql": "SELECT\n  \"Branch\",\n  COUNT(DISTINCT CASE WHEN \"Cust wise status\" = 'Norm' THEN \"Cust ID\" END) AS \"Resolved Count\",\n  COUNT(DISTINCT \"Cust ID\") AS \"Total Customers\",\n  ROUND(\n    COUNT(DISTINCT CASE WHEN \"Cust wise status\" = 'Norm' THEN \"Cust ID\" END) * 100.0\n    / NULLIF(COUNT(DISTINCT \"Cust ID\"), 0),\n  2) AS \"Resolution %\"\nFROM loan_dashboard\nGROUP BY \"Branch\"\nORDER BY \"Resolution %\" DESC"
+      "sql": "SELECT\n  \"branch\",\n  COUNT(DISTINCT CASE WHEN \"cust_wise_status\" = 'Norm' THEN \"cust_id\" END) AS \"Resolved Count\",\n  COUNT(DISTINCT \"cust_id\") AS \"Total Customers\",\n  ROUND(\n    COUNT(DISTINCT CASE WHEN \"cust_wise_status\" = 'Norm' THEN \"cust_id\" END) * 100.0\n    / NULLIF(COUNT(DISTINCT \"cust_id\"), 0),\n  2) AS \"Resolution %\"\nFROM loan_dashboard\nGROUP BY \"branch\"\nORDER BY \"Resolution %\" DESC"
     },
 
     "bucket_distribution": {
       "description": "Count and outstanding by Op bucket",
-      "sql": "SELECT\n  \"Op bucket\",\n  COUNT(loanappno) AS \"Loan Count\",\n  COUNT(DISTINCT \"Cust ID\") AS \"Customer Count\",\n  SUM(bal_prin) AS \"Balance Principal\",\n  SUM(\"TOD\") AS \"Total Overdue\"\nFROM loan_dashboard\nGROUP BY \"Op bucket\"\nORDER BY \"Loan Count\" DESC"
+      "sql": "SELECT\n  \"op_bucket\",\n  COUNT(loanappno) AS \"Loan Count\",\n  COUNT(DISTINCT \"cust_id\") AS \"Customer Count\",\n  SUM(bal_prin) AS \"Balance Principal\",\n  SUM(\"tod\") AS \"Total Overdue\"\nFROM loan_dashboard\nGROUP BY \"op_bucket\"\nORDER BY \"Loan Count\" DESC"
     },
 
     "bucket_movement_matrix": {
       "description": "Opening bucket vs Closing bucket movement matrix",
-      "sql": "SELECT\n  \"Op bucket\",\n  \"Closing bucket\",\n  COUNT(loanappno) AS \"Loan Count\",\n  COUNT(DISTINCT \"Cust ID\") AS \"Customer Count\"\nFROM loan_dashboard\nGROUP BY \"Op bucket\", \"Closing bucket\"\nORDER BY \"Op bucket\", \"Closing bucket\""
+      "sql": "SELECT\n  \"op_bucket\",\n  \"closing_bucket\",\n  COUNT(loanappno) AS \"Loan Count\",\n  COUNT(DISTINCT \"cust_id\") AS \"Customer Count\"\nFROM loan_dashboard\nGROUP BY \"op_bucket\", \"closing_bucket\"\nORDER BY \"op_bucket\", \"closing_bucket\""
     },
 
     "cust_wise_status_summary": {
       "description": "Customer status distribution",
-      "sql": "SELECT\n  \"Cust wise status\",\n  COUNT(DISTINCT \"Cust ID\") AS \"Customer Count\",\n  COUNT(loanappno) AS \"Loan Count\"\nFROM loan_dashboard\nGROUP BY \"Cust wise status\"\nORDER BY \"Customer Count\" DESC"
+      "sql": "SELECT\n  \"cust_wise_status\",\n  COUNT(DISTINCT \"cust_id\") AS \"Customer Count\",\n  COUNT(loanappno) AS \"Loan Count\"\nFROM loan_dashboard\nGROUP BY \"cust_wise_status\"\nORDER BY \"Customer Count\" DESC"
     },
 
     "coverage_percent": {
       "description": "Coverage % — visited allocated customers vs all allocated",
-      "sql": "SELECT ROUND(\n  COUNT(DISTINCT CASE WHEN \"Visit or not\" = 'Visited' AND \"Allocated or not\" = 'Allocated' THEN \"Cust ID\" END) * 100.0\n  / NULLIF(COUNT(DISTINCT CASE WHEN \"Allocated or not\" = 'Allocated' THEN \"Cust ID\" END), 0),\n2) AS \"Coverage %\"\nFROM loan_dashboard"
+      "sql": "SELECT ROUND(\n  COUNT(DISTINCT CASE WHEN \"visit_or_not\" = 'Visited' AND \"allocated_or_not\" = 'Allocated' THEN \"cust_id\" END) * 100.0\n  / NULLIF(COUNT(DISTINCT CASE WHEN \"allocated_or_not\" = 'Allocated' THEN \"cust_id\" END), 0),\n2) AS \"Coverage %\"\nFROM loan_dashboard"
     },
 
     "coverage_by_tl": {
       "description": "Coverage % grouped by Team Leader",
-      "sql": "SELECT\n  \"TL\",\n  COUNT(DISTINCT CASE WHEN \"Visit or not\" = 'Visited' AND \"Allocated or not\" = 'Allocated' THEN \"Cust ID\" END) AS \"Visited Count\",\n  COUNT(DISTINCT CASE WHEN \"Allocated or not\" = 'Allocated' THEN \"Cust ID\" END) AS \"Allocated Count\",\n  ROUND(\n    COUNT(DISTINCT CASE WHEN \"Visit or not\" = 'Visited' AND \"Allocated or not\" = 'Allocated' THEN \"Cust ID\" END) * 100.0\n    / NULLIF(COUNT(DISTINCT CASE WHEN \"Allocated or not\" = 'Allocated' THEN \"Cust ID\" END), 0),\n  2) AS \"Coverage %\"\nFROM loan_dashboard\nWHERE \"TL\" <> 'No TL'\nGROUP BY \"TL\"\nORDER BY \"Coverage %\" DESC"
+      "sql": "SELECT\n  \"tl\",\n  COUNT(DISTINCT CASE WHEN \"visit_or_not\" = 'Visited' AND \"allocated_or_not\" = 'Allocated' THEN \"cust_id\" END) AS \"Visited Count\",\n  COUNT(DISTINCT CASE WHEN \"allocated_or_not\" = 'Allocated' THEN \"cust_id\" END) AS \"Allocated Count\",\n  ROUND(\n    COUNT(DISTINCT CASE WHEN \"visit_or_not\" = 'Visited' AND \"allocated_or_not\" = 'Allocated' THEN \"cust_id\" END) * 100.0\n    / NULLIF(COUNT(DISTINCT CASE WHEN \"allocated_or_not\" = 'Allocated' THEN \"cust_id\" END), 0),\n  2) AS \"Coverage %\"\nFROM loan_dashboard\nWHERE \"tl\" <> 'No TL'\nGROUP BY \"tl\"\nORDER BY \"Coverage %\" DESC"
     },
 
     "visit_intensity_by_bucket": {
       "description": "Average visit intensity by Op bucket",
-      "sql": "SELECT\n  \"Op bucket\",\n  ROUND(SUM(\"Visit Count\")::NUMERIC / NULLIF(COUNT(DISTINCT \"Cust ID\"), 0), 2) AS \"Avg Visits per Customer\",\n  SUM(\"Visit Count\") AS \"Total Visits\",\n  COUNT(DISTINCT \"Cust ID\") AS \"Customer Count\"\nFROM loan_dashboard\nGROUP BY \"Op bucket\"\nORDER BY \"Op bucket\""
+      "sql": "SELECT\n  \"op_bucket\",\n  ROUND(SUM(\"visit_count\")::NUMERIC / NULLIF(COUNT(DISTINCT \"cust_id\"), 0), 2) AS \"Avg Visits per Customer\",\n  SUM(\"visit_count\") AS \"Total Visits\",\n  COUNT(DISTINCT \"cust_id\") AS \"Customer Count\"\nFROM loan_dashboard\nGROUP BY \"op_bucket\"\nORDER BY \"op_bucket\""
     },
 
     "npa_by_region": {
       "description": "NPA account count by region",
-      "sql": "SELECT\n  \"Region\",\n  COUNT(loanappno) AS \"NPA Loan Count\",\n  COUNT(DISTINCT \"Cust ID\") AS \"NPA Customer Count\",\n  SUM(bal_prin) AS \"NPA Outstanding\"\nFROM loan_dashboard\nWHERE \"Op bucket\" = 'NPA'\nGROUP BY \"Region\"\nORDER BY \"NPA Loan Count\" DESC"
+      "sql": "SELECT\n  \"region\",\n  COUNT(loanappno) AS \"NPA Loan Count\",\n  COUNT(DISTINCT \"cust_id\") AS \"NPA Customer Count\",\n  SUM(bal_prin) AS \"NPA Outstanding\"\nFROM loan_dashboard\nWHERE \"op_bucket\" = 'NPA'\nGROUP BY \"region\"\nORDER BY \"NPA Loan Count\" DESC"
     },
 
     "add_npa_by_region": {
       "description": "New NPA additions (Add NPA = 1) by region",
-      "sql": "SELECT\n  \"Region\",\n  COUNT(loanappno) AS \"New NPA Count\"\nFROM loan_dashboard\nWHERE \"Add NPA\" = 1\nGROUP BY \"Region\"\nORDER BY \"New NPA Count\" DESC"
+      "sql": "SELECT\n  \"region\",\n  COUNT(loanappno) AS \"New NPA Count\"\nFROM loan_dashboard\nWHERE \"add_npa\" = 1\nGROUP BY \"region\"\nORDER BY \"New NPA Count\" DESC"
     },
 
     "portfolio_outstanding_by_bucket": {
       "description": "Total bal_prin and TOD by Op bucket",
-      "sql": "SELECT\n  \"Op bucket\",\n  SUM(bal_prin) AS \"Balance Principal\",\n  SUM(\"TOD\") AS \"Total Overdue\",\n  COUNT(loanappno) AS \"Loan Count\"\nFROM loan_dashboard\nGROUP BY \"Op bucket\"\nORDER BY \"Balance Principal\" DESC"
+      "sql": "SELECT\n  \"op_bucket\",\n  SUM(bal_prin) AS \"Balance Principal\",\n  SUM(\"tod\") AS \"Total Overdue\",\n  COUNT(loanappno) AS \"Loan Count\"\nFROM loan_dashboard\nGROUP BY \"op_bucket\"\nORDER BY \"Balance Principal\" DESC"
     },
 
     "digital_cash_by_mob": {
       "description": "Payment channel (Digital vs Cash) by MOB bucket",
-      "sql": "SELECT\n  \"MOB Bucket\",\n  \"Digital/cash\",\n  COUNT(DISTINCT \"Cust ID\") AS \"Customer Count\"\nFROM loan_dashboard\nWHERE \"Digital/cash\" IS NOT NULL AND \"Digital/cash\" <> ''\nGROUP BY \"MOB Bucket\", \"Digital/cash\"\nORDER BY \"MOB Bucket\""
+      "sql": "SELECT\n  \"mob_bucket\",\n  \"digital_cash\",\n  COUNT(DISTINCT \"cust_id\") AS \"Customer Count\"\nFROM loan_dashboard\nWHERE \"digital_cash\" IS NOT NULL AND \"digital_cash\" <> ''\nGROUP BY \"mob_bucket\", \"digital_cash\"\nORDER BY \"mob_bucket\""
     },
 
     "dpd_distribution": {
       "description": "DPD distribution across portfolio (for KDE/histogram)",
-      "sql": "SELECT\n  dpd_casewise,\n  \"Op bucket\",\n  \"Branch\",\n  \"Region\"\nFROM loan_dashboard\nWHERE dpd_casewise IS NOT NULL\nORDER BY dpd_casewise"
+      "sql": "SELECT\n  dpd_casewise,\n  \"op_bucket\",\n  \"branch\",\n  \"region\"\nFROM loan_dashboard\nWHERE dpd_casewise IS NOT NULL\nORDER BY dpd_casewise"
     },
 
     "fe_scorecard": {
       "description": "Field executive performance scorecard",
-      "sql": "SELECT\n  \"Allocation 1\",\n  \"TL\",\n  ROUND(\n    COUNT(DISTINCT CASE WHEN \"Cust wise status\" = 'Norm' THEN \"Cust ID\" END) * 100.0\n    / NULLIF(COUNT(DISTINCT \"Cust ID\"), 0), 2) AS \"Resolution %\",\n  ROUND(\n    COUNT(DISTINCT CASE WHEN \"Visit or not\" = 'Visited' AND \"Allocated or not\" = 'Allocated' THEN \"Cust ID\" END) * 100.0\n    / NULLIF(COUNT(DISTINCT CASE WHEN \"Allocated or not\" = 'Allocated' THEN \"Cust ID\" END), 0), 2) AS \"Coverage %\",\n  ROUND(SUM(\"Visit Count\")::NUMERIC / NULLIF(COUNT(DISTINCT \"Cust ID\"), 0), 2) AS \"Intensity\",\n  COUNT(DISTINCT CASE WHEN \"Allocated or not\" = 'Allocated' THEN \"Cust ID\" END) AS \"Allocated Count\"\nFROM loan_dashboard\nWHERE \"Allocation 1\" <> 'NA'\nGROUP BY \"Allocation 1\", \"TL\"\nORDER BY \"Resolution %\" DESC"
+      "sql": "SELECT\n  \"allocation_1\",\n  \"tl\",\n  ROUND(\n    COUNT(DISTINCT CASE WHEN \"cust_wise_status\" = 'Norm' THEN \"cust_id\" END) * 100.0\n    / NULLIF(COUNT(DISTINCT \"cust_id\"), 0), 2) AS \"Resolution %\",\n  ROUND(\n    COUNT(DISTINCT CASE WHEN \"visit_or_not\" = 'Visited' AND \"allocated_or_not\" = 'Allocated' THEN \"cust_id\" END) * 100.0\n    / NULLIF(COUNT(DISTINCT CASE WHEN \"allocated_or_not\" = 'Allocated' THEN \"cust_id\" END), 0), 2) AS \"Coverage %\",\n  ROUND(SUM(\"visit_count\")::NUMERIC / NULLIF(COUNT(DISTINCT \"cust_id\"), 0), 2) AS \"Intensity\",\n  COUNT(DISTINCT CASE WHEN \"allocated_or_not\" = 'Allocated' THEN \"cust_id\" END) AS \"Allocated Count\"\nFROM loan_dashboard\nWHERE \"allocation_1\" <> 'NA'\nGROUP BY \"allocation_1\", \"tl\"\nORDER BY \"Resolution %\" DESC"
     }
   },
 
   "filter_snippets": {
     "_note": "Append these to WHERE clause or AND conditions in any SQL query",
-    "by_branch": "\"Branch\" = '{BRANCH_NAME}'",
-    "by_region": "\"Region\" = '{REGION_NAME}'",
-    "by_op_bucket": "\"Op bucket\" = '{BUCKET_NAME}'",
-    "by_portfolio": "\"Portfolio new\" = '{PORTFOLIO_NAME}'",
-    "by_product": "\"Product\" = '{PRODUCT_NAME}'",
-    "by_tl": "\"TL\" = '{TL_NAME}'",
-    "by_sh": "\"SH\" = '{SH_NAME}'",
-    "by_mob_bucket": "\"MOB Bucket\" = '{MOB_VALUE}'",
-    "by_date": "\"Next Date\" = '{YYYY-MM-DD}'",
-    "exclude_not_allocated": "\"Allocated or not\" = 'Allocated'",
-    "only_collection_team": "\"Coll/Sales\" = 'Collection'",
-    "only_bounce": "\"Bounce status\" IN ('Tech', 'Non Tech')",
-    "only_npa": "\"Op bucket\" = 'NPA'",
-    "only_new_npa": "\"Add NPA\" = 1",
-    "exclude_no_tl": "\"TL\" <> 'No TL'"
+    "by_branch": "\"branch\" = '{BRANCH_NAME}'",
+    "by_region": "\"region\" = '{REGION_NAME}'",
+    "by_op_bucket": "\"op_bucket\" = '{BUCKET_NAME}'",
+    "by_portfolio": "\"portfolio_new\" = '{PORTFOLIO_NAME}'",
+    "by_product": "\"product\" = '{PRODUCT_NAME}'",
+    "by_tl": "\"tl\" = '{TL_NAME}'",
+    "by_sh": "\"sh\" = '{SH_NAME}'",
+    "by_mob_bucket": "\"mob_bucket\" = '{MOB_VALUE}'",
+    "by_date": "\"next_date\" = '{YYYY-MM-DD}'",
+    "exclude_not_allocated": "\"allocated_or_not\" = 'Allocated'",
+    "only_collection_team": "\"coll_sales\" = 'Collection'",
+    "only_bounce": "\"bounce_status\" IN ('Tech', 'Non Tech')",
+    "only_npa": "\"op_bucket\" = 'NPA'",
+    "only_new_npa": "\"add_npa\" = 1",
+    "exclude_no_tl": "\"tl\" <> 'No TL'"
   }
 }
