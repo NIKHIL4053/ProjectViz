@@ -178,3 +178,22 @@ HINT:  U
 2026-04-19 23:51:31 | INFO     | [db] Executing query | preview="SELECT   branch AS "Branch",   COUNT(DISTINCT CASE WHEN bounce_status IN ('Tech', 'Non Tech') THEN cust_id END) AS "Boun"
 2026-04-19 23:51:32 | INFO     | [db] Query OK | rows=10 | cols=2 | columns=['Branch', 'Bounce Count']
 2026-04-19 23:51:32 | INFO     | [db_client] Real query OK | rows=10 | cols=2
+2026-04-28 14:39:34 | INFO     | [db] Connecting | host=localhost | port=5432 | db=LD | user=nik
+2026-04-28 14:39:35 | INFO     | [db] Connected successfully | pool_size=3 | schema=public
+2026-04-28 14:39:39 | INFO     | [db] Executing query | preview="SELECT COUNT(*) FROM loan_dashboard"
+2026-04-28 14:39:39 | INFO     | [db] Query OK | rows=1 | cols=1 | columns=['count']
+2026-05-03 18:30:40 | INFO     | [db] Connecting | host=localhost | port=5432 | db=LD | user=nik
+2026-05-03 18:30:40 | INFO     | [db] Connected successfully | pool_size=3 | schema=public
+2026-05-03 18:30:42 | INFO     | [db] Executing query | preview="SELECT COUNT(*) FROM loan_dashboard"
+2026-05-03 18:30:43 | INFO     | [db] Query OK | rows=1 | cols=1 | columns=['count']
+2026-05-03 18:31:14 | INFO     | [db] Connecting | host=localhost | port=5432 | db=LD | user=nik
+2026-05-03 18:31:14 | INFO     | [db] Connected successfully | pool_size=3 | schema=public
+2026-05-03 18:31:16 | INFO     | [db] Executing query | preview="SELECT COUNT(*) FROM loan_dashboard"
+2026-05-03 18:31:17 | INFO     | [db] Query OK | rows=1 | cols=1 | columns=['count']
+2026-05-03 18:34:28 | INFO     | [db] Connecting | host=localhost | port=5432 | db=LD | user=nik
+2026-05-03 18:34:28 | INFO     | [db] Connected successfully | pool_size=3 | schema=public
+2026-05-03 18:34:30 | INFO     | [db] Executing query | preview="SELECT COUNT(*) FROM loan_dashboard"
+2026-05-03 18:34:31 | INFO     | [db] Query OK | rows=1 | cols=1 | columns=['count']
+2026-05-03 18:49:52 | INFO     | [db] Executing query | preview="SELECT    COUNT(DISTINCT "cust_id") AS "Customer Count",   ROUND(COUNT(DISTINCT CASE WHEN "cust_wise_status" = 'Norm' TH"
+2026-05-03 18:49:53 | INFO     | [db] Query OK | rows=1 | cols=4 | columns=['Customer Count', 'Resolution %', 'Coverage %', 'Intensity']
+2026-05-03 18:49:53 | INFO     | [db_client] Real query OK | rows=1 | cols=4

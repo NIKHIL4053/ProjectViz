@@ -3,11 +3,6 @@ charts/renderer.py
 ------------------
 # * Central Plotly chart router.
 # * Routes to the correct chart module based on chart_type.
-# * Returns a Plotly Figure — use st.plotly_chart() not st.pyplot().
-
-Exports:
-    - RenderResult  : Dataclass
-    - render_chart(): Main entry point
 """
 
 from dataclasses import dataclass
@@ -16,23 +11,21 @@ from typing import Optional
 import pandas as pd
 import plotly.graph_objects as go
 
-from utils.logger import get_logger, get_charts_logger
+from charts.theme import COLORS, PLOTLY_TEMPLATE
 from utils.benchmark import benchmark
 from utils.helpers import truncate_string
+from utils.logger import get_charts_logger, get_logger
 
-log        = get_logger(__name__)
+log = get_logger(__name__)
 charts_log = get_charts_logger(__name__)
-
-# * Plotly dark theme template
-PLOTLY_TEMPLATE = "plotly_dark"
 
 
 @dataclass
 class RenderResult:
-    success:    bool
-    figure:     Optional[go.Figure] = None
-    chart_type: str                 = ""
-    error:      Optional[str]       = None
+    success: bool
+    figure: Optional[go.Figure] = None
+    chart_type: str = ""
+    error: Optional[str] = None
 
     @property
     def failed(self) -> bool:
@@ -42,22 +35,13 @@ class RenderResult:
 def render_chart(df: pd.DataFrame, config: dict) -> RenderResult:
     """
     # * Route to the correct Plotly chart module.
-    # * config uses keys: chart_type, x_col, y_col, hue_col,
-    # *   palette, title, top_n, sort_desc
-    # * Also accepts old keys x_axis/y_axis/hue for backwards compatibility.
-
-    Returns:
-        RenderResult with Plotly Figure.
-        Use: st.plotly_chart(result.figure, use_container_width=True)
     """
     if df is None or df.empty:
         return RenderResult(success=False, error="Empty DataFrame")
 
-    # * Normalise config keys (support both old and new key names)
     config = _normalise_config(config)
-
     chart_type = config.get("chart_type", "horizontal_bar").lower().strip()
-    title      = config.get("title", "")
+    title = config.get("title", "")
 
     charts_log.info(
         f"[renderer] chart_type={chart_type} | rows={len(df)} | "
@@ -69,15 +53,21 @@ def render_chart(df: pd.DataFrame, config: dict) -> RenderResult:
             fig = _route(chart_type, df, config)
             charts_log.info(f"[renderer] OK | {chart_type}")
             return RenderResult(success=True, figure=fig, chart_type=chart_type)
-        except Exception as e:
-            charts_log.error(f"[renderer] FAILED | {chart_type} | {e}")
+        except Exception as exc:
+            charts_log.error(f"[renderer] FAILED | {chart_type} | {exc}")
             try:
-                fig = _error_figure(str(e), chart_type)
-                return RenderResult(success=False, figure=fig,
-                                    chart_type=chart_type, error=str(e))
+                fig = _error_figure(str(exc), chart_type)
+                return RenderResult(
+                    success=False,
+                    figure=fig,
+                    chart_type=chart_type,
+                    error=str(exc),
+                )
             except Exception:
-                return RenderResult(success=False,
-                                    error=f"Render failed: {str(e)[:200]}")
+                return RenderResult(
+                    success=False,
+                    error=f"Render failed: {str(exc)[:200]}",
+                )
 
 
 def _normalise_config(config: dict) -> dict:
@@ -113,27 +103,32 @@ def _route(chart_type: str, df: pd.DataFrame, config: dict) -> go.Figure:
     elif chart_type == "treemap":
         from charts.treemap import render
     else:
-        charts_log.warning(f"[renderer] Unknown '{chart_type}' → horizontal_bar")
+        charts_log.warning(f"[renderer] Unknown '{chart_type}' -> horizontal_bar")
         from charts.bar import render
     return render(df, config)
 
 
 def _error_figure(error_msg: str, chart_type: str) -> go.Figure:
-    """# * Returns a Plotly figure with the error message displayed."""
+    """# * Return a Plotly figure with the error message displayed."""
     fig = go.Figure()
     fig.add_annotation(
-        text     = f"⚠ Could not render {chart_type} chart<br>"
-                   f"<sub>{truncate_string(error_msg, 120)}</sub><br>"
-                   f"<sub>Raw data is available in the 📋 Data tab</sub>",
-        xref     = "paper", yref = "paper",
-        x=0.5, y=0.5, showarrow=False,
-        font     = {"size": 14, "color": "#fab387"},
-        align    = "center",
+        text=(
+            f"Could not render {chart_type}<br>"
+            f"<sub>{truncate_string(error_msg, 120)}</sub><br>"
+            f"<sub>Raw data is available in the Data tab</sub>"
+        ),
+        xref="paper",
+        yref="paper",
+        x=0.5,
+        y=0.5,
+        showarrow=False,
+        font={"size": 14, "color": COLORS.ACCENT_SECONDARY},
+        align="center",
     )
     fig.update_layout(
-        template = PLOTLY_TEMPLATE,
-        height   = 350,
-        paper_bgcolor = "#1e1e2e",
-        plot_bgcolor  = "#1e1e2e",
+        template=PLOTLY_TEMPLATE,
+        height=350,
+        paper_bgcolor=COLORS.BG_APP,
+        plot_bgcolor=COLORS.BG_SURFACE,
     )
     return fig

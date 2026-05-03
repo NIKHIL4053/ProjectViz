@@ -25,6 +25,12 @@ import json
 from pathlib import Path
 from typing import Optional
 
+import numpy as np
+
+# * Compatibility shim for older ChromaDB builds on NumPy 2.x.
+if not hasattr(np, "float_"):
+    np.float_ = np.float64
+
 import chromadb
 from chromadb.utils import embedding_functions
 

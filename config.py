@@ -79,10 +79,10 @@ OLLAMA_TAGS_URL    = f"{OLLAMA_BASE_URL}/api/tags"
 
 # * Primary model — intent analysis, clarifying questions, DAX generation
 # ? Change to qwen2.5-coder:32b if your GPU has 24GB+ VRAM
-CODER_MODEL        = os.getenv("CODER_MODEL",      "qwen2.5-coder:14b")
+CODER_MODEL        = os.getenv("CODER_MODEL",      "qwen2.5-coder:7b-instruct-q4_K_M")
 
 # * Secondary model — chart type decisions only
-FAST_MODEL         = os.getenv("FAST_MODEL",       "qwen2.5:7b")
+FAST_MODEL         = os.getenv("FAST_MODEL",       "qwen2.5-coder:7b-instruct-q4_K_M")
 
 OLLAMA_TIMEOUT     = int(os.getenv("OLLAMA_TIMEOUT",     "120"))
 OLLAMA_TEMPERATURE = float(os.getenv("OLLAMA_TEMPERATURE","0.1"))

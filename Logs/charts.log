@@ -696,3 +696,42 @@
 2026-04-19 23:59:54 | INFO     | [renderer] chart_type=area | rows=10 | cols=['Branch', 'Bounce Count'] | title='Top 10 Branches by Bounce Count'
 2026-04-19 23:59:54 | INFO     | [area] x=Bounce Count | y=Branch | rows=10
 2026-04-19 23:59:54 | INFO     | [renderer] OK | area
+2026-05-03 18:50:35 | INFO     | [renderer] chart_type=horizontal_bar | rows=1 | cols=['Customer Count', 'Resolution %', 'Coverage %', 'Intensity'] | title='FE Scorecard'
+2026-05-03 18:50:35 | INFO     | [bar] Rendered | x=Resolution % | y=Customer Count | bars=1
+2026-05-03 18:50:35 | INFO     | [renderer] OK | horizontal_bar
+2026-05-03 18:51:06 | INFO     | [renderer] chart_type=horizontal_bar | rows=1 | cols=['Customer Count', 'Resolution %', 'Coverage %', 'Intensity'] | title='FE Scorecard'
+2026-05-03 18:51:06 | INFO     | [bar] Rendered | x=Resolution % | y=Customer Count | bars=1
+2026-05-03 18:51:06 | INFO     | [renderer] OK | horizontal_bar
+2026-05-03 18:51:10 | INFO     | [renderer] chart_type=horizontal_bar | rows=1 | cols=['Customer Count', 'Resolution %', 'Coverage %', 'Intensity'] | title='FE Scorecard'
+2026-05-03 18:51:10 | INFO     | [bar] Rendered | x=Resolution % | y=Customer Count | bars=1
+2026-05-03 18:51:10 | INFO     | [renderer] OK | horizontal_bar
+2026-05-03 18:51:11 | INFO     | [renderer] chart_type=horizontal_bar | rows=1 | cols=['Customer Count', 'Resolution %', 'Coverage %', 'Intensity'] | title='FE Scorecard'
+2026-05-03 18:51:11 | INFO     | [bar] Rendered | x=Resolution % | y=Customer Count | bars=1
+2026-05-03 18:51:11 | INFO     | [renderer] OK | horizontal_bar
+2026-05-03 18:51:12 | INFO     | [renderer] chart_type=scatter | rows=1 | cols=['Customer Count', 'Resolution %', 'Coverage %', 'Intensity'] | title='FE Scorecard'
+2026-05-03 18:51:12 | INFO     | [scatter] x=Resolution % | y=Customer Count | sample=1/1
+2026-05-03 18:51:12 | INFO     | [renderer] OK | scatter
+2026-05-03 18:51:22 | INFO     | [renderer] chart_type=scatter | rows=1 | cols=['Customer Count', 'Resolution %', 'Coverage %', 'Intensity'] | title='FE Scorecard'
+2026-05-03 18:51:22 | INFO     | [scatter] x=Resolution % | y=Customer Count | sample=1/1
+2026-05-03 18:51:22 | INFO     | [renderer] OK | scatter
+2026-05-03 18:51:24 | INFO     | [renderer] chart_type=scatter | rows=1 | cols=['Customer Count', 'Resolution %', 'Coverage %', 'Intensity'] | title='FE Scorecard'
+2026-05-03 18:51:24 | INFO     | [scatter] x=Resolution % | y=Customer Count | sample=1/1
+2026-05-03 18:51:24 | INFO     | [renderer] OK | scatter
+2026-05-03 18:51:24 | INFO     | [renderer] chart_type=treemap | rows=1 | cols=['Customer Count', 'Resolution %', 'Coverage %', 'Intensity'] | title='FE Scorecard'
+2026-05-03 18:51:24 | ERROR    | [renderer] FAILED | treemap | Treemap needs at least 1 categorical and 1 numeric column
+2026-05-03 18:51:33 | INFO     | [renderer] chart_type=treemap | rows=1 | cols=['Customer Count', 'Resolution %', 'Coverage %', 'Intensity'] | title='FE Scorecard'
+2026-05-03 18:51:33 | ERROR    | [renderer] FAILED | treemap | Treemap needs at least 1 categorical and 1 numeric column
+2026-05-03 18:51:34 | INFO     | [renderer] chart_type=treemap | rows=1 | cols=['Customer Count', 'Resolution %', 'Coverage %', 'Intensity'] | title='FE Scorecard'
+2026-05-03 18:51:34 | ERROR    | [renderer] FAILED | treemap | Treemap needs at least 1 categorical and 1 numeric column
+2026-05-03 18:51:34 | INFO     | [renderer] chart_type=boxplot | rows=1 | cols=['Customer Count', 'Resolution %', 'Coverage %', 'Intensity'] | title='FE Scorecard'
+2026-05-03 18:51:34 | INFO     | [boxplot] x=Resolution % | y=Customer Count | rows=1
+2026-05-03 18:51:34 | INFO     | [renderer] OK | boxplot
+2026-05-03 18:51:41 | INFO     | [renderer] chart_type=boxplot | rows=1 | cols=['Customer Count', 'Resolution %', 'Coverage %', 'Intensity'] | title='FE Scorecard'
+2026-05-03 18:51:41 | INFO     | [boxplot] x=Resolution % | y=Customer Count | rows=1
+2026-05-03 18:51:41 | INFO     | [renderer] OK | boxplot
+2026-05-03 18:51:43 | INFO     | [renderer] chart_type=boxplot | rows=1 | cols=['Customer Count', 'Resolution %', 'Coverage %', 'Intensity'] | title='FE Scorecard'
+2026-05-03 18:51:43 | INFO     | [boxplot] x=Resolution % | y=Customer Count | rows=1
+2026-05-03 18:51:43 | INFO     | [renderer] OK | boxplot
+2026-05-03 18:51:43 | INFO     | [renderer] chart_type=heatmap | rows=1 | cols=['Customer Count', 'Resolution %', 'Coverage %', 'Intensity'] | title='FE Scorecard'
+2026-05-03 18:51:43 | INFO     | [heatmap] x=Resolution % | y=Customer Count | val=Coverage % | pivot=(1, 1)
+2026-05-03 18:51:43 | INFO     | [renderer] OK | heatmap

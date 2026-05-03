@@ -583,3 +583,95 @@ SELECT
 2026-04-19 23:56:14 | INFO     | [insight_generation] CALL START | model=qwen2.5:7b | ~459 prompt tokens | expect_json=True
 2026-04-19 23:56:32 | INFO     | [insight_generation] CALL OK | model=qwen2.5:7b | latency=17410ms | ~104 response tokens | preview="["INDORE branch has the highest bounce count at 998, nearly 50% more than the..."
 2026-04-19 23:56:32 | INFO     | [insight_generation] OK | count=4
+2026-05-03 18:32:15 | DEBUG    | [intent_analysis] Prompt built | context_len=6137 chars | ~2420 tokens
+2026-05-03 18:32:15 | INFO     | [intent_analysis] CALL START | model=qwen2.5-coder:14b | ~2420 prompt tokens | expect_json=True
+2026-05-03 18:36:52 | DEBUG    | [intent_analysis] Prompt built | context_len=6137 chars | ~2420 tokens
+2026-05-03 18:36:52 | INFO     | [intent_analysis] CALL START | model=qwen2.5-coder:7b-instruct-q4_K_M | ~2420 prompt tokens | expect_json=True
+2026-05-03 18:43:37 | INFO     | [intent_analysis] CALL OK | model=qwen2.5-coder:7b-instruct-q4_K_M | latency=404190ms | ~99 response tokens | preview="```json
+{
+  "intent_summary": "Field executive performance scorecard",
+  "met..."
+2026-05-03 18:43:37 | INFO     | [intent_analysis] PARSED OK | metric='FE Scorecard' | metric_key='FE_Scorecard' | columns=['Allocation 1', 'TL'] | confidence=High
+2026-05-03 18:43:37 | DEBUG    | [clarifying_questions] Prompt built | ~989 tokens
+2026-05-03 18:43:37 | INFO     | [clarifying_questions] CALL START | model=qwen2.5-coder:7b-instruct-q4_K_M | ~1011 prompt tokens | expect_json=True
+2026-05-03 18:45:53 | INFO     | [clarifying_questions] CALL OK | model=qwen2.5-coder:7b-instruct-q4_K_M | latency=136077ms | ~136 response tokens | preview="```json
+[
+  {
+    "question": "Which region would you like to see? Or show al..."
+2026-05-03 18:45:53 | INFO     | [clarifying_questions] PARSED OK | count=2 | fields=['Region', 'Portfolio new']
+2026-05-03 18:47:06 | DEBUG    | [sql_generation] ~1154 tokens
+2026-05-03 18:47:06 | INFO     | [sql_generation] CALL START | model=qwen2.5-coder:7b-instruct-q4_K_M | ~1247 prompt tokens | expect_json=False
+2026-05-03 18:49:52 | INFO     | [sql_generation] CALL OK | model=qwen2.5-coder:7b-instruct-q4_K_M | latency=165733ms | ~143 response tokens | preview="```sql
+SELECT 
+  COUNT(DISTINCT "cust_id") AS "Customer Count",
+  ROUND(COUNT..."
+2026-05-03 18:49:52 | INFO     | [sql_generation] OK | metric='FE_Scorecard' | preview="SELECT 
+  COUNT(DISTINCT "cust_id") AS "Customer Count",
+  ROUND(COUNT(DISTINCT CASE WHEN "cust_wise_status" = 'Norm'..."
+2026-05-03 18:49:53 | INFO     | [chart_decision] CALL START | model=qwen2.5-coder:7b-instruct-q4_K_M | ~363 prompt tokens | expect_json=True
+2026-05-03 18:50:34 | INFO     | [chart_decision] CALL OK | model=qwen2.5-coder:7b-instruct-q4_K_M | latency=41021ms | ~51 response tokens | preview="```json
+{
+  "chart_type": "horizontal_bar",
+  "x_col": "Resolution %",
+  "y_c..."
+2026-05-03 18:50:34 | INFO     | [chart_decision] Final | type=horizontal_bar | x=Resolution % | y=Customer Count | top_n=15
+2026-05-03 18:50:35 | INFO     | [insight_generation] CALL START | model=qwen2.5-coder:7b-instruct-q4_K_M | ~419 prompt tokens | expect_json=True
+2026-05-03 18:51:06 | INFO     | [insight_generation] CALL START | model=qwen2.5-coder:7b-instruct-q4_K_M | ~419 prompt tokens | expect_json=True
+2026-05-03 18:51:10 | INFO     | [insight_generation] CALL START | model=qwen2.5-coder:7b-instruct-q4_K_M | ~419 prompt tokens | expect_json=True
+2026-05-03 18:51:12 | INFO     | [insight_generation] CALL START | model=qwen2.5-coder:7b-instruct-q4_K_M | ~419 prompt tokens | expect_json=True
+2026-05-03 18:51:22 | INFO     | [insight_generation] CALL START | model=qwen2.5-coder:7b-instruct-q4_K_M | ~419 prompt tokens | expect_json=True
+2026-05-03 18:51:24 | INFO     | [insight_generation] CALL START | model=qwen2.5-coder:7b-instruct-q4_K_M | ~419 prompt tokens | expect_json=True
+2026-05-03 18:51:31 | INFO     | [insight_generation] CALL OK | model=qwen2.5-coder:7b-instruct-q4_K_M | latency=55257ms | ~86 response tokens | preview="```json
+[
+    "All branches have an identical customer count of 79,991.",
+   ..."
+2026-05-03 18:51:31 | INFO     | [insight_generation] OK | count=3
+2026-05-03 18:51:33 | INFO     | [insight_generation] CALL START | model=qwen2.5-coder:7b-instruct-q4_K_M | ~419 prompt tokens | expect_json=True
+2026-05-03 18:51:34 | INFO     | [insight_generation] CALL START | model=qwen2.5-coder:7b-instruct-q4_K_M | ~419 prompt tokens | expect_json=True
+2026-05-03 18:51:40 | INFO     | [insight_generation] CALL OK | model=qwen2.5-coder:7b-instruct-q4_K_M | latency=33918ms | ~57 response tokens | preview="```json
+[
+    "All branches have an identical customer count of 79,991.",
+   ..."
+2026-05-03 18:51:40 | INFO     | [insight_generation] OK | count=3
+2026-05-03 18:51:41 | INFO     | [insight_generation] CALL START | model=qwen2.5-coder:7b-instruct-q4_K_M | ~419 prompt tokens | expect_json=True
+2026-05-03 18:51:43 | INFO     | [insight_generation] CALL START | model=qwen2.5-coder:7b-instruct-q4_K_M | ~419 prompt tokens | expect_json=True
+2026-05-03 18:51:51 | INFO     | [insight_generation] CALL OK | model=qwen2.5-coder:7b-instruct-q4_K_M | latency=40603ms | ~78 response tokens | preview="```json
+[
+    "All branches have an identical customer count of 79,991.",
+   ..."
+2026-05-03 18:51:51 | INFO     | [insight_generation] OK | count=3
+2026-05-03 18:52:01 | INFO     | [insight_generation] CALL OK | model=qwen2.5-coder:7b-instruct-q4_K_M | latency=49622ms | ~78 response tokens | preview="```json
+[
+    "All branches have a consistent customer count of 79,991.",
+   ..."
+2026-05-03 18:52:01 | INFO     | [insight_generation] OK | count=3
+2026-05-03 18:52:12 | INFO     | [insight_generation] CALL OK | model=qwen2.5-coder:7b-instruct-q4_K_M | latency=50677ms | ~79 response tokens | preview="```json
+[
+    "All branches have an identical customer count of 79,991.",
+   ..."
+2026-05-03 18:52:12 | INFO     | [insight_generation] OK | count=3
+2026-05-03 18:52:25 | INFO     | [insight_generation] CALL OK | model=qwen2.5-coder:7b-instruct-q4_K_M | latency=61390ms | ~80 response tokens | preview="```json
+[
+    "All branches have an identical customer count of 79,991.",
+   ..."
+2026-05-03 18:52:25 | INFO     | [insight_generation] OK | count=3
+2026-05-03 18:52:35 | INFO     | [insight_generation] CALL OK | model=qwen2.5-coder:7b-instruct-q4_K_M | latency=61691ms | ~57 response tokens | preview="```json
+[
+    "All branches have an identical customer count of 79,991.",
+   ..."
+2026-05-03 18:52:35 | INFO     | [insight_generation] OK | count=3
+2026-05-03 18:52:44 | INFO     | [insight_generation] CALL OK | model=qwen2.5-coder:7b-instruct-q4_K_M | latency=69671ms | ~57 response tokens | preview="```json
+[
+    "All branches have an identical customer count of 79,991.",
+   ..."
+2026-05-03 18:52:44 | INFO     | [insight_generation] OK | count=3
+2026-05-03 18:52:55 | INFO     | [insight_generation] CALL OK | model=qwen2.5-coder:7b-instruct-q4_K_M | latency=73811ms | ~79 response tokens | preview="```json
+[
+    "All branches have an identical customer count of 79,991.",
+   ..."
+2026-05-03 18:52:55 | INFO     | [insight_generation] OK | count=3
+2026-05-03 18:53:04 | INFO     | [insight_generation] CALL OK | model=qwen2.5-coder:7b-instruct-q4_K_M | latency=81277ms | ~57 response tokens | preview="```json
+[
+    "All branches have an identical customer count of 79,991.",
+   ..."
+2026-05-03 18:53:04 | INFO     | [insight_generation] OK | count=3

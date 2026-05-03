@@ -1816,3 +1816,108 @@
 2026-04-28 11:46:24 | INFO     | core.dictionary:440 | [dictionary] Initialised successfully | total_docs=153
 2026-04-28 11:46:24 | INFO     | core.dictionary:659 | [dictionary] Force reloading all context JSONs...
 2026-04-28 11:46:26 | ERROR    | core.dictionary:668 | [dictionary] reload() failed | error=disk I/O error
+2026-04-28 14:39:26 | INFO     | core.dictionary:412 | [dictionary] Initialising ChromaDB and loading context JSONs...
+2026-04-28 14:39:34 | INFO     | core.dictionary:442 | [dictionary] Collection already has 153 documents — skipping reload
+2026-04-28 14:39:34 | INFO     | core.dictionary:446 | [dictionary] Initialised successfully | total_docs=153
+2026-04-28 14:39:35 | INFO     | models.ollama_client:109 | [ollama] Client initialised | base_url=http://localhost:11434
+2026-04-28 14:39:39 | WARNING  | models.ollama_client:128 | [ollama] is_running check failed — Ollama not reachable
+2026-04-28 14:39:39 | INFO     | __main__:124 | [app] Startup complete | {'config_warnings': [], 'dictionary_ready': True, 'db_connected': True, 'db_mock_mode': False, 'ollama_running': False, 'coder_available': False, 'fast_available': False, 'db_row_count': 89255}
+2026-04-28 14:39:39 | INFO     | core.session:609 | [session] New SessionManager created | session_id=127e901f
+2026-04-28 14:39:39 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-04-28 14:39:39 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=2 files
+2026-05-03 18:28:53 | INFO     | core.dictionary:412 | [dictionary] Initialising ChromaDB and loading context JSONs...
+2026-05-03 18:30:40 | INFO     | core.dictionary:442 | [dictionary] Collection already has 153 documents — skipping reload
+2026-05-03 18:30:40 | INFO     | core.dictionary:446 | [dictionary] Initialised successfully | total_docs=153
+2026-05-03 18:30:40 | INFO     | models.ollama_client:109 | [ollama] Client initialised | base_url=http://localhost:11434
+2026-05-03 18:30:43 | INFO     | __main__:124 | [app] Startup complete | {'config_warnings': [], 'dictionary_ready': True, 'db_connected': True, 'db_mock_mode': False, 'ollama_running': True, 'coder_available': True, 'fast_available': True, 'db_row_count': 89255}
+2026-05-03 18:30:55 | INFO     | core.dictionary:412 | [dictionary] Initialising ChromaDB and loading context JSONs...
+2026-05-03 18:31:14 | INFO     | core.dictionary:442 | [dictionary] Collection already has 153 documents — skipping reload
+2026-05-03 18:31:14 | INFO     | core.dictionary:446 | [dictionary] Initialised successfully | total_docs=153
+2026-05-03 18:31:14 | INFO     | models.ollama_client:109 | [ollama] Client initialised | base_url=http://localhost:11434
+2026-05-03 18:31:17 | INFO     | __main__:124 | [app] Startup complete | {'config_warnings': [], 'dictionary_ready': True, 'db_connected': True, 'db_mock_mode': False, 'ollama_running': True, 'coder_available': True, 'fast_available': True, 'db_row_count': 89255}
+2026-05-03 18:31:17 | INFO     | core.session:609 | [session] New SessionManager created | session_id=a9d0a054
+2026-05-03 18:31:17 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:31:17 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:32:06 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:32:06 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:32:06 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:32:06 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:32:15 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:32:15 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:32:15 | INFO     | core.session:208 | [session] New query | session=a9d0a054 | question='Show FE scorecard'
+2026-05-03 18:32:15 | INFO     | models.analyzer:200 | [analyzer] Initialised
+2026-05-03 18:32:15 | INFO     | models.analyzer:233 | [analyzer] Analyzing question | 'Show FE scorecard'
+2026-05-03 18:34:09 | INFO     | core.dictionary:412 | [dictionary] Initialising ChromaDB and loading context JSONs...
+2026-05-03 18:34:28 | INFO     | core.dictionary:442 | [dictionary] Collection already has 153 documents — skipping reload
+2026-05-03 18:34:28 | INFO     | core.dictionary:446 | [dictionary] Initialised successfully | total_docs=153
+2026-05-03 18:34:28 | INFO     | models.ollama_client:109 | [ollama] Client initialised | base_url=http://localhost:11434
+2026-05-03 18:34:31 | INFO     | __main__:124 | [app] Startup complete | {'config_warnings': [], 'dictionary_ready': True, 'db_connected': True, 'db_mock_mode': False, 'ollama_running': True, 'coder_available': True, 'fast_available': True, 'db_row_count': 89255}
+2026-05-03 18:34:31 | INFO     | core.session:609 | [session] New SessionManager created | session_id=624c7851
+2026-05-03 18:34:31 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:34:31 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:36:48 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:36:48 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:36:48 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:36:48 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:36:52 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:36:52 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:36:52 | INFO     | core.session:208 | [session] New query | session=624c7851 | question='Show FE scorecard'
+2026-05-03 18:36:52 | INFO     | models.analyzer:200 | [analyzer] Initialised
+2026-05-03 18:36:52 | INFO     | models.analyzer:233 | [analyzer] Analyzing question | 'Show FE scorecard'
+2026-05-03 18:43:37 | INFO     | models.clarifier:220 | [clarifier] Initialised
+2026-05-03 18:43:37 | INFO     | models.clarifier:253 | [clarifier] Generating questions | metric='FE Scorecard' | slicer_candidates=['Allocation 1', 'TL']
+2026-05-03 18:45:53 | INFO     | models.clarifier:306 | [clarifier] Generated 2 questions
+2026-05-03 18:45:53 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:45:53 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:45:53 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=2 | active=0 | active_filters={}
+2026-05-03 18:47:06 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:47:06 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:47:06 | INFO     | models.clarifier:391 | [clarifier] Answers collected | total=2 | active=0 | active_filters={}
+2026-05-03 18:47:06 | INFO     | models.sql_generator:217 | [sql_generator] Initialised
+2026-05-03 18:47:06 | INFO     | models.sql_generator:241 | [sql_generator] Generating | metric='FE_Scorecard' | group_by='None' | slicers={}
+2026-05-03 18:49:52 | INFO     | database.client:117 | [db_client] Initialised | mock_mode=False | table=public.loan_dashboard
+2026-05-03 18:49:53 | INFO     | core.session:293 | [session] DataFrame saved | file=624c7851_56a021a2_1777814393.parquet | rows=1 | cols=4
+2026-05-03 18:49:53 | INFO     | models.chart_decider:326 | [chart_decider] Initialised
+2026-05-03 18:50:35 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:50:35 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:50:35 | INFO     | core.filters:255 | [filters] Detected 0 filters from 4 columns
+2026-05-03 18:50:35 | INFO     | models.insight_generator:65 | [insight_generator] Initialised
+2026-05-03 18:51:06 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:51:06 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:51:06 | INFO     | core.filters:255 | [filters] Detected 0 filters from 4 columns
+2026-05-03 18:51:10 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:51:10 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:51:10 | INFO     | core.filters:255 | [filters] Detected 0 filters from 4 columns
+2026-05-03 18:51:11 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:51:11 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:51:11 | INFO     | core.filters:255 | [filters] Detected 0 filters from 4 columns
+2026-05-03 18:51:12 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:51:12 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:51:12 | INFO     | core.filters:255 | [filters] Detected 0 filters from 4 columns
+2026-05-03 18:51:22 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:51:22 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:51:22 | INFO     | core.filters:255 | [filters] Detected 0 filters from 4 columns
+2026-05-03 18:51:23 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:51:23 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:51:24 | INFO     | core.filters:255 | [filters] Detected 0 filters from 4 columns
+2026-05-03 18:51:24 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:51:24 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:51:24 | INFO     | core.filters:255 | [filters] Detected 0 filters from 4 columns
+2026-05-03 18:51:33 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:51:33 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:51:33 | INFO     | core.filters:255 | [filters] Detected 0 filters from 4 columns
+2026-05-03 18:51:34 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:51:34 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:51:34 | INFO     | core.filters:255 | [filters] Detected 0 filters from 4 columns
+2026-05-03 18:51:34 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:51:34 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:51:34 | INFO     | core.filters:255 | [filters] Detected 0 filters from 4 columns
+2026-05-03 18:51:41 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:51:41 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:51:41 | INFO     | core.filters:255 | [filters] Detected 0 filters from 4 columns
+2026-05-03 18:51:43 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:51:43 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:51:43 | INFO     | core.filters:255 | [filters] Detected 0 filters from 4 columns
+2026-05-03 18:51:43 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-03 18:51:43 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
+2026-05-03 18:51:43 | INFO     | core.filters:255 | [filters] Detected 0 filters from 4 columns

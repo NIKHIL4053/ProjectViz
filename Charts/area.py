@@ -1,21 +1,29 @@
 """charts/area.py — Plotly stacked area chart."""
+
 import pandas as pd
-import plotly.graph_objects as go
 import plotly.express as px
+import plotly.graph_objects as go
+
+from charts.theme import (
+    COLORS,
+    PLOTLY_TEMPLATE,
+    get_plotly_sequence,
+    style_plotly_figure,
+)
 from utils.helpers import get_column
 from utils.logger import get_charts_logger
 
 charts_log = get_charts_logger(__name__)
-TEMPLATE   = "plotly_dark"
 
 
 def render(df: pd.DataFrame, config: dict) -> go.Figure:
-    x_col   = get_column(df, config.get("x_col")) or df.columns[0]
-    y_col   = get_column(df, config.get("y_col")) or next(
-                (c for c in df.columns if pd.api.types.is_numeric_dtype(df[c]) and c != x_col),
-                df.columns[-1])
+    x_col = get_column(df, config.get("x_col")) or df.columns[0]
+    y_col = get_column(df, config.get("y_col")) or next(
+        (c for c in df.columns if pd.api.types.is_numeric_dtype(df[c]) and c != x_col),
+        df.columns[-1],
+    )
     hue_col = get_column(df, config.get("hue_col"))
-    title   = config.get("title", f"{y_col} over {x_col}")
+    title = config.get("title", f"{y_col} over {x_col}")
 
     try:
         df = df.sort_values(by=x_col)
@@ -23,20 +31,31 @@ def render(df: pd.DataFrame, config: dict) -> go.Figure:
         pass
 
     if hue_col and hue_col in df.columns:
-        fig = px.area(df, x=x_col, y=y_col, color=hue_col,
-                      title=title, template=TEMPLATE)
+        fig = px.area(
+            df,
+            x=x_col,
+            y=y_col,
+            color=hue_col,
+            title=title,
+            template=PLOTLY_TEMPLATE,
+            color_discrete_sequence=get_plotly_sequence(),
+        )
     else:
-        fig = px.area(df, x=x_col, y=y_col, title=title, template=TEMPLATE)
-        fig.update_traces(line_color="#89b4fa",
-                          fillcolor="rgba(137,180,250,0.45)")
+        fig = px.area(df, x=x_col, y=y_col, title=title, template=PLOTLY_TEMPLATE)
+        fig.update_traces(
+            line_color=COLORS.ACCENT_SKY,
+            fillcolor="rgba(93,169,233,0.32)",
+        )
 
-    fig.update_layout(
-        height=450, paper_bgcolor="#1e1e2e", plot_bgcolor="#1e1e2e",
-        font={"color": "#cdd6f4"}, title_font={"size": 15, "color": "#89b4fa"},
-        xaxis_title=x_col, yaxis_title=y_col,
-        margin={"l": 30, "r": 30, "t": 50, "b": 80},
+    style_plotly_figure(
+        fig,
+        title=title,
+        height=450,
+        xaxis_title=x_col,
+        yaxis_title=y_col,
+        x_tickangle=28,
     )
-    fig.update_xaxes(tickangle=30, gridcolor="#313244")
-    fig.update_yaxes(gridcolor="#313244")
+    fig.update_layout(margin={"l": 30, "r": 26, "t": 72, "b": 82})
+
     charts_log.info(f"[area] x={x_col} | y={y_col} | rows={len(df)}")
     return fig

@@ -2117,3 +2117,175 @@
 2026-04-19 23:59:54 | [END]   chart_render                   |     40ms | status=OK
 2026-04-28 11:44:04 | [START] dictionary_initialise
 2026-04-28 11:46:24 | [END]   dictionary_initialise          | 140718ms | status=OK
+2026-04-28 14:39:26 | [START] dictionary_initialise
+2026-04-28 14:39:34 | [END]   dictionary_initialise          |   8357ms | status=OK
+2026-04-28 14:39:34 | [START] db_initialise
+2026-04-28 14:39:35 | [END]   db_initialise                  |    328ms | status=OK
+2026-04-28 14:39:39 | [START] db_execute
+2026-04-28 14:39:39 | [END]   db_execute                     |    202ms | status=OK
+2026-05-03 18:28:53 | [START] dictionary_initialise
+2026-05-03 18:30:40 | [END]   dictionary_initialise          | 107175ms | status=OK
+2026-05-03 18:30:40 | [START] db_initialise
+2026-05-03 18:30:40 | [END]   db_initialise                  |    293ms | status=OK
+2026-05-03 18:30:42 | [START] db_execute
+2026-05-03 18:30:43 | [END]   db_execute                     |    499ms | status=OK
+2026-05-03 18:30:55 | [START] dictionary_initialise
+2026-05-03 18:31:14 | [END]   dictionary_initialise          |  18833ms | status=OK
+2026-05-03 18:31:14 | [START] db_initialise
+2026-05-03 18:31:14 | [END]   db_initialise                  |    247ms | status=OK
+2026-05-03 18:31:16 | [START] db_execute
+2026-05-03 18:31:17 | [END]   db_execute                     |    195ms | status=OK
+2026-05-03 18:32:15 | [START] intent_analysis                | query="Show FE scorecard"
+2026-05-03 18:32:15 | [START] intent_analysis | query="Show FE scorecard"
+2026-05-03 18:32:15 | [START] dictionary_coder_context | query="Show FE scorecard"
+2026-05-03 18:32:15 | [END]   dictionary_coder_context       |    329ms | status=OK
+2026-05-03 18:32:15 | [START] intent_analysis
+2026-05-03 18:34:09 | [START] dictionary_initialise
+2026-05-03 18:34:28 | [END]   dictionary_initialise          |  19042ms | status=OK
+2026-05-03 18:34:28 | [START] db_initialise
+2026-05-03 18:34:28 | [END]   db_initialise                  |    173ms | status=OK
+2026-05-03 18:34:30 | [START] db_execute
+2026-05-03 18:34:31 | [END]   db_execute                     |    442ms | status=OK
+2026-05-03 18:36:52 | [START] intent_analysis                | query="Show FE scorecard"
+2026-05-03 18:36:52 | [START] intent_analysis | query="Show FE scorecard"
+2026-05-03 18:36:52 | [START] dictionary_coder_context | query="Show FE scorecard"
+2026-05-03 18:36:52 | [END]   dictionary_coder_context       |    197ms | status=OK
+2026-05-03 18:36:52 | [START] intent_analysis
+2026-05-03 18:43:37 | [END]   intent_analysis                | 404191ms | status=OK
+2026-05-03 18:43:37 | [END]   intent_analysis                | 404392ms | status=OK
+2026-05-03 18:43:37 | [END]   intent_analysis                | 404405ms | status=OK
+2026-05-03 18:43:37 | [START] clarifying_questions           | query="Show FE scorecard"
+2026-05-03 18:43:37 | [START] clarifying_questions | query="Show FE scorecard"
+2026-05-03 18:43:37 | [START] clarifying_questions
+2026-05-03 18:45:53 | [END]   clarifying_questions           | 136077ms | status=OK
+2026-05-03 18:45:53 | [END]   clarifying_questions           | 136120ms | status=OK
+2026-05-03 18:45:53 | [END]   clarifying_questions           | 136122ms | status=OK
+2026-05-03 18:45:53 | ════════════════════════════════════════════════════
+2026-05-03 18:45:53 | QUERY : "Show FE scorecard"
+2026-05-03 18:45:53 |   ├── intent_analysis             : 404405ms  ✓
+2026-05-03 18:45:53 |   └── clarifying_questions        : 136122ms  ✓
+2026-05-03 18:45:53 | ════════════════════════════════════════════════════
+2026-05-03 18:45:53 |   TOTAL                         : 540527ms
+2026-05-03 18:45:53 | ════════════════════════════════════════════════════
+2026-05-03 18:47:06 | [START] sql_generation                 | query="Show FE scorecard"
+2026-05-03 18:47:06 | [START] sql_generation | query="Show FE scorecard"
+2026-05-03 18:47:06 | [START] sql_generation
+2026-05-03 18:49:52 | [END]   sql_generation                 | 165734ms | status=OK
+2026-05-03 18:49:52 | [END]   sql_generation                 | 165783ms | status=OK
+2026-05-03 18:49:52 | [END]   sql_generation                 | 165786ms | status=OK
+2026-05-03 18:49:52 | [START] db_fetch                       | query="Show FE scorecard"
+2026-05-03 18:49:52 | [START] db_fetch
+2026-05-03 18:49:52 | [START] db_execute
+2026-05-03 18:49:53 | [END]   db_execute                     |   1230ms | status=OK
+2026-05-03 18:49:53 | [END]   db_fetch                       |   1233ms | status=OK
+2026-05-03 18:49:53 | [END]   db_fetch                       |   1236ms | status=OK
+2026-05-03 18:49:53 | [START] chart_decision                 | query="Show FE scorecard"
+2026-05-03 18:49:53 | [START] chart_decision | query="Show FE scorecard"
+2026-05-03 18:49:53 | [START] chart_decision
+2026-05-03 18:50:34 | [END]   chart_decision                 |  41022ms | status=OK
+2026-05-03 18:50:34 | [END]   chart_decision                 |  41028ms | status=OK
+2026-05-03 18:50:34 | [END]   chart_decision                 |  41030ms | status=OK
+2026-05-03 18:50:34 | ════════════════════════════════════════════════════
+2026-05-03 18:50:34 | QUERY : "Show FE scorecard"
+2026-05-03 18:50:34 |   ├── sql_generation              : 165786ms  ✓
+2026-05-03 18:50:34 |   ├── db_fetch                    :   1236ms  ✓
+2026-05-03 18:50:34 |   └── chart_decision              :  41030ms  ✓
+2026-05-03 18:50:34 | ════════════════════════════════════════════════════
+2026-05-03 18:50:34 |   TOTAL                         : 208052ms
+2026-05-03 18:50:34 | ════════════════════════════════════════════════════
+2026-05-03 18:50:35 | [START] filter_detection
+2026-05-03 18:50:35 | [END]   filter_detection               |     10ms | status=OK
+2026-05-03 18:50:35 | [START] chart_render
+2026-05-03 18:50:35 | [END]   chart_render                   |    470ms | status=OK
+2026-05-03 18:50:35 | [START] insight_generation | query="Show FE scorecard"
+2026-05-03 18:50:35 | [START] insight_generation
+2026-05-03 18:51:06 | [START] filter_detection
+2026-05-03 18:51:06 | [END]   filter_detection               |      2ms | status=OK
+2026-05-03 18:51:06 | [START] chart_render
+2026-05-03 18:51:06 | [END]   chart_render                   |    113ms | status=OK
+2026-05-03 18:51:06 | [START] insight_generation | query="Show FE scorecard"
+2026-05-03 18:51:06 | [START] insight_generation
+2026-05-03 18:51:10 | [START] filter_detection
+2026-05-03 18:51:10 | [END]   filter_detection               |      3ms | status=OK
+2026-05-03 18:51:10 | [START] chart_render
+2026-05-03 18:51:10 | [END]   chart_render                   |     83ms | status=OK
+2026-05-03 18:51:10 | [START] insight_generation | query="Show FE scorecard"
+2026-05-03 18:51:10 | [START] insight_generation
+2026-05-03 18:51:11 | [START] filter_detection
+2026-05-03 18:51:11 | [END]   filter_detection               |      6ms | status=OK
+2026-05-03 18:51:11 | [START] chart_render
+2026-05-03 18:51:11 | [END]   chart_render                   |     79ms | status=OK
+2026-05-03 18:51:12 | [START] filter_detection
+2026-05-03 18:51:12 | [END]   filter_detection               |      3ms | status=OK
+2026-05-03 18:51:12 | [START] chart_render
+2026-05-03 18:51:12 | [END]   chart_render                   |    134ms | status=OK
+2026-05-03 18:51:12 | [START] insight_generation | query="Show FE scorecard"
+2026-05-03 18:51:12 | [START] insight_generation
+2026-05-03 18:51:22 | [START] filter_detection
+2026-05-03 18:51:22 | [END]   filter_detection               |      8ms | status=OK
+2026-05-03 18:51:22 | [START] chart_render
+2026-05-03 18:51:22 | [END]   chart_render                   |     76ms | status=OK
+2026-05-03 18:51:22 | [START] insight_generation | query="Show FE scorecard"
+2026-05-03 18:51:22 | [START] insight_generation
+2026-05-03 18:51:24 | [START] filter_detection
+2026-05-03 18:51:24 | [END]   filter_detection               |     15ms | status=OK
+2026-05-03 18:51:24 | [START] chart_render
+2026-05-03 18:51:24 | [END]   chart_render                   |     84ms | status=OK
+2026-05-03 18:51:24 | [START] filter_detection
+2026-05-03 18:51:24 | [END]   filter_detection               |     19ms | status=OK
+2026-05-03 18:51:24 | [START] chart_render
+2026-05-03 18:51:24 | [END]   chart_render                   |     31ms | status=OK
+2026-05-03 18:51:24 | [START] insight_generation | query="Show FE scorecard"
+2026-05-03 18:51:24 | [START] insight_generation
+2026-05-03 18:51:31 | [END]   insight_generation             |  55258ms | status=OK
+2026-05-03 18:51:31 | [END]   insight_generation             |  55273ms | status=OK
+2026-05-03 18:51:33 | [START] filter_detection
+2026-05-03 18:51:33 | [END]   filter_detection               |      4ms | status=OK
+2026-05-03 18:51:33 | [START] chart_render
+2026-05-03 18:51:33 | [END]   chart_render                   |     15ms | status=OK
+2026-05-03 18:51:33 | [START] insight_generation | query="Show FE scorecard"
+2026-05-03 18:51:33 | [START] insight_generation
+2026-05-03 18:51:34 | [START] filter_detection
+2026-05-03 18:51:34 | [END]   filter_detection               |      6ms | status=OK
+2026-05-03 18:51:34 | [START] chart_render
+2026-05-03 18:51:34 | [END]   chart_render                   |      9ms | status=OK
+2026-05-03 18:51:34 | [START] filter_detection
+2026-05-03 18:51:34 | [END]   filter_detection               |      6ms | status=OK
+2026-05-03 18:51:34 | [START] chart_render
+2026-05-03 18:51:34 | [END]   chart_render                   |    213ms | status=OK
+2026-05-03 18:51:34 | [START] insight_generation | query="Show FE scorecard"
+2026-05-03 18:51:34 | [START] insight_generation
+2026-05-03 18:51:40 | [END]   insight_generation             |  33920ms | status=OK
+2026-05-03 18:51:40 | [END]   insight_generation             |  33930ms | status=OK
+2026-05-03 18:51:41 | [START] filter_detection
+2026-05-03 18:51:41 | [END]   filter_detection               |     12ms | status=OK
+2026-05-03 18:51:41 | [START] chart_render
+2026-05-03 18:51:41 | [END]   chart_render                   |    178ms | status=OK
+2026-05-03 18:51:41 | [START] insight_generation | query="Show FE scorecard"
+2026-05-03 18:51:41 | [START] insight_generation
+2026-05-03 18:51:43 | [START] filter_detection
+2026-05-03 18:51:43 | [END]   filter_detection               |      2ms | status=OK
+2026-05-03 18:51:43 | [START] chart_render
+2026-05-03 18:51:43 | [END]   chart_render                   |     69ms | status=OK
+2026-05-03 18:51:43 | [START] filter_detection
+2026-05-03 18:51:43 | [END]   filter_detection               |      3ms | status=OK
+2026-05-03 18:51:43 | [START] chart_render
+2026-05-03 18:51:43 | [END]   chart_render                   |    105ms | status=OK
+2026-05-03 18:51:43 | [START] insight_generation | query="Show FE scorecard"
+2026-05-03 18:51:43 | [START] insight_generation
+2026-05-03 18:51:51 | [END]   insight_generation             |  40604ms | status=OK
+2026-05-03 18:51:51 | [END]   insight_generation             |  40610ms | status=OK
+2026-05-03 18:52:01 | [END]   insight_generation             |  49624ms | status=OK
+2026-05-03 18:52:01 | [END]   insight_generation             |  49630ms | status=OK
+2026-05-03 18:52:12 | [END]   insight_generation             |  50679ms | status=OK
+2026-05-03 18:52:12 | [END]   insight_generation             |  50685ms | status=OK
+2026-05-03 18:52:25 | [END]   insight_generation             |  61391ms | status=OK
+2026-05-03 18:52:25 | [END]   insight_generation             |  61395ms | status=OK
+2026-05-03 18:52:35 | [END]   insight_generation             |  61694ms | status=OK
+2026-05-03 18:52:35 | [END]   insight_generation             |  61701ms | status=OK
+2026-05-03 18:52:44 | [END]   insight_generation             |  69675ms | status=OK
+2026-05-03 18:52:44 | [END]   insight_generation             |  69682ms | status=OK
+2026-05-03 18:52:55 | [END]   insight_generation             |  73812ms | status=OK
+2026-05-03 18:52:55 | [END]   insight_generation             |  73816ms | status=OK
+2026-05-03 18:53:04 | [END]   insight_generation             |  81279ms | status=OK
+2026-05-03 18:53:04 | [END]   insight_generation             |  81286ms | status=OK
