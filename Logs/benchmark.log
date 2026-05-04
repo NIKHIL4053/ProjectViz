@@ -2117,3 +2117,7 @@
 2026-04-19 23:59:54 | [END]   chart_render                   |     40ms | status=OK
 2026-04-28 11:44:04 | [START] dictionary_initialise
 2026-04-28 11:46:24 | [END]   dictionary_initialise          | 140718ms | status=OK
+2026-05-04 23:23:49 | [START] dictionary_initialise
+2026-05-04 23:24:06 | [END]   dictionary_initialise          |  16432ms | status=OK
+2026-05-04 23:24:06 | [START] db_initialise
+2026-05-04 23:24:10 | [END]   db_initialise                  |   4183ms | status=OK

@@ -8,7 +8,7 @@ charts/theme.py
 
 # ? Design decisions:
 # ? Dark background (#1e1e2e) matches the Streamlit dark UI
-# ? so charts feel native to the dashboard, not pasted in.
+# ? so charts feel nat~ive to the dashboard, not pasted in.
 # ? Catppuccin Mocha palette — professional, readable, not garish.
 
 Exports:
