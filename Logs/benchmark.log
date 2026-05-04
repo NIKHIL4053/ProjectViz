@@ -2289,3 +2289,7 @@
 2026-05-03 18:52:55 | [END]   insight_generation             |  73816ms | status=OK
 2026-05-03 18:53:04 | [END]   insight_generation             |  81279ms | status=OK
 2026-05-03 18:53:04 | [END]   insight_generation             |  81286ms | status=OK
+2026-05-04 18:59:38 | [START] dictionary_initialise
+2026-05-04 19:00:06 | [END]   dictionary_initialise          |  28699ms | status=OK
+2026-05-04 19:00:06 | [START] db_initialise
+2026-05-04 19:00:11 | [END]   db_initialise                  |   4178ms | status=OK

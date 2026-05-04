@@ -197,3 +197,10 @@ HINT:  U
 2026-05-03 18:49:52 | INFO     | [db] Executing query | preview="SELECT    COUNT(DISTINCT "cust_id") AS "Customer Count",   ROUND(COUNT(DISTINCT CASE WHEN "cust_wise_status" = 'Norm' TH"
 2026-05-03 18:49:53 | INFO     | [db] Query OK | rows=1 | cols=4 | columns=['Customer Count', 'Resolution %', 'Coverage %', 'Intensity']
 2026-05-03 18:49:53 | INFO     | [db_client] Real query OK | rows=1 | cols=4
+2026-05-04 19:00:06 | INFO     | [db] Connecting | host=localhost | port=5432 | db=LD | user=nik
+2026-05-04 19:00:11 | ERROR    | [db] Connection failed — is Docker running? | host=localhost:5432 | error=(psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
