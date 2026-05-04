@@ -1613,3 +1613,12 @@
 2026-04-18 17:30:01 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
 2026-04-18 17:30:01 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files
 2026-04-18 17:30:01 | INFO     | core.filters:255 | [filters] Detected 0 filters from 1 columns
+2026-05-04 19:02:21 | INFO     | core.dictionary:406 | [dictionary] Initialising ChromaDB and loading context JSONs...
+2026-05-04 19:02:29 | INFO     | core.dictionary:436 | [dictionary] Collection already has 153 documents — skipping reload
+2026-05-04 19:02:29 | INFO     | core.dictionary:440 | [dictionary] Initialised successfully | total_docs=153
+2026-05-04 19:02:33 | INFO     | models.ollama_client:109 | [ollama] Client initialised | base_url=http://localhost:11434
+2026-05-04 19:02:37 | WARNING  | models.ollama_client:128 | [ollama] is_running check failed — Ollama not reachable
+2026-05-04 19:02:37 | INFO     | __main__:73 | [app] Startup complete | {'config_warnings': [], 'dictionary_ready': True, 'db_connected': False, 'db_mock_mode': False, 'ollama_running': False, 'coder_available': False, 'fast_available': False, 'db_row_count': 89255}
+2026-05-04 19:02:37 | INFO     | core.session:609 | [session] New SessionManager created | session_id=d34ccb0d
+2026-05-04 19:02:37 | INFO     | core.session:514 | [session] Scanning for stale temp files across all sessions...
+2026-05-04 19:02:37 | INFO     | core.session:533 | [session] Stale file cleanup complete | deleted=0 files

@@ -1818,3 +1818,7 @@
 2026-04-18 17:30:01 | [END]   filter_detection               |      2ms | status=OK
 2026-04-18 17:30:01 | [START] chart_render
 2026-04-18 17:30:01 | [END]   chart_render                   |     53ms | status=OK
+2026-05-04 19:02:21 | [START] dictionary_initialise
+2026-05-04 19:02:29 | [END]   dictionary_initialise          |   8099ms | status=OK
+2026-05-04 19:02:29 | [START] db_initialise
+2026-05-04 19:02:33 | [END]   db_initialise                  |   4171ms | status=OK
